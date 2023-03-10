@@ -6,6 +6,14 @@
 </p>
 <br/>
 
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/MVVM.png?raw=true" width="600" height="1000" />
+  <br/>
+  <i>(ERD)</i>
+</p>
+<br/>
+
 ## Yêu Cầu / Chức Năng
 
 **Biểu mẫu 1**
