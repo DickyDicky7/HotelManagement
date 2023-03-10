@@ -1,14 +1,14 @@
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v2.png?raw=true" width="600" height="1000" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/MVVM.png?raw=true" width="1000" height="300" />
   <br/>
-  <i>(ERD)</i>
+  <i>(MVVM Pattern)</i>
 </p>
 <br/>
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/MVVM.png?raw=true" width="600" height="1000" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v2.png?raw=true" width="600" height="1000" />
   <br/>
   <i>(ERD)</i>
 </p>
