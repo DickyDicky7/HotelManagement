@@ -43,6 +43,7 @@
   - [ ] Xem danh sách các phiếu thuê phòng trong lịch sử
   - [ ] Tạo phiếu thuê phòng mới (tạo mới, nhập rồi thêm vào database)
   - [ ] Xóa phiếu thuê phòng (nếu xóa được)
+  - [ ] Sửa hoặc cập nhật số ngày thuê
   - [ ] Dò phiếu thuê phòng trong lịch sử (dựa trên tên phòng, ngày bắt đầu thuê, tên khách hàng, loại khách, số cmnd, địa chỉ)
   - [ ] In phiếu thuê phòng
 
