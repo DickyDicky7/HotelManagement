@@ -8,7 +8,7 @@
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v2.png?raw=true" width="600" height="1000" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v3.png?raw=true" width="600" height="1000" />
   <br/>
   <i>(ERD)</i>
 </p>
@@ -35,6 +35,8 @@
 >   - [ ] Thêm loại phòng
 >   - [ ] Xóa loại phòng (nếu xóa được)
 >   - [ ] Thay đổi giá loại phòng
+>   - [ ] Thay đổi số lượng người tối đa trong loại phòng
+>   - [ ] Thay đổi phần trăm phụ phí và số thứ tự khách bắt đầu thu phụ phí của loại phòng
 
 **Biểu mẫu 2**
 
