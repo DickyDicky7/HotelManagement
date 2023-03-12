@@ -8,7 +8,7 @@
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v3.png?raw=true" width="600" height="1000" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v4.png?raw=true" width="600" height="1000" />
   <br/>
   <i>(ERD)</i>
 </p>
