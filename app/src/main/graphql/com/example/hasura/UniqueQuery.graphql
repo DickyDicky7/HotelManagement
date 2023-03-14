@@ -1,0 +1,8 @@
+query UniqueQuery {
+    UNIQUE {
+        id
+        coefficient
+        created_at
+        updated_at
+    }
+}
