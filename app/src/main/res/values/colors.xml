@@ -14,4 +14,6 @@
     <color name="blue">#14213D</color>
     <color name="grey">#E5E5E5</color>
 
+    <color name = "colorBar"> #00CECB</color>
+    <color name = "colorButton"># FFED66</color>
 </resources>

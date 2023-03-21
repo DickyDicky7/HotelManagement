@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
+import com.example.hasura.MyQuery;
 import com.example.hasura.UniqueQuery;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         //region Hasura Testing
         Thread thread = new Thread(() -> {
-            Hasura.apolloClient.query(new UniqueQuery()).enqueue(new ApolloCall.Callback<UniqueQuery.Data>() {
+            Hasura.apolloClient.query(new MyQuery(new Input<Integer>(1,true))).enqueue(new ApolloCall.Callback<MyQuery.Data>() {
                 @Override
-                public void onResponse(@NonNull Response<UniqueQuery.Data> response) {
-                    System.out.println(response.getData().UNIQUE());
+                public void onResponse(@NonNull Response<MyQuery.Data> response) {
+                    System.out.println(response.getData().ROOM().get(0).name());
                 }
 
                 @Override

@@ -1,0 +1,9 @@
+query MyQuery($id: Int) {
+    ROOM(where: {id: {_eq: $id}}) {
+        name
+        note
+        ROOMKIND {
+            name
+        }
+    }
+}
