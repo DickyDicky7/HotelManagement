@@ -1,0 +1,12 @@
+query ROOMKIND_By_Id_Query($id: Int) {
+    ROOMKIND(where: {id: {_eq: $id}}) {
+        id
+        name
+        price
+        capacity
+        surcharge_percentage
+        surcharge_start_ordinal
+        created_at
+        updated_at
+    }
+}
