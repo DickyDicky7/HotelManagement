@@ -1,0 +1,12 @@
+query ROOMKIND_All_Query {
+    ROOMKIND {
+        id
+        name
+        price
+        capacity
+        surcharge_percentage
+        surcharge_start_ordinal
+        created_at
+        updated_at
+    }
+}

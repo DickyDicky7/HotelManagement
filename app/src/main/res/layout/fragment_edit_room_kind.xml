@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eroomkind_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentEditRoomKind">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/eroomkind_infobar"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/yellow"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/eroomkind_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/eroomkind_info_text"
+            android:textAlignment="center"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/eroomkid_btn_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/yellow"
+            android:src="@drawable/btn_back"
+            android:tintMode="multiply"
+            app:tint="@color/black_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/eroomkind_info"
+            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/eroomkind_btn_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/yellow"
+            android:src="@drawable/btn_save"
+            android:tintMode="multiply"
+            app:tint="@color/black_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintStart_toEndOf="@+id/eroomkind_info"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/eroomkind_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eroomkind_infobar">
+
+        <TextView
+            android:id="@+id/eroomkind_name_txtview"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Tên loại phòng"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <TextView
+            android:id="@+id/eroomkind_price_txtview"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Đơn giá"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <EditText
+            android:id="@+id/eroomkind_name_edttxt"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.426"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <EditText
+            android:id="@+id/eroomkind_price_edttxt"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.426"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

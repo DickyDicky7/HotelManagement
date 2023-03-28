@@ -1,0 +1,15 @@
+mutation ROOMKIND_Update_Price_By_Id_Mutation($id: Int, $price: money) {
+    update_ROOMKIND(where: {id: {_eq: $id}}, _set: {price: $price}) {
+        affected_rows
+        returning {
+            id
+            name
+            price
+            capacity
+            surcharge_percentage
+            surcharge_start_ordinal
+            created_at
+            updated_at
+        }
+    }
+}

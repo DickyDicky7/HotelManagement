@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/eform_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentEditForm">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/eform_infobar"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/yellow"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/eform_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/eform_info_text"
+            android:textAlignment="center"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/eform_btn_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/yellow"
+            android:src="@drawable/btn_back"
+            android:tintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/eform_info"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black_grey" />
+
+        <ImageButton
+            android:id="@+id/eform_btn_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/yellow"
+            android:src="@drawable/btn_save"
+            android:tintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toEndOf="@+id/eform_info"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black_grey" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/eform_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eform_infobar"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/eform_id_txtview"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="CMND khách"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/efrom_name_txtview"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="Phòng"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <TextView
+            android:id="@+id/eform_date_txtview"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày bắt đầu thuê"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <EditText
+            android:id="@+id/eform_name_edttxt"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.162" />
+
+        <EditText
+            android:id="@+id/eform_date_edttxt"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black_grey"
+            android:textColorHighlight="@color/black_grey"
+            android:textColorHint="@color/black_grey"
+            android:textColorLink="@color/black_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.323" />
+
+        <ImageButton
+            android:id="@+id/efrom_btn_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/white_grey"
+            android:src="@drawable/btn_add"
+            android:tintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.914"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415"
+            app:tint="@color/black_grey" />
+
+        <ListView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.862" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

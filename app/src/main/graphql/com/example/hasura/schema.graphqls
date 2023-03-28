@@ -1,0 +1,4186 @@
+"""
+columns and relationships of "BILL"
+"""
+type BILL {
+  """
+  An object relationship
+  """
+  GUEST: GUEST
+  """
+  An array relationship
+  """
+  RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+  """
+  An aggregate relationship
+  """
+  RENTALFORMs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+  cost: money!
+  created_at: timestamp!
+  guest_id: Int
+  id: Int!
+  updated_at: timestamp
+}
+
+"""
+aggregated selection of "BILL"
+"""
+type BILL_aggregate {
+  aggregate: BILL_aggregate_fields
+  nodes: [BILL!]!
+}
+
+input BILL_aggregate_bool_exp {
+  count: BILL_aggregate_bool_exp_count
+}
+
+input BILL_aggregate_bool_exp_count {
+  arguments: [BILL_select_column!]
+  distinct: Boolean
+  filter: BILL_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "BILL"
+"""
+type BILL_aggregate_fields {
+  avg: BILL_avg_fields
+  count(columns: [BILL_select_column!], distinct: Boolean): Int!
+  max: BILL_max_fields
+  min: BILL_min_fields
+  stddev: BILL_stddev_fields
+  stddev_pop: BILL_stddev_pop_fields
+  stddev_samp: BILL_stddev_samp_fields
+  sum: BILL_sum_fields
+  var_pop: BILL_var_pop_fields
+  var_samp: BILL_var_samp_fields
+  variance: BILL_variance_fields
+}
+
+"""
+order by aggregate values of table "BILL"
+"""
+input BILL_aggregate_order_by {
+  avg: BILL_avg_order_by
+  count: order_by
+  max: BILL_max_order_by
+  min: BILL_min_order_by
+  stddev: BILL_stddev_order_by
+  stddev_pop: BILL_stddev_pop_order_by
+  stddev_samp: BILL_stddev_samp_order_by
+  sum: BILL_sum_order_by
+  var_pop: BILL_var_pop_order_by
+  var_samp: BILL_var_samp_order_by
+  variance: BILL_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "BILL"
+"""
+input BILL_arr_rel_insert_input {
+  data: [BILL_insert_input!]!
+  """
+  upsert condition
+  """
+  on_conflict: BILL_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type BILL_avg_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by avg() on columns of table "BILL"
+"""
+input BILL_avg_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "BILL". All fields are combined with a logical 'AND'.
+"""
+input BILL_bool_exp {
+  GUEST: GUEST_bool_exp
+  RENTALFORMs: RENTALFORM_bool_exp
+  RENTALFORMs_aggregate: RENTALFORM_aggregate_bool_exp
+  _and: [BILL_bool_exp!]
+  _not: BILL_bool_exp
+  _or: [BILL_bool_exp!]
+  cost: money_comparison_exp
+  created_at: timestamp_comparison_exp
+  guest_id: Int_comparison_exp
+  id: Int_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "BILL"
+"""
+enum BILL_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  BILL_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "BILL"
+"""
+input BILL_inc_input {
+  cost: money
+  guest_id: Int
+  id: Int
+}
+
+"""
+input type for inserting data into table "BILL"
+"""
+input BILL_insert_input {
+  GUEST: GUEST_obj_rel_insert_input
+  RENTALFORMs: RENTALFORM_arr_rel_insert_input
+  cost: money
+  created_at: timestamp
+  guest_id: Int
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type BILL_max_fields {
+  cost: money
+  created_at: timestamp
+  guest_id: Int
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+order by max() on columns of table "BILL"
+"""
+input BILL_max_order_by {
+  cost: order_by
+  created_at: order_by
+  guest_id: order_by
+  id: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type BILL_min_fields {
+  cost: money
+  created_at: timestamp
+  guest_id: Int
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+order by min() on columns of table "BILL"
+"""
+input BILL_min_order_by {
+  cost: order_by
+  created_at: order_by
+  guest_id: order_by
+  id: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "BILL"
+"""
+type BILL_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [BILL!]!
+}
+
+"""
+input type for inserting object relation for remote table "BILL"
+"""
+input BILL_obj_rel_insert_input {
+  data: BILL_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: BILL_on_conflict
+}
+
+"""
+on_conflict condition type for table "BILL"
+"""
+input BILL_on_conflict {
+  constraint: BILL_constraint!
+  update_columns: [BILL_update_column!]! = []
+  where: BILL_bool_exp
+}
+
+"""
+Ordering options when selecting data from "BILL".
+"""
+input BILL_order_by {
+  GUEST: GUEST_order_by
+  RENTALFORMs_aggregate: RENTALFORM_aggregate_order_by
+  cost: order_by
+  created_at: order_by
+  guest_id: order_by
+  id: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: BILL
+"""
+input BILL_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "BILL"
+"""
+enum BILL_select_column {
+  """
+  column name
+  """
+  cost
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guest_id
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "BILL"
+"""
+input BILL_set_input {
+  cost: money
+  created_at: timestamp
+  guest_id: Int
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type BILL_stddev_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "BILL"
+"""
+input BILL_stddev_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type BILL_stddev_pop_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "BILL"
+"""
+input BILL_stddev_pop_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type BILL_stddev_samp_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "BILL"
+"""
+input BILL_stddev_samp_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+Streaming cursor of the table "BILL"
+"""
+input BILL_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: BILL_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input BILL_stream_cursor_value_input {
+  cost: money
+  created_at: timestamp
+  guest_id: Int
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type BILL_sum_fields {
+  cost: money
+  guest_id: Int
+  id: Int
+}
+
+"""
+order by sum() on columns of table "BILL"
+"""
+input BILL_sum_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+update columns of table "BILL"
+"""
+enum BILL_update_column {
+  """
+  column name
+  """
+  cost
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guest_id
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updated_at
+}
+
+input BILL_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: BILL_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: BILL_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: BILL_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type BILL_var_pop_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "BILL"
+"""
+input BILL_var_pop_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type BILL_var_samp_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "BILL"
+"""
+input BILL_var_samp_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type BILL_variance_fields {
+  cost: Float
+  guest_id: Float
+  id: Float
+}
+
+"""
+order by variance() on columns of table "BILL"
+"""
+input BILL_variance_order_by {
+  cost: order_by
+  guest_id: order_by
+  id: order_by
+}
+
+"""
+Boolean expression to compare columns of type "Float". All fields are combined with logical 'AND'.
+"""
+input Float_comparison_exp {
+  _eq: Float
+  _gt: Float
+  _gte: Float
+  _in: [Float!]
+  _is_null: Boolean
+  _lt: Float
+  _lte: Float
+  _neq: Float
+  _nin: [Float!]
+}
+
+"""
+columns and relationships of "GUEST"
+"""
+type GUEST {
+  """
+  An array relationship
+  """
+  BILLs("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+  """
+  An aggregate relationship
+  """
+  BILLs_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
+  """
+  An object relationship
+  """
+  GUESTKIND: GUESTKIND
+  """
+  An array relationship
+  """
+  RENTALFORM_GUESTs("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): [RENTALFORM_GUEST!]!
+  """
+  An aggregate relationship
+  """
+  RENTALFORM_GUESTs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): RENTALFORM_GUEST_aggregate!
+  address: String
+  created_at: timestamp!
+  guestkind_id: Int
+  id: Int!
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+columns and relationships of "GUESTKIND"
+"""
+type GUESTKIND {
+  """
+  An array relationship
+  """
+  GUESTs("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+  """
+  An aggregate relationship
+  """
+  GUESTs_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!
+  created_at: timestamp!
+  id: Int!
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregated selection of "GUESTKIND"
+"""
+type GUESTKIND_aggregate {
+  aggregate: GUESTKIND_aggregate_fields
+  nodes: [GUESTKIND!]!
+}
+
+"""
+aggregate fields of "GUESTKIND"
+"""
+type GUESTKIND_aggregate_fields {
+  avg: GUESTKIND_avg_fields
+  count(columns: [GUESTKIND_select_column!], distinct: Boolean): Int!
+  max: GUESTKIND_max_fields
+  min: GUESTKIND_min_fields
+  stddev: GUESTKIND_stddev_fields
+  stddev_pop: GUESTKIND_stddev_pop_fields
+  stddev_samp: GUESTKIND_stddev_samp_fields
+  sum: GUESTKIND_sum_fields
+  var_pop: GUESTKIND_var_pop_fields
+  var_samp: GUESTKIND_var_samp_fields
+  variance: GUESTKIND_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type GUESTKIND_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "GUESTKIND". All fields are combined with a logical 'AND'.
+"""
+input GUESTKIND_bool_exp {
+  GUESTs: GUEST_bool_exp
+  GUESTs_aggregate: GUEST_aggregate_bool_exp
+  _and: [GUESTKIND_bool_exp!]
+  _not: GUESTKIND_bool_exp
+  _or: [GUESTKIND_bool_exp!]
+  created_at: timestamp_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "GUESTKIND"
+"""
+enum GUESTKIND_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  GUESTKIND_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "GUESTKIND"
+"""
+input GUESTKIND_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "GUESTKIND"
+"""
+input GUESTKIND_insert_input {
+  GUESTs: GUEST_arr_rel_insert_input
+  created_at: timestamp
+  id: Int
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type GUESTKIND_max_fields {
+  created_at: timestamp
+  id: Int
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate min on columns
+"""
+type GUESTKIND_min_fields {
+  created_at: timestamp
+  id: Int
+  name: String
+  updated_at: timestamp
+}
+
+"""
+response of any mutation on the table "GUESTKIND"
+"""
+type GUESTKIND_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [GUESTKIND!]!
+}
+
+"""
+input type for inserting object relation for remote table "GUESTKIND"
+"""
+input GUESTKIND_obj_rel_insert_input {
+  data: GUESTKIND_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: GUESTKIND_on_conflict
+}
+
+"""
+on_conflict condition type for table "GUESTKIND"
+"""
+input GUESTKIND_on_conflict {
+  constraint: GUESTKIND_constraint!
+  update_columns: [GUESTKIND_update_column!]! = []
+  where: GUESTKIND_bool_exp
+}
+
+"""
+Ordering options when selecting data from "GUESTKIND".
+"""
+input GUESTKIND_order_by {
+  GUESTs_aggregate: GUEST_aggregate_order_by
+  created_at: order_by
+  id: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: GUESTKIND
+"""
+input GUESTKIND_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "GUESTKIND"
+"""
+enum GUESTKIND_select_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "GUESTKIND"
+"""
+input GUESTKIND_set_input {
+  created_at: timestamp
+  id: Int
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type GUESTKIND_stddev_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type GUESTKIND_stddev_pop_fields {
+  id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type GUESTKIND_stddev_samp_fields {
+  id: Float
+}
+
+"""
+Streaming cursor of the table "GUESTKIND"
+"""
+input GUESTKIND_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: GUESTKIND_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input GUESTKIND_stream_cursor_value_input {
+  created_at: timestamp
+  id: Int
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type GUESTKIND_sum_fields {
+  id: Int
+}
+
+"""
+update columns of table "GUESTKIND"
+"""
+enum GUESTKIND_update_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  updated_at
+}
+
+input GUESTKIND_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: GUESTKIND_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: GUESTKIND_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: GUESTKIND_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type GUESTKIND_var_pop_fields {
+  id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type GUESTKIND_var_samp_fields {
+  id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type GUESTKIND_variance_fields {
+  id: Float
+}
+
+"""
+aggregated selection of "GUEST"
+"""
+type GUEST_aggregate {
+  aggregate: GUEST_aggregate_fields
+  nodes: [GUEST!]!
+}
+
+input GUEST_aggregate_bool_exp {
+  count: GUEST_aggregate_bool_exp_count
+}
+
+input GUEST_aggregate_bool_exp_count {
+  arguments: [GUEST_select_column!]
+  distinct: Boolean
+  filter: GUEST_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "GUEST"
+"""
+type GUEST_aggregate_fields {
+  avg: GUEST_avg_fields
+  count(columns: [GUEST_select_column!], distinct: Boolean): Int!
+  max: GUEST_max_fields
+  min: GUEST_min_fields
+  stddev: GUEST_stddev_fields
+  stddev_pop: GUEST_stddev_pop_fields
+  stddev_samp: GUEST_stddev_samp_fields
+  sum: GUEST_sum_fields
+  var_pop: GUEST_var_pop_fields
+  var_samp: GUEST_var_samp_fields
+  variance: GUEST_variance_fields
+}
+
+"""
+order by aggregate values of table "GUEST"
+"""
+input GUEST_aggregate_order_by {
+  avg: GUEST_avg_order_by
+  count: order_by
+  max: GUEST_max_order_by
+  min: GUEST_min_order_by
+  stddev: GUEST_stddev_order_by
+  stddev_pop: GUEST_stddev_pop_order_by
+  stddev_samp: GUEST_stddev_samp_order_by
+  sum: GUEST_sum_order_by
+  var_pop: GUEST_var_pop_order_by
+  var_samp: GUEST_var_samp_order_by
+  variance: GUEST_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "GUEST"
+"""
+input GUEST_arr_rel_insert_input {
+  data: [GUEST_insert_input!]!
+  """
+  upsert condition
+  """
+  on_conflict: GUEST_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type GUEST_avg_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by avg() on columns of table "GUEST"
+"""
+input GUEST_avg_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "GUEST". All fields are combined with a logical 'AND'.
+"""
+input GUEST_bool_exp {
+  BILLs: BILL_bool_exp
+  BILLs_aggregate: BILL_aggregate_bool_exp
+  GUESTKIND: GUESTKIND_bool_exp
+  RENTALFORM_GUESTs: RENTALFORM_GUEST_bool_exp
+  RENTALFORM_GUESTs_aggregate: RENTALFORM_GUEST_aggregate_bool_exp
+  _and: [GUEST_bool_exp!]
+  _not: GUEST_bool_exp
+  _or: [GUEST_bool_exp!]
+  address: String_comparison_exp
+  created_at: timestamp_comparison_exp
+  guestkind_id: Int_comparison_exp
+  id: Int_comparison_exp
+  id_number: String_comparison_exp
+  name: String_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "GUEST"
+"""
+enum GUEST_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  GUEST_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "GUEST"
+"""
+input GUEST_inc_input {
+  guestkind_id: Int
+  id: Int
+}
+
+"""
+input type for inserting data into table "GUEST"
+"""
+input GUEST_insert_input {
+  BILLs: BILL_arr_rel_insert_input
+  GUESTKIND: GUESTKIND_obj_rel_insert_input
+  RENTALFORM_GUESTs: RENTALFORM_GUEST_arr_rel_insert_input
+  address: String
+  created_at: timestamp
+  guestkind_id: Int
+  id: Int
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type GUEST_max_fields {
+  address: String
+  created_at: timestamp
+  guestkind_id: Int
+  id: Int
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+order by max() on columns of table "GUEST"
+"""
+input GUEST_max_order_by {
+  address: order_by
+  created_at: order_by
+  guestkind_id: order_by
+  id: order_by
+  id_number: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type GUEST_min_fields {
+  address: String
+  created_at: timestamp
+  guestkind_id: Int
+  id: Int
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+order by min() on columns of table "GUEST"
+"""
+input GUEST_min_order_by {
+  address: order_by
+  created_at: order_by
+  guestkind_id: order_by
+  id: order_by
+  id_number: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "GUEST"
+"""
+type GUEST_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [GUEST!]!
+}
+
+"""
+input type for inserting object relation for remote table "GUEST"
+"""
+input GUEST_obj_rel_insert_input {
+  data: GUEST_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: GUEST_on_conflict
+}
+
+"""
+on_conflict condition type for table "GUEST"
+"""
+input GUEST_on_conflict {
+  constraint: GUEST_constraint!
+  update_columns: [GUEST_update_column!]! = []
+  where: GUEST_bool_exp
+}
+
+"""
+Ordering options when selecting data from "GUEST".
+"""
+input GUEST_order_by {
+  BILLs_aggregate: BILL_aggregate_order_by
+  GUESTKIND: GUESTKIND_order_by
+  RENTALFORM_GUESTs_aggregate: RENTALFORM_GUEST_aggregate_order_by
+  address: order_by
+  created_at: order_by
+  guestkind_id: order_by
+  id: order_by
+  id_number: order_by
+  name: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: GUEST
+"""
+input GUEST_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "GUEST"
+"""
+enum GUEST_select_column {
+  """
+  column name
+  """
+  address
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guestkind_id
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  id_number
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "GUEST"
+"""
+input GUEST_set_input {
+  address: String
+  created_at: timestamp
+  guestkind_id: Int
+  id: Int
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type GUEST_stddev_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "GUEST"
+"""
+input GUEST_stddev_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type GUEST_stddev_pop_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "GUEST"
+"""
+input GUEST_stddev_pop_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type GUEST_stddev_samp_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "GUEST"
+"""
+input GUEST_stddev_samp_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+Streaming cursor of the table "GUEST"
+"""
+input GUEST_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: GUEST_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input GUEST_stream_cursor_value_input {
+  address: String
+  created_at: timestamp
+  guestkind_id: Int
+  id: Int
+  id_number: String
+  name: String
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type GUEST_sum_fields {
+  guestkind_id: Int
+  id: Int
+}
+
+"""
+order by sum() on columns of table "GUEST"
+"""
+input GUEST_sum_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+update columns of table "GUEST"
+"""
+enum GUEST_update_column {
+  """
+  column name
+  """
+  address
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guestkind_id
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  id_number
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  updated_at
+}
+
+input GUEST_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: GUEST_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: GUEST_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: GUEST_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type GUEST_var_pop_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "GUEST"
+"""
+input GUEST_var_pop_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type GUEST_var_samp_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "GUEST"
+"""
+input GUEST_var_samp_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type GUEST_variance_fields {
+  guestkind_id: Float
+  id: Float
+}
+
+"""
+order by variance() on columns of table "GUEST"
+"""
+input GUEST_variance_order_by {
+  guestkind_id: order_by
+  id: order_by
+}
+
+"""
+Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+columns and relationships of "RENTALFORM"
+"""
+type RENTALFORM {
+  """
+  An object relationship
+  """
+  BILL: BILL
+  """
+  An array relationship
+  """
+  RENTALFORM_GUESTs("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): [RENTALFORM_GUEST!]!
+  """
+  An aggregate relationship
+  """
+  RENTALFORM_GUESTs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): RENTALFORM_GUEST_aggregate!
+  """
+  An object relationship
+  """
+  ROOM: ROOM
+  amount: money
+  bill_id: Int
+  created_at: timestamp!
+  id: Int!
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+columns and relationships of "RENTALFORM_GUEST"
+"""
+type RENTALFORM_GUEST {
+  """
+  An object relationship
+  """
+  GUEST: GUEST!
+  """
+  An object relationship
+  """
+  RENTALFORM: RENTALFORM!
+  created_at: timestamp!
+  guest_id: Int!
+  rental_form_id: Int!
+  updated_at: timestamp
+}
+
+"""
+aggregated selection of "RENTALFORM_GUEST"
+"""
+type RENTALFORM_GUEST_aggregate {
+  aggregate: RENTALFORM_GUEST_aggregate_fields
+  nodes: [RENTALFORM_GUEST!]!
+}
+
+input RENTALFORM_GUEST_aggregate_bool_exp {
+  count: RENTALFORM_GUEST_aggregate_bool_exp_count
+}
+
+input RENTALFORM_GUEST_aggregate_bool_exp_count {
+  arguments: [RENTALFORM_GUEST_select_column!]
+  distinct: Boolean
+  filter: RENTALFORM_GUEST_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "RENTALFORM_GUEST"
+"""
+type RENTALFORM_GUEST_aggregate_fields {
+  avg: RENTALFORM_GUEST_avg_fields
+  count(columns: [RENTALFORM_GUEST_select_column!], distinct: Boolean): Int!
+  max: RENTALFORM_GUEST_max_fields
+  min: RENTALFORM_GUEST_min_fields
+  stddev: RENTALFORM_GUEST_stddev_fields
+  stddev_pop: RENTALFORM_GUEST_stddev_pop_fields
+  stddev_samp: RENTALFORM_GUEST_stddev_samp_fields
+  sum: RENTALFORM_GUEST_sum_fields
+  var_pop: RENTALFORM_GUEST_var_pop_fields
+  var_samp: RENTALFORM_GUEST_var_samp_fields
+  variance: RENTALFORM_GUEST_variance_fields
+}
+
+"""
+order by aggregate values of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_aggregate_order_by {
+  avg: RENTALFORM_GUEST_avg_order_by
+  count: order_by
+  max: RENTALFORM_GUEST_max_order_by
+  min: RENTALFORM_GUEST_min_order_by
+  stddev: RENTALFORM_GUEST_stddev_order_by
+  stddev_pop: RENTALFORM_GUEST_stddev_pop_order_by
+  stddev_samp: RENTALFORM_GUEST_stddev_samp_order_by
+  sum: RENTALFORM_GUEST_sum_order_by
+  var_pop: RENTALFORM_GUEST_var_pop_order_by
+  var_samp: RENTALFORM_GUEST_var_samp_order_by
+  variance: RENTALFORM_GUEST_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_arr_rel_insert_input {
+  data: [RENTALFORM_GUEST_insert_input!]!
+  """
+  upsert condition
+  """
+  on_conflict: RENTALFORM_GUEST_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type RENTALFORM_GUEST_avg_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by avg() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_avg_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "RENTALFORM_GUEST". All fields are combined with a logical 'AND'.
+"""
+input RENTALFORM_GUEST_bool_exp {
+  GUEST: GUEST_bool_exp
+  RENTALFORM: RENTALFORM_bool_exp
+  _and: [RENTALFORM_GUEST_bool_exp!]
+  _not: RENTALFORM_GUEST_bool_exp
+  _or: [RENTALFORM_GUEST_bool_exp!]
+  created_at: timestamp_comparison_exp
+  guest_id: Int_comparison_exp
+  rental_form_id: Int_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "RENTALFORM_GUEST"
+"""
+enum RENTALFORM_GUEST_constraint {
+  """
+  unique or primary key constraint on columns "guest_id", "rental_form_id"
+  """
+  RENTALFORM_GUEST_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_inc_input {
+  guest_id: Int
+  rental_form_id: Int
+}
+
+"""
+input type for inserting data into table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_insert_input {
+  GUEST: GUEST_obj_rel_insert_input
+  RENTALFORM: RENTALFORM_obj_rel_insert_input
+  created_at: timestamp
+  guest_id: Int
+  rental_form_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type RENTALFORM_GUEST_max_fields {
+  created_at: timestamp
+  guest_id: Int
+  rental_form_id: Int
+  updated_at: timestamp
+}
+
+"""
+order by max() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_max_order_by {
+  created_at: order_by
+  guest_id: order_by
+  rental_form_id: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type RENTALFORM_GUEST_min_fields {
+  created_at: timestamp
+  guest_id: Int
+  rental_form_id: Int
+  updated_at: timestamp
+}
+
+"""
+order by min() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_min_order_by {
+  created_at: order_by
+  guest_id: order_by
+  rental_form_id: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "RENTALFORM_GUEST"
+"""
+type RENTALFORM_GUEST_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [RENTALFORM_GUEST!]!
+}
+
+"""
+on_conflict condition type for table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_on_conflict {
+  constraint: RENTALFORM_GUEST_constraint!
+  update_columns: [RENTALFORM_GUEST_update_column!]! = []
+  where: RENTALFORM_GUEST_bool_exp
+}
+
+"""
+Ordering options when selecting data from "RENTALFORM_GUEST".
+"""
+input RENTALFORM_GUEST_order_by {
+  GUEST: GUEST_order_by
+  RENTALFORM: RENTALFORM_order_by
+  created_at: order_by
+  guest_id: order_by
+  rental_form_id: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: RENTALFORM_GUEST
+"""
+input RENTALFORM_GUEST_pk_columns_input {
+  guest_id: Int!
+  rental_form_id: Int!
+}
+
+"""
+select columns of table "RENTALFORM_GUEST"
+"""
+enum RENTALFORM_GUEST_select_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guest_id
+  """
+  column name
+  """
+  rental_form_id
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_set_input {
+  created_at: timestamp
+  guest_id: Int
+  rental_form_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type RENTALFORM_GUEST_stddev_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by stddev() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_stddev_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type RENTALFORM_GUEST_stddev_pop_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_stddev_pop_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type RENTALFORM_GUEST_stddev_samp_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_stddev_samp_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+Streaming cursor of the table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: RENTALFORM_GUEST_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input RENTALFORM_GUEST_stream_cursor_value_input {
+  created_at: timestamp
+  guest_id: Int
+  rental_form_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type RENTALFORM_GUEST_sum_fields {
+  guest_id: Int
+  rental_form_id: Int
+}
+
+"""
+order by sum() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_sum_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+update columns of table "RENTALFORM_GUEST"
+"""
+enum RENTALFORM_GUEST_update_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  guest_id
+  """
+  column name
+  """
+  rental_form_id
+  """
+  column name
+  """
+  updated_at
+}
+
+input RENTALFORM_GUEST_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: RENTALFORM_GUEST_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: RENTALFORM_GUEST_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: RENTALFORM_GUEST_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type RENTALFORM_GUEST_var_pop_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by var_pop() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_var_pop_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type RENTALFORM_GUEST_var_samp_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by var_samp() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_var_samp_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type RENTALFORM_GUEST_variance_fields {
+  guest_id: Float
+  rental_form_id: Float
+}
+
+"""
+order by variance() on columns of table "RENTALFORM_GUEST"
+"""
+input RENTALFORM_GUEST_variance_order_by {
+  guest_id: order_by
+  rental_form_id: order_by
+}
+
+"""
+aggregated selection of "RENTALFORM"
+"""
+type RENTALFORM_aggregate {
+  aggregate: RENTALFORM_aggregate_fields
+  nodes: [RENTALFORM!]!
+}
+
+input RENTALFORM_aggregate_bool_exp {
+  count: RENTALFORM_aggregate_bool_exp_count
+}
+
+input RENTALFORM_aggregate_bool_exp_count {
+  arguments: [RENTALFORM_select_column!]
+  distinct: Boolean
+  filter: RENTALFORM_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "RENTALFORM"
+"""
+type RENTALFORM_aggregate_fields {
+  avg: RENTALFORM_avg_fields
+  count(columns: [RENTALFORM_select_column!], distinct: Boolean): Int!
+  max: RENTALFORM_max_fields
+  min: RENTALFORM_min_fields
+  stddev: RENTALFORM_stddev_fields
+  stddev_pop: RENTALFORM_stddev_pop_fields
+  stddev_samp: RENTALFORM_stddev_samp_fields
+  sum: RENTALFORM_sum_fields
+  var_pop: RENTALFORM_var_pop_fields
+  var_samp: RENTALFORM_var_samp_fields
+  variance: RENTALFORM_variance_fields
+}
+
+"""
+order by aggregate values of table "RENTALFORM"
+"""
+input RENTALFORM_aggregate_order_by {
+  avg: RENTALFORM_avg_order_by
+  count: order_by
+  max: RENTALFORM_max_order_by
+  min: RENTALFORM_min_order_by
+  stddev: RENTALFORM_stddev_order_by
+  stddev_pop: RENTALFORM_stddev_pop_order_by
+  stddev_samp: RENTALFORM_stddev_samp_order_by
+  sum: RENTALFORM_sum_order_by
+  var_pop: RENTALFORM_var_pop_order_by
+  var_samp: RENTALFORM_var_samp_order_by
+  variance: RENTALFORM_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "RENTALFORM"
+"""
+input RENTALFORM_arr_rel_insert_input {
+  data: [RENTALFORM_insert_input!]!
+  """
+  upsert condition
+  """
+  on_conflict: RENTALFORM_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type RENTALFORM_avg_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by avg() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_avg_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "RENTALFORM". All fields are combined with a logical 'AND'.
+"""
+input RENTALFORM_bool_exp {
+  BILL: BILL_bool_exp
+  RENTALFORM_GUESTs: RENTALFORM_GUEST_bool_exp
+  RENTALFORM_GUESTs_aggregate: RENTALFORM_GUEST_aggregate_bool_exp
+  ROOM: ROOM_bool_exp
+  _and: [RENTALFORM_bool_exp!]
+  _not: RENTALFORM_bool_exp
+  _or: [RENTALFORM_bool_exp!]
+  amount: money_comparison_exp
+  bill_id: Int_comparison_exp
+  created_at: timestamp_comparison_exp
+  id: Int_comparison_exp
+  price_per_day: money_comparison_exp
+  rental_days: smallint_comparison_exp
+  room_id: Int_comparison_exp
+  start_date: date_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "RENTALFORM"
+"""
+enum RENTALFORM_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  RENTALFORM_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "RENTALFORM"
+"""
+input RENTALFORM_inc_input {
+  amount: money
+  bill_id: Int
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+}
+
+"""
+input type for inserting data into table "RENTALFORM"
+"""
+input RENTALFORM_insert_input {
+  BILL: BILL_obj_rel_insert_input
+  RENTALFORM_GUESTs: RENTALFORM_GUEST_arr_rel_insert_input
+  ROOM: ROOM_obj_rel_insert_input
+  amount: money
+  bill_id: Int
+  created_at: timestamp
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type RENTALFORM_max_fields {
+  amount: money
+  bill_id: Int
+  created_at: timestamp
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+order by max() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_max_order_by {
+  amount: order_by
+  bill_id: order_by
+  created_at: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+  start_date: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type RENTALFORM_min_fields {
+  amount: money
+  bill_id: Int
+  created_at: timestamp
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+order by min() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_min_order_by {
+  amount: order_by
+  bill_id: order_by
+  created_at: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+  start_date: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "RENTALFORM"
+"""
+type RENTALFORM_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [RENTALFORM!]!
+}
+
+"""
+input type for inserting object relation for remote table "RENTALFORM"
+"""
+input RENTALFORM_obj_rel_insert_input {
+  data: RENTALFORM_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: RENTALFORM_on_conflict
+}
+
+"""
+on_conflict condition type for table "RENTALFORM"
+"""
+input RENTALFORM_on_conflict {
+  constraint: RENTALFORM_constraint!
+  update_columns: [RENTALFORM_update_column!]! = []
+  where: RENTALFORM_bool_exp
+}
+
+"""
+Ordering options when selecting data from "RENTALFORM".
+"""
+input RENTALFORM_order_by {
+  BILL: BILL_order_by
+  RENTALFORM_GUESTs_aggregate: RENTALFORM_GUEST_aggregate_order_by
+  ROOM: ROOM_order_by
+  amount: order_by
+  bill_id: order_by
+  created_at: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+  start_date: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: RENTALFORM
+"""
+input RENTALFORM_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "RENTALFORM"
+"""
+enum RENTALFORM_select_column {
+  """
+  column name
+  """
+  amount
+  """
+  column name
+  """
+  bill_id
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  price_per_day
+  """
+  column name
+  """
+  rental_days
+  """
+  column name
+  """
+  room_id
+  """
+  column name
+  """
+  start_date
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "RENTALFORM"
+"""
+input RENTALFORM_set_input {
+  amount: money
+  bill_id: Int
+  created_at: timestamp
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type RENTALFORM_stddev_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by stddev() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_stddev_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type RENTALFORM_stddev_pop_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_stddev_pop_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type RENTALFORM_stddev_samp_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_stddev_samp_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+Streaming cursor of the table "RENTALFORM"
+"""
+input RENTALFORM_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: RENTALFORM_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input RENTALFORM_stream_cursor_value_input {
+  amount: money
+  bill_id: Int
+  created_at: timestamp
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+  start_date: date
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type RENTALFORM_sum_fields {
+  amount: money
+  bill_id: Int
+  id: Int
+  price_per_day: money
+  rental_days: smallint
+  room_id: Int
+}
+
+"""
+order by sum() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_sum_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+update columns of table "RENTALFORM"
+"""
+enum RENTALFORM_update_column {
+  """
+  column name
+  """
+  amount
+  """
+  column name
+  """
+  bill_id
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  price_per_day
+  """
+  column name
+  """
+  rental_days
+  """
+  column name
+  """
+  room_id
+  """
+  column name
+  """
+  start_date
+  """
+  column name
+  """
+  updated_at
+}
+
+input RENTALFORM_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: RENTALFORM_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: RENTALFORM_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: RENTALFORM_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type RENTALFORM_var_pop_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by var_pop() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_var_pop_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type RENTALFORM_var_samp_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by var_samp() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_var_samp_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type RENTALFORM_variance_fields {
+  amount: Float
+  bill_id: Float
+  id: Float
+  price_per_day: Float
+  rental_days: Float
+  room_id: Float
+}
+
+"""
+order by variance() on columns of table "RENTALFORM"
+"""
+input RENTALFORM_variance_order_by {
+  amount: order_by
+  bill_id: order_by
+  id: order_by
+  price_per_day: order_by
+  rental_days: order_by
+  room_id: order_by
+}
+
+"""
+columns and relationships of "ROOM"
+"""
+type ROOM {
+  """
+  An array relationship
+  """
+  RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+  """
+  An aggregate relationship
+  """
+  RENTALFORMs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+  """
+  An object relationship
+  """
+  ROOMKIND: ROOMKIND
+  created_at: timestamp!
+  id: Int!
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+columns and relationships of "ROOMKIND"
+"""
+type ROOMKIND {
+  """
+  An array relationship
+  """
+  ROOMs("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+  """
+  An aggregate relationship
+  """
+  ROOMs_aggregate("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): ROOM_aggregate!
+  capacity: smallint
+  created_at: timestamp!
+  id: Int!
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+aggregated selection of "ROOMKIND"
+"""
+type ROOMKIND_aggregate {
+  aggregate: ROOMKIND_aggregate_fields
+  nodes: [ROOMKIND!]!
+}
+
+"""
+aggregate fields of "ROOMKIND"
+"""
+type ROOMKIND_aggregate_fields {
+  avg: ROOMKIND_avg_fields
+  count(columns: [ROOMKIND_select_column!], distinct: Boolean): Int!
+  max: ROOMKIND_max_fields
+  min: ROOMKIND_min_fields
+  stddev: ROOMKIND_stddev_fields
+  stddev_pop: ROOMKIND_stddev_pop_fields
+  stddev_samp: ROOMKIND_stddev_samp_fields
+  sum: ROOMKIND_sum_fields
+  var_pop: ROOMKIND_var_pop_fields
+  var_samp: ROOMKIND_var_samp_fields
+  variance: ROOMKIND_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type ROOMKIND_avg_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+Boolean expression to filter rows from the table "ROOMKIND". All fields are combined with a logical 'AND'.
+"""
+input ROOMKIND_bool_exp {
+  ROOMs: ROOM_bool_exp
+  ROOMs_aggregate: ROOM_aggregate_bool_exp
+  _and: [ROOMKIND_bool_exp!]
+  _not: ROOMKIND_bool_exp
+  _or: [ROOMKIND_bool_exp!]
+  capacity: smallint_comparison_exp
+  created_at: timestamp_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  price: money_comparison_exp
+  surcharge_percentage: Float_comparison_exp
+  surcharge_start_ordinal: smallint_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "ROOMKIND"
+"""
+enum ROOMKIND_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  ROOMKIND_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "ROOMKIND"
+"""
+input ROOMKIND_inc_input {
+  capacity: smallint
+  id: Int
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+}
+
+"""
+input type for inserting data into table "ROOMKIND"
+"""
+input ROOMKIND_insert_input {
+  ROOMs: ROOM_arr_rel_insert_input
+  capacity: smallint
+  created_at: timestamp
+  id: Int
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type ROOMKIND_max_fields {
+  capacity: smallint
+  created_at: timestamp
+  id: Int
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+aggregate min on columns
+"""
+type ROOMKIND_min_fields {
+  capacity: smallint
+  created_at: timestamp
+  id: Int
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+response of any mutation on the table "ROOMKIND"
+"""
+type ROOMKIND_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [ROOMKIND!]!
+}
+
+"""
+input type for inserting object relation for remote table "ROOMKIND"
+"""
+input ROOMKIND_obj_rel_insert_input {
+  data: ROOMKIND_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: ROOMKIND_on_conflict
+}
+
+"""
+on_conflict condition type for table "ROOMKIND"
+"""
+input ROOMKIND_on_conflict {
+  constraint: ROOMKIND_constraint!
+  update_columns: [ROOMKIND_update_column!]! = []
+  where: ROOMKIND_bool_exp
+}
+
+"""
+Ordering options when selecting data from "ROOMKIND".
+"""
+input ROOMKIND_order_by {
+  ROOMs_aggregate: ROOM_aggregate_order_by
+  capacity: order_by
+  created_at: order_by
+  id: order_by
+  name: order_by
+  price: order_by
+  surcharge_percentage: order_by
+  surcharge_start_ordinal: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: ROOMKIND
+"""
+input ROOMKIND_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "ROOMKIND"
+"""
+enum ROOMKIND_select_column {
+  """
+  column name
+  """
+  capacity
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  price
+  """
+  column name
+  """
+  surcharge_percentage
+  """
+  column name
+  """
+  surcharge_start_ordinal
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "ROOMKIND"
+"""
+input ROOMKIND_set_input {
+  capacity: smallint
+  created_at: timestamp
+  id: Int
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type ROOMKIND_stddev_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type ROOMKIND_stddev_pop_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type ROOMKIND_stddev_samp_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+Streaming cursor of the table "ROOMKIND"
+"""
+input ROOMKIND_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: ROOMKIND_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input ROOMKIND_stream_cursor_value_input {
+  capacity: smallint
+  created_at: timestamp
+  id: Int
+  name: String
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type ROOMKIND_sum_fields {
+  capacity: smallint
+  id: Int
+  price: money
+  surcharge_percentage: Float
+  surcharge_start_ordinal: smallint
+}
+
+"""
+update columns of table "ROOMKIND"
+"""
+enum ROOMKIND_update_column {
+  """
+  column name
+  """
+  capacity
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  price
+  """
+  column name
+  """
+  surcharge_percentage
+  """
+  column name
+  """
+  surcharge_start_ordinal
+  """
+  column name
+  """
+  updated_at
+}
+
+input ROOMKIND_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: ROOMKIND_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: ROOMKIND_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: ROOMKIND_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type ROOMKIND_var_pop_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type ROOMKIND_var_samp_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type ROOMKIND_variance_fields {
+  capacity: Float
+  id: Float
+  price: Float
+  surcharge_percentage: Float
+  surcharge_start_ordinal: Float
+}
+
+"""
+aggregated selection of "ROOM"
+"""
+type ROOM_aggregate {
+  aggregate: ROOM_aggregate_fields
+  nodes: [ROOM!]!
+}
+
+input ROOM_aggregate_bool_exp {
+  count: ROOM_aggregate_bool_exp_count
+}
+
+input ROOM_aggregate_bool_exp_count {
+  arguments: [ROOM_select_column!]
+  distinct: Boolean
+  filter: ROOM_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "ROOM"
+"""
+type ROOM_aggregate_fields {
+  avg: ROOM_avg_fields
+  count(columns: [ROOM_select_column!], distinct: Boolean): Int!
+  max: ROOM_max_fields
+  min: ROOM_min_fields
+  stddev: ROOM_stddev_fields
+  stddev_pop: ROOM_stddev_pop_fields
+  stddev_samp: ROOM_stddev_samp_fields
+  sum: ROOM_sum_fields
+  var_pop: ROOM_var_pop_fields
+  var_samp: ROOM_var_samp_fields
+  variance: ROOM_variance_fields
+}
+
+"""
+order by aggregate values of table "ROOM"
+"""
+input ROOM_aggregate_order_by {
+  avg: ROOM_avg_order_by
+  count: order_by
+  max: ROOM_max_order_by
+  min: ROOM_min_order_by
+  stddev: ROOM_stddev_order_by
+  stddev_pop: ROOM_stddev_pop_order_by
+  stddev_samp: ROOM_stddev_samp_order_by
+  sum: ROOM_sum_order_by
+  var_pop: ROOM_var_pop_order_by
+  var_samp: ROOM_var_samp_order_by
+  variance: ROOM_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "ROOM"
+"""
+input ROOM_arr_rel_insert_input {
+  data: [ROOM_insert_input!]!
+  """
+  upsert condition
+  """
+  on_conflict: ROOM_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type ROOM_avg_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by avg() on columns of table "ROOM"
+"""
+input ROOM_avg_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "ROOM". All fields are combined with a logical 'AND'.
+"""
+input ROOM_bool_exp {
+  RENTALFORMs: RENTALFORM_bool_exp
+  RENTALFORMs_aggregate: RENTALFORM_aggregate_bool_exp
+  ROOMKIND: ROOMKIND_bool_exp
+  _and: [ROOM_bool_exp!]
+  _not: ROOM_bool_exp
+  _or: [ROOM_bool_exp!]
+  created_at: timestamp_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  note: String_comparison_exp
+  roomkind_id: Int_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "ROOM"
+"""
+enum ROOM_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  ROOM_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "ROOM"
+"""
+input ROOM_inc_input {
+  id: Int
+  roomkind_id: Int
+}
+
+"""
+input type for inserting data into table "ROOM"
+"""
+input ROOM_insert_input {
+  RENTALFORMs: RENTALFORM_arr_rel_insert_input
+  ROOMKIND: ROOMKIND_obj_rel_insert_input
+  created_at: timestamp
+  id: Int
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type ROOM_max_fields {
+  created_at: timestamp
+  id: Int
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+order by max() on columns of table "ROOM"
+"""
+input ROOM_max_order_by {
+  created_at: order_by
+  id: order_by
+  name: order_by
+  note: order_by
+  roomkind_id: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type ROOM_min_fields {
+  created_at: timestamp
+  id: Int
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+order by min() on columns of table "ROOM"
+"""
+input ROOM_min_order_by {
+  created_at: order_by
+  id: order_by
+  name: order_by
+  note: order_by
+  roomkind_id: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "ROOM"
+"""
+type ROOM_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [ROOM!]!
+}
+
+"""
+input type for inserting object relation for remote table "ROOM"
+"""
+input ROOM_obj_rel_insert_input {
+  data: ROOM_insert_input!
+  """
+  upsert condition
+  """
+  on_conflict: ROOM_on_conflict
+}
+
+"""
+on_conflict condition type for table "ROOM"
+"""
+input ROOM_on_conflict {
+  constraint: ROOM_constraint!
+  update_columns: [ROOM_update_column!]! = []
+  where: ROOM_bool_exp
+}
+
+"""
+Ordering options when selecting data from "ROOM".
+"""
+input ROOM_order_by {
+  RENTALFORMs_aggregate: RENTALFORM_aggregate_order_by
+  ROOMKIND: ROOMKIND_order_by
+  created_at: order_by
+  id: order_by
+  name: order_by
+  note: order_by
+  roomkind_id: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: ROOM
+"""
+input ROOM_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "ROOM"
+"""
+enum ROOM_select_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  note
+  """
+  column name
+  """
+  roomkind_id
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "ROOM"
+"""
+input ROOM_set_input {
+  created_at: timestamp
+  id: Int
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type ROOM_stddev_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by stddev() on columns of table "ROOM"
+"""
+input ROOM_stddev_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type ROOM_stddev_pop_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "ROOM"
+"""
+input ROOM_stddev_pop_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type ROOM_stddev_samp_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "ROOM"
+"""
+input ROOM_stddev_samp_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+Streaming cursor of the table "ROOM"
+"""
+input ROOM_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: ROOM_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input ROOM_stream_cursor_value_input {
+  created_at: timestamp
+  id: Int
+  name: String
+  note: String
+  roomkind_id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type ROOM_sum_fields {
+  id: Int
+  roomkind_id: Int
+}
+
+"""
+order by sum() on columns of table "ROOM"
+"""
+input ROOM_sum_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+update columns of table "ROOM"
+"""
+enum ROOM_update_column {
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  name
+  """
+  column name
+  """
+  note
+  """
+  column name
+  """
+  roomkind_id
+  """
+  column name
+  """
+  updated_at
+}
+
+input ROOM_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: ROOM_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: ROOM_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: ROOM_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type ROOM_var_pop_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by var_pop() on columns of table "ROOM"
+"""
+input ROOM_var_pop_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type ROOM_var_samp_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by var_samp() on columns of table "ROOM"
+"""
+input ROOM_var_samp_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type ROOM_variance_fields {
+  id: Float
+  roomkind_id: Float
+}
+
+"""
+order by variance() on columns of table "ROOM"
+"""
+input ROOM_variance_order_by {
+  id: order_by
+  roomkind_id: order_by
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  """
+  does the column match the given case-insensitive pattern
+  """
+  _ilike: String
+  _in: [String!]
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+  """
+  does the column match the given pattern
+  """
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  """
+  does the column NOT match the given case-insensitive pattern
+  """
+  _nilike: String
+  _nin: [String!]
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+  """
+  does the column NOT match the given pattern
+  """
+  _nlike: String
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+  """
+  does the column NOT match the given SQL regular expression
+  """
+  _nsimilar: String
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+  """
+  does the column match the given SQL regular expression
+  """
+  _similar: String
+}
+
+"""
+columns and relationships of "UNIQUE"
+"""
+type UNIQUE {
+  coefficient: Float
+  created_at: timestamp!
+  id: Int!
+  updated_at: timestamp
+}
+
+"""
+aggregated selection of "UNIQUE"
+"""
+type UNIQUE_aggregate {
+  aggregate: UNIQUE_aggregate_fields
+  nodes: [UNIQUE!]!
+}
+
+"""
+aggregate fields of "UNIQUE"
+"""
+type UNIQUE_aggregate_fields {
+  avg: UNIQUE_avg_fields
+  count(columns: [UNIQUE_select_column!], distinct: Boolean): Int!
+  max: UNIQUE_max_fields
+  min: UNIQUE_min_fields
+  stddev: UNIQUE_stddev_fields
+  stddev_pop: UNIQUE_stddev_pop_fields
+  stddev_samp: UNIQUE_stddev_samp_fields
+  sum: UNIQUE_sum_fields
+  var_pop: UNIQUE_var_pop_fields
+  var_samp: UNIQUE_var_samp_fields
+  variance: UNIQUE_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type UNIQUE_avg_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "UNIQUE". All fields are combined with a logical 'AND'.
+"""
+input UNIQUE_bool_exp {
+  _and: [UNIQUE_bool_exp!]
+  _not: UNIQUE_bool_exp
+  _or: [UNIQUE_bool_exp!]
+  coefficient: Float_comparison_exp
+  created_at: timestamp_comparison_exp
+  id: Int_comparison_exp
+  updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "UNIQUE"
+"""
+enum UNIQUE_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  UNIQUE_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "UNIQUE"
+"""
+input UNIQUE_inc_input {
+  coefficient: Float
+  id: Int
+}
+
+"""
+input type for inserting data into table "UNIQUE"
+"""
+input UNIQUE_insert_input {
+  coefficient: Float
+  created_at: timestamp
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type UNIQUE_max_fields {
+  coefficient: Float
+  created_at: timestamp
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate min on columns
+"""
+type UNIQUE_min_fields {
+  coefficient: Float
+  created_at: timestamp
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+response of any mutation on the table "UNIQUE"
+"""
+type UNIQUE_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [UNIQUE!]!
+}
+
+"""
+on_conflict condition type for table "UNIQUE"
+"""
+input UNIQUE_on_conflict {
+  constraint: UNIQUE_constraint!
+  update_columns: [UNIQUE_update_column!]! = []
+  where: UNIQUE_bool_exp
+}
+
+"""
+Ordering options when selecting data from "UNIQUE".
+"""
+input UNIQUE_order_by {
+  coefficient: order_by
+  created_at: order_by
+  id: order_by
+  updated_at: order_by
+}
+
+"""
+primary key columns input for table: UNIQUE
+"""
+input UNIQUE_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "UNIQUE"
+"""
+enum UNIQUE_select_column {
+  """
+  column name
+  """
+  coefficient
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updated_at
+}
+
+"""
+input type for updating data in table "UNIQUE"
+"""
+input UNIQUE_set_input {
+  coefficient: Float
+  created_at: timestamp
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type UNIQUE_stddev_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type UNIQUE_stddev_pop_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type UNIQUE_stddev_samp_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+Streaming cursor of the table "UNIQUE"
+"""
+input UNIQUE_stream_cursor_input {
+  """
+  Stream column input with initial value
+  """
+  initial_value: UNIQUE_stream_cursor_value_input!
+  """
+  cursor ordering
+  """
+  ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input UNIQUE_stream_cursor_value_input {
+  coefficient: Float
+  created_at: timestamp
+  id: Int
+  updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type UNIQUE_sum_fields {
+  coefficient: Float
+  id: Int
+}
+
+"""
+update columns of table "UNIQUE"
+"""
+enum UNIQUE_update_column {
+  """
+  column name
+  """
+  coefficient
+  """
+  column name
+  """
+  created_at
+  """
+  column name
+  """
+  id
+  """
+  column name
+  """
+  updated_at
+}
+
+input UNIQUE_updates {
+  """
+  increments the numeric columns with given value of the filtered values
+  """
+  _inc: UNIQUE_inc_input
+  """
+  sets the columns of the filtered rows to the given values
+  """
+  _set: UNIQUE_set_input
+  """
+  filter the rows which have to be updated
+  """
+  where: UNIQUE_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type UNIQUE_var_pop_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type UNIQUE_var_samp_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type UNIQUE_variance_fields {
+  coefficient: Float
+  id: Float
+}
+
+"""
+ordering argument of a cursor
+"""
+enum cursor_ordering {
+  """
+  ascending ordering of the cursor
+  """
+  ASC
+  """
+  descending ordering of the cursor
+  """
+  DESC
+}
+
+scalar date
+
+"""
+Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'.
+"""
+input date_comparison_exp {
+  _eq: date
+  _gt: date
+  _gte: date
+  _in: [date!]
+  _is_null: Boolean
+  _lt: date
+  _lte: date
+  _neq: date
+  _nin: [date!]
+}
+
+scalar money
+
+"""
+Boolean expression to compare columns of type "money". All fields are combined with logical 'AND'.
+"""
+input money_comparison_exp {
+  _eq: money
+  _gt: money
+  _gte: money
+  _in: [money!]
+  _is_null: Boolean
+  _lt: money
+  _lte: money
+  _neq: money
+  _nin: [money!]
+}
+
+"""
+mutation root
+"""
+type mutation_root {
+  """
+  delete data from the table: "BILL"
+  """
+  delete_BILL("""filter the rows which have to be deleted""" where: BILL_bool_exp!): BILL_mutation_response
+  """
+  delete single row from the table: "BILL"
+  """
+  delete_BILL_by_pk(id: Int!): BILL
+  """
+  delete data from the table: "GUEST"
+  """
+  delete_GUEST("""filter the rows which have to be deleted""" where: GUEST_bool_exp!): GUEST_mutation_response
+  """
+  delete data from the table: "GUESTKIND"
+  """
+  delete_GUESTKIND("""filter the rows which have to be deleted""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
+  """
+  delete single row from the table: "GUESTKIND"
+  """
+  delete_GUESTKIND_by_pk(id: Int!): GUESTKIND
+  """
+  delete single row from the table: "GUEST"
+  """
+  delete_GUEST_by_pk(id: Int!): GUEST
+  """
+  delete data from the table: "RENTALFORM"
+  """
+  delete_RENTALFORM("""filter the rows which have to be deleted""" where: RENTALFORM_bool_exp!): RENTALFORM_mutation_response
+  """
+  delete data from the table: "RENTALFORM_GUEST"
+  """
+  delete_RENTALFORM_GUEST("""filter the rows which have to be deleted""" where: RENTALFORM_GUEST_bool_exp!): RENTALFORM_GUEST_mutation_response
+  """
+  delete single row from the table: "RENTALFORM_GUEST"
+  """
+  delete_RENTALFORM_GUEST_by_pk(guest_id: Int!, rental_form_id: Int!): RENTALFORM_GUEST
+  """
+  delete single row from the table: "RENTALFORM"
+  """
+  delete_RENTALFORM_by_pk(id: Int!): RENTALFORM
+  """
+  delete data from the table: "ROOM"
+  """
+  delete_ROOM("""filter the rows which have to be deleted""" where: ROOM_bool_exp!): ROOM_mutation_response
+  """
+  delete data from the table: "ROOMKIND"
+  """
+  delete_ROOMKIND("""filter the rows which have to be deleted""" where: ROOMKIND_bool_exp!): ROOMKIND_mutation_response
+  """
+  delete single row from the table: "ROOMKIND"
+  """
+  delete_ROOMKIND_by_pk(id: Int!): ROOMKIND
+  """
+  delete single row from the table: "ROOM"
+  """
+  delete_ROOM_by_pk(id: Int!): ROOM
+  """
+  delete data from the table: "UNIQUE"
+  """
+  delete_UNIQUE("""filter the rows which have to be deleted""" where: UNIQUE_bool_exp!): UNIQUE_mutation_response
+  """
+  delete single row from the table: "UNIQUE"
+  """
+  delete_UNIQUE_by_pk(id: Int!): UNIQUE
+  """
+  insert data into the table: "BILL"
+  """
+  insert_BILL("""the rows to be inserted""" objects: [BILL_insert_input!]!, """upsert condition""" on_conflict: BILL_on_conflict): BILL_mutation_response
+  """
+  insert a single row into the table: "BILL"
+  """
+  insert_BILL_one("""the row to be inserted""" object: BILL_insert_input!, """upsert condition""" on_conflict: BILL_on_conflict): BILL
+  """
+  insert data into the table: "GUEST"
+  """
+  insert_GUEST("""the rows to be inserted""" objects: [GUEST_insert_input!]!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST_mutation_response
+  """
+  insert data into the table: "GUESTKIND"
+  """
+  insert_GUESTKIND("""the rows to be inserted""" objects: [GUESTKIND_insert_input!]!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND_mutation_response
+  """
+  insert a single row into the table: "GUESTKIND"
+  """
+  insert_GUESTKIND_one("""the row to be inserted""" object: GUESTKIND_insert_input!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND
+  """
+  insert a single row into the table: "GUEST"
+  """
+  insert_GUEST_one("""the row to be inserted""" object: GUEST_insert_input!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST
+  """
+  insert data into the table: "RENTALFORM"
+  """
+  insert_RENTALFORM("""the rows to be inserted""" objects: [RENTALFORM_insert_input!]!, """upsert condition""" on_conflict: RENTALFORM_on_conflict): RENTALFORM_mutation_response
+  """
+  insert data into the table: "RENTALFORM_GUEST"
+  """
+  insert_RENTALFORM_GUEST("""the rows to be inserted""" objects: [RENTALFORM_GUEST_insert_input!]!, """upsert condition""" on_conflict: RENTALFORM_GUEST_on_conflict): RENTALFORM_GUEST_mutation_response
+  """
+  insert a single row into the table: "RENTALFORM_GUEST"
+  """
+  insert_RENTALFORM_GUEST_one("""the row to be inserted""" object: RENTALFORM_GUEST_insert_input!, """upsert condition""" on_conflict: RENTALFORM_GUEST_on_conflict): RENTALFORM_GUEST
+  """
+  insert a single row into the table: "RENTALFORM"
+  """
+  insert_RENTALFORM_one("""the row to be inserted""" object: RENTALFORM_insert_input!, """upsert condition""" on_conflict: RENTALFORM_on_conflict): RENTALFORM
+  """
+  insert data into the table: "ROOM"
+  """
+  insert_ROOM("""the rows to be inserted""" objects: [ROOM_insert_input!]!, """upsert condition""" on_conflict: ROOM_on_conflict): ROOM_mutation_response
+  """
+  insert data into the table: "ROOMKIND"
+  """
+  insert_ROOMKIND("""the rows to be inserted""" objects: [ROOMKIND_insert_input!]!, """upsert condition""" on_conflict: ROOMKIND_on_conflict): ROOMKIND_mutation_response
+  """
+  insert a single row into the table: "ROOMKIND"
+  """
+  insert_ROOMKIND_one("""the row to be inserted""" object: ROOMKIND_insert_input!, """upsert condition""" on_conflict: ROOMKIND_on_conflict): ROOMKIND
+  """
+  insert a single row into the table: "ROOM"
+  """
+  insert_ROOM_one("""the row to be inserted""" object: ROOM_insert_input!, """upsert condition""" on_conflict: ROOM_on_conflict): ROOM
+  """
+  insert data into the table: "UNIQUE"
+  """
+  insert_UNIQUE("""the rows to be inserted""" objects: [UNIQUE_insert_input!]!, """upsert condition""" on_conflict: UNIQUE_on_conflict): UNIQUE_mutation_response
+  """
+  insert a single row into the table: "UNIQUE"
+  """
+  insert_UNIQUE_one("""the row to be inserted""" object: UNIQUE_insert_input!, """upsert condition""" on_conflict: UNIQUE_on_conflict): UNIQUE
+  """
+  update data of the table: "BILL"
+  """
+  update_BILL("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, """filter the rows which have to be updated""" where: BILL_bool_exp!): BILL_mutation_response
+  """
+  update single row of the table: "BILL"
+  """
+  update_BILL_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, pk_columns: BILL_pk_columns_input!): BILL
+  """
+  update multiples rows of table: "BILL"
+  """
+  update_BILL_many("""updates to execute, in order""" updates: [BILL_updates!]!): [BILL_mutation_response]
+  """
+  update data of the table: "GUEST"
+  """
+  update_GUEST("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, """filter the rows which have to be updated""" where: GUEST_bool_exp!): GUEST_mutation_response
+  """
+  update data of the table: "GUESTKIND"
+  """
+  update_GUESTKIND("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, """filter the rows which have to be updated""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
+  """
+  update single row of the table: "GUESTKIND"
+  """
+  update_GUESTKIND_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, pk_columns: GUESTKIND_pk_columns_input!): GUESTKIND
+  """
+  update multiples rows of table: "GUESTKIND"
+  """
+  update_GUESTKIND_many("""updates to execute, in order""" updates: [GUESTKIND_updates!]!): [GUESTKIND_mutation_response]
+  """
+  update single row of the table: "GUEST"
+  """
+  update_GUEST_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, pk_columns: GUEST_pk_columns_input!): GUEST
+  """
+  update multiples rows of table: "GUEST"
+  """
+  update_GUEST_many("""updates to execute, in order""" updates: [GUEST_updates!]!): [GUEST_mutation_response]
+  """
+  update data of the table: "RENTALFORM"
+  """
+  update_RENTALFORM("""increments the numeric columns with given value of the filtered values""" _inc: RENTALFORM_inc_input, """sets the columns of the filtered rows to the given values""" _set: RENTALFORM_set_input, """filter the rows which have to be updated""" where: RENTALFORM_bool_exp!): RENTALFORM_mutation_response
+  """
+  update data of the table: "RENTALFORM_GUEST"
+  """
+  update_RENTALFORM_GUEST("""increments the numeric columns with given value of the filtered values""" _inc: RENTALFORM_GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: RENTALFORM_GUEST_set_input, """filter the rows which have to be updated""" where: RENTALFORM_GUEST_bool_exp!): RENTALFORM_GUEST_mutation_response
+  """
+  update single row of the table: "RENTALFORM_GUEST"
+  """
+  update_RENTALFORM_GUEST_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: RENTALFORM_GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: RENTALFORM_GUEST_set_input, pk_columns: RENTALFORM_GUEST_pk_columns_input!): RENTALFORM_GUEST
+  """
+  update multiples rows of table: "RENTALFORM_GUEST"
+  """
+  update_RENTALFORM_GUEST_many("""updates to execute, in order""" updates: [RENTALFORM_GUEST_updates!]!): [RENTALFORM_GUEST_mutation_response]
+  """
+  update single row of the table: "RENTALFORM"
+  """
+  update_RENTALFORM_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: RENTALFORM_inc_input, """sets the columns of the filtered rows to the given values""" _set: RENTALFORM_set_input, pk_columns: RENTALFORM_pk_columns_input!): RENTALFORM
+  """
+  update multiples rows of table: "RENTALFORM"
+  """
+  update_RENTALFORM_many("""updates to execute, in order""" updates: [RENTALFORM_updates!]!): [RENTALFORM_mutation_response]
+  """
+  update data of the table: "ROOM"
+  """
+  update_ROOM("""increments the numeric columns with given value of the filtered values""" _inc: ROOM_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOM_set_input, """filter the rows which have to be updated""" where: ROOM_bool_exp!): ROOM_mutation_response
+  """
+  update data of the table: "ROOMKIND"
+  """
+  update_ROOMKIND("""increments the numeric columns with given value of the filtered values""" _inc: ROOMKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOMKIND_set_input, """filter the rows which have to be updated""" where: ROOMKIND_bool_exp!): ROOMKIND_mutation_response
+  """
+  update single row of the table: "ROOMKIND"
+  """
+  update_ROOMKIND_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: ROOMKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOMKIND_set_input, pk_columns: ROOMKIND_pk_columns_input!): ROOMKIND
+  """
+  update multiples rows of table: "ROOMKIND"
+  """
+  update_ROOMKIND_many("""updates to execute, in order""" updates: [ROOMKIND_updates!]!): [ROOMKIND_mutation_response]
+  """
+  update single row of the table: "ROOM"
+  """
+  update_ROOM_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: ROOM_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOM_set_input, pk_columns: ROOM_pk_columns_input!): ROOM
+  """
+  update multiples rows of table: "ROOM"
+  """
+  update_ROOM_many("""updates to execute, in order""" updates: [ROOM_updates!]!): [ROOM_mutation_response]
+  """
+  update data of the table: "UNIQUE"
+  """
+  update_UNIQUE("""increments the numeric columns with given value of the filtered values""" _inc: UNIQUE_inc_input, """sets the columns of the filtered rows to the given values""" _set: UNIQUE_set_input, """filter the rows which have to be updated""" where: UNIQUE_bool_exp!): UNIQUE_mutation_response
+  """
+  update single row of the table: "UNIQUE"
+  """
+  update_UNIQUE_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: UNIQUE_inc_input, """sets the columns of the filtered rows to the given values""" _set: UNIQUE_set_input, pk_columns: UNIQUE_pk_columns_input!): UNIQUE
+  """
+  update multiples rows of table: "UNIQUE"
+  """
+  update_UNIQUE_many("""updates to execute, in order""" updates: [UNIQUE_updates!]!): [UNIQUE_mutation_response]
+}
+
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in ascending order, nulls last
+  """
+  asc
+  """
+  in ascending order, nulls first
+  """
+  asc_nulls_first
+  """
+  in ascending order, nulls last
+  """
+  asc_nulls_last
+  """
+  in descending order, nulls first
+  """
+  desc
+  """
+  in descending order, nulls first
+  """
+  desc_nulls_first
+  """
+  in descending order, nulls last
+  """
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "BILL"
+  """
+  BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+  """
+  fetch aggregated fields from the table: "BILL"
+  """
+  BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
+  """
+  fetch data from the table: "BILL" using primary key columns
+  """
+  BILL_by_pk(id: Int!): BILL
+  """
+  fetch data from the table: "GUEST"
+  """
+  GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+  """
+  fetch data from the table: "GUESTKIND"
+  """
+  GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+  """
+  fetch aggregated fields from the table: "GUESTKIND"
+  """
+  GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
+  """
+  fetch data from the table: "GUESTKIND" using primary key columns
+  """
+  GUESTKIND_by_pk(id: Int!): GUESTKIND
+  """
+  fetch aggregated fields from the table: "GUEST"
+  """
+  GUEST_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!
+  """
+  fetch data from the table: "GUEST" using primary key columns
+  """
+  GUEST_by_pk(id: Int!): GUEST
+  """
+  fetch data from the table: "RENTALFORM"
+  """
+  RENTALFORM("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+  """
+  fetch data from the table: "RENTALFORM_GUEST"
+  """
+  RENTALFORM_GUEST("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): [RENTALFORM_GUEST!]!
+  """
+  fetch aggregated fields from the table: "RENTALFORM_GUEST"
+  """
+  RENTALFORM_GUEST_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): RENTALFORM_GUEST_aggregate!
+  """
+  fetch data from the table: "RENTALFORM_GUEST" using primary key columns
+  """
+  RENTALFORM_GUEST_by_pk(guest_id: Int!, rental_form_id: Int!): RENTALFORM_GUEST
+  """
+  fetch aggregated fields from the table: "RENTALFORM"
+  """
+  RENTALFORM_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+  """
+  fetch data from the table: "RENTALFORM" using primary key columns
+  """
+  RENTALFORM_by_pk(id: Int!): RENTALFORM
+  """
+  fetch data from the table: "ROOM"
+  """
+  ROOM("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+  """
+  fetch data from the table: "ROOMKIND"
+  """
+  ROOMKIND("""distinct select on columns""" distinct_on: [ROOMKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOMKIND_order_by!], """filter the rows returned""" where: ROOMKIND_bool_exp): [ROOMKIND!]!
+  """
+  fetch aggregated fields from the table: "ROOMKIND"
+  """
+  ROOMKIND_aggregate("""distinct select on columns""" distinct_on: [ROOMKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOMKIND_order_by!], """filter the rows returned""" where: ROOMKIND_bool_exp): ROOMKIND_aggregate!
+  """
+  fetch data from the table: "ROOMKIND" using primary key columns
+  """
+  ROOMKIND_by_pk(id: Int!): ROOMKIND
+  """
+  fetch aggregated fields from the table: "ROOM"
+  """
+  ROOM_aggregate("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): ROOM_aggregate!
+  """
+  fetch data from the table: "ROOM" using primary key columns
+  """
+  ROOM_by_pk(id: Int!): ROOM
+  """
+  fetch data from the table: "UNIQUE"
+  """
+  UNIQUE("""distinct select on columns""" distinct_on: [UNIQUE_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [UNIQUE_order_by!], """filter the rows returned""" where: UNIQUE_bool_exp): [UNIQUE!]!
+  """
+  fetch aggregated fields from the table: "UNIQUE"
+  """
+  UNIQUE_aggregate("""distinct select on columns""" distinct_on: [UNIQUE_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [UNIQUE_order_by!], """filter the rows returned""" where: UNIQUE_bool_exp): UNIQUE_aggregate!
+  """
+  fetch data from the table: "UNIQUE" using primary key columns
+  """
+  UNIQUE_by_pk(id: Int!): UNIQUE
+}
+
+scalar smallint
+
+"""
+Boolean expression to compare columns of type "smallint". All fields are combined with logical 'AND'.
+"""
+input smallint_comparison_exp {
+  _eq: smallint
+  _gt: smallint
+  _gte: smallint
+  _in: [smallint!]
+  _is_null: Boolean
+  _lt: smallint
+  _lte: smallint
+  _neq: smallint
+  _nin: [smallint!]
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "BILL"
+  """
+  BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+  """
+  fetch aggregated fields from the table: "BILL"
+  """
+  BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
+  """
+  fetch data from the table: "BILL" using primary key columns
+  """
+  BILL_by_pk(id: Int!): BILL
+  """
+  fetch data from the table in a streaming manner: "BILL"
+  """
+  BILL_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [BILL_stream_cursor_input]!, """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+  """
+  fetch data from the table: "GUEST"
+  """
+  GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+  """
+  fetch data from the table: "GUESTKIND"
+  """
+  GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+  """
+  fetch aggregated fields from the table: "GUESTKIND"
+  """
+  GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
+  """
+  fetch data from the table: "GUESTKIND" using primary key columns
+  """
+  GUESTKIND_by_pk(id: Int!): GUESTKIND
+  """
+  fetch data from the table in a streaming manner: "GUESTKIND"
+  """
+  GUESTKIND_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [GUESTKIND_stream_cursor_input]!, """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+  """
+  fetch aggregated fields from the table: "GUEST"
+  """
+  GUEST_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!
+  """
+  fetch data from the table: "GUEST" using primary key columns
+  """
+  GUEST_by_pk(id: Int!): GUEST
+  """
+  fetch data from the table in a streaming manner: "GUEST"
+  """
+  GUEST_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [GUEST_stream_cursor_input]!, """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+  """
+  fetch data from the table: "RENTALFORM"
+  """
+  RENTALFORM("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+  """
+  fetch data from the table: "RENTALFORM_GUEST"
+  """
+  RENTALFORM_GUEST("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): [RENTALFORM_GUEST!]!
+  """
+  fetch aggregated fields from the table: "RENTALFORM_GUEST"
+  """
+  RENTALFORM_GUEST_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_GUEST_order_by!], """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): RENTALFORM_GUEST_aggregate!
+  """
+  fetch data from the table: "RENTALFORM_GUEST" using primary key columns
+  """
+  RENTALFORM_GUEST_by_pk(guest_id: Int!, rental_form_id: Int!): RENTALFORM_GUEST
+  """
+  fetch data from the table in a streaming manner: "RENTALFORM_GUEST"
+  """
+  RENTALFORM_GUEST_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [RENTALFORM_GUEST_stream_cursor_input]!, """filter the rows returned""" where: RENTALFORM_GUEST_bool_exp): [RENTALFORM_GUEST!]!
+  """
+  fetch aggregated fields from the table: "RENTALFORM"
+  """
+  RENTALFORM_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+  """
+  fetch data from the table: "RENTALFORM" using primary key columns
+  """
+  RENTALFORM_by_pk(id: Int!): RENTALFORM
+  """
+  fetch data from the table in a streaming manner: "RENTALFORM"
+  """
+  RENTALFORM_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [RENTALFORM_stream_cursor_input]!, """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+  """
+  fetch data from the table: "ROOM"
+  """
+  ROOM("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+  """
+  fetch data from the table: "ROOMKIND"
+  """
+  ROOMKIND("""distinct select on columns""" distinct_on: [ROOMKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOMKIND_order_by!], """filter the rows returned""" where: ROOMKIND_bool_exp): [ROOMKIND!]!
+  """
+  fetch aggregated fields from the table: "ROOMKIND"
+  """
+  ROOMKIND_aggregate("""distinct select on columns""" distinct_on: [ROOMKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOMKIND_order_by!], """filter the rows returned""" where: ROOMKIND_bool_exp): ROOMKIND_aggregate!
+  """
+  fetch data from the table: "ROOMKIND" using primary key columns
+  """
+  ROOMKIND_by_pk(id: Int!): ROOMKIND
+  """
+  fetch data from the table in a streaming manner: "ROOMKIND"
+  """
+  ROOMKIND_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [ROOMKIND_stream_cursor_input]!, """filter the rows returned""" where: ROOMKIND_bool_exp): [ROOMKIND!]!
+  """
+  fetch aggregated fields from the table: "ROOM"
+  """
+  ROOM_aggregate("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): ROOM_aggregate!
+  """
+  fetch data from the table: "ROOM" using primary key columns
+  """
+  ROOM_by_pk(id: Int!): ROOM
+  """
+  fetch data from the table in a streaming manner: "ROOM"
+  """
+  ROOM_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [ROOM_stream_cursor_input]!, """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+  """
+  fetch data from the table: "UNIQUE"
+  """
+  UNIQUE("""distinct select on columns""" distinct_on: [UNIQUE_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [UNIQUE_order_by!], """filter the rows returned""" where: UNIQUE_bool_exp): [UNIQUE!]!
+  """
+  fetch aggregated fields from the table: "UNIQUE"
+  """
+  UNIQUE_aggregate("""distinct select on columns""" distinct_on: [UNIQUE_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [UNIQUE_order_by!], """filter the rows returned""" where: UNIQUE_bool_exp): UNIQUE_aggregate!
+  """
+  fetch data from the table: "UNIQUE" using primary key columns
+  """
+  UNIQUE_by_pk(id: Int!): UNIQUE
+  """
+  fetch data from the table in a streaming manner: "UNIQUE"
+  """
+  UNIQUE_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [UNIQUE_stream_cursor_input]!, """filter the rows returned""" where: UNIQUE_bool_exp): [UNIQUE!]!
+}
+
+scalar timestamp
+
+"""
+Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
+"""
+input timestamp_comparison_exp {
+  _eq: timestamp
+  _gt: timestamp
+  _gte: timestamp
+  _in: [timestamp!]
+  _is_null: Boolean
+  _lt: timestamp
+  _lte: timestamp
+  _neq: timestamp
+  _nin: [timestamp!]
+}
+
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}

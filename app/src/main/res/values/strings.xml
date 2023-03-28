@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HotelManagement</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="rce_info_text">Sửa thông tin phòng</string>
+
+    <string name="eroomkind_info_text">Sửa thông tin loại phòng</string>
+
+    <string name="eform_info_text">Tạo phiếu thuê phòng</string>
+
+    <string name="ebill_info_text">Tạo hóa đơn</string>
+    <string name="ebill_total_sample"></string>
+
+    <string name="eguest_info_text">Tạo thông tin khách</string>
+
+    <string name="bill_info_text">Hóa đơn</string>
+    <string name="form_info_text">Phiếu thuê phòng</string>
+    <string name="guest_info_text">Thông tin khách</string>
+    <string name="rc_info_text">Danh mục phòng</string>
+    <string name="roomkind_info_text">Danh sách loại phòng</string>
+    <string name="room_list_info_text">Danh sách phòng</string>
+
+
+</resources>
