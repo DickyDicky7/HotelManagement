@@ -91,10 +91,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/room_list_info_bar">
 
-        <ListView
-            android:id="@+id/room_list_listview"
-            android:layout_width="729dp"
-            android:layout_height="308dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/room_list_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

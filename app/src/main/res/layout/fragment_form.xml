@@ -147,8 +147,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/form_infobar">
 
-        <ListView
-            android:id="@+id/form_listview"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/form_recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

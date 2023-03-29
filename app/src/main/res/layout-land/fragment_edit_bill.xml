@@ -223,8 +223,8 @@
             app:layout_constraintVertical_bias="0.718"
             app:tint="@color/black_grey" />
 
-        <ListView
-            android:id="@+id/ebill_listview"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ebill_recyclerView"
             android:layout_width="450dp"
             android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -233,5 +233,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.794" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
