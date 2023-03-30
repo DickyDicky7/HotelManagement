@@ -5,6 +5,7 @@
     android:id="@+id/room_list_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".FragmentRoomList">
 
     <!-- TODO: Update blank fragment layout -->
@@ -26,14 +27,14 @@
             android:id="@+id/room_list_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/room_list_info_text"
             android:background="@color/yellow"
             android:fontFamily="sans-serif-medium"
+            android:text="@string/room_list_info_text"
             android:textAlignment="center"
-            android:textColor="@color/black_grey"
-            android:textColorHighlight="@color/black_grey"
-            android:textColorHint="@color/black_grey"
-            android:textColorLink="@color/black_grey"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="@color/black"
+            android:textColorLink="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,14 +52,14 @@
             app:layout_constraintEnd_toStartOf="@+id/room_list_info"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/room_list_toolbar"
         android:layout_width="0dp"
         android:layout_height="90dp"
-        android:background="@color/yellow"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,20 +72,23 @@
             android:id="@+id/room_list_btn_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/yellow"
+            android:elevation="10dp"
             android:src="@drawable/btn_search"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/room_list_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,6 +99,7 @@
             android:id="@+id/room_list_recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

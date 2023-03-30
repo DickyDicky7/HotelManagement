@@ -5,6 +5,7 @@
     android:id="@+id/guest_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".FragmentGuest">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,7 +14,7 @@
         android:id="@+id/guest_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/yellow"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,9 @@
             android:id="@+id/guest_btn_add"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/green"
+            android:elevation="10dp"
             android:src="@drawable/btn_add"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,26 +37,30 @@
             app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/guest_btn_delete"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/orange"
+            android:elevation="10dp"
             android:src="@drawable/btn_delete"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guest_btn_search"
             app:layout_constraintStart_toEndOf="@+id/guest_btn_add"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/guest_btn_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/yellow"
+            android:elevation="10dp"
             android:src="@drawable/btn_search"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -62,13 +69,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.475"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/guest_btn_filter"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/yellow"
+            android:elevation="10dp"
             android:src="@drawable/btn_filter"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -76,13 +85,15 @@
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toEndOf="@+id/guest_btn_search"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/guest_btn_edit"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@color/yellow"
+            android:background="@drawable/rounded_button_1"
+            android:backgroundTint="@color/yellow"
+            android:elevation="10dp"
             android:src="@drawable/btn_edit"
             android:tintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +102,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.475"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,14 +122,14 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/guest_info_text"
             android:background="@color/yellow"
             android:fontFamily="sans-serif-medium"
+            android:text="@string/guest_info_text"
             android:textAlignment="center"
-            android:textColor="@color/black_grey"
-            android:textColorHighlight="@color/black_grey"
-            android:textColorHint="@color/black_grey"
-            android:textColorLink="@color/black_grey"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            android:textColorHint="@color/black"
+            android:textColorLink="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +147,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_grey" />
+            app:tint="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -145,6 +156,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="2dp"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guest_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -155,6 +167,7 @@
             android:id="@+id/guest_recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
