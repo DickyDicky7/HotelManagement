@@ -1,25 +1,56 @@
 <resources>
     <string name="app_name">HotelManagement</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="rce_info_text">Sửa thông tin phòng</string>
-
     <string name="eroomkind_info_text">Sửa thông tin loại phòng</string>
-
     <string name="eform_info_text">Tạo phiếu thuê phòng</string>
-
     <string name="ebill_info_text">Tạo hóa đơn</string>
-    <string name="ebill_total_sample"></string>
-
     <string name="eguest_info_text">Tạo thông tin khách</string>
-
     <string name="bill_info_text">Hóa đơn</string>
     <string name="form_info_text">Phiếu thuê phòng</string>
     <string name="guest_info_text">Thông tin khách</string>
     <string name="rc_info_text">Danh mục phòng</string>
     <string name="roomkind_info_text">Danh sách loại phòng</string>
     <string name="room_list_info_text">Danh sách phòng</string>
+
+    <string name="ebill_name_txtview_text">Khách hàng</string>
+    <string name="ebill_address_txtview_text">Địa chỉ</string>
+    <string name="ebill_total_txtview_text">Trị giá</string>
+    <string name="ebill_detail_txtview_text">Chi tiết</string>
+
+    <string name="eform_id_txtview_text">CMND khách</string>
+    <string name="eform_room_txtview_text">Phòng</string>
+    <string name="eform_date_txtview_text">Ngày bắt đầu thuê</string>
+
+    <string name="eguest_address_txtview_text">Địa chỉ</string>
+    <string name="eguest_id_txtview_text">CMND</string>
+    <string name="eguest_kind_txtview_text">Loại khách</string>
+    <string name="eguest_name_txtview_text">Họ tên</string>
+
+    <string name="erc_note_txtview_text">Ghi chú</string>
+    <string name="erc_kind_txtview_text">Loại phòng</string>
+    <string name="erc_price_txtview_text">Đơn giá</string>
+    <string name="erc_name_txtview_text">Tên phòng</string>
+
+    <string name="eroomkind_name_txtview_text">Tên loại phòng</string>
+    <string name="eroomkind_price_txtview_text">Đơn giá</string>
+
+    <string name="erl_status_txtview_text">Tình trạng</string>
+    <string name="erl_name_txtview_text">Tên</string>
+    <string name="erl_kind_txtview_text">Loại</string>
+
+    <string name="name_sample">Nguyễn Văn A</string>
+    <string name="total_sample">[Tính toán tự động]</string>
+    <string name="address_sample">Thành phố - Tỉnh</string>
+    <string name="date_sample">dd/mm/yyyy</string>
+    <string name="room_sample">A101</string>
+    <string name="id_sample">0429xxxxxxxx</string>
+    <string name="guestkind_sample">Khách A</string>
+    <string name="roomkind_sample">Phòng A</string>
+    <string name="price_sample">abc.000đ</string>
+    <string name="erl_info_text">Tìm phòng</string>
+    <string name="status_sample">Trống</string>
 
 
 </resources>
