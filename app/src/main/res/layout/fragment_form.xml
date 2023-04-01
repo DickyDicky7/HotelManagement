@@ -56,108 +56,107 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/form_toolbar"
+        android:id="@+id/forrm_view"
         android:layout_width="0dp"
-        android:layout_height="90dp"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <ImageButton
-            android:id="@+id/form_btn_add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_button_1"
-            android:backgroundTint="@color/green"
-            android:elevation="10dp"
-            android:src="@drawable/btn_add"
-            android:tintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.044"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
-
-        <ImageButton
-            android:id="@+id/form_btn_delete"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_button_1"
-            android:backgroundTint="@color/orange"
-            android:elevation="10dp"
-            android:src="@drawable/btn_delete"
-            android:tintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/form_btn_search"
-            app:layout_constraintStart_toEndOf="@+id/form_btn_add"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
-
-        <ImageButton
-            android:id="@+id/form_btn_search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_button_1"
-            android:backgroundTint="@color/yellow"
-            android:elevation="10dp"
-            android:src="@drawable/btn_search"
-            android:tintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
-
-        <ImageButton
-            android:id="@+id/form_btn_edit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_button_1"
-            android:backgroundTint="@color/yellow"
-            android:elevation="10dp"
-            android:src="@drawable/btn_edit"
-            android:tintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/form_btn_print"
-            app:layout_constraintStart_toEndOf="@+id/form_btn_search"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
-
-        <ImageButton
-            android:id="@+id/form_btn_print"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_button_1"
-            android:backgroundTint="@color/yellow"
-            android:elevation="10dp"
-            android:src="@drawable/btn_print"
-            android:tintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.955"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/forrm_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        android:background="@color/white"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/form_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/form_infobar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/form_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:background="@android:color/transparent"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageButton
+                android:id="@+id/form_btn_add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_button_1"
+                android:backgroundTint="@color/green"
+                android:elevation="10dp"
+                android:src="@drawable/btn_add"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/form_btn_delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_button_1"
+                android:backgroundTint="@color/orange"
+                android:elevation="10dp"
+                android:src="@drawable/btn_delete"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/form_btn_search"
+                app:layout_constraintStart_toEndOf="@+id/form_btn_add"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/form_btn_search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_button_1"
+                android:backgroundTint="@color/yellow"
+                android:elevation="10dp"
+                android:src="@drawable/btn_search"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/form_btn_edit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_button_1"
+                android:backgroundTint="@color/yellow"
+                android:elevation="10dp"
+                android:src="@drawable/btn_edit"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/form_btn_print"
+                app:layout_constraintStart_toEndOf="@+id/form_btn_search"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/form_btn_print"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/rounded_button_1"
+                android:backgroundTint="@color/yellow"
+                android:elevation="10dp"
+                android:src="@drawable/btn_print"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.955"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/form_recyclerView"
