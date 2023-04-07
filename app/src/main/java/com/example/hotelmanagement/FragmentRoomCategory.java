@@ -15,8 +15,9 @@ public class FragmentRoomCategory extends Fragment {
 
     private FragmentRoomCategoryBinding binding;
 
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRoomCategoryBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }

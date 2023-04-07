@@ -15,8 +15,9 @@ public class FragmentEditRoomList extends Fragment {
 
     private FragmentEditRoomListBinding binding;
 
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentEditRoomListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
