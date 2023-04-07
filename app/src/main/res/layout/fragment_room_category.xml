@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".FragmentRoomCategory">
+    tools:context=".fragments.FragmentRoomCategory">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rc_infoBar"

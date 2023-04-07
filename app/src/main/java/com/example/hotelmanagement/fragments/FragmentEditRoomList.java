@@ -1,4 +1,4 @@
-package com.example.hotelmanagement;
+package com.example.hotelmanagement.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,16 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentBillBinding;
+import com.example.hotelmanagement.databinding.FragmentEditRoomListBinding;
 
-public class FragmentBill extends Fragment {
+public class FragmentEditRoomList extends Fragment {
 
-    private FragmentBillBinding binding;
+    private FragmentEditRoomListBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentBillBinding.inflate(inflater, container, false);
+        binding = FragmentEditRoomListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
