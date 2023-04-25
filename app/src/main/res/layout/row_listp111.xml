@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="listp111RowModel" type="com.dickydickysapplication.app.modules.editdeleteandbookroompage.data.model.Listp111RowModel"/>
+    </data>
+    <FrameLayout android:id="@+id/frameStackp111"
+        android:layout_width="@dimen/_160pxh" android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/linearP111"
+            style="@style/groupStylebluegray_100cornerRadius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginBottom="@dimen/_10pxv" android:orientation="vertical">
+            <TextView android:id="@+id/txtP111" style="@style/txtIntersemibold18_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{listp111RowModel.txtP111}" tools:text="@string/lbl_p111"/>
+            <TextView android:id="@+id/txtVIProomOne"
+                style="@style/txtInterregular14_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{listp111RowModel.txtVIProomOne}" tools:text="@string/lbl_vip_room"/>
+            <ImageView android:id="@+id/imageUserTen"
+                android:layout_width="@dimen/_20pxh"
+                android:layout_height="@dimen/_16pxh"
+                android:layout_marginStart="@dimen/_14pxh"
+                android:layout_marginTop="@dimen/_4pxv"
+                android:layout_marginEnd="@dimen/_14pxh"
+                android:layout_marginBottom="@dimen/_14pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_user_indigo_900"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_user_indigo_900"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBook" style="@style/btnSolidRounded_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_11pxv"
+            android:paddingEnd="@dimen/_30pxh" android:paddingBottom="@dimen/_11pxv"
+            android:singleLine="true" android:text="@string/lbl_book"
+            android:textAllCaps="false" tools:text="@string/lbl_book"/>
+    </FrameLayout>
+</layout>

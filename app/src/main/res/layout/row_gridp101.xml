@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="gridp101RowModel" type="com.dickydickysapplication.app.modules.editdeleteandbookroompage.data.model.Gridp101RowModel"/>
+    </data>
+    <LinearLayout android:id="@+id/linearP" style="@style/groupStylebluegray_100cornerRadius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start" android:orientation="vertical">
+        <TextView android:id="@+id/txtP101" style="@style/txtIntersemibold18_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_6pxv"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{gridp101RowModel.txtP101}" tools:text="@string/lbl_p101"/>
+        <TextView android:id="@+id/txtSingleroom"
+            style="@style/txtInterregular14_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_marginTop="@dimen/_1pxv"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{gridp101RowModel.txtSingleroom}" tools:text="@string/lbl_single_room"/>
+        <ImageView android:id="@+id/imageUser"
+            android:layout_width="@dimen/_20pxh"
+            android:layout_height="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_14pxh"
+            android:layout_marginTop="@dimen/_3pxv"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginBottom="@dimen/_14pxv"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_user_indigo_900"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_user_indigo_900"/>
+    </LinearLayout>
+</layout>
