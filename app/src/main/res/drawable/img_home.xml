@@ -4,15 +4,15 @@
         android:viewportWidth="40.0"
         android:viewportHeight="40.0">
     <path
-        android:fillColor="#00000000"
         android:pathData="M8.19,21.27C8.19,19 8.19,17.87 8.64,16.88C9.09,15.88 9.94,15.15 11.63,13.67L13.26,12.24C16.32,9.58 17.84,8.25 19.66,8.25C21.48,8.25 23.01,9.58 26.06,12.24L27.7,13.67C29.39,15.15 30.23,15.88 30.68,16.88C31.13,17.87 31.13,19 31.13,21.27V28.33C31.13,31.48 31.13,33.05 30.17,34.02C29.21,35 27.67,35 24.58,35H14.75C11.66,35 10.11,35 9.15,34.02C8.19,33.05 8.19,31.48 8.19,28.33V21.27Z"
         android:strokeWidth="2"
+        android:fillColor="#00000000"
         android:strokeColor="#ffffff"/>
     <path
-        android:fillColor="#00000000"
         android:pathData="M23.76,35V26C23.76,25.45 23.31,25 22.76,25H16.56C16.01,25 15.56,25.45 15.56,26V35"
-        android:strokeWidth="2"
+        android:fillColor="#00000000"
         android:strokeColor="#ffffff"
         android:strokeLineCap="round"
+        android:strokeWidth="2"
         android:strokeLineJoin="round"/>
 </vector>

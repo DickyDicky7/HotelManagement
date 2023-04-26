@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable name="listp101RowModel" type="com.dickydickysapplication.app.modules.manageroompage.data.model.Listp101RowModel"/>
-    </data>
+    <data/>
     <LinearLayout android:id="@+id/linearRowp101"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal">
@@ -13,29 +11,29 @@
             <LinearLayout android:id="@+id/linearColumnp101"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_6pxv"
-                android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_weight="0.7" android:gravity="start" android:orientation="vertical">
                 <TextView android:id="@+id/txtP101"
                     style="@style/txtIntersemibold18"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
-                    android:ellipsize="end"
+                    android:layout_width="match_parent"
                     android:singleLine="true"
-                    android:text="@{listp101RowModel.txtP101}" tools:text="@string/lbl_p101"/>
+                    android:ellipsize="end"
+                    android:text="@string/lbl_p101" tools:text="@string/lbl_p101"/>
                 <TextView android:id="@+id/txtSingleroom"
                     style="@style/txtInterregular14"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:ellipsize="end"
+                    android:layout_width="match_parent"
                     android:singleLine="true"
-                    android:text="@{listp101RowModel.txtSingleroom}" tools:text="@string/lbl_single_room"/>
+                    android:ellipsize="end"
+                    android:text="@string/lbl_single_room" tools:text="@string/lbl_single_room"/>
                 <ImageView android:id="@+id/imageUser"
-                    android:layout_width="@dimen/_20pxh"
                     android:layout_height="@dimen/_16pxh"
+                    android:layout_width="@dimen/_20pxh"
                     android:layout_marginStart="@dimen/_4pxh"
                     android:layout_marginTop="@dimen/_3pxv"
                     android:layout_marginEnd="@dimen/_10pxh"
@@ -44,11 +42,11 @@
                     tools:ignore="ContentDescription" tools:src="@drawable/img_user_green_700"/>
             </LinearLayout>
             <ImageView android:id="@+id/imageCheckmark"
-                android:layout_width="@dimen/_33pxh"
                 android:layout_height="@dimen/_18pxh"
+                android:layout_width="@dimen/_33pxh"
+                android:layout_marginEnd="@dimen/_11pxh"
                 android:layout_marginStart="@dimen/_19pxh"
                 android:layout_marginTop="@dimen/_31pxv"
-                android:layout_marginEnd="@dimen/_11pxh"
                 android:layout_marginBottom="@dimen/_30pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_checkmark"
@@ -62,30 +60,30 @@
             <LinearLayout android:id="@+id/linearColumnp102"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_6pxv"
-                android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_weight="0.7" android:gravity="start" android:orientation="vertical">
                 <TextView android:id="@+id/txtP102"
                     style="@style/txtIntersemibold18"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_width="match_parent"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{listp101RowModel.txtP102}" tools:text="@string/lbl_p102"/>
+                    android:text="@string/lbl_p102" tools:text="@string/lbl_p102"/>
                 <TextView android:id="@+id/txtSingleroomOne"
                     style="@style/txtInterregular14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:ellipsize="end"
-                    android:gravity="center_horizontal"
                     android:singleLine="true"
-                    android:text="@{listp101RowModel.txtSingleroomOne}" tools:text="@string/lbl_single_room"/>
+                    android:gravity="center_horizontal"
+                    android:text="@string/lbl_single_room" tools:text="@string/lbl_single_room"/>
                 <ImageView android:id="@+id/imageUserOne"
-                    android:layout_width="@dimen/_20pxh"
                     android:layout_height="@dimen/_16pxh"
+                    android:layout_width="@dimen/_20pxh"
                     android:layout_marginStart="@dimen/_4pxh"
                     android:layout_marginTop="@dimen/_3pxv"
                     android:layout_marginEnd="@dimen/_10pxh"
@@ -94,11 +92,11 @@
                     tools:ignore="ContentDescription" tools:src="@drawable/img_user_green_700"/>
             </LinearLayout>
             <ImageView android:id="@+id/imageCheckmarkOne"
-                android:layout_width="@dimen/_33pxh"
                 android:layout_height="@dimen/_18pxh"
+                android:layout_width="@dimen/_33pxh"
+                android:layout_marginEnd="@dimen/_11pxh"
                 android:layout_marginStart="@dimen/_19pxh"
                 android:layout_marginTop="@dimen/_31pxv"
-                android:layout_marginEnd="@dimen/_11pxh"
                 android:layout_marginBottom="@dimen/_30pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_checkmark"

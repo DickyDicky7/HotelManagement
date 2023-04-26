@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable name="manageBillsPageVM" type="com.dickydickysapplication.app.modules.managebillspage.data.viewmodel.ManageBillsPageVM"/>
-    </data>
+    <data/>
     <LinearLayout android:id="@+id/linearManagebillspa"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
@@ -20,10 +18,10 @@
         <LinearLayout android:id="@+id/linearColumnarrowleft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12pxh"
-            android:layout_marginTop="@dimen/_12pxv"
             android:layout_marginEnd="@dimen/_12pxh"
             android:layout_marginBottom="@dimen/_30pxv"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_12pxv"
             android:gravity="start" android:orientation="vertical">
             <LinearLayout android:id="@+id/linearRowarrowleft"
                 android:layout_width="wrap_content"
@@ -31,11 +29,11 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:gravity="start" android:orientation="horizontal">
                 <ImageButton
-                    android:id="@+id/btnArrowleft"
                     android:layout_width="@dimen/_40pxh"
+                    android:id="@+id/btnArrowleft"
                     android:layout_height="@dimen/_40pxh"
-                    android:layout_marginTop="@dimen/_3pxv"
                     android:layout_marginBottom="@dimen/_2pxv"
+                    android:layout_marginTop="@dimen/_3pxv"
                     android:background="@drawable/rectangle_bg_indigo_400_radius_10"
                     android:paddingHorizontal="@dimen/_10pxh"
                     android:paddingVertical="@dimen/_10pxv"
@@ -43,50 +41,50 @@
                     android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
                 <TextView android:id="@+id/txtRentformlist"
                     style="@style/txtOutfitsemibold36"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_width="0dp"
                     android:layout_weight="0.72" android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{manageBillsPageVM.manageBillsPageModel.txtRentformlist}" tools:text="@string/lbl_bill_list"/>
+                    android:text="@string/lbl_bill_list" tools:text="@string/lbl_bill_list"/>
             </LinearLayout>
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchViewSearchbar"
                 android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_11pxh"
+                android:id="@+id/searchViewSearchbar"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
                 android:layout_marginStart="@dimen/_18pxh"
                 android:layout_marginTop="@dimen/_6pxv"
-                android:layout_marginEnd="@dimen/_11pxh"
-                android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
                 android:gravity="center_horizontal"
                 android:theme="@style/searchViewSearchbar"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/lbl_search_day" app:searchIcon="@drawable/img_search_gray_601"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerListonehundredtwentythree"
                 itemSpace="@{@dimen/_16pxh}"
-                android:layout_width="match_parent"
+                android:id="@+id/recyclerListonehundredtwentythree"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4pxh"
                 android:layout_marginTop="@dimen/_16pxv"
-                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" tools:itemCount="2" tools:listitem="@layout/row_listonehundredtwentythree"/>
             <FrameLayout android:id="@+id/frameAddbutton"
                 style="@style/groupStyleindigo_400cornerRadius"
-                android:layout_width="@dimen/_300pxh"
                 android:layout_height="@dimen/_50pxv"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/_300pxh"
                 android:layout_marginStart="@dimen/_18pxh"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_311pxv" android:layout_marginEnd="@dimen/_14pxh">
                 <ImageView android:id="@+id/imagePlus"
                     android:layout_width="@dimen/_24pxh"
                     android:layout_height="@dimen/_24pxh"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginStart="@dimen/_40pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginBottom="@dimen/_12pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_plus"

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable name="editDeleteAndBookRoomPageVM" type="com.dickydickysapplication.app.modules.editdeleteandbookroompage.data.viewmodel.EditDeleteAndBookRoomPageVM"/>
-    </data>
+    <data/>
     <LinearLayout android:id="@+id/linearEditdeletean"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
@@ -20,10 +18,10 @@
         <LinearLayout android:id="@+id/linearColumnarrowleft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12pxh"
-            android:layout_marginTop="@dimen/_12pxv"
             android:layout_marginEnd="@dimen/_12pxh"
             android:layout_marginBottom="@dimen/_30pxv"
+            android:layout_marginStart="@dimen/_12pxh"
+            android:layout_marginTop="@dimen/_12pxv"
             android:gravity="start" android:orientation="vertical">
             <LinearLayout android:id="@+id/linearRowarrowleft"
                 android:layout_width="match_parent"
@@ -31,11 +29,11 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:gravity="start" android:orientation="horizontal">
                 <ImageButton
-                    android:id="@+id/btnArrowleft"
                     android:layout_width="@dimen/_40pxh"
+                    android:id="@+id/btnArrowleft"
                     android:layout_height="@dimen/_40pxh"
-                    android:layout_marginTop="@dimen/_3pxv"
                     android:layout_marginBottom="@dimen/_2pxv"
+                    android:layout_marginTop="@dimen/_3pxv"
                     android:background="@drawable/rectangle_bg_indigo_400_radius_10"
                     android:paddingHorizontal="@dimen/_10pxh"
                     android:paddingVertical="@dimen/_10pxv"
@@ -43,22 +41,22 @@
                     android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
                 <TextView android:id="@+id/txtRoomlist"
                     style="@style/txtOutfitsemibold36"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_width="0dp"
                     android:layout_weight="0.79" android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{editDeleteAndBookRoomPageVM.editDeleteAndBookRoomPageModel.txtRoomlist}" tools:text="@string/lbl_room_list"/>
+                    android:text="@string/lbl_room_list" tools:text="@string/lbl_room_list"/>
             </LinearLayout>
             <LinearLayout android:id="@+id/linearRowsearchbar"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/_4pxh"
                 android:layout_marginTop="@dimen/_11pxv"
                 android:layout_marginEnd="@dimen/_4pxh" android:orientation="horizontal">
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchViewSearchbar"
                     android:layout_width="0dp"
+                    android:id="@+id/searchViewSearchbar"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.91"
                     android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
@@ -67,8 +65,8 @@
                     app:queryBackground="@android:color/transparent"
                     app:queryHint="@string/lbl_search" app:searchIcon="@drawable/img_search_gray_601"/>
                 <ImageView android:id="@+id/imageSettings"
-                    android:layout_width="@dimen/_27pxh"
                     android:layout_height="@dimen/_24pxh"
+                    android:layout_width="@dimen/_27pxh"
                     android:layout_marginStart="@dimen/_16pxh"
                     android:layout_marginTop="@dimen/_9pxv"
                     android:layout_marginBottom="@dimen/_9pxv"
@@ -77,24 +75,24 @@
                     tools:ignore="ContentDescription" tools:src="@drawable/img_settings"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerGridp101"
                 itemSpace="@{@dimen/_24pxh}"
-                android:layout_width="match_parent"
+                android:id="@+id/recyclerGridp101"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4pxh"
                 android:layout_marginTop="@dimen/_29pxv"
+                android:layout_width="match_parent"
                 android:gravity="center_horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" app:spanCount="2"
                 tools:itemCount="10" tools:listitem="@layout/row_gridp101"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerListp111"
                 itemSpace="@{@dimen/_16pxh}"
-                android:layout_width="match_parent"
+                android:id="@+id/recyclerListp111"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4pxh"
                 android:layout_marginTop="@dimen/_16pxv"
-                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:gravity="center_horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" tools:itemCount="2" tools:listitem="@layout/row_listp111"/>
         </LinearLayout>
     </LinearLayout>
