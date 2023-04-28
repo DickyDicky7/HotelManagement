@@ -78,38 +78,49 @@
                 android:layout_height="@dimen/_290pxv"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="@dimen/_4pxh" android:layout_marginTop="@dimen/_11pxv">
-                <LinearLayout android:id="@+id/linearP101"
+                <LinearLayout
+                    android:id="@+id/item_bookedroom"
                     android:layout_gravity="top|start"
                     style="@style/groupStylebluegray_100cornerRadius"
                     android:layout_width="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18pxv"
-                    android:layout_marginBottom="@dimen/_18pxv" android:orientation="horizontal">
-                    <LinearLayout android:id="@+id/linearColumnp101"
+                    android:layout_marginBottom="@dimen/_18pxv"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/bookedroom_info"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_14pxv"
                         android:layout_marginStart="@dimen/_10pxh"
                         android:layout_marginTop="@dimen/_6pxv"
                         android:layout_weight="0.7"
-                        android:gravity="start" android:orientation="vertical">
-                        <TextView android:id="@+id/txtP101"
+                        android:gravity="start"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/item_br_roomName"
                             style="@style/txtIntersemibold18"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_10pxh"
                             android:layout_width="match_parent"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="@string/lbl_p101" tools:text="@string/lbl_p101"/>
-                        <TextView android:id="@+id/txtSingleroom"
+                            android:text="@string/lbl_p101"
+                            tools:text="@string/lbl_p101" />
+
+                        <TextView
+                            android:id="@+id/item_br_roomKind"
                             style="@style/txtInterregular14"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_1pxv"
                             android:layout_width="match_parent"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:text="@string/lbl_single_room" tools:text="@string/lbl_single_room"/>
+                            android:text="@string/lbl_single_room"
+                            tools:text="@string/lbl_single_room" />
                         <ImageView android:id="@+id/imageUser"
                             android:layout_height="@dimen/_16pxh"
                             android:layout_width="@dimen/_20pxh"

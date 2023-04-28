@@ -36,30 +36,28 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_40pxv"
                 android:gravity="start" android:orientation="horizontal">
-                <LinearLayout android:id="@+id/linearColumndistance"
+                <LinearLayout
+                    android:id="@+id/values_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_weight="0.36"
-                    android:gravity="start" android:orientation="vertical">
-                    <TextView android:id="@+id/txtDistance"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt30M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_30m" tools:text="@string/lbl_30m"/>
-                    <TextView android:id="@+id/txtDistanceOne"
-                        style="@style/txtInterregular12"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="@string/lbl_25m" tools:text="@string/lbl_25m"/>
-                    <TextView android:id="@+id/txtDistanceTwo"
+                        android:text="@string/lbl_30m"
+                        tools:text="@string/lbl_30m" />
+
+                    <TextView
+                        android:id="@+id/txt25M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -67,17 +65,11 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_20m2" tools:text="@string/lbl_20m2"/>
-                    <TextView android:id="@+id/txtDistanceThree"
-                        style="@style/txtInterregular12"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_width="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_10m" tools:text="@string/lbl_10m"/>
-                    <TextView android:id="@+id/txtDistanceFour"
+                        android:text="@string/lbl_25m"
+                        tools:text="@string/lbl_25m" />
+
+                    <TextView
+                        android:id="@+id/txt20M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -85,8 +77,35 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_5m" tools:text="@string/lbl_5m"/>
-                    <TextView android:id="@+id/txtDistanceFive"
+                        android:text="@string/lbl_20m2"
+                        tools:text="@string/lbl_20m2" />
+
+                    <TextView
+                        android:id="@+id/txt10M"
+                        style="@style/txtInterregular12"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_width="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_10m"
+                        tools:text="@string/lbl_10m" />
+
+                    <TextView
+                        android:id="@+id/txt5M"
+                        style="@style/txtInterregular12"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:text="@string/lbl_5m"
+                        tools:text="@string/lbl_5m" />
+
+                    <TextView
+                        android:id="@+id/txt0M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -94,7 +113,8 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_0m" tools:text="@string/lbl_0m"/>
+                        android:text="@string/lbl_0m"
+                        tools:text="@string/lbl_0m" />
                 </LinearLayout>
                 <View
                     android:layout_width="@dimen/_14pxh"
@@ -148,42 +168,57 @@
                 android:layout_width="@dimen/_312pxh"
                 android:layout_height="@dimen/_1pxv"
                 android:layout_marginTop="@dimen/_1pxv" android:background="@color/bluegray_101"/>
-            <LinearLayout android:id="@+id/linearRowdec1decseven"
+
+            <LinearLayout
+                android:id="@+id/weeks_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_23pxh"
                 android:layout_marginStart="@dimen/_23pxh"
                 android:layout_marginTop="@dimen/_1pxv"
-                android:gravity="end" android:orientation="horizontal">
-                <TextView android:id="@+id/txtDec1DecSeven"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtweek1"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.22"
                     android:layout_width="0dp"
                     style="@style/txtInterregular12"
-                    android:text="@string/lbl_dec_1_dec_7" tools:text="@string/lbl_dec_1_dec_7"/>
-                <TextView android:id="@+id/txtDec8DecFourteen"
+                    android:text="@string/lbl_dec_1_dec_7"
+                    tools:text="@string/lbl_dec_1_dec_7" />
+
+                <TextView
+                    android:id="@+id/txtweek2"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_weight="0.26"
                     android:layout_width="0dp"
                     style="@style/txtInterregular12"
-                    android:text="@string/lbl_dec_8_dec_14" tools:text="@string/lbl_dec_8_dec_14"/>
-                <TextView android:id="@+id/txtDec15DecTwentyOne"
+                    android:text="@string/lbl_dec_8_dec_14"
+                    tools:text="@string/lbl_dec_8_dec_14" />
+
+                <TextView
+                    android:id="@+id/txtweek3"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.26"
                     android:layout_width="0dp"
                     style="@style/txtInterregular12"
-                    android:text="@string/lbl_dec_15_dec_21" tools:text="@string/lbl_dec_15_dec_21"/>
-                <TextView android:id="@+id/txtDec22DecTwentyEight"
+                    android:text="@string/lbl_dec_15_dec_21"
+                    tools:text="@string/lbl_dec_15_dec_21" />
+
+                <TextView
+                    android:id="@+id/txtweek4"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_weight="0.27"
                     style="@style/txtInterregular12"
                     android:layout_width="0dp"
-                    android:text="@string/lbl_dec_22_dec_28" tools:text="@string/lbl_dec_22_dec_28"/>
+                    android:text="@string/lbl_dec_22_dec_28"
+                    tools:text="@string/lbl_dec_22_dec_28" />
             </LinearLayout>
             <LinearLayout android:id="@+id/linearRow"
                 android:layout_height="wrap_content"

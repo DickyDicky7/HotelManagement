@@ -4,42 +4,58 @@
     <LinearLayout android:id="@+id/linearRowp101"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal">
-        <LinearLayout android:id="@+id/linearP101"
+        <LinearLayout
+            android:id="@+id/item_bookedroom"
             style="@style/groupStylebluegray_100cornerRadius"
-            android:layout_width="0dp" android:layout_height="wrap_content"
-            android:layout_weight="0.5" android:orientation="horizontal">
-            <LinearLayout android:id="@+id/linearColumnp101"
-                android:layout_width="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/bookedroom_info"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_14pxv"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_6pxv"
-                android:layout_weight="0.7" android:gravity="start" android:orientation="vertical">
-                <TextView android:id="@+id/txtP101"
+                android:layout_marginBottom="@dimen/_14pxv"
+                android:layout_weight="0.7"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_br_roomName"
                     style="@style/txtIntersemibold18"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
                     android:ellipsize="end"
-                    android:text="@string/lbl_p101" tools:text="@string/lbl_p101"/>
-                <TextView android:id="@+id/txtSingleroom"
+                    android:singleLine="true"
+                    android:text="@string/lbl_p101"
+                    tools:text="@string/lbl_p101" />
+
+                <TextView
+                    android:id="@+id/item_br_roomKind"
                     style="@style/txtInterregular14"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
                     android:ellipsize="end"
-                    android:text="@string/lbl_single_room" tools:text="@string/lbl_single_room"/>
-                <ImageView android:id="@+id/imageUser"
-                    android:layout_height="@dimen/_16pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_single_room"
+                    tools:text="@string/lbl_single_room" />
+
+                <ImageView
+                    android:id="@+id/imageUser"
                     android:layout_width="@dimen/_20pxh"
+                    android:layout_height="@dimen/_16pxh"
                     android:layout_marginStart="@dimen/_4pxh"
                     android:layout_marginTop="@dimen/_3pxv"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_user_green_700"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_user_green_700"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_green_700" />
             </LinearLayout>
             <ImageView android:id="@+id/imageCheckmark"
                 android:layout_height="@dimen/_18pxh"

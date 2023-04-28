@@ -25,13 +25,16 @@
             <LinearLayout android:id="@+id/linearRowsingleroom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:orientation="horizontal">
-                <TextView android:id="@+id/txtSingleroom"
+                <TextView
+                    android:id="@+id/item_br_roomKind"
                     style="@style/txtOutfitsemibold28"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
-                    android:layout_weight="0.84" android:ellipsize="end"
+                    android:layout_weight="0.84"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_single_room" tools:text="@string/lbl_single_room"/>
+                    android:text="@string/lbl_single_room"
+                    tools:text="@string/lbl_single_room" />
                 <ImageButton
                     android:layout_width="@dimen/_28pxh"
                     android:id="@+id/btnVector"
@@ -85,8 +88,11 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.04" android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_1" tools:text="@string/lbl_1"/>
-                <ImageView android:id="@+id/imageHome"
+                    android:text="@string/lbl_1"
+                    tools:text="@string/lbl_1" />
+
+                <ImageView
+                    android:id="@+id/imageHome"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_width="@dimen/_18pxh"
                     android:layout_marginStart="@dimen/_20pxh"
@@ -94,24 +100,32 @@
                     android:layout_marginBottom="@dimen/_3pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_home_white_a700"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_home_white_a700"/>
-                <TextView android:id="@+id/txtDistance"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_home_white_a700" />
+
+                <TextView
+                    android:id="@+id/txt30M"
                     style="@style/txtInterregular16"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6pxh"
                     android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.25" android:ellipsize="end"
+                    android:layout_weight="0.25"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_20_m" tools:text="@string/lbl_20_m"/>
-                <TextView android:id="@+id/txtTwoOne"
+                    android:text="@string/lbl_20_m"
+                    tools:text="@string/lbl_20_m" />
+
+                <TextView
+                    android:id="@+id/txtTwoOne"
                     style="@style/txtInterregular10"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_marginStart="@dimen/_1pxh"
                     android:layout_marginTop="@dimen/_6pxv"
                     android:layout_marginBottom="@dimen/_9pxv"
-                    android:layout_weight="0.04" android:ellipsize="end"
+                    android:layout_weight="0.04"
+                    android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_2" tools:text="@string/lbl_2"/>
                 <ImageButton
