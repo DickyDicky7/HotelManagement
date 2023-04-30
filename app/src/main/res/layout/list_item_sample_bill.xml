@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item(bill)"
+        android:id="@+id/item_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
@@ -14,81 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:id="@+id/item_btns"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status2">
-
-            <FrameLayout
-                android:id="@+id/frameStackticket"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv">
-
-                <ImageButton
-                    android:id="@+id/imageTicket"
-                    android:layout_width="@dimen/_16pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_7pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_7pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_ticket"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackfile"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_16pxh">
-
-                <ImageButton
-                    android:id="@+id/imageFile"
-                    android:layout_width="@dimen/_12pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_9pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_9pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackcamera"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_16pxh">
-
-                <ImageButton
-                    android:id="@+id/imageCamera"
-                    android:layout_width="@dimen/_20pxh"
-                    android:layout_height="@dimen/_14pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_6pxv"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginBottom="@dimen/_6pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_camera_white_a700"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-        </LinearLayout>
 
         <TextView
             android:id="@+id/status2"
@@ -240,5 +165,80 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/lbl_123" />
+
+        <LinearLayout
+            android:id="@+id/item_btns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/status2">
+
+            <FrameLayout
+                android:id="@+id/frameStackticket"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="@dimen/_32pxh"
+                android:layout_height="@dimen/_28pxv">
+
+                <ImageButton
+                    android:id="@+id/imageTicket"
+                    android:layout_width="@dimen/_16pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_7pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_marginEnd="@dimen/_7pxh"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ticket"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameStackfile"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="@dimen/_32pxh"
+                android:layout_height="@dimen/_28pxv"
+                android:layout_marginStart="@dimen/_16pxh">
+
+                <ImageButton
+                    android:id="@+id/imageFile"
+                    android:layout_width="@dimen/_12pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_marginEnd="@dimen/_9pxh"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_file"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameStackcamera"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="@dimen/_32pxh"
+                android:layout_height="@dimen/_28pxv"
+                android:layout_marginStart="@dimen/_16pxh">
+
+                <ImageButton
+                    android:id="@+id/imageCamera"
+                    android:layout_width="@dimen/_20pxh"
+                    android:layout_height="@dimen/_14pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_marginTop="@dimen/_6pxv"
+                    android:layout_marginEnd="@dimen/_5pxh"
+                    android:layout_marginBottom="@dimen/_6pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_camera_white_a700"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

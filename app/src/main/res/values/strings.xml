@@ -62,8 +62,7 @@
     <string name="lbl_cccd2">CCCD: </string>
     <string name="lbl_check_in_day">Check-in day: </string>
     <string name="lbl_23_000_000">23.000.000</string>
-    <string name="lbl_dec_22_dec_28">Dec 22
-Dec 28</string>
+    <string name="lbl_dec_22_dec_28">Dec 22\nDec 28</string>
     <string name="lbl_single_room2">Single Room</string>
     <string name="msg_21520913_gm_uit">21520913@gm.uit.edu.vn</string>
     <string name="lbl_old_password">Old password</string>
@@ -114,8 +113,7 @@ Dec 28</string>
     <string name="lbl_enter_room_id">Enter room ID</string>
     <string name="lbl_rent_form_2">Rent form 2</string>
     <string name="lbl_room_number">Room number:</string>
-    <string name="lbl_dec_15_dec_21">Dec 15
-Dec 21</string>
+    <string name="lbl_dec_15_dec_21">Dec 15\nDec 21</string>
     <string name="lbl_rent_form_1">Rent form 1</string>
     <string name="msg_public_swiming">Public Swiming Pool</string>
     <string name="msg_1_bed_2_peopl">1 bed | 2 people</string>
@@ -154,8 +152,7 @@ Dec 21</string>
     <string name="lbl_nov">Nov</string>
     <string name="lbl_p102">P102</string>
     <string name="lbl">:</string>
-    <string name="lbl_dec_1_dec_7">Dec 1
-Dec 7</string>
+    <string name="lbl_dec_1_dec_7">Dec 1\nDec 7</string>
     <string name="lbl_double_room">Double room</string>
     <string name="lbl_done">DONE</string>
     <string name="lbl_choose_date">Choose date</string>
@@ -175,8 +172,7 @@ Dec 7</string>
     <string name="lbl_aug">Aug</string>
     <string name="lbl_2345">#2345</string>
     <string name="msg_search_room_kin">Search room kind</string>
-    <string name="lbl_dec_8_dec_14">Dec 8
-Dec 14</string>
+    <string name="lbl_dec_8_dec_14">Dec 8\nDec 14</string>
     <string name="msg_please_enter_va">Please enter valid email</string>
     <string name="lbl_30m">30M</string>
     <string name="lbl_bill_list">Bill list</string>
@@ -199,4 +195,6 @@ Dec 14</string>
     <string name="lbl_full_name">Full name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noti_fail_title">Error</string>
+    <string name="noti_fail_msg">Information is INVALID</string>
 </resources>

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <ScrollView android:id="@+id/scrollViewScrollview"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <ScrollView
+        android:id="@+id/scrollViewScrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false" android:fillViewport="true">
-        <LinearLayout android:id="@+id/linearColumn5000000"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/rp_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start" android:orientation="vertical">
-            <TextView android:id="@+id/txt5000000"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt5000000"
                 style="@style/txtInterbold32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -18,8 +28,11 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:gravity="center_horizontal"
-                android:text="@string/lbl_5_000_000" tools:text="@string/lbl_5_000_000"/>
-            <TextView android:id="@+id/txtNetProfit"
+                android:text="@string/lbl_5_000_000"
+                tools:text="@string/lbl_5_000_000" />
+
+            <TextView
+                android:id="@+id/txtNetProfit"
                 style="@style/txtIntersemibold14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +42,8 @@
                 android:layout_marginEnd="@dimen/_68pxh"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:text="@string/lbl_net_profit" tools:text="@string/lbl_net_profit"/>
+                android:text="@string/lbl_net_profit"
+                tools:text="@string/lbl_net_profit" />
             <LinearLayout android:id="@+id/linearRowdistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +51,7 @@
                 android:layout_marginTop="@dimen/_40pxv"
                 android:gravity="start" android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/values_label"
+                    android:id="@+id/rp_value_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"

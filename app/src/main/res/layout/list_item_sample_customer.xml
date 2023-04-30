@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item(customer)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
@@ -34,7 +34,6 @@
 
                 <ImageButton
                     android:id="@+id/imageTicket"
-                    tools:ignore="ContentDescription"
                     android:layout_width="@dimen/_16pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
@@ -43,7 +42,8 @@
                     android:layout_marginEnd="@dimen/_12pxh"
                     android:layout_marginBottom="@dimen/_5pxv"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_ticket" />
+                    android:src="@drawable/img_ticket"
+                    tools:ignore="ContentDescription" />
             </FrameLayout>
 
             <FrameLayout
@@ -55,7 +55,6 @@
 
                 <ImageButton
                     android:id="@+id/imageFile"
-                    tools:ignore="ContentDescription"
                     android:layout_width="@dimen/_12pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
@@ -64,7 +63,8 @@
                     android:layout_marginEnd="@dimen/_14pxh"
                     android:layout_marginBottom="@dimen/_5pxv"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_file" />
+                    android:src="@drawable/img_file"
+                    tools:ignore="ContentDescription" />
             </FrameLayout>
         </LinearLayout>
 
@@ -81,18 +81,17 @@
 
             <ImageView
                 android:id="@+id/imageLocation"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_location"
                 android:layout_width="@dimen/_14pxh"
                 android:layout_height="@dimen/_20pxh"
                 android:layout_marginBottom="@dimen/_2pxv"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_location" />
+                android:src="@drawable/img_location"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_location" />
 
             <TextView
                 android:id="@+id/address"
                 style="@style/txtInterregular14_3"
-                tools:text="@string/lbl_alaska_usa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8pxh"
@@ -100,7 +99,8 @@
                 android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_alaska_usa" />
+                android:text="@string/lbl_alaska_usa"
+                tools:text="@string/lbl_alaska_usa" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,18 +116,17 @@
 
             <ImageView
                 android:id="@+id/imageCalendar"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_calendar_white_a700"
                 android:layout_width="@dimen/_18pxh"
                 android:layout_height="@dimen/_20pxh"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_calendar_white_a700" />
+                android:src="@drawable/img_calendar_white_a700"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_calendar_white_a700" />
 
             <TextView
                 android:id="@+id/birthday"
                 style="@style/txtInterregular14_3"
-                tools:text="@string/lbl_14_5_1998"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6pxh"
@@ -135,7 +134,8 @@
                 android:layout_weight="0.79"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_14_5_1998" />
+                android:text="@string/lbl_14_5_1998"
+                tools:text="@string/lbl_14_5_1998" />
         </LinearLayout>
 
         <LinearLayout
@@ -151,18 +151,17 @@
 
             <ImageView
                 android:id="@+id/imageCall"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_call"
                 android:layout_width="@dimen/_17pxh"
                 android:layout_height="@dimen/_17pxh"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_call" />
+                android:src="@drawable/img_call"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_call" />
 
             <TextView
                 android:id="@+id/tel"
                 style="@style/txtInterregular14_3"
-                tools:text="@string/lbl_0905234234"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6pxh"
@@ -170,7 +169,8 @@
                 android:layout_weight="0.83"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_0905234234" />
+                android:text="@string/lbl_0905234234"
+                tools:text="@string/lbl_0905234234" />
         </LinearLayout>
 
         <LinearLayout
@@ -188,32 +188,31 @@
 
             <ImageView
                 android:id="@+id/imageSave"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_save"
                 android:layout_width="@dimen/_20pxh"
                 android:layout_height="@dimen/_16pxh"
                 android:layout_marginTop="@dimen/_1pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_save" />
+                android:src="@drawable/img_save"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_save" />
 
             <TextView
                 android:id="@+id/nationalid"
                 style="@style/txtInterregular14_3"
-                tools:text="@string/lbl_048203008744"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5pxh"
                 android:layout_weight="0.84"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_048203008744" />
+                android:text="@string/lbl_048203008744"
+                tools:text="@string/lbl_048203008744" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/item_c_customerName"
             style="@style/txtOutfitsemibold28"
-            tools:text="@string/lbl_david"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -223,6 +222,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lbl_david" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

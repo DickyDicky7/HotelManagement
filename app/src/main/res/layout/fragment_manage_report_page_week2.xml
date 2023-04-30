@@ -13,90 +13,69 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/parent"
+            android:id="@+id/rp_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/weeks_label"
-                android:layout_width="330dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/income_expenses_value"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="end"
-                android:orientation="horizontal"
+                android:layout_marginTop="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.777"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chart_container">
+                app:layout_constraintTop_toBottomOf="@+id/income_expenses_label">
 
                 <TextView
-                    android:id="@+id/txtweek1"
-                    style="@style/txtInterregular12"
-                    android:layout_width="20dp"
+                    android:id="@+id/expenses_value"
+                    style="@style/txtIntersemibold20_2"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.22"
-                    android:text="@string/lbl_dec_1_dec_7"
-                    tools:text="@string/lbl_dec_1_dec_7" />
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_23_000_000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_23_000_000" />
 
                 <TextView
-                    android:id="@+id/txtweek2"
-                    style="@style/txtInterregular12"
-                    android:layout_width="20dp"
+                    android:id="@+id/income_value"
+                    style="@style/txtIntersemibold20_1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_weight="0.26"
-                    android:text="@string/lbl_dec_8_dec_14"
-                    tools:text="@string/lbl_dec_8_dec_14" />
-
-                <TextView
-                    android:id="@+id/txtweek3"
-                    style="@style/txtInterregular12"
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.26"
-                    android:text="@string/lbl_dec_15_dec_21"
-                    tools:text="@string/lbl_dec_15_dec_21" />
-
-                <TextView
-                    android:id="@+id/txtweek4"
-                    style="@style/txtInterregular12"
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_weight="0.27"
-                    android:text="@string/lbl_dec_22_dec_28"
-                    tools:text="@string/lbl_dec_22_dec_28" />
-            </LinearLayout>
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_28_000_000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_28_000_000" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/title2"
+                android:id="@+id/txtNetProfit2"
                 style="@style/txtIntersemibold14"
-                tools:text="@string/lbl_net_profit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_net_profit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
+                app:layout_constraintTop_toBottomOf="@+id/rp_title"
+                tools:text="@string/lbl_net_profit" />
 
             <TextView
-                android:id="@+id/title1"
+                android:id="@+id/rp_title"
                 style="@style/txtInterbold32"
-                tools:text="@string/lbl_5_000_000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -106,26 +85,73 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/lbl_5_000_000" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/chart_container"
-                android:layout_width="409dp"
+                android:id="@+id/rp_chartbox"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title2">
+                app:layout_constraintTop_toBottomOf="@+id/txtNetProfit2">
 
                 <LinearLayout
-                    android:id="@+id/values_label"
-                    android:layout_width="50dp"
+                    android:id="@+id/weeks_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/rp_value_label"
+                    app:layout_constraintTop_toBottomOf="@+id/rp_chart">
+
+                    <TextView
+                        android:id="@+id/txtweek1"
+                        style="@style/txtInterregular12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:text="@string/lbl_dec_1_dec_7"
+                        tools:text="@string/lbl_dec_1_dec_7" />
+
+                    <TextView
+                        android:id="@+id/txtweek2"
+                        style="@style/txtInterregular12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:text="@string/lbl_dec_8_dec_14"
+                        tools:text="@string/lbl_dec_8_dec_14" />
+
+                    <TextView
+                        android:id="@+id/txtweek3"
+                        style="@style/txtInterregular12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:text="@string/lbl_dec_15_dec_21"
+                        tools:text="@string/lbl_dec_15_dec_21" />
+
+                    <TextView
+                        android:id="@+id/txtweek4"
+                        style="@style/txtInterregular12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:text="@string/lbl_dec_22_dec_28"
+                        tools:text="@string/lbl_dec_22_dec_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rp_value_label"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.36"
                     android:gravity="start"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -201,104 +227,127 @@
                         tools:text="@string/lbl_0m" />
                 </LinearLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/line_chart"
-                    android:layout_width="357dp"
+                <LinearLayout
+                    android:id="@+id/rp_chart"
+                    android:layout_width="0dp"
                     android:layout_height="188dp"
-                    android:layout_marginStart="1dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/values_label"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0">
+                    app:layout_constraintStart_toEndOf="@+id/rp_value_label"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <View
-                        android:id="@+id/week4_expenses"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_94pxh"
-                        android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week4_income" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/prop1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25">
 
-                    <View
-                        android:id="@+id/week3_expenses"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_114pxh"
-                        android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week3_income" />
+                        <View
+                            android:id="@+id/income1"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_142pxh"
+                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                    <View
-                        android:id="@+id/week4_income"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_109pxh"
-                        android:layout_marginStart="52dp"
-                        android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week3_expenses" />
+                        <View
+                            android:id="@+id/expenses1"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_114pxh"
+                            android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/income1" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <View
-                        android:id="@+id/week3_income"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_97pxh"
-                        android:layout_marginStart="64dp"
-                        android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week2_expenses" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/prop2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25">
 
-                    <View
-                        android:id="@+id/week2_expenses"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_128pxh"
-                        android:background="@drawable/rectangle_bg_blue_a700_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week2_income" />
+                        <View
+                            android:id="@+id/income2"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_156pxh"
+                            android:background="@drawable/rectangle_bg_teal_a700_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                    <View
-                        android:id="@+id/week2_income"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_156pxh"
-                        android:layout_marginStart="50dp"
-                        android:background="@drawable/rectangle_bg_teal_a700_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week1_expenses" />
+                        <View
+                            android:id="@+id/expenses2"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_128pxh"
+                            android:background="@drawable/rectangle_bg_blue_a700_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/income2" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <View
-                        android:id="@+id/week1_expenses"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_114pxh"
-                        android:layout_marginStart="4dp"
-                        android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/week1_income" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/prop3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25">
 
-                    <View
-                        android:id="@+id/week1_income"
-                        android:layout_width="@dimen/_14pxh"
-                        android:layout_height="@dimen/_142pxh"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        <View
+                            android:id="@+id/income3"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_97pxh"
+                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <View
+                            android:id="@+id/expenses3"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_114pxh"
+                            android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/income3" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/prop4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.25">
+
+                        <View
+                            android:id="@+id/income4"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_109pxh"
+                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <View
+                            android:id="@+id/expenses4"
+                            android:layout_width="@dimen/_14pxh"
+                            android:layout_height="@dimen/_94pxh"
+                            android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/income4" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/income_expenses_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chart_container">
+                app:layout_constraintTop_toBottomOf="@+id/rp_chartbox">
 
                 <TextView
                     android:id="@+id/expenses_label"
                     style="@style/txtIntersemibold16_2"
-                    tools:text="@string/lbl_expenses"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.95"
@@ -307,12 +356,12 @@
                     android:text="@string/lbl_expenses"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_expenses" />
 
                 <TextView
                     android:id="@+id/income_label"
                     style="@style/txtIntersemibold16_1"
-                    tools:text="@string/lbl_income"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.93"
@@ -321,45 +370,8 @@
                     android:text="@string/lbl_income"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/income_expenses_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/income_expenses_label">
-
-                <TextView
-                    android:id="@+id/expenses_value"
-                    style="@style/txtIntersemibold20_2"
-                    tools:text="@string/lbl_23_000_000"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_23_000_000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/income_value"
-                    style="@style/txtIntersemibold20_1"
-                    tools:text="@string/lbl_28_000_000"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_28_000_000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_income" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
