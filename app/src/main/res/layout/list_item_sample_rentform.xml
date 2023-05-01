@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_rentForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rf_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/item_rentFormCode2"
+                style="@style/txtIntermedium14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.23"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_1234"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_rentFormName2"
+                tools:text="@string/lbl_1234" />
+
+            <TextView
+                android:id="@+id/item_rentFormName2"
+                style="@style/txtOutfitsemibold28"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.77"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_rent_form_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/lbl_rent_form_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rf_info"
+            android:layout_width="291dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_rf_name">
+
+            <LinearLayout
+                android:id="@+id/item_beginEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_customerName">
+
+                <ImageView
+                    android:id="@+id/imageCalendar"
+                    android:layout_width="@dimen/_15pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginBottom="@dimen/_2pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_calendar"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_calendar" />
+
+                <TextView
+                    android:id="@+id/beginEndDate"
+                    style="@style/txtInterregular14_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_marginTop="@dimen/_2pxv"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/msg_17_04_2023_19"
+                    tools:text="@string/msg_17_04_2023_19" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_customerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="@dimen/_13pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginBottom="@dimen/_2pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_user_white_a700_16x13"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_white_a700_16x13" />
+
+                <TextView
+                    android:id="@+id/customerName"
+                    style="@style/txtInterregular14_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_david"
+                    tools:text="@string/lbl_david" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rf_btns"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_rf_info"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnDel"
+                android:layout_width="@dimen/_28pxh"
+                android:layout_height="@dimen/_28pxh"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                android:paddingHorizontal="@dimen/_6pxh"
+                android:paddingVertical="@dimen/_6pxv"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_file"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEdit"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                android:layout_width="@dimen/_28pxh"
+                android:layout_height="@dimen/_28pxh"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                android:paddingHorizontal="@dimen/_6pxh"
+                android:paddingVertical="@dimen/_6pxv"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_vector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

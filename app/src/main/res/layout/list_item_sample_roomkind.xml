@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_roomKind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_rk_image"
+            cornerRadius="@{@dimen/_20pxh}"
+            imageRes="@{@drawable/img_image12}"
+            android:layout_width="@dimen/_86pxh"
+            android:layout_height="@dimen/_86pxh"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_image12" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rk_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_rk_image"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/item_rk_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/roomkindName"
+                    style="@style/txtOutfitsemibold28"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.84"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_single_room"
+                    tools:text="@string/lbl_single_room" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/item_rk_prop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_rk_name">
+
+                <TextView
+                    android:id="@+id/roomArea"
+                    style="@style/txtInterregular16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.25"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_20_m"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageHome2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_20_m" />
+
+                <ImageView
+                    android:id="@+id/imageHome2"
+                    android:layout_width="@dimen/_18pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_home_white_a700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/roomBed"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_home_white_a700" />
+
+                <TextView
+                    android:id="@+id/roomBed"
+                    style="@style/txtInterregular16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.04"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageCamera2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_1" />
+
+                <ImageView
+                    android:id="@+id/imageCamera2"
+                    android:layout_width="@dimen/_22pxh"
+                    android:layout_height="@dimen/_15pxh"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_camera"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/roomMaxGuest"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_camera" />
+
+                <TextView
+                    android:id="@+id/roomMaxGuest"
+                    style="@style/txtInterregular16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="0.07"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageUser2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/lbl_2" />
+
+                <ImageView
+                    android:id="@+id/imageUser2"
+                    android:layout_width="@dimen/_22pxh"
+                    android:layout_height="@dimen/_14pxh"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_user_white_a700_14x22"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_white_a700_14x22" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/item_rk_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_rk_prop"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/item_rk_btnDel"
+                    android:layout_width="@dimen/_28pxh"
+                    android:layout_height="@dimen/_28pxh"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                    android:paddingHorizontal="@dimen/_6pxh"
+                    android:paddingVertical="@dimen/_6pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_file"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_rk_btnEdit"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/item_rk_btnEdit"
+                    android:layout_width="@dimen/_28pxh"
+                    android:layout_height="@dimen/_28pxh"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                    android:paddingHorizontal="@dimen/_6pxh"
+                    android:paddingVertical="@dimen/_6pxv"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_vector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
