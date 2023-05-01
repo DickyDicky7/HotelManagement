@@ -10,14 +10,6 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:gravity="end" android:orientation="vertical">
-        <ImageView android:id="@+id/imageMail"
-            android:layout_height="@dimen/_14pxh"
-            android:layout_width="@dimen/_50pxh"
-            android:layout_marginStart="@dimen/_27pxh"
-            android:layout_marginTop="@dimen/_16pxv"
-            android:layout_marginEnd="@dimen/_27pxh"
-            android:scaleType="fitXY" android:src="@drawable/img_mail"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_mail"/>
         <ImageButton
             android:layout_width="@dimen/_40pxh"
             android:id="@+id/btnArrowleft"

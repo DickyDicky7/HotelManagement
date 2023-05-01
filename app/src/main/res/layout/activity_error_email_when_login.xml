@@ -35,17 +35,7 @@
                         android:scaleType="fitXY"
                         android:layout_gravity="start"
                         tools:ignore="ContentDescription" tools:src="@drawable/img_logo_320x360"/>
-                    <ImageView android:id="@+id/imageMail"
-                        android:layout_width="@dimen/_50pxh"
-                        android:layout_height="@dimen/_14pxh"
-                        android:layout_gravity="top|end"
-                        android:layout_marginEnd="@dimen/_25pxh"
-                        android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_marginBottom="@dimen/_16pxv"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_mail"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_mail"/>
+
                 </FrameLayout>
                 <EditText
                     android:background="@drawable/rectangle_bg_red_300_cc_border_red_a700_radius_10"
@@ -114,13 +104,14 @@
                     android:paddingBottom="@dimen/_15pxv"
                     android:textColorHint="@color/black_900" tools:ignore="Autofill"/>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSignIn" style="@style/btnSolidRoundedOutline"
+                    android:id="@+id/btnSignIn"
+                    style="@style/groupStylebluegray_100_cccornerRadius"
                     android:layout_width="@dimen/_193pxh"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_24pxh"
                     android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_32pxv"
+                    android:layout_marginTop="@dimen/_14pxv"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:paddingEnd="@dimen/_30pxh"
@@ -128,8 +119,11 @@
                     android:paddingTop="@dimen/_15pxv"
                     android:singleLine="true"
                     android:text="@string/lbl_sign_in"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:paddingBottom="@dimen/_15pxv"
-                    android:textAllCaps="false" tools:text="@string/lbl_sign_in"/>
+                    android:textAllCaps="false"
+                    tools:text="@string/lbl_sign_in"/>
                 <TextView android:id="@+id/txtForgotyourpas"
                     style="@style/txtIntersemibold16"
                     android:layout_width="wrap_content"
