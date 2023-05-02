@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <LinearLayout android:id="@+id/linearEditdeletean"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:orientation="vertical">
-        <ImageView android:id="@+id/imageMail"
-            android:layout_width="@dimen/_50pxh"
-            android:layout_height="@dimen/_14pxh"
-            android:layout_gravity="end"
-            android:layout_marginStart="@dimen/_27pxh"
-            android:layout_marginTop="@dimen/_16pxv"
-            android:layout_marginEnd="@dimen/_27pxh"
-            android:scaleType="fitXY" android:src="@drawable/img_mail"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_mail"/>
         <LinearLayout android:id="@+id/linearColumnarrowleft"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/_12pxh"
             android:layout_marginBottom="@dimen/_30pxv"
             android:layout_marginStart="@dimen/_12pxh"
@@ -67,33 +62,78 @@
                 <ImageView android:id="@+id/imageSettings"
                     android:layout_height="@dimen/_24pxh"
                     android:layout_width="@dimen/_27pxh"
-                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginStart="@dimen/_10pxh"
                     android:layout_marginTop="@dimen/_9pxv"
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_settings"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_settings"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_settings"/>
             </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                itemSpace="@{@dimen/_24pxh}"
-                android:id="@+id/recyclerGridp101"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4pxh"
-                android:layout_marginTop="@dimen/_29pxv"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:gravity="center_horizontal"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" app:spanCount="2"
-                tools:itemCount="10" tools:listitem="@layout/row_gridp101"/>
-            <androidx.recyclerview.widget.RecyclerView
-                itemSpace="@{@dimen/_16pxh}"
-                android:id="@+id/recyclerListp111"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4pxh"
-                android:layout_marginTop="@dimen/_16pxv"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" tools:itemCount="2" tools:listitem="@layout/row_listp111"/>
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    itemSpace="@{@dimen/_24pxh}"
+                    android:id="@+id/recyclerGridp101"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_29pxv"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" app:spanCount="2"
+                    tools:itemCount="16" tools:listitem="@layout/row_gridp101"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnBook"
+                        style="@style/btnSolidRounded_4"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginStart="@dimen/_30pxh"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_11pxv"
+                        android:paddingStart="@dimen/_30pxh"
+                        android:paddingEnd="@dimen/_30pxh" android:paddingBottom="@dimen/_11pxv"
+                        android:singleLine="true" android:text="@string/lbl_book"
+                        android:textAllCaps="false" tools:text="@string/lbl_book"/>
+                    <ImageButton
+                        android:layout_width="@dimen/_40pxh"
+                        android:id="@+id/btnEdit"
+                        android:layout_height="@dimen/_40pxh"
+                        android:layout_weight="0.1"
+                        android:layout_marginBottom="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_3pxv"
+                        android:layout_marginStart="@dimen/_50pxv"
+                        android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                        android:paddingHorizontal="@dimen/_10pxh"
+                        android:paddingVertical="@dimen/_10pxv"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_vector" tools:ignore="ContentDescription"/>
+                    <ImageButton
+                        android:layout_width="@dimen/_40pxh"
+                        android:id="@+id/btnDelete"
+                        android:layout_height="@dimen/_40pxh"
+                        android:layout_marginBottom="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_3pxv"
+                        android:layout_weight="0.1"
+                        android:layout_marginStart="@dimen/_30pxv"
+                        android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                        android:paddingHorizontal="@dimen/_10pxh"
+                        android:paddingVertical="@dimen/_10pxv"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_file" tools:ignore="ContentDescription"/>
+                </LinearLayout>
+
+            </FrameLayout>
+
         </LinearLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
