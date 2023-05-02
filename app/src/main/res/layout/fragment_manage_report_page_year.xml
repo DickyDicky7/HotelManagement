@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <ScrollView android:id="@+id/scrollViewScrollview"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <ScrollView
+        android:id="@+id/scrollViewScrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false" android:fillViewport="true">
-        <LinearLayout android:id="@+id/linearColumn5000000"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/rp_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start" android:orientation="vertical">
-            <TextView android:id="@+id/txt5000000"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt5000000"
                 style="@style/txtInterbold32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -18,8 +28,11 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:gravity="center_horizontal"
-                android:text="@string/lbl_5_000_000" tools:text="@string/lbl_5_000_000"/>
-            <TextView android:id="@+id/txtNetProfit"
+                android:text="@string/lbl_5_000_000"
+                tools:text="@string/lbl_5_000_000" />
+
+            <TextView
+                android:id="@+id/txtNetProfit"
                 style="@style/txtIntersemibold14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,37 +42,36 @@
                 android:layout_marginEnd="@dimen/_68pxh"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:text="@string/lbl_net_profit" tools:text="@string/lbl_net_profit"/>
+                android:text="@string/lbl_net_profit"
+                tools:text="@string/lbl_net_profit" />
             <LinearLayout android:id="@+id/linearRowdistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_40pxv"
                 android:gravity="start" android:orientation="horizontal">
-                <LinearLayout android:id="@+id/linearColumndistance"
+                <LinearLayout
+                    android:id="@+id/rp_value_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_weight="0.36"
-                    android:gravity="start" android:orientation="vertical">
-                    <TextView android:id="@+id/txtDistance"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt30M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_30m" tools:text="@string/lbl_30m"/>
-                    <TextView android:id="@+id/txtDistanceOne"
-                        style="@style/txtInterregular12"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="@string/lbl_25m" tools:text="@string/lbl_25m"/>
-                    <TextView android:id="@+id/txtDistanceTwo"
+                        android:text="@string/lbl_30m"
+                        tools:text="@string/lbl_30m" />
+
+                    <TextView
+                        android:id="@+id/txt25M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -67,17 +79,11 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_20m2" tools:text="@string/lbl_20m2"/>
-                    <TextView android:id="@+id/txtDistanceThree"
-                        style="@style/txtInterregular12"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_width="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_10m" tools:text="@string/lbl_10m"/>
-                    <TextView android:id="@+id/txtDistanceFour"
+                        android:text="@string/lbl_25m"
+                        tools:text="@string/lbl_25m" />
+
+                    <TextView
+                        android:id="@+id/txt20M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -85,8 +91,35 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_5m" tools:text="@string/lbl_5m"/>
-                    <TextView android:id="@+id/txtDistanceFive"
+                        android:text="@string/lbl_20m2"
+                        tools:text="@string/lbl_20m2" />
+
+                    <TextView
+                        android:id="@+id/txt10M"
+                        style="@style/txtInterregular12"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_width="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_10m"
+                        tools:text="@string/lbl_10m" />
+
+                    <TextView
+                        android:id="@+id/txt5M"
+                        style="@style/txtInterregular12"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:text="@string/lbl_5m"
+                        tools:text="@string/lbl_5m" />
+
+                    <TextView
+                        android:id="@+id/txt0M"
                         style="@style/txtInterregular12"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -94,7 +127,8 @@
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_0m" tools:text="@string/lbl_0m"/>
+                        android:text="@string/lbl_0m"
+                        tools:text="@string/lbl_0m" />
                 </LinearLayout>
                 <View
                     android:layout_width="@dimen/_14pxh"
@@ -148,48 +182,67 @@
                 android:layout_width="@dimen/_312pxh"
                 android:layout_height="@dimen/_1pxv"
                 android:layout_marginTop="@dimen/_1pxv" android:background="@color/bluegray_101"/>
-            <LinearLayout android:id="@+id/linearRowzipcode"
+
+            <LinearLayout
+                android:id="@+id/years_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_32pxh"
                 android:layout_marginStart="@dimen/_32pxh"
                 android:layout_marginTop="@dimen/_3pxv"
-                android:gravity="end" android:orientation="horizontal">
-                <TextView android:id="@+id/txtZipcode"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtYear1"
                     style="@style/txtInterregular12"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_width="0dp"
-                    android:layout_weight="0.25" android:ellipsize="end"
+                    android:layout_weight="0.25"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_2019" tools:text="@string/lbl_2019"/>
-                <TextView android:id="@+id/txtZipcodeOne"
+                    android:text="@string/lbl_2019"
+                    tools:text="@string/lbl_2019" />
+
+                <TextView
+                    android:id="@+id/txtYear2"
                     style="@style/txtInterregular12"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_29pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="0dp"
-                    android:layout_weight="0.26" android:ellipsize="end"
+                    android:layout_weight="0.26"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_2020" tools:text="@string/lbl_2020"/>
-                <TextView android:id="@+id/txtZipcodeTwo"
+                    android:text="@string/lbl_2020"
+                    tools:text="@string/lbl_2020" />
+
+                <TextView
+                    android:id="@+id/txtYear3"
                     style="@style/txtInterregular12"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_33pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="0dp"
-                    android:layout_weight="0.23" android:ellipsize="end"
+                    android:layout_weight="0.23"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_2021" tools:text="@string/lbl_2021"/>
-                <TextView android:id="@+id/txtZipcodeThree"
+                    android:text="@string/lbl_2021"
+                    tools:text="@string/lbl_2021" />
+
+                <TextView
+                    android:id="@+id/txtYear4"
                     style="@style/txtInterregular12"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_35pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="0dp"
-                    android:layout_weight="0.26" android:ellipsize="end"
+                    android:layout_weight="0.26"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@string/lbl_2022" tools:text="@string/lbl_2022"/>
+                    android:text="@string/lbl_2022"
+                    tools:text="@string/lbl_2022" />
             </LinearLayout>
             <LinearLayout android:id="@+id/linearRow"
                 android:layout_height="wrap_content"

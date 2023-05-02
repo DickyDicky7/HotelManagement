@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/item_btns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_address">
+
+            <FrameLayout
+                android:id="@+id/frameStackticket"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="@dimen/_42pxh"
+                android:layout_height="@dimen/_28pxv">
+
+                <ImageButton
+                    android:id="@+id/imageTicket"
+                    android:layout_width="@dimen/_16pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_12pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_marginEnd="@dimen/_12pxh"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ticket"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameStackfile"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="@dimen/_42pxh"
+                android:layout_height="@dimen/_28pxv"
+                android:layout_marginStart="@dimen/_24pxh">
+
+                <ImageButton
+                    android:id="@+id/imageFile"
+                    android:layout_width="@dimen/_12pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_14pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_marginEnd="@dimen/_14pxh"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_file"
+                    tools:ignore="ContentDescription" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_birthday">
+
+            <ImageView
+                android:id="@+id/imageLocation"
+                android:layout_width="@dimen/_14pxh"
+                android:layout_height="@dimen/_20pxh"
+                android:layout_marginBottom="@dimen/_2pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_location"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_location" />
+
+            <TextView
+                android:id="@+id/address"
+                style="@style/txtInterregular14_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_weight="0.85"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_alaska_usa"
+                tools:text="@string/lbl_alaska_usa" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_tel">
+
+            <ImageView
+                android:id="@+id/imageCalendar"
+                android:layout_width="@dimen/_18pxh"
+                android:layout_height="@dimen/_20pxh"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_calendar_white_a700"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_calendar_white_a700" />
+
+            <TextView
+                android:id="@+id/birthday"
+                style="@style/txtInterregular14_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6pxh"
+                android:layout_marginTop="@dimen/_3pxv"
+                android:layout_weight="0.79"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_14_5_1998"
+                tools:text="@string/lbl_14_5_1998" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_nationalID">
+
+            <ImageView
+                android:id="@+id/imageCall"
+                android:layout_width="@dimen/_17pxh"
+                android:layout_height="@dimen/_17pxh"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_call"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_call" />
+
+            <TextView
+                android:id="@+id/tel"
+                style="@style/txtInterregular14_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_weight="0.83"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_0905234234"
+                tools:text="@string/lbl_0905234234" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_nationalID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_c_customerName">
+
+            <ImageView
+                android:id="@+id/imageSave"
+                android:layout_width="@dimen/_20pxh"
+                android:layout_height="@dimen/_16pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_save"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_save" />
+
+            <TextView
+                android:id="@+id/nationalid"
+                style="@style/txtInterregular14_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_weight="0.84"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_048203008744"
+                tools:text="@string/lbl_048203008744" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_c_customerName"
+            style="@style/txtOutfitsemibold28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/lbl_david"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lbl_david" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

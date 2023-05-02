@@ -65,6 +65,7 @@
                     android:text="@string/lbl_manager" tools:text="@string/lbl_manager"/>
                 <ScrollView
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:id="@+id/scrollviewaccountpage">
                     <LinearLayout
@@ -324,6 +325,7 @@
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>
+
             </LinearLayout>
             <FrameLayout android:id="@+id/frameBottombar"
                 style="@style/groupStyleindigo_2"

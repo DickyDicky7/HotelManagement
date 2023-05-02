@@ -73,6 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="@dimen/_4pxh" android:layout_marginTop="@dimen/_11pxv">
+
                 <androidx.recyclerview.widget.RecyclerView
                     itemSpace="@{@dimen/_16pxh}"
                     android:id="@+id/recyclerListp107"
@@ -84,6 +85,7 @@
                     android:gravity="center_horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="7" tools:listitem="@layout/row_listp107"/>
+
                 <FrameLayout android:id="@+id/frameStackkind"
                     style="@style/groupStylebluegray_102cornerRadius"
                     android:layout_height="wrap_content"
