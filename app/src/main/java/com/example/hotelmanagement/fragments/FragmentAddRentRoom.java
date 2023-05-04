@@ -9,16 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
 
-public class FragmentEditRoomCategory extends Fragment {
+import com.example.hotelmanagement.databinding.FragmentAddRentFormBinding;
 
-    private FragmentEditRoomBinding binding;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+
+public class FragmentAddRentRoom extends Fragment {
+    private FragmentAddRentFormBinding binding;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentEditRoomBinding.inflate(inflater, container, false);
+        binding = FragmentAddRentFormBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -30,7 +34,7 @@ public class FragmentEditRoomCategory extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
+
 
 }

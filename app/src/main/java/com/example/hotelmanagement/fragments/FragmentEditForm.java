@@ -9,16 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentEditFormBinding;
+import com.example.hotelmanagement.databinding.FragmentEditRentFormBinding;
 
 public class FragmentEditForm extends Fragment {
 
-    private FragmentEditFormBinding binding;
+    private FragmentEditRentFormBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentEditFormBinding.inflate(inflater, container, false);
+        binding = FragmentEditRentFormBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
