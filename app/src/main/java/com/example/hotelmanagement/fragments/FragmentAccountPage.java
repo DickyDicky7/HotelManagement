@@ -11,10 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.databinding.FragmentAccountPageBinding;
 
-
 public class FragmentAccountPage extends Fragment {
-    private FragmentAccountPageBinding binding;
 
+    private FragmentAccountPageBinding binding;
 
     @Nullable
     @Override
@@ -33,4 +32,5 @@ public class FragmentAccountPage extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

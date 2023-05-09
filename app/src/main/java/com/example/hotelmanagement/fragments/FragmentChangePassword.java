@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 import com.example.hotelmanagement.databinding.FragmentChangePasswordBinding;
 
-public class FragmentChangePassword  extends Fragment {
+public class FragmentChangePassword extends Fragment {
+
     private FragmentChangePasswordBinding binding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,5 +30,7 @@ public class FragmentChangePassword  extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
+
 }

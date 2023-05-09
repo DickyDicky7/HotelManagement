@@ -9,15 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-
 import com.example.hotelmanagement.databinding.FragmentAddRentFormBinding;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
-
 public class FragmentAddRentRoom extends Fragment {
-    private FragmentAddRentFormBinding binding;
 
+    private FragmentAddRentFormBinding binding;
 
     @Nullable
     @Override
@@ -34,7 +30,7 @@ public class FragmentAddRentRoom extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
-
 
 }

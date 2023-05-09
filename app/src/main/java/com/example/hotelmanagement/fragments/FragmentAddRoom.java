@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 
 public class FragmentAddRoom extends Fragment {
+
     private FragmentAddRoomBinding binding;
 
     @Nullable
@@ -30,5 +30,7 @@ public class FragmentAddRoom extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
+
 }

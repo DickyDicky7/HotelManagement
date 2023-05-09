@@ -9,11 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 
 public class FragmentAddRoomKind extends Fragment {
+
     private FragmentAddRoomKindBinding binding;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class FragmentAddRoomKind extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        binding = null;
     }
 
 }
