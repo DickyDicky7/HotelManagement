@@ -1,21 +1,22 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adaptersviewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagement.databinding.ListItemSampleBookedroomBinding;
 import com.example.hotelmanagement.databinding.ListItemSampleRoomBinding;
-import com.example.hotelmanagement.observable.RoomObservable;
+import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewholders.RoomViewHolder;
 
 import java.util.List;
 
-public class RoomAdapter extends RecyclerView.Adapter<RoomViewHolder> {
+public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservable, RoomViewHolder> {
 
-    public List<RoomObservable> roomObservables;
+    public RoomAdapterViewModel() {
+        super();
+    }
 
     @NonNull
     @Override
@@ -30,21 +31,21 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
-        RoomObservable roomObservable = roomObservables.get(position);
-        if (holder.getItemViewType() == 1) {
-            ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.bind(holder.itemView);
-        } else {
-            ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.bind(holder.itemView);
+        List<RoomObservable> roomObservables = modelState.getValue();
+        if (roomObservables != null) {
+            RoomObservable roomObservable = roomObservables.get(position);
+            if (holder.getItemViewType() == 1) {
+                ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.bind(holder.itemView);
+            } else {
+                ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.bind(holder.itemView);
+            }
         }
     }
 
     @Override
-    public int getItemCount() {
-        return roomObservables.size();
+    public int getItemViewType(int position) {
+        List<RoomObservable> roomObservables = modelState.getValue();
+        return roomObservables != null ? (roomObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return roomObservables.get(position).getIsOccupied() ? 1 : 0;
-    }
 }

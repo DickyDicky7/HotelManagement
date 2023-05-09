@@ -1,20 +1,21 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adaptersviewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagement.databinding.ListItemSampleBillBinding;
-import com.example.hotelmanagement.observable.BillObservable;
+import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewholders.BillViewHolder;
 
 import java.util.List;
 
-public class BillAdapter extends RecyclerView.Adapter<BillViewHolder> {
+public class BillAdapterViewModel extends ExtendedAdapterViewModel<BillObservable, BillViewHolder> {
 
-    public List<BillObservable> billObservables;
+    public BillAdapterViewModel() {
+        super();
+    }
 
     @NonNull
     @Override
@@ -25,13 +26,11 @@ public class BillAdapter extends RecyclerView.Adapter<BillViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BillViewHolder holder, int position) {
-        ListItemSampleBillBinding binding = ListItemSampleBillBinding.bind(holder.itemView);
-        BillObservable billObservable = billObservables.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return billObservables.size();
+        List<BillObservable> billObservables = modelState.getValue();
+        if (billObservables != null) {
+            ListItemSampleBillBinding binding = ListItemSampleBillBinding.bind(holder.itemView);
+            BillObservable billObservable = billObservables.get(position);
+        }
     }
 
 }

@@ -1,20 +1,21 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adaptersviewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagement.databinding.ListItemSampleRentformBinding;
-import com.example.hotelmanagement.observable.RentalFormObservable;
+import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.viewholders.RentalFormViewHolder;
 
 import java.util.List;
 
-public class RentalFormAdapter extends RecyclerView.Adapter<RentalFormViewHolder> {
+public class RentalFormAdapterViewModel extends ExtendedAdapterViewModel<RentalFormObservable, RentalFormViewHolder> {
 
-    public List<RentalFormObservable> rentalFormObservables;
+    public RentalFormAdapterViewModel() {
+        super();
+    }
 
     @NonNull
     @Override
@@ -25,13 +26,11 @@ public class RentalFormAdapter extends RecyclerView.Adapter<RentalFormViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RentalFormViewHolder holder, int position) {
-        ListItemSampleRentformBinding binding = ListItemSampleRentformBinding.bind(holder.itemView);
-        RentalFormObservable rentalFormObservable = rentalFormObservables.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return rentalFormObservables.size();
+        List<RentalFormObservable> rentalFormObservables = modelState.getValue();
+        if (rentalFormObservables != null) {
+            ListItemSampleRentformBinding binding = ListItemSampleRentformBinding.bind(holder.itemView);
+            RentalFormObservable rentalFormObservable = rentalFormObservables.get(position);
+        }
     }
 
 }

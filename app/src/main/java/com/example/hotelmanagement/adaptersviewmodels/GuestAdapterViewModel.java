@@ -1,20 +1,21 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adaptersviewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagement.databinding.ListItemSampleCustomerBinding;
-import com.example.hotelmanagement.observable.GuestObservable;
+import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewholders.GuestViewHolder;
 
 import java.util.List;
 
-public class GuestAdapter extends RecyclerView.Adapter<GuestViewHolder> {
+public class GuestAdapterViewModel extends ExtendedAdapterViewModel<GuestObservable, GuestViewHolder> {
 
-    public List<GuestObservable> guestObservables;
+    public GuestAdapterViewModel() {
+        super();
+    }
 
     @NonNull
     @Override
@@ -25,13 +26,11 @@ public class GuestAdapter extends RecyclerView.Adapter<GuestViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull GuestViewHolder holder, int position) {
-        ListItemSampleCustomerBinding binding = ListItemSampleCustomerBinding.bind(holder.itemView);
-        GuestObservable guestObservable = guestObservables.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return guestObservables.size();
+        List<GuestObservable> guestObservables = modelState.getValue();
+        if (guestObservables != null) {
+            ListItemSampleCustomerBinding binding = ListItemSampleCustomerBinding.bind(holder.itemView);
+            GuestObservable guestObservable = guestObservables.get(position);
+        }
     }
 
 }

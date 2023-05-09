@@ -1,20 +1,21 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adaptersviewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelmanagement.databinding.ListItemSampleRoomkindBinding;
-import com.example.hotelmanagement.observable.RoomKindObservable;
+import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 
 import java.util.List;
 
-public class RoomKindAdapter extends RecyclerView.Adapter<RoomKindViewHolder> {
+public class RoomKindAdapterViewModel extends ExtendedAdapterViewModel<RoomKindObservable, RoomKindViewHolder> {
 
-    public List<RoomKindObservable> roomKindObservables;
+    public RoomKindAdapterViewModel() {
+        super();
+    }
 
     @NonNull
     @Override
@@ -25,13 +26,11 @@ public class RoomKindAdapter extends RecyclerView.Adapter<RoomKindViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RoomKindViewHolder holder, int position) {
-        ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.bind(holder.itemView);
-        RoomKindObservable roomKindObservable = roomKindObservables.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return roomKindObservables.size();
+        List<RoomKindObservable> roomKindObservables = modelState.getValue();
+        if (roomKindObservables != null) {
+            ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.bind(holder.itemView);
+            RoomKindObservable roomKindObservable = roomKindObservables.get(position);
+        }
     }
 
 }

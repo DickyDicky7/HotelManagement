@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.observable;
+package com.example.hotelmanagement.observables;
 
 import androidx.databinding.Bindable;
 
