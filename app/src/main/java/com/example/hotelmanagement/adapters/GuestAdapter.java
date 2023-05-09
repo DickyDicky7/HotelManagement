@@ -19,7 +19,7 @@ public class GuestAdapter extends RecyclerView.Adapter<GuestViewHolder> {
     @NonNull
     @Override
     public GuestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleCustomerBinding binding = ListItemSampleCustomerBinding.inflate(LayoutInflater.from(parent.getContext()));
+        ListItemSampleCustomerBinding binding = ListItemSampleCustomerBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new GuestViewHolder(binding);
     }
 
