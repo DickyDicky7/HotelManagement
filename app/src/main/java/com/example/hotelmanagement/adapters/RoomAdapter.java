@@ -21,7 +21,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomViewHolder> {
     @Override
     public RoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) {
-            ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.inflate(LayoutInflater.from(parent.getContext()));
+            ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
             return new RoomViewHolder(binding);
         }
         ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
