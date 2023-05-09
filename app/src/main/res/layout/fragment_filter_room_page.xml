@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FragmentEditRoomList">
+    tools:context=".fragments.FragmentFilterRoomPage">
 
     <LinearLayout android:id="@+id/linearFilterroompag"
         style="@style/groupStylebluegray_900"

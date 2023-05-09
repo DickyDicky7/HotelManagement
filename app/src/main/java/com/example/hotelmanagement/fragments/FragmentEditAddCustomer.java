@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.databinding.FragmentEditAddCustomerBinding;
 
-public class FragmentEditGuest extends Fragment {
+public class FragmentEditAddCustomer extends Fragment {
 
     private FragmentEditAddCustomerBinding binding;
 

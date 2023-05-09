@@ -9,16 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentAddRentFormBinding;
+import com.example.hotelmanagement.databinding.FragmentFilterRoomPageBinding;
 
-public class FragmentAddRentRoom extends Fragment {
-
-    private FragmentAddRentFormBinding binding;
-
+public class FragmentFilterRoomPage extends Fragment {
+    private  FragmentFilterRoomPageBinding binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentAddRentFormBinding.inflate(inflater, container, false);
+        binding = FragmentFilterRoomPageBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -32,5 +30,4 @@ public class FragmentAddRentRoom extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

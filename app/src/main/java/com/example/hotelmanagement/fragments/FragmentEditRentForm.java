@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.databinding.FragmentEditRentFormBinding;
 
-public class FragmentEditForm extends Fragment {
+public class FragmentEditRentForm extends Fragment {
 
     private FragmentEditRentFormBinding binding;
 
