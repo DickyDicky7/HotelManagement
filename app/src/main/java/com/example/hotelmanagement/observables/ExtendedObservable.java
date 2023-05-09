@@ -17,6 +17,8 @@ public class ExtendedObservable extends BaseObservable {
                               Timestamp createdAt,
                               Timestamp updatedAt) {
 
+        super();
+
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

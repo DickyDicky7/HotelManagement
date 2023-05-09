@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adaptersviewmodels;
+package com.example.hotelmanagement.adapters_viewmodels;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
