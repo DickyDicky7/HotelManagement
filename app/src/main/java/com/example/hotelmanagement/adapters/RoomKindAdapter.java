@@ -19,7 +19,7 @@ public class RoomKindAdapter extends RecyclerView.Adapter<RoomKindViewHolder> {
     @NonNull
     @Override
     public RoomKindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.inflate(LayoutInflater.from(parent.getContext()));
+        ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RoomKindViewHolder(binding);
     }
 

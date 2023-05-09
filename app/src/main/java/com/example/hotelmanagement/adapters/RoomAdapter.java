@@ -24,7 +24,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomViewHolder> {
             ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.inflate(LayoutInflater.from(parent.getContext()));
             return new RoomViewHolder(binding);
         }
-        ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.inflate(LayoutInflater.from(parent.getContext()));
+        ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RoomViewHolder(binding);
     }
 

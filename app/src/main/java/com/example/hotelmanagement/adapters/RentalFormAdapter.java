@@ -19,7 +19,7 @@ public class RentalFormAdapter extends RecyclerView.Adapter<RentalFormViewHolder
     @NonNull
     @Override
     public RentalFormViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleRentformBinding binding = ListItemSampleRentformBinding.inflate(LayoutInflater.from(parent.getContext()));
+        ListItemSampleRentformBinding binding = ListItemSampleRentformBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RentalFormViewHolder(binding);
     }
 

@@ -19,7 +19,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillViewHolder> {
     @NonNull
     @Override
     public BillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleBillBinding binding = ListItemSampleBillBinding.inflate(LayoutInflater.from(parent.getContext()));
+        ListItemSampleBillBinding binding = ListItemSampleBillBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new BillViewHolder(binding);
     }
 
