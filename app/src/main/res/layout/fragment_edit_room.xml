@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".fragments.FragmentEditRoom">
+    tools:context=".fragments.edits.FragmentEditRoom">
 
-    <LinearLayout android:id="@+id/linearEditroom" style="@style/groupStylebluegray_900"
+    <LinearLayout
+        android:id="@+id/linearEditroom"
+        style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:gravity="end" android:orientation="vertical">
+        android:gravity="end"
+        android:orientation="vertical">
 
         <ImageButton
             android:layout_width="@dimen/_40pxh"

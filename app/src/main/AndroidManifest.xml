@@ -14,6 +14,27 @@
         android:theme="@style/Theme.HotelManagement"
         tools:targetApi="31">
         <activity
+            android:name=".FragmentViewRoomKind"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityManageRoomKindPage"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityManageRoomPage"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentManageRentFormPage"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentManageCustomersPage"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentManageBillsPage"
+            android:exported="false" />
+        <activity
+            android:name=".FragmentLogin"
+            android:exported="false" />
+        <activity
             android:name=".ActivityMain"
             android:exported="true">
             <intent-filter>

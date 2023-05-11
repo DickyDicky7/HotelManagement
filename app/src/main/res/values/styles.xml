@@ -463,39 +463,4 @@
         <item name="android:textColorPrimary">@color/gray_600</item>
         <item name="android:textColorHint">@color/gray_600</item>
     </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
-    <style name="searchViewSearchbar" parent="Widget.AppCompat.SearchView">
-        <item name="android:textSize">@dimen/_15pxh</item>
-        <item name="android:textColorPrimary">@color/gray_600</item>
-        <item name="android:textColorHint">@color/gray_600</item>
-    </style>
 </resources>

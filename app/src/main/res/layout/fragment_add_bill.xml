@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".fragments.FragmentAddBill">
+    tools:context=".fragments.adds.FragmentAddBill">
 
-    <LinearLayout android:id="@+id/linearColumnmail"
+    <LinearLayout
+        android:id="@+id/linearColumnmail"
         style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/_12pxh"
         android:layout_marginTop="@dimen/_16pxv"
         android:layout_marginEnd="@dimen/_20pxh"
-        android:gravity="center_horizontal" android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <LinearLayout android:id="@+id/linearAddbill"
+        <LinearLayout
+            android:id="@+id/linearAddbill"
             style="@style/groupStylebluegray_900"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:gravity="end" android:orientation="vertical">
+            android:gravity="end"
+            android:orientation="vertical">
+
             <ImageButton
                 android:layout_width="@dimen/_40pxh"
                 android:id="@+id/btnArrowleft"
@@ -43,14 +47,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/scollviewaddbill">
-                    <LinearLayout android:id="@+id/linearColumnid"
+
+                    <LinearLayout
+                        android:id="@+id/linearColumnid"
                         style="@style/groupStyleindigo_901cornerRadius"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:layout_gravity="start"
                         android:layout_marginBottom="@dimen/_10pxv"
                         android:orientation="vertical">
-                        <TextView android:id="@+id/txtID"
+
+                        <TextView
+                            android:id="@+id/txtRKName"
                             style="@style/txtIntersemibold24"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
@@ -60,12 +68,12 @@
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:text="@string/lbl_id"
-                            tools:text="@string/lbl_id"/>
+                            tools:text="@string/lbl_id" />
                         <EditText
                             android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                             android:ellipsize="end"
                             android:hint="@string/lbl_enter_id"
-                            android:id="@+id/etGroupThree"
+                            android:id="@+id/etRKName"
                             android:inputType="text"
                             style="@style/etSolidRounded_1"
                             android:layout_width="match_parent"

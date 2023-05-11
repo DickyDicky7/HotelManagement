@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".fragments.FragmentAddRoom">
-    <LinearLayout android:id="@+id/linearAddroom" style="@style/groupStylebluegray_900"
+    tools:context=".fragments.adds.FragmentAddRoom">
+
+    <LinearLayout
+        android:id="@+id/linearAddroom"
+        style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:gravity="end" android:orientation="vertical">
+        android:gravity="end"
+        android:orientation="vertical">
+
         <ImageButton
             android:layout_width="@dimen/_40pxh"
             android:id="@+id/btnArrowleft"
@@ -33,27 +37,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/scollviewaddroom">
-                <LinearLayout android:id="@+id/linearColumnid"
+
+                <LinearLayout
+                    android:id="@+id/linearColumnid"
                     style="@style/groupStyleindigo_901cornerRadius"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_marginStart="@dimen/_10pxh"
                     android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_10pxh"
-                    android:gravity="start" android:orientation="vertical">
-                    <TextView android:id="@+id/txtID" style="@style/txtIntersemibold24"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtRKName"
+                        style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_23pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
-                        android:ellipsize="end" android:singleLine="true"
-                        android:text="@string/lbl_id" tools:text="@string/lbl_id"/>
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_id"
+                        tools:text="@string/lbl_id" />
+
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_room_id"
-                        android:id="@+id/etGroupThree" style="@style/etSolidRounded_1"
+                        android:id="@+id/etRKName"
+                        style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"

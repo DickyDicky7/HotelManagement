@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments;
+package com.example.hotelmanagement.fragments.adds;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,18 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-//import com.example.hotelmanagement.databinding.FragmentRoomCategoryBinding;
+import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 
-public class FragmentRoomCategory extends Fragment {
+public class FragmentAddRoom extends Fragment {
 
-//    private FragmentRoomCategoryBinding binding;
+    private FragmentAddRoomBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        binding = FragmentRoomCategoryBinding.inflate(inflater, container, false);
-//        return binding.getRoot();
-        return null;
+        binding = FragmentAddRoomBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -31,7 +30,7 @@ public class FragmentRoomCategory extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        binding = null;
+        binding = null;
     }
 
 }

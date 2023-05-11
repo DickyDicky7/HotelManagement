@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".fragments.adds.FragmentAddRoomKind">
-
+    tools:context=".fragments.adds.FragmentAddGuest">
 
     <LinearLayout
-        android:id="@+id/linearAddroomkind"
+        android:id="@+id/linearEditaddcusto"
         style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -37,29 +36,31 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/scollviewaddroomkind">
-                <LinearLayout android:id="@+id/linearColumnid"
+                android:id="@+id/scollviewaddcuctomer">
+                <LinearLayout android:id="@+id/linearColumncccd"
                     style="@style/groupStyleindigo_901cornerRadius"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_10pxv"
+                    android:layout_marginTop="@dimen/_43pxv"
                     android:layout_marginEnd="@dimen/_12pxh"
-                    android:gravity="start"
-                    android:orientation="vertical">
-                    <TextView android:id="@+id/txtID" style="@style/txtIntersemibold24"
+                    android:gravity="start" android:orientation="vertical">
+                    <TextView android:id="@+id/txtCCCD" style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_23pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
-                        android:ellipsize="end" android:singleLine="true"
-                        android:text="@string/lbl_id" tools:text="@string/lbl_id"/>
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:text="@string/lbl_cccd" tools:text="@string/lbl_cccd"/>
+
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
-                        android:hint="@string/lbl_enter_room_id"
-                        android:id="@+id/etGroupThree" style="@style/etSolidRounded_1"
+                        android:hint="@string/lbl_enter_cccd"
+                        android:id="@+id/etRKName"
+                        style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -72,25 +73,25 @@
                         android:singleLine="true"
                         android:paddingBottom="@dimen/_10pxv"
                         android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtKindofroom"
+                    <TextView android:id="@+id/txtFullname"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_marginTop="@dimen/_11pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_kind_of_room" tools:text="@string/lbl_kind_of_room"/>
+                        android:text="@string/lbl_full_name" tools:text="@string/lbl_full_name"/>
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
-                        android:hint="@string/lbl_enter_room_kind"
+                        android:hint="@string/lbl_enter_name"
                         android:id="@+id/etGroupFour" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_marginTop="@dimen/_7pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:inputType="text"
                         android:paddingEnd="@dimen/_30pxh"
@@ -99,7 +100,34 @@
                         android:singleLine="true"
                         android:paddingBottom="@dimen/_10pxv"
                         android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtCapacity"
+                    <TextView android:id="@+id/txtPhonenumber"
+                        style="@style/txtIntersemibold24"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_11pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:text="@string/lbl_phone_number" tools:text="@string/lbl_phone_number"/>
+                    <EditText
+                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                        android:ellipsize="end"
+                        android:hint="@string/msg_enter_phone_num"
+                        android:id="@+id/etGroupFive" style="@style/etSolidRounded_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_7pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:inputType="phone"
+                        android:paddingEnd="@dimen/_30pxh"
+                        android:paddingStart="@dimen/_16pxh"
+                        android:paddingTop="@dimen/_12pxv"
+                        android:singleLine="true"
+                        android:paddingBottom="@dimen/_9pxv"
+                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
+                    <TextView android:id="@+id/txtBirthday"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -108,52 +136,37 @@
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_capacity" tools:text="@string/lbl_capacity"/>
-                    <EditText
-                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl_enter_capacity"
-                        android:id="@+id/etGroupFive" style="@style/etSolidRounded_1"
-                        android:layout_width="match_parent"
+                        android:text="@string/lbl_birthday" tools:text="@string/lbl_birthday"/>
+                    <LinearLayout android:id="@+id/linearRowchoosedate"
                         android:layout_height="wrap_content"
+                        style="@style/groupStylebluegray_1"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_5pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:inputType="text"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_12pxv"
-                        android:singleLine="true"
-                        android:paddingBottom="@dimen/_9pxv"
-                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtNumberofbed"
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="@dimen/_24pxh" android:orientation="horizontal">
+                        <TextView android:id="@+id/txtChoosedate"
+                            style="@style/txtIntermedium16_6"
+                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_marginStart="@dimen/_16pxh"
+                            android:layout_marginTop="@dimen/_11pxv"
+                            android:layout_marginBottom="@dimen/_10pxv"
+                            android:layout_weight="0.84" android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/lbl_choose_date" tools:text="@string/lbl_choose_date"/>
+                        <ImageView android:id="@+id/imageCalendar"
+                            android:layout_height="@dimen/_20pxh"
+                            android:layout_width="@dimen/_18pxh"
+                            android:layout_marginEnd="@dimen/_15pxh"
+                            android:layout_marginStart="@dimen/_125pxh"
+                            android:layout_marginTop="@dimen/_11pxv"
+                            android:layout_marginBottom="@dimen/_11pxv"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_calendar_gray_600"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_calendar_gray_600"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/txtAddress"
                         style="@style/txtIntersemibold24"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="@string/lbl_number_of_bed" tools:text="@string/lbl_number_of_bed"/>
-                    <EditText
-                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                        android:ellipsize="end"
-                        android:hint="@string/msg_enter_number_of"
-                        android:id="@+id/etGroupSix" style="@style/etSolidRounded_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_8pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:inputType="number"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_10pxv"
-                        android:singleLine="true"
-                        android:paddingBottom="@dimen/_12pxv"
-                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtArea" style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -161,50 +174,24 @@
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_area" tools:text="@string/lbl_area"/>
+                        android:text="@string/lbl_address" tools:text="@string/lbl_address"/>
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
-                        android:hint="@string/lbl_enter_area"
+                        android:hint="@string/lbl_enter_address"
                         android:id="@+id/etGroupSeven" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_7pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
+                        android:layout_marginBottom="@dimen/_24pxv"
                         android:inputType="text"
                         android:paddingEnd="@dimen/_30pxh"
                         android:paddingStart="@dimen/_16pxh"
                         android:paddingTop="@dimen/_11pxv"
                         android:singleLine="true"
                         android:paddingBottom="@dimen/_10pxv"
-                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtPrice" style="@style/txtIntersemibold24"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="@string/lbl_price" tools:text="@string/lbl_price"/>
-                    <EditText
-                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl_enter_price"
-                        android:id="@+id/etGroupEight" style="@style/etSolidRounded_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_8pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:layout_marginBottom="@dimen/_100pxv"
-                        android:inputType="text"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_12pxv"
-                        android:singleLine="true"
-                        android:paddingBottom="@dimen/_9pxv"
                         android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
                 </LinearLayout>
             </ScrollView>
@@ -234,7 +221,6 @@
                     android:textAllCaps="false" tools:text="@string/lbl_done"/>
             </FrameLayout>
         </FrameLayout>
-
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
