@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_bookedroom"
@@ -18,8 +18,6 @@
 
         <ImageView
             android:id="@+id/imageCheckmark2"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_checkmark"
             android:layout_width="@dimen/_33pxh"
             android:layout_height="@dimen/_18pxh"
             android:layout_marginStart="30dp"
@@ -29,7 +27,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/bookedroom_info"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_checkmark" />
 
         <LinearLayout
             android:id="@+id/bookedroom_info"
@@ -48,36 +48,36 @@
             <TextView
                 android:id="@+id/item_br_roomName"
                 style="@style/txtIntersemibold18"
-                tools:text="@string/lbl_p101"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_p101" />
+                android:text="@string/lbl_p101"
+                tools:text="@string/lbl_p101" />
 
             <TextView
                 android:id="@+id/item_br_roomKind"
                 style="@style/txtInterregular14"
-                tools:text="@string/lbl_single_room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_1pxv"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_single_room" />
+                android:text="@string/lbl_single_room"
+                tools:text="@string/lbl_single_room" />
 
             <ImageView
                 android:id="@+id/imageUser"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_user_green_700"
                 android:layout_width="@dimen/_20pxh"
                 android:layout_height="@dimen/_16pxh"
                 android:layout_marginStart="@dimen/_4pxh"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_user_green_700" />
+                android:src="@drawable/img_user_green_700"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_user_green_700" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.hotelmanagement.databinding.ListItemSampleBillBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewholders.BillViewHolder;
 
@@ -20,7 +20,7 @@ public class BillAdapterViewModel extends ExtendedAdapterViewModel<BillObservabl
     @NonNull
     @Override
     public BillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleBillBinding binding = ListItemSampleBillBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        RecyclerViewItemBillBinding binding = RecyclerViewItemBillBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new BillViewHolder(binding);
     }
 
@@ -28,7 +28,7 @@ public class BillAdapterViewModel extends ExtendedAdapterViewModel<BillObservabl
     public void onBindViewHolder(@NonNull BillViewHolder holder, int position) {
         List<BillObservable> billObservables = modelState.getValue();
         if (billObservables != null) {
-            ListItemSampleBillBinding binding = ListItemSampleBillBinding.bind(holder.itemView);
+            RecyclerViewItemBillBinding binding = RecyclerViewItemBillBinding.bind(holder.itemView);
             BillObservable billObservable = billObservables.get(position);
         }
     }

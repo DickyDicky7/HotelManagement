@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.hotelmanagement.databinding.ListItemSampleBookedroomBinding;
-import com.example.hotelmanagement.databinding.ListItemSampleRoomBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRoomBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRoomOccupiedBinding;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewholders.RoomViewHolder;
 
@@ -22,10 +22,10 @@ public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservabl
     @Override
     public RoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) {
-            ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
             return new RoomViewHolder(binding);
         }
-        ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RoomViewHolder(binding);
     }
 
@@ -35,9 +35,9 @@ public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservabl
         if (roomObservables != null) {
             RoomObservable roomObservable = roomObservables.get(position);
             if (holder.getItemViewType() == 1) {
-                ListItemSampleRoomBinding binding = ListItemSampleRoomBinding.bind(holder.itemView);
+                RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
             } else {
-                ListItemSampleBookedroomBinding binding = ListItemSampleBookedroomBinding.bind(holder.itemView);
+                RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
             }
         }
     }

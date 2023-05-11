@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.hotelmanagement.databinding.ListItemSampleRoomkindBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 
@@ -20,7 +20,7 @@ public class RoomKindAdapterViewModel extends ExtendedAdapterViewModel<RoomKindO
     @NonNull
     @Override
     public RoomKindViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new RoomKindViewHolder(binding);
     }
 
@@ -28,7 +28,7 @@ public class RoomKindAdapterViewModel extends ExtendedAdapterViewModel<RoomKindO
     public void onBindViewHolder(@NonNull RoomKindViewHolder holder, int position) {
         List<RoomKindObservable> roomKindObservables = modelState.getValue();
         if (roomKindObservables != null) {
-            ListItemSampleRoomkindBinding binding = ListItemSampleRoomkindBinding.bind(holder.itemView);
+            RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.bind(holder.itemView);
             RoomKindObservable roomKindObservable = roomKindObservables.get(position);
         }
     }

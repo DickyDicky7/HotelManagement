@@ -2,11 +2,11 @@ package com.example.hotelmanagement.viewholders;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hotelmanagement.databinding.ListItemSampleRentformBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRentalFormBinding;
 
 public class RentalFormViewHolder extends RecyclerView.ViewHolder {
 
-    public RentalFormViewHolder(ListItemSampleRentformBinding binding) {
+    public RentalFormViewHolder(RecyclerViewItemRentalFormBinding binding) {
         super(binding.getRoot());
     }
 

@@ -2,16 +2,16 @@ package com.example.hotelmanagement.viewholders;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hotelmanagement.databinding.ListItemSampleBookedroomBinding;
-import com.example.hotelmanagement.databinding.ListItemSampleRoomBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRoomBinding;
+import com.example.hotelmanagement.databinding.RecyclerViewItemRoomOccupiedBinding;
 
 public class RoomViewHolder extends RecyclerView.ViewHolder {
 
-    public RoomViewHolder(ListItemSampleRoomBinding binding) {
+    public RoomViewHolder(RecyclerViewItemRoomBinding binding) {
         super(binding.getRoot());
     }
 
-    public RoomViewHolder(ListItemSampleBookedroomBinding binding) {
+    public RoomViewHolder(RecyclerViewItemRoomOccupiedBinding binding) {
         super(binding.getRoot());
     }
 
