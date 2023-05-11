@@ -9,16 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.databinding.FragmentFilterRoomPageBinding;
+import com.example.hotelmanagement.databinding.FragmentAccountPageBinding;
 
-public class FragmentEditRoomList extends Fragment {
+public class FragmentAccountPage extends Fragment {
 
-    private FragmentFilterRoomPageBinding binding;
+    private FragmentAccountPageBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentFilterRoomPageBinding.inflate(inflater, container, false);
+        binding = FragmentAccountPageBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

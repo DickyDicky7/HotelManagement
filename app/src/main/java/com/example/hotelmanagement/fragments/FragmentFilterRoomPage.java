@@ -11,10 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.databinding.FragmentFilterRoomPageBinding;
 
-public class FragmentEditRoomList extends Fragment {
-
-    private FragmentFilterRoomPageBinding binding;
-
+public class FragmentFilterRoomPage extends Fragment {
+    private  FragmentFilterRoomPageBinding binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,5 +30,4 @@ public class FragmentEditRoomList extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
