@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_bookedroom"
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageCheckmark2"
-            android:layout_width="@dimen/_33pxh"
-            android:layout_height="@dimen/_18pxh"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="10dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_checkmark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookedroom_info"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_checkmark" />
-
-        <LinearLayout
-            android:id="@+id/bookedroom_info"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_bookedroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="0.7"
-            android:gravity="start"
-            android:orientation="vertical"
+            android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/item_br_roomName"
-                style="@style/txtIntersemibold18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_p101"
-                android:textSize="20.6sp"
-                tools:text="@string/lbl_p101" />
-
-            <TextView
-                android:id="@+id/item_br_roomKind"
-                style="@style/txtInterregular14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_single_room"
-                android:textSize="16sp"
-                tools:text="@string/lbl_single_room" />
-
             <ImageView
-                android:id="@+id/imageUser"
-                android:layout_width="@dimen/_20pxh"
-                android:layout_height="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_4pxh"
-                android:layout_marginTop="@dimen/_3pxv"
-                android:layout_marginEnd="@dimen/_10pxh"
+                android:id="@+id/imageCheckmark2"
+                android:layout_width="@dimen/_33pxh"
+                android:layout_height="@dimen/_18pxh"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_user_green_700"
+                android:src="@drawable/img_checkmark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bookedroom_info"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_user_green_700" />
-        </LinearLayout>
+                tools:src="@drawable/img_checkmark" />
+
+            <LinearLayout
+                android:id="@+id/bookedroom_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0.7"
+                android:gravity="start"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/item_br_roomName"
+                    style="@style/txtIntersemibold18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_p101"
+                    android:textSize="20.6sp"
+                    tools:text="@string/lbl_p101" />
+
+                <TextView
+                    android:id="@+id/item_br_roomKind"
+                    style="@style/txtInterregular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_single_room"
+                    android:textSize="16sp"
+                    tools:text="@string/lbl_single_room" />
+
+                <ImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="@dimen/_20pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_3pxv"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_user_green_700"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_green_700" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

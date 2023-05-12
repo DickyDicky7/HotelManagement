@@ -1,245 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_bill"
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/status2"
-            style="@style/txtIntermedium16_1"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_bill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="@string/lbl_unpaid"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price3"
-            tools:text="@string/lbl_unpaid" />
-
-        <TextView
-            android:id="@+id/price3"
-            style="@style/txtIntersemibold20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:ellipsize="end"
-            android:gravity="end"
-            android:singleLine="true"
-            android:text="@string/lbl_400_000"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_birthday"
-            tools:text="@string/lbl_400_000" />
-
-        <LinearLayout
-            android:id="@+id/item_birthday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="start"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_customerName">
-
-            <ImageView
-                android:id="@+id/imageCalendar"
-                android:layout_width="25sp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_1pxv"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_weight="0.15"
-                android:paddingHorizontal="2dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_calendar_white_a700"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_calendar_white_a700" />
-
-            <TextView
-                android:id="@+id/txt2042020"
-                style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_10pxv"
-                android:layout_weight="0.85"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_20_4_2020"
-                android:textSize="16sp"
-                tools:text="@string/lbl_20_4_2020" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/item_customerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="start"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_nationalID">
-
-            <ImageView
-                android:id="@+id/imageUser"
-                android:layout_width="25sp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_1pxv"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_weight="0.15"
-                android:paddingHorizontal="2dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_user_white_a700_16x13"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_user_white_a700_16x13" />
-
-            <TextView
-                android:id="@+id/customerName"
-                style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_10pxv"
-                android:layout_weight="0.85"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_david"
-                android:textSize="16sp"
-                tools:text="@string/lbl_david" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/item_nationalID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="start"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_b_room">
-
-            <ImageView
-                android:id="@+id/imageSave"
-                android:layout_width="25sp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_1pxv"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_weight="0.15"
-                android:paddingHorizontal="2dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_save"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_save" />
-
-            <TextView
-                android:id="@+id/nationalid"
-                style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_10pxv"
-                android:layout_weight="0.85"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/lbl_048203008744"
-                android:textSize="16sp"
-                tools:text="@string/lbl_048203008744" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/item_b_room"
-            style="@style/txtOutfitsemibold28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="@string/lbl_123"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/lbl_123" />
-
-        <LinearLayout
-            android:id="@+id/item_btns"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
+            android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status2">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:id="@+id/btn_edit"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_7pxv"
-                android:layout_marginVertical="@dimen/_5pxv"
-                android:layout_weight="0.3"
-                android:contentDescription="@string/editbutton"
-                android:paddingHorizontal="@dimen/_10sp"
-                android:paddingVertical="@dimen/_10sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_ticket"
-                tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/status2"
+                style="@style/txtIntermedium16_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_unpaid"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/price3"
+                tools:text="@string/lbl_unpaid" />
 
-            <ImageButton
-                android:id="@+id/btn_delete"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_7pxv"
-                android:layout_marginVertical="@dimen/_5pxv"
-                android:layout_weight="0.3"
-                android:contentDescription="@string/deletebutton"
-                android:paddingHorizontal="@dimen/_10sp"
-                android:paddingVertical="@dimen/_10sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_file"
-                tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/price3"
+                style="@style/txtIntersemibold20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:singleLine="true"
+                android:text="@string/lbl_400_000"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_birthday"
+                tools:text="@string/lbl_400_000" />
 
-            <ImageButton
-                android:id="@+id/btn"
-                style="@style/groupStyleindigo_1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_7pxv"
-                android:layout_marginVertical="@dimen/_5pxv"
-                android:layout_weight="0.3"
-                android:contentDescription="@string/ubutton"
-                android:paddingHorizontal="@dimen/_10sp"
-                android:paddingVertical="@dimen/_10sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_camera_white_a700"
-                tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:id="@+id/item_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_customerName">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageCalendar"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_1pxv"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_weight="0.15"
+                    android:paddingHorizontal="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_calendar_white_a700"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_calendar_white_a700" />
+
+                <TextView
+                    android:id="@+id/txt2042020"
+                    style="@style/txtInterregular14_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_10pxv"
+                    android:layout_weight="0.85"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_20_4_2020"
+                    android:textSize="16sp"
+                    tools:text="@string/lbl_20_4_2020" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_customerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_nationalID">
+
+                <ImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_1pxv"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_weight="0.15"
+                    android:paddingHorizontal="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_user_white_a700_16x13"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_white_a700_16x13" />
+
+                <TextView
+                    android:id="@+id/customerName"
+                    style="@style/txtInterregular14_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_10pxv"
+                    android:layout_weight="0.85"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_david"
+                    android:textSize="16sp"
+                    tools:text="@string/lbl_david" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/item_nationalID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_b_room">
+
+                <ImageView
+                    android:id="@+id/imageSave"
+                    android:layout_width="25sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_1pxv"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_weight="0.15"
+                    android:paddingHorizontal="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_save"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_save" />
+
+                <TextView
+                    android:id="@+id/nationalid"
+                    style="@style/txtInterregular14_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_10pxv"
+                    android:layout_weight="0.85"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_048203008744"
+                    android:textSize="16sp"
+                    tools:text="@string/lbl_048203008744" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_b_room"
+                style="@style/txtOutfitsemibold28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_123"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/lbl_123" />
+
+            <LinearLayout
+                android:id="@+id/item_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status2">
+
+                <ImageButton
+                    android:id="@+id/btn_edit"
+                    style="@style/groupStyleindigo_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_7pxv"
+                    android:layout_marginVertical="@dimen/_5pxv"
+                    android:layout_weight="0.3"
+                    android:contentDescription="@string/editbutton"
+                    android:paddingHorizontal="@dimen/_10sp"
+                    android:paddingVertical="@dimen/_10sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_ticket"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/btn_delete"
+                    style="@style/groupStyleindigo_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_7pxv"
+                    android:layout_marginVertical="@dimen/_5pxv"
+                    android:layout_weight="0.3"
+                    android:contentDescription="@string/deletebutton"
+                    android:paddingHorizontal="@dimen/_10sp"
+                    android:paddingVertical="@dimen/_10sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_file"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/btn"
+                    style="@style/groupStyleindigo_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_7pxv"
+                    android:layout_marginVertical="@dimen/_5pxv"
+                    android:layout_weight="0.3"
+                    android:contentDescription="@string/ubutton"
+                    android:paddingHorizontal="@dimen/_10sp"
+                    android:paddingVertical="@dimen/_10sp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_camera_white_a700"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
