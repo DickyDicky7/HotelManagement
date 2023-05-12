@@ -155,7 +155,7 @@
                 android:layout_height="@dimen/_28pxv">
 
                 <ImageView
-                    android:id="@+id/imageTicket"
+                    android:id="@+id/btn_edit"
                     android:layout_width="@dimen/_16pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
@@ -171,7 +171,9 @@
                 style="@style/groupStyleindigo_1"
                 android:layout_width="@dimen/_32pxh"
                 android:layout_height="@dimen/_28pxv" android:layout_marginStart="@dimen/_16pxh">
-                <ImageView android:id="@+id/imageFile"
+
+                <ImageView
+                    android:id="@+id/btn_delete"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/_12pxh"
                     android:layout_height="@dimen/_16pxh"
@@ -181,7 +183,8 @@
                     android:layout_marginBottom="@dimen/_5pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_file"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_file" />
             </FrameLayout>
             <FrameLayout android:id="@+id/frameStackcamera"
                 style="@style/groupStyleindigo_1"

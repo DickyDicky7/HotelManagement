@@ -279,7 +279,8 @@
                     style="@style/groupStyleindigo_400cornerRadius"
                     android:layout_width="@dimen/_144pxh"
                     android:layout_height="@dimen/_50pxv" android:layout_marginStart="@dimen/_24pxh">
-                    <ImageView android:id="@+id/imageFile"
+                    <ImageView
+                        android:id="@+id/btn_delete"
                         android:layout_width="@dimen/_24pxh"
                         android:layout_height="@dimen/_31pxh"
                         android:layout_gravity="center"
@@ -289,7 +290,8 @@
                         android:layout_marginBottom="@dimen/_9pxv"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_file"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_file"/>
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_file" />
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

@@ -26,6 +26,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_unpaid"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price3"
             tools:text="@string/lbl_unpaid" />
@@ -41,6 +42,7 @@
             android:gravity="end"
             android:singleLine="true"
             android:text="@string/lbl_400_000"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_birthday"
             tools:text="@string/lbl_400_000" />
@@ -58,9 +60,12 @@
 
             <ImageView
                 android:id="@+id/imageCalendar"
-                android:layout_width="@dimen/_18pxh"
-                android:layout_height="@dimen/_20pxh"
-                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_weight="0.15"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_calendar_white_a700"
                 tools:ignore="ContentDescription"
@@ -69,14 +74,15 @@
             <TextView
                 android:id="@+id/txt2042020"
                 style="@style/txtInterregular14_3"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_7pxh"
-                android:layout_marginTop="@dimen/_3pxv"
-                android:layout_weight="0.8"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxv"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_20_4_2020"
+                android:textSize="16sp"
                 tools:text="@string/lbl_20_4_2020" />
         </LinearLayout>
 
@@ -93,8 +99,12 @@
 
             <ImageView
                 android:id="@+id/imageUser"
-                android:layout_width="@dimen/_16pxh"
-                android:layout_height="@dimen/_19pxh"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_weight="0.15"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_user_white_a700_16x13"
                 tools:ignore="ContentDescription"
@@ -103,15 +113,15 @@
             <TextView
                 android:id="@+id/customerName"
                 style="@style/txtInterregular14_3"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8pxh"
-                android:layout_marginTop="@dimen/_2pxv"
-                android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_weight="0.7"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxv"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_david"
+                android:textSize="16sp"
                 tools:text="@string/lbl_david" />
         </LinearLayout>
 
@@ -130,10 +140,12 @@
 
             <ImageView
                 android:id="@+id/imageSave"
-                android:layout_width="@dimen/_20pxh"
-                android:layout_height="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_weight="0.15"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_save"
                 tools:ignore="ContentDescription"
@@ -142,13 +154,15 @@
             <TextView
                 android:id="@+id/nationalid"
                 style="@style/txtInterregular14_3"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6pxh"
-                android:layout_weight="0.84"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxv"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_048203008744"
+                android:textSize="16sp"
                 tools:text="@string/lbl_048203008744" />
         </LinearLayout>
 
@@ -178,67 +192,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status2">
 
-            <FrameLayout
-                android:id="@+id/frameStackticket"
+            <ImageButton
+                android:id="@+id/btn_edit"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_7pxv"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.3"
+                android:contentDescription="@string/editbutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_ticket"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageTicket"
-                    android:layout_width="@dimen/_16pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_7pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_7pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_ticket"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackfile"
+            <ImageButton
+                android:id="@+id/btn_delete"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_16pxh">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_7pxv"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.3"
+                android:contentDescription="@string/deletebutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_file"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageFile"
-                    android:layout_width="@dimen/_12pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_9pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_9pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackcamera"
+            <ImageButton
+                android:id="@+id/btn"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_32pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_16pxh">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_7pxv"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.3"
+                android:contentDescription="@string/ubutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_camera_white_a700"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageCamera"
-                    android:layout_width="@dimen/_20pxh"
-                    android:layout_height="@dimen/_14pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_6pxv"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginBottom="@dimen/_6pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_camera_white_a700"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

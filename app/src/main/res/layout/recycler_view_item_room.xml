@@ -25,6 +25,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_single_room"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_r_roomName"
@@ -40,6 +41,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_p101"
+            android:textSize="20.6sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/lbl_p101" />

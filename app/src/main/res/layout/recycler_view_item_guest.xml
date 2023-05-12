@@ -26,46 +26,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_address">
 
-            <FrameLayout
-                android:id="@+id/frameStackticket"
+            <ImageButton
+                android:id="@+id/btn_delete"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_42pxh"
-                android:layout_height="@dimen/_28pxv">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_14pxh"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/deletebutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_file"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageTicket"
-                    android:layout_width="@dimen/_16pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_12pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_ticket"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackfile"
+            <ImageButton
+                android:id="@+id/btn_edit"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_42pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_24pxh">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_14pxh"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/editbutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_ticket"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageFile"
-                    android:layout_width="@dimen/_12pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_14pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_14pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -81,9 +73,11 @@
 
             <ImageView
                 android:id="@+id/imageLocation"
-                android:layout_width="@dimen/_14pxh"
-                android:layout_height="@dimen/_20pxh"
-                android:layout_marginBottom="@dimen/_2pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_location"
                 tools:ignore="ContentDescription"
@@ -94,12 +88,13 @@
                 style="@style/txtInterregular14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8pxh"
-                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxh"
                 android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_alaska_usa"
+                android:textSize="16sp"
                 tools:text="@string/lbl_alaska_usa" />
         </LinearLayout>
 
@@ -116,9 +111,11 @@
 
             <ImageView
                 android:id="@+id/imageCalendar"
-                android:layout_width="@dimen/_18pxh"
-                android:layout_height="@dimen/_20pxh"
-                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_calendar_white_a700"
                 tools:ignore="ContentDescription"
@@ -129,12 +126,13 @@
                 style="@style/txtInterregular14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6pxh"
-                android:layout_marginTop="@dimen/_3pxv"
-                android:layout_weight="0.79"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_14_5_1998"
+                android:textSize="16sp"
                 tools:text="@string/lbl_14_5_1998" />
         </LinearLayout>
 
@@ -151,9 +149,11 @@
 
             <ImageView
                 android:id="@+id/imageCall"
-                android:layout_width="@dimen/_17pxh"
-                android:layout_height="@dimen/_17pxh"
-                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_call"
                 tools:ignore="ContentDescription"
@@ -164,12 +164,13 @@
                 style="@style/txtInterregular14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_weight="0.83"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_0905234234"
+                android:textSize="16sp"
                 tools:text="@string/lbl_0905234234" />
         </LinearLayout>
 
@@ -188,10 +189,11 @@
 
             <ImageView
                 android:id="@+id/imageSave"
-                android:layout_width="@dimen/_20pxh"
-                android:layout_height="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_marginBottom="@dimen/_1pxv"
+                android:layout_width="25sp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_1pxv"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:paddingHorizontal="2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_save"
                 tools:ignore="ContentDescription"
@@ -202,11 +204,13 @@
                 style="@style/txtInterregular14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5pxh"
-                android:layout_weight="0.84"
+                android:layout_marginVertical="@dimen/_1pxv"
+                android:layout_marginStart="@dimen/_10pxv"
+                android:layout_weight="0.85"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_048203008744"
+                android:textSize="16sp"
                 tools:text="@string/lbl_048203008744" />
         </LinearLayout>
 

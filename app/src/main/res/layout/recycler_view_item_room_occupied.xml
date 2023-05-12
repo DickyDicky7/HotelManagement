@@ -54,6 +54,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_p101"
+                android:textSize="20.6sp"
                 tools:text="@string/lbl_p101" />
 
             <TextView
@@ -65,6 +66,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_single_room"
+                android:textSize="16sp"
                 tools:text="@string/lbl_single_room" />
 
             <ImageView
