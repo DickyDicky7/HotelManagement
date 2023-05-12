@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_roomKind"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,8 +17,7 @@
 
         <ImageView
             android:id="@+id/item_rk_image"
-            cornerRadius="@{@dimen/_20pxh}"
-            imageRes="@{@drawable/img_image12}"
+
             android:layout_width="@dimen/_86pxh"
             android:layout_height="@dimen/_86pxh"
             android:layout_marginStart="10dp"
@@ -53,12 +52,16 @@
                 <TextView
                     android:id="@+id/roomkindName"
                     style="@style/txtOutfitsemibold28"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.84"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_single_room"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/lbl_single_room" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,8 +71,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_rk_btns"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_rk_name">
 
@@ -85,6 +90,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_20_m"
+                    android:textSize="18.3sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageHome2"
                     app:layout_constraintTop_toTopOf="parent"
@@ -115,6 +121,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_1"
+                    android:textSize="18.3sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageCamera2"
                     app:layout_constraintTop_toTopOf="parent"
@@ -145,6 +152,7 @@
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_2"
+                    android:textSize="18.3sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageUser2"
                     app:layout_constraintTop_toTopOf="parent"
@@ -164,51 +172,47 @@
                     tools:src="@drawable/img_user_white_a700_14x22" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/item_rk_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_rk_prop"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageButton
-                    android:id="@+id/item_rk_btnDel"
-                    android:layout_width="@dimen/_28pxh"
-                    android:layout_height="@dimen/_28pxh"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:id="@+id/item_rk_btnEdit"
+                    style="@style/groupStyleindigo_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginVertical="@dimen/_10pxv"
+                    android:layout_weight="0.5"
                     android:background="@drawable/rectangle_bg_indigo_400_radius_10"
-                    android:paddingHorizontal="@dimen/_6pxh"
-                    android:paddingVertical="@dimen/_6pxv"
+                    android:contentDescription="@string/editbutton"
+                    android:paddingHorizontal="@dimen/_10sp"
+                    android:paddingVertical="@dimen/_10sp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_file"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_rk_btnEdit"
+                    android:src="@drawable/img_vector"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
-                    android:id="@+id/item_rk_btnEdit"
-                    android:layout_width="@dimen/_28pxh"
-                    android:layout_height="@dimen/_28pxh"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:id="@+id/item_rk_btnDel"
+                    style="@style/groupStyleindigo_1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginVertical="@dimen/_10pxv"
+                    android:layout_weight="0.5"
                     android:background="@drawable/rectangle_bg_indigo_400_radius_10"
-                    android:paddingHorizontal="@dimen/_6pxh"
-                    android:paddingVertical="@dimen/_6pxv"
+                    android:contentDescription="@string/deletebutton"
+                    android:paddingHorizontal="@dimen/_10sp"
+                    android:paddingVertical="@dimen/_10sp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_vector"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/img_file"
                     tools:ignore="ContentDescription" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

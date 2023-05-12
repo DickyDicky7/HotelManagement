@@ -197,4 +197,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="noti_fail_title">Error</string>
     <string name="noti_fail_msg">Information is INVALID</string>
+    <string name="editbutton">EditButton</string>
+    <string name="deletebutton">DeleteButton</string>
+    <string name="ubutton">UButton</string>
 </resources>

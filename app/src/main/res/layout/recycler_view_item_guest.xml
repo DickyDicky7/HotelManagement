@@ -26,46 +26,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_address">
 
-            <FrameLayout
-                android:id="@+id/frameStackticket"
+            <ImageButton
+                android:id="@+id/btn_delete"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_42pxh"
-                android:layout_height="@dimen/_28pxv">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_14pxh"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/deletebutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_file"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageTicket"
-                    android:layout_width="@dimen/_16pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_12pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_ticket"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/frameStackfile"
+            <ImageButton
+                android:id="@+id/btn_edit"
                 style="@style/groupStyleindigo_1"
-                android:layout_width="@dimen/_42pxh"
-                android:layout_height="@dimen/_28pxv"
-                android:layout_marginStart="@dimen/_24pxh">
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_14pxh"
+                android:layout_marginVertical="@dimen/_5pxv"
+                android:layout_weight="0.5"
+                android:contentDescription="@string/editbutton"
+                android:paddingHorizontal="@dimen/_10sp"
+                android:paddingVertical="@dimen/_10sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_ticket"
+                tools:ignore="ContentDescription" />
 
-                <ImageButton
-                    android:id="@+id/imageFile"
-                    android:layout_width="@dimen/_12pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_14pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_marginEnd="@dimen/_14pxh"
-                    android:layout_marginBottom="@dimen/_5pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -100,6 +92,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_alaska_usa"
+                android:textSize="16sp"
                 tools:text="@string/lbl_alaska_usa" />
         </LinearLayout>
 
@@ -135,6 +128,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_14_5_1998"
+                android:textSize="16sp"
                 tools:text="@string/lbl_14_5_1998" />
         </LinearLayout>
 
@@ -170,6 +164,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_0905234234"
+                android:textSize="16sp"
                 tools:text="@string/lbl_0905234234" />
         </LinearLayout>
 
@@ -207,6 +202,7 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_048203008744"
+                android:textSize="16sp"
                 tools:text="@string/lbl_048203008744" />
         </LinearLayout>
 

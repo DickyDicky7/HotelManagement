@@ -168,7 +168,7 @@
                 android:layout_height="@dimen/_28pxv">
 
                 <ImageButton
-                    android:id="@+id/imageTicket"
+                    android:id="@+id/btn_edit"
                     android:layout_width="@dimen/_16pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
@@ -189,7 +189,7 @@
                 android:layout_marginStart="@dimen/_24pxh">
 
                 <ImageButton
-                    android:id="@+id/imageFile"
+                    android:id="@+id/btn_delete"
                     android:layout_width="@dimen/_12pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
