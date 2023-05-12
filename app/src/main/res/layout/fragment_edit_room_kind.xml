@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="@dimen/_8pxh"
-            android:layout_marginTop="@dimen/_20pxv"
+            android:layout_marginTop="@dimen/_15pxv"
             android:layout_marginEnd="@dimen/_8pxh">
             <ScrollView
                 android:layout_width="match_parent"
