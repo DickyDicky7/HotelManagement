@@ -25,16 +25,20 @@
                 android:layout_marginEnd="@dimen/_10pxh"
                 android:gravity="start" android:orientation="horizontal">
                 <ImageButton
-                    android:layout_width="@dimen/_40pxh"
+                    android:layout_width="@dimen/_45pxh"
                     android:id="@+id/btnArrowleft"
-                    android:layout_height="@dimen/_40pxh"
-                    android:layout_marginBottom="@dimen/_2pxv"
-                    android:layout_marginTop="@dimen/_3pxv"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_45pxh"
+                    android:layout_marginEnd="@dimen/_308pxh"
+                    android:layout_marginStart="@dimen/_12pxh"
+                    android:layout_marginTop="@dimen/_16pxv"
                     android:background="@drawable/rectangle_bg_indigo_400_radius_10"
                     android:paddingHorizontal="@dimen/_10pxh"
                     android:paddingVertical="@dimen/_10pxv"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
+                    android:src="@drawable/img_arrowleft"
+                    tools:ignore="ContentDescription"
+                    android:importantForAccessibility="no"/>
                 <TextView android:id="@+id/txtRoomlist"
                     style="@style/txtOutfitsemibold36"
                     android:layout_height="wrap_content"
@@ -104,11 +108,12 @@
                         android:paddingStart="@dimen/_30pxh"
                         android:paddingEnd="@dimen/_30pxh" android:paddingBottom="@dimen/_11pxv"
                         android:singleLine="true" android:text="@string/lbl_book"
-                        android:textAllCaps="false" tools:text="@string/lbl_book"/>
+                        android:textAllCaps="false" tools:text="@string/lbl_book"
+                        android:textSize="20sp"/>
                     <ImageButton
-                        android:layout_width="@dimen/_40pxh"
+                        android:layout_width="@dimen/_45pxh"
                         android:id="@+id/btnEdit"
-                        android:layout_height="@dimen/_40pxh"
+                        android:layout_height="@dimen/_45pxh"
                         android:layout_weight="0.1"
                         android:layout_marginBottom="@dimen/_2pxv"
                         android:layout_marginTop="@dimen/_3pxv"
@@ -117,11 +122,12 @@
                         android:paddingHorizontal="@dimen/_10pxh"
                         android:paddingVertical="@dimen/_10pxv"
                         android:scaleType="fitCenter"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/img_vector" tools:ignore="ContentDescription"/>
                     <ImageButton
-                        android:layout_width="@dimen/_40pxh"
+                        android:layout_width="@dimen/_45pxh"
                         android:id="@+id/btnDelete"
-                        android:layout_height="@dimen/_40pxh"
+                        android:layout_height="@dimen/_45pxh"
                         android:layout_marginBottom="@dimen/_2pxv"
                         android:layout_marginTop="@dimen/_3pxv"
                         android:layout_weight="0.1"
@@ -130,6 +136,7 @@
                         android:paddingHorizontal="@dimen/_10pxh"
                         android:paddingVertical="@dimen/_10pxv"
                         android:scaleType="fitCenter"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/img_file" tools:ignore="ContentDescription"/>
                 </LinearLayout>
 
