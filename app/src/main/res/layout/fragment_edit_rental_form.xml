@@ -312,7 +312,6 @@
                         android:layout_marginTop="@dimen/_8pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
-
                         android:gravity="center_horizontal"
                         tools:listitem="@layout/spinner_item" />
 
@@ -322,8 +321,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
-                        android:layout_marginBottom="@dimen/_120pxh"
-                        android:orientation="horizontal">
+                        android:layout_marginBottom="@dimen/_100pxh"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/txtStatus"
@@ -339,15 +338,31 @@
                             android:textSize="27.5sp"
                             tools:text="@string/lbl_resolved_status" />
 
-                        <CheckBox
-                            android:id="@+id/checkbox_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
+                        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_24pxh"
-                            android:layout_marginTop="@dimen/_15pxv"
-                            android:layout_marginBottom="@dimen/_70pxh"
-                            android:checked="true"
-                            android:clickable="false" />
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radio_resolved"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/rb_resolved"
+                                android:textSize="18sp" />
+
+                            <RadioButton
+                                android:id="@+id/radio_not_resolved"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="@dimen/_30pxh"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/rb_not_resolved"
+                                android:textSize="18sp" />
+                        </RadioGroup>
                     </LinearLayout>
                 </LinearLayout>
 

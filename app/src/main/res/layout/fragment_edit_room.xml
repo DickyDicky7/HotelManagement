@@ -133,47 +133,30 @@
                         android:gravity="start"
                         android:orientation="horizontal">
 
-                        <View
-                            android:id="@+id/viewEllipseSeventyThree"
-                            android:layout_width="@dimen/_18pxh"
-                            android:layout_height="@dimen/_18pxh"
-                            android:layout_marginTop="@dimen/_1pxv"
-                            android:layout_marginBottom="@dimen/_1pxv"
-                            android:background="@drawable/rectangle_bg_bluegray_100_radius_9" />
-
-                        <TextView
-                            android:id="@+id/txtAvailable"
-                            style="@style/txtInterregular16"
-                            android:layout_width="0dp"
+                        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_weight="0.33"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl_available"
-                            android:textSize="18.5sp"
-                            tools:text="@string/lbl_available" />
+                            android:orientation="horizontal">
 
-                        <View
-                            android:id="@+id/viewEllipseSeventyThreeOne"
-                            android:layout_width="@dimen/_18pxh"
-                            android:layout_height="@dimen/_18pxh"
-                            android:layout_marginStart="@dimen/_47pxh"
-                            android:layout_marginTop="@dimen/_1pxv"
-                            android:layout_marginBottom="@dimen/_1pxv"
-                            android:background="@drawable/rectangle_bg_bluegray_100_radius_9" />
+                            <RadioButton
+                                android:id="@+id/radio_Available"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/lbl_available"
+                                android:textSize="18sp" />
 
-                        <TextView
-                            android:id="@+id/txtNonavailable"
-                            style="@style/txtInterregular16"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl_non_available2"
-                            android:textSize="18.5sp"
-                            tools:text="@string/lbl_non_available2" />
+                            <RadioButton
+                                android:id="@+id/radio_Nonavailable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="@dimen/_30pxh"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/lbl_non_available2"
+                                android:textSize="18sp" />
+                        </RadioGroup>
                     </LinearLayout>
 
                     <TextView

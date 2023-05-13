@@ -215,5 +215,9 @@
     <string name="lbl_enter_surcharge_percentage">Enter surcharge percentage</string>
     <string name="lbl_surcharge_start_ordinal">Surcharge start ordinal</string>
     <string name="lbl_enter_surcharge_start_ordinal">Enter surcharge start ordinal</string>
+    <string name="rb_paid">Paid</string>
+    <string name="rb_not_paid">Not paid</string>
+    <string name="rb_resolved">Resolved</string>
+    <string name="rb_not_resolved">Not resolved</string>
 
 </resources>

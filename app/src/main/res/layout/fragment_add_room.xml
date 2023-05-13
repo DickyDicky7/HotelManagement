@@ -112,47 +112,41 @@
                         android:ellipsize="end"
                         android:text="@string/lbl_status" tools:text="@string/lbl_status"
                         android:textSize="27.5sp"/>
-                    <LinearLayout android:id="@+id/linearRowellipseseventythree"
+                    <LinearLayout
+                        android:id="@+id/linearRowellipseseventythree"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_6pxv"
-                        android:gravity="start" android:orientation="horizontal">
-                        <View
-                            android:layout_width="@dimen/_18pxh"
-                            android:id="@+id/viewEllipseSeventyThree"
-                            android:layout_height="@dimen/_18pxh"
-                            android:layout_marginTop="@dimen/_1pxv"
-                            android:layout_marginBottom="@dimen/_1pxv" android:background="@drawable/rectangle_bg_bluegray_100_radius_9"/>
-                        <TextView android:id="@+id/txtAvailable"
-                            style="@style/txtInterregular16"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+
+                        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_width="0dp"
-                            android:layout_weight="0.33" android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl_available"
-                            tools:text="@string/lbl_available"
-                            android:textSize="18.5sp"/>
-                        <View
-                            android:layout_width="@dimen/_18pxh"
-                            android:id="@+id/viewEllipseSeventyThreeOne"
-                            android:layout_height="@dimen/_18pxh"
-                            android:layout_marginTop="@dimen/_1pxv"
-                            android:layout_marginStart="@dimen/_47pxh"
-                            android:layout_marginBottom="@dimen/_1pxv" android:background="@drawable/rectangle_bg_bluegray_100_radius_9"/>
-                        <TextView android:id="@+id/txtNonavailable"
-                            style="@style/txtInterregular16"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_width="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl_non_available2"
-                            tools:text="@string/lbl_non_available2"
-                            android:textSize="18.5sp"
-                            />
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radio_Available"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="@dimen/_10pxh"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/lbl_available"
+                                android:textSize="18sp" />
+
+                            <RadioButton
+                                android:id="@+id/radio_Nonavailable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="@dimen/_30pxh"
+                                android:layout_marginTop="@dimen/_1pxv"
+                                android:layout_marginBottom="@dimen/_1pxv"
+                                android:text="@string/lbl_non_available2"
+                                android:textSize="18sp" />
+                        </RadioGroup>
                     </LinearLayout>
                     <TextView android:id="@+id/txtDescription"
                         style="@style/txtIntersemibold24"
