@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters_viewmodels;
+package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,11 +9,9 @@ import com.example.hotelmanagement.databinding.RecyclerViewItemGuestBinding;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewholders.GuestViewHolder;
 
-import java.util.List;
+public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHolder> {
 
-public class GuestAdapterViewModel extends ExtendedAdapterViewModel<GuestObservable, GuestViewHolder> {
-
-    public GuestAdapterViewModel() {
+    public GuestAdapter() {
         super();
     }
 
@@ -26,10 +24,9 @@ public class GuestAdapterViewModel extends ExtendedAdapterViewModel<GuestObserva
 
     @Override
     public void onBindViewHolder(@NonNull GuestViewHolder holder, int position) {
-        List<GuestObservable> guestObservables = modelState.getValue();
-        if (guestObservables != null) {
+        if (baseObservables != null) {
             RecyclerViewItemGuestBinding binding = RecyclerViewItemGuestBinding.bind(holder.itemView);
-            GuestObservable guestObservable = guestObservables.get(position);
+            GuestObservable guestObservable = baseObservables.get(position);
         }
     }
 

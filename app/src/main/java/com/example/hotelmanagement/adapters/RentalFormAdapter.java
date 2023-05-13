@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters_viewmodels;
+package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,11 +9,9 @@ import com.example.hotelmanagement.databinding.RecyclerViewItemRentalFormBinding
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.viewholders.RentalFormViewHolder;
 
-import java.util.List;
+public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, RentalFormViewHolder> {
 
-public class RentalFormAdapterViewModel extends ExtendedAdapterViewModel<RentalFormObservable, RentalFormViewHolder> {
-
-    public RentalFormAdapterViewModel() {
+    public RentalFormAdapter() {
         super();
     }
 
@@ -26,10 +24,9 @@ public class RentalFormAdapterViewModel extends ExtendedAdapterViewModel<RentalF
 
     @Override
     public void onBindViewHolder(@NonNull RentalFormViewHolder holder, int position) {
-        List<RentalFormObservable> rentalFormObservables = modelState.getValue();
-        if (rentalFormObservables != null) {
+        if (baseObservables != null) {
             RecyclerViewItemRentalFormBinding binding = RecyclerViewItemRentalFormBinding.bind(holder.itemView);
-            RentalFormObservable rentalFormObservable = rentalFormObservables.get(position);
+            RentalFormObservable rentalFormObservable = baseObservables.get(position);
         }
     }
 

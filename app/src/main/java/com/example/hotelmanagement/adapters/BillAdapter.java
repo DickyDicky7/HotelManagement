@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters_viewmodels;
+package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,11 +9,9 @@ import com.example.hotelmanagement.databinding.RecyclerViewItemBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewholders.BillViewHolder;
 
-import java.util.List;
+public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder> {
 
-public class BillAdapterViewModel extends ExtendedAdapterViewModel<BillObservable, BillViewHolder> {
-
-    public BillAdapterViewModel() {
+    public BillAdapter() {
         super();
     }
 
@@ -26,10 +24,9 @@ public class BillAdapterViewModel extends ExtendedAdapterViewModel<BillObservabl
 
     @Override
     public void onBindViewHolder(@NonNull BillViewHolder holder, int position) {
-        List<BillObservable> billObservables = modelState.getValue();
-        if (billObservables != null) {
+        if (baseObservables != null) {
             RecyclerViewItemBillBinding binding = RecyclerViewItemBillBinding.bind(holder.itemView);
-            BillObservable billObservable = billObservables.get(position);
+            BillObservable billObservable = baseObservables.get(position);
         }
     }
 

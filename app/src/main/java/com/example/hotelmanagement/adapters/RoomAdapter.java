@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters_viewmodels;
+package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -10,11 +10,9 @@ import com.example.hotelmanagement.databinding.RecyclerViewItemRoomOccupiedBindi
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewholders.RoomViewHolder;
 
-import java.util.List;
+public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder> {
 
-public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservable, RoomViewHolder> {
-
-    public RoomAdapterViewModel() {
+    public RoomAdapter() {
         super();
     }
 
@@ -31,9 +29,8 @@ public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservabl
 
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
-        List<RoomObservable> roomObservables = modelState.getValue();
-        if (roomObservables != null) {
-            RoomObservable roomObservable = roomObservables.get(position);
+        if (baseObservables != null) {
+            RoomObservable roomObservable = baseObservables.get(position);
             if (holder.getItemViewType() == 1) {
                 RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
             } else {
@@ -44,8 +41,7 @@ public class RoomAdapterViewModel extends ExtendedAdapterViewModel<RoomObservabl
 
     @Override
     public int getItemViewType(int position) {
-        List<RoomObservable> roomObservables = modelState.getValue();
-        return roomObservables != null ? (roomObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
+        return baseObservables != null ? (baseObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters_viewmodels;
+package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,11 +9,9 @@ import com.example.hotelmanagement.databinding.RecyclerViewItemRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 
-import java.util.List;
+public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKindViewHolder> {
 
-public class RoomKindAdapterViewModel extends ExtendedAdapterViewModel<RoomKindObservable, RoomKindViewHolder> {
-
-    public RoomKindAdapterViewModel() {
+    public RoomKindAdapter() {
         super();
     }
 
@@ -26,10 +24,9 @@ public class RoomKindAdapterViewModel extends ExtendedAdapterViewModel<RoomKindO
 
     @Override
     public void onBindViewHolder(@NonNull RoomKindViewHolder holder, int position) {
-        List<RoomKindObservable> roomKindObservables = modelState.getValue();
-        if (roomKindObservables != null) {
+        if (baseObservables != null) {
             RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.bind(holder.itemView);
-            RoomKindObservable roomKindObservable = roomKindObservables.get(position);
+            RoomKindObservable roomKindObservable = baseObservables.get(position);
         }
     }
 
