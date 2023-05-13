@@ -10,9 +10,6 @@
         style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginStart="@dimen/_12pxh"
-        android:layout_marginTop="@dimen/_16pxv"
-        android:layout_marginEnd="@dimen/_20pxh"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
