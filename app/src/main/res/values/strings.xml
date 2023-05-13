@@ -40,7 +40,7 @@
     <string name="lbl_note2">Note</string>
     <string name="lbl_0905980355">0905980355</string>
     <string name="msg_17_04_2023_19">17/04/2023 - 19/4/2023</string>
-    <string name="lbl_customer_s_name">Customer\u2019s name</string>
+    <string name="lbl_customer_s_name">Guest name</string>
     <string name="lbl_start_date">Start date</string>
     <string name="lbl_day2">/day</string>
     <string name="lbl_20_m">20 m </string>
@@ -70,7 +70,7 @@
     <string name="msg_200_000_vnd_d">200.000 VND / day</string>
     <string name="lbl_gender">Gender</string>
     <string name="lbl_end_date">End date</string>
-    <string name="lbl_enter_cccd">Enter CCCD</string>
+    <string name="lbl_enter_cccd">Enter ID Number</string>
     <string name="msg_enter_room_numb">Enter room number</string>
     <string name="lbl_room_kind">Room kind</string>
     <string name="lbl_p112">P112</string>
@@ -90,6 +90,7 @@
     <string name="lbl_welcome">Welcome &#128075;</string>
     <string name="lbl_rent_form">Rent form</string>
     <string name="lbl_check_in">Check - in</string>
+    <string name="lbl_rental_form">Rental form</string>
     <string name="lbl_enter_address">Enter address</string>
     <string name="lbl_bills">Bills</string>
     <string name="lbl_net_profit">Net Profit</string>
@@ -106,7 +107,7 @@
     <string name="msg_enter_phone_num">Enter phone number</string>
     <string name="msg_enter_number_of">Enter number of bed</string>
     <string name="lbl_birthday">Birthday</string>
-    <string name="lbl_cccd">CCCD</string>
+    <string name="lbl_cccd">ID Number</string>
     <string name="lbl_vip_room">VIP room</string>
     <string name="lbl_0m">0M</string>
     <string name="lbl_check_out">Check - out</string>
@@ -200,4 +201,19 @@
     <string name="editbutton">EditButton</string>
     <string name="deletebutton">DeleteButton</string>
     <string name="ubutton">UButton</string>
+    <string name="lbl_cost">Cost</string>
+    <string name="lbl_paid_status">Paid status</string>
+    <string name="lbl_guest_kind">Guset kind</string>
+    <string name="lbl_rental_day">Rental day</string>
+    <string name="lbl_enter_rental_day">Enter rental day</string>
+    <string name="lbl_price_per_day">Price per day</string>
+    <string name="lbl_enter_price_per_day">Enter price per day</string>
+    <string name="lbl_amount">Amount</string>
+    <string name="lbl_enter_amount">Enter amount</string>
+    <string name="lbl_resolved_status">Resolved Status</string>
+    <string name="lbl_surcharge_percentage">Surcharge percentage</string>
+    <string name="lbl_enter_surcharge_percentage">Enter surcharge percentage</string>
+    <string name="lbl_surcharge_start_ordinal">Surcharge start ordinal</string>
+    <string name="lbl_enter_surcharge_start_ordinal">Enter surcharge start ordinal</string>
+
 </resources>
