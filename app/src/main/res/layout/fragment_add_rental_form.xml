@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_72pxv"
+                    android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_12pxh"
                     android:gravity="start"
                     android:orientation="vertical">

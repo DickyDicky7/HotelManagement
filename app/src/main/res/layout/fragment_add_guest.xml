@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_43pxv"
+                    android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_12pxh"
                     android:gravity="start" android:orientation="vertical">
                     <TextView android:id="@+id/txtCCCD" style="@style/txtIntersemibold24"
