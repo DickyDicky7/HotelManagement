@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_marginStart="@dimen/_12pxh"
-                    android:layout_marginTop="@dimen/_43pxv"
+                    android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_12pxh"
                     android:gravity="start" android:orientation="vertical">
                     <TextView android:id="@+id/txtCCCD" style="@style/txtIntersemibold24"
@@ -144,52 +144,7 @@
                         tools:ignore="Autofill"
                         android:textSize="18.5sp"
                         />
-                    <TextView android:id="@+id/txtBirthday"
-                        style="@style/txtIntersemibold24"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_13pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:text="@string/lbl_birthday"
-                        tools:text="@string/lbl_birthday"
-                        android:textSize="27.5sp"
-                        />
-                    <LinearLayout android:id="@+id/linearRowchoosedate"
-                        android:layout_height="wrap_content"
-                        style="@style/groupStylebluegray_1"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_5pxv"
-                        android:layout_width="match_parent"
-                        android:layout_marginEnd="@dimen/_24pxh" android:orientation="horizontal">
-                        <TextView android:id="@+id/txtChoosedate"
-                            style="@style/txtIntermedium16_6"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:layout_marginStart="@dimen/_16pxh"
-                            android:layout_marginTop="@dimen/_11pxv"
-                            android:layout_marginBottom="@dimen/_10pxv"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl_choose_date"
-                            tools:text="@string/lbl_choose_date"
-                            android:textSize="18.5sp"
-                            />
-                        <ImageView android:id="@+id/imageCalendar"
-                            android:layout_height="@dimen/_20pxh"
-                            android:layout_width="@dimen/_18pxh"
-                            android:layout_marginEnd="@dimen/_15pxh"
-                            android:layout_marginStart="@dimen/_125pxh"
-                            android:layout_marginTop="@dimen/_11pxv"
-                            android:layout_marginBottom="@dimen/_11pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_calendar_gray_600"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_calendar_gray_600"
-                            />
-                    </LinearLayout>
+
                     <TextView android:id="@+id/txtAddress"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
@@ -212,7 +167,6 @@
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_7pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
-                        android:layout_marginBottom="@dimen/_24pxv"
                         android:inputType="text"
                         android:paddingEnd="@dimen/_30pxh"
                         android:paddingStart="@dimen/_16pxh"
@@ -221,7 +175,33 @@
                         android:paddingBottom="@dimen/_10pxv"
                         android:textColorHint="@color/gray_600"
                         tools:ignore="Autofill"
-                        android:textSize="18.5sp"/>
+                        android:textSize="18.5sp" />
+
+                    <TextView
+                        android:id="@+id/txtGusetKind"
+                        style="@style/txtIntersemibold24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_13pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_guest_kind"
+                        android:textSize="27.5sp"
+                        tools:text="@string/lbl_guest_kind" />
+
+                    <Spinner
+                        android:id="@+id/spinnerChooseGuestKind"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:layout_marginBottom="@dimen/_24pxv"
+                        android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
+                        android:gravity="center_horizontal"
+                        tools:listitem="@layout/spinner_item" />
                 </LinearLayout>
             </ScrollView>
             <FrameLayout android:id="@+id/frameStacknote"

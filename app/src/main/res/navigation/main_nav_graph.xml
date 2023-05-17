@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/fragmentTempHome">
 
+    <fragment
+        android:id="@+id/fragmentTempHome"
+        android:name="com.example.hotelmanagement.FragmentTempHome"
+        android:label="fragment_temp_home"
+        tools:layout="@layout/fragment_temp_home">
+        <action
+            android:id="@+id/action_fragmentTempHome_to_fragmentAddBill"
+            app:destination="@id/fragmentAddBill" />
+        <action
+            android:id="@+id/action_fragmentTempHome_to_fragmentAddGuest"
+            app:destination="@id/fragmentAddGuest" />
+        <action
+            android:id="@+id/action_fragmentTempHome_to_fragmentAddRoomKind"
+            app:destination="@id/fragmentAddRoomKind" />
+        <action
+            android:id="@+id/action_fragmentTempHome_to_fragmentAddRoom"
+            app:destination="@id/fragmentAddRoom" />
+        <action
+            android:id="@+id/action_fragmentTempHome_to_fragmentAddRentalForm"
+            app:destination="@id/fragmentAddRentalForm" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAddBill"
+        android:name="com.example.hotelmanagement.fragments.adds.FragmentAddBill"
+        android:label="fragment_add_bill"
+        tools:layout="@layout/fragment_add_bill" />
+    <fragment
+        android:id="@+id/fragmentAddGuest"
+        android:name="com.example.hotelmanagement.fragments.adds.FragmentAddGuest"
+        android:label="fragment_add_guest"
+        tools:layout="@layout/fragment_add_guest" />
+    <fragment
+        android:id="@+id/fragmentAddRentalForm"
+        android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRentalForm"
+        android:label="fragment_add_rental_form"
+        tools:layout="@layout/fragment_add_rental_form" />
+    <fragment
+        android:id="@+id/fragmentAddRoom"
+        android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRoom"
+        android:label="fragment_add_room"
+        tools:layout="@layout/fragment_add_room" />
+    <fragment
+        android:id="@+id/fragmentAddRoomKind"
+        android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRoomKind"
+        android:label="fragment_add_room_kind"
+        tools:layout="@layout/fragment_add_room_kind" />
 </navigation>

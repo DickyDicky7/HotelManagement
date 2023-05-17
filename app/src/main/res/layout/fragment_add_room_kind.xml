@@ -49,34 +49,9 @@
                     android:layout_marginEnd="@dimen/_12pxh"
                     android:gravity="start"
                     android:orientation="vertical">
-                    <TextView android:id="@+id/txtID" style="@style/txtIntersemibold24"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_23pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:ellipsize="end" android:singleLine="true"
-                        android:text="@string/lbl_id" tools:text="@string/lbl_id"
-                        android:textSize="27.5sp"/>
-                    <EditText
-                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl_enter_room_id"
-                        android:id="@+id/etGroupThree" style="@style/etSolidRounded_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_7pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:inputType="text"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_11pxv"
-                        android:singleLine="true"
-                        android:paddingBottom="@dimen/_10pxv"
-                        android:textSize="18.5sp"
-                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtKindofroom"
+
+                    <TextView
+                        android:id="@+id/txtKindofroom"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -85,13 +60,13 @@
                         android:layout_marginEnd="@dimen/_24pxh"
                         android:singleLine="true"
                         android:ellipsize="end"
-                        android:text="@string/lbl_kind_of_room"
-                        tools:text="@string/lbl_kind_of_room"
-                        android:textSize="27.5sp"/>
+                        android:text="@string/lbl_name"
+                        tools:text="@string/lbl_name"
+                        android:textSize="27.5sp" />
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
-                        android:hint="@string/lbl_enter_room_kind"
+                        android:hint="@string/lbl_enter_name"
                         android:id="@+id/etGroupFour" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -202,16 +177,88 @@
                         android:ellipsize="end"
                         android:text="@string/lbl_price" tools:text="@string/lbl_price"
                         android:textSize="27.5sp"/>
+
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_price"
-                        android:id="@+id/etGroupEight" style="@style/etSolidRounded_1"
+                        android:id="@+id/etGroupEight"
+                        style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_8pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_16pxh"
+                        android:paddingTop="@dimen/_12pxv"
+                        android:paddingEnd="@dimen/_30pxh"
+                        android:paddingBottom="@dimen/_9pxv"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray_600"
+                        android:textSize="18.5sp"
+                        tools:ignore="Autofill" />
+
+                    <TextView
+                        android:id="@+id/txtSurchargePercentage"
+                        style="@style/txtIntersemibold24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_surcharge_percentage"
+                        android:textSize="27.5sp"
+                        tools:text="@string/lbl_surcharge_percentage" />
+
+                    <EditText
+                        android:id="@+id/etSurchargePercentage"
+                        style="@style/etSolidRounded_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                        android:ellipsize="end"
+                        android:hint="@string/lbl_enter_surcharge_percentage"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_16pxh"
+                        android:paddingTop="@dimen/_12pxv"
+                        android:paddingEnd="@dimen/_30pxh"
+                        android:paddingBottom="@dimen/_9pxv"
+                        android:singleLine="true"
+                        android:textColorHint="@color/gray_600"
+                        android:textSize="18.5sp"
+                        tools:ignore="Autofill" />
+
+                    <TextView
+                        android:id="@+id/txtSurchargeStartOrdinal"
+                        style="@style/txtIntersemibold24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@string/lbl_surcharge_start_ordinal"
+                        android:textSize="27.5sp"
+                        tools:text="@string/lbl_surcharge_start_ordinal" />
+
+                    <EditText
+                        android:id="@+id/etSurchargeStartOrdinal"
+                        style="@style/etSolidRounded_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_8pxv"
+                        android:layout_marginEnd="@dimen/_24pxh"
+                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                        android:ellipsize="end"
+                        android:hint="@string/lbl_enter_surcharge_start_ordinal"
                         android:layout_marginBottom="@dimen/_100pxv"
                         android:inputType="text"
                         android:paddingEnd="@dimen/_30pxh"
@@ -220,7 +267,8 @@
                         android:singleLine="true"
                         android:paddingBottom="@dimen/_9pxv"
                         android:textSize="18.5sp"
-                        android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
+                        android:textColorHint="@color/gray_600"
+                        tools:ignore="Autofill" />
                 </LinearLayout>
             </ScrollView>
             <FrameLayout android:id="@+id/frameStacknote"
