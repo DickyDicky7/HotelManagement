@@ -219,5 +219,5 @@
     <string name="rb_not_paid">Not paid</string>
     <string name="rb_resolved">Resolved</string>
     <string name="rb_not_resolved">Not resolved</string>
-
+    <string name="lbl_guest">Guest</string>
 </resources>

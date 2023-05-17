@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:context=".fragments.edits.FragmentEditRentalForm">
@@ -48,40 +49,59 @@
                     android:gravity="start"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtCustomersname"
-                        style="@style/txtIntersemibold24"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
                         android:layout_marginTop="@dimen/_11pxv"
                         android:layout_marginEnd="@dimen/_24pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_customer_s_name"
-                        android:textSize="27.5sp"
-                        tools:text="@string/lbl_customer_s_name" />
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/etGroupFour"
-                        style="@style/etSolidRounded_1"
+                        <TextView
+                            android:id="@+id/txtCustomersname"
+                            style="@style/txtIntersemibold24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_11pxv"
+                            android:layout_marginEnd="@dimen/_24pxh"
+                            android:layout_weight="0.5"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/lbl_guest"
+                            android:textSize="30sp"
+                            tools:text="@string/lbl_guest" />
+
+                        <ImageButton
+                            android:id="@+id/btnAdd"
+                            android:layout_width="@dimen/_45pxh"
+                            android:layout_height="@dimen/_45pxh"
+                            android:layout_gravity="end"
+                            android:layout_marginStart="@dimen/_50pxv"
+                            android:layout_marginTop="@dimen/_11pxv"
+                            android:layout_marginBottom="@dimen/_2pxv"
+                            android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                            android:importantForAccessibility="no"
+                            android:paddingHorizontal="@dimen/_10pxh"
+                            android:paddingVertical="@dimen/_10pxv"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/btn_add"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+
+                        android:id="@+id/recyclerListAddGuest"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="@dimen/_24pxh"
-                        android:layout_marginTop="@dimen/_7pxv"
-                        android:layout_marginEnd="@dimen/_24pxh"
-                        android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl_enter_name"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_11pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingBottom="@dimen/_10pxv"
-                        android:singleLine="true"
-                        android:textColorHint="@color/gray_600"
-                        android:textSize="18.5sp"
-                        tools:ignore="Autofill" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4pxh"
+                        android:layout_marginTop="@dimen/_16pxv"
+                        android:layout_marginBottom="@dimen/_15pxh"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="2"
+                        tools:listitem="@layout/recycler_view_item_add_rental_form" />
 
                     <TextView
                         android:id="@+id/txtStartdate"
