@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout android:id="@+id/linearSingleroomcar"
         style="@style/groupStyleindigo_900_99cornerRadius"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal">
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
         <ImageView android:id="@+id/imageImageTwelve"
             android:layout_height="@dimen/_86pxh"
-            cornerRadius="@{@dimen/_20pxh}"
+            android:cornerRadius="@{@dimen/_20pxh}"
             android:layout_marginStart="@dimen/_5pxh"
-            imageRes="@{@drawable/img_image12}"
+            android:imageRes="@{@drawable/img_image12}"
             android:layout_width="@dimen/_86pxh"
             android:layout_marginTop="@dimen/_5pxv" android:layout_marginBottom="@dimen/_5pxv"
             android:scaleType="fitXY"
@@ -142,4 +147,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

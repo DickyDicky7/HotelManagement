@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <LinearLayout android:id="@+id/linearColumnmail"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout android:id="@+id/linearColumnmail"
         style="@style/groupStylebluegray_900"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_16pxv"
         android:layout_width="match_parent"
-        android:gravity="end" android:orientation="vertical">
+        android:gravity="end">
+
         <LinearLayout android:id="@+id/linearHomepage"
             style="@style/groupStylebluegray_900"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="vertical">
+            android:layout_height="match_parent" android:orientation="vertical">
             <ImageView android:id="@+id/imageMail"
                 android:layout_gravity="end"
                 android:layout_width="@dimen/_50pxh"
@@ -23,61 +26,33 @@
             <HorizontalScrollView android:id="@+id/horizontalScrollHorizontalscrollavatar"
                 android:layout_width="match_parent"
                 android:fillViewport="true"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_28pxv"
                 android:gravity="start" android:scrollbars="none">
+
                 <FrameLayout android:id="@+id/frameStackavatar"
-                    android:layout_width="@dimen/_506pxh" android:layout_height="@dimen/_742pxv">
-                    <LinearLayout android:id="@+id/linearRow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_marginTop="@dimen/_10pxv" android:orientation="horizontal">
-                        <ImageView android:id="@+id/imageHotelimage"
-                            cornerRadius="@{@dimen/_20pxh}"
-                            android:layout_width="@dimen/_208pxh"
-                            android:scaleType="fitXY"
-                            imageRes="@{@drawable/img_hotelimage_348x208}"
-                            android:layout_height="@dimen/_348pxh"
-                            tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_348x208"/>
-                        <ImageView android:id="@+id/imageHotelimageOne"
-                            android:layout_height="@dimen/_348pxh"
-                            android:layout_marginEnd="@dimen/_70pxh"
-                            cornerRadius="@{@dimen/_20pxh}"
-                            imageRes="@{@drawable/img_hotelimage_1}"
-                            android:scaleType="fitXY"
-                            android:layout_width="@dimen/_208pxh"
-                            android:layout_marginStart="@dimen/_20pxh"
-                            tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_1"/>
-                    </LinearLayout>
-                    <ImageView android:id="@+id/imageHotelimageTwo"
-                        cornerRadius="@{@dimen/_20pxh}"
-                        android:layout_height="@dimen/_348pxh"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
-                        imageRes="@{@drawable/img_hotelimage_2}"
-                        android:scaleType="fitXY"
-                        android:layout_width="@dimen/_208pxh"
-                        android:layout_gravity="bottom|end"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_2"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
                     <LinearLayout android:id="@+id/linearColumnavatar"
                         android:layout_gravity="top|end"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:layout_marginBottom="@dimen/_10pxv" android:orientation="vertical">
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="vertical"
+                        >
                         <LinearLayout android:id="@+id/linearRowavatar"
                             android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_marginStart="@dimen/_14pxh" android:orientation="horizontal">
                             <FrameLayout android:id="@+id/frameUser"
                                 style="@style/groupStyleteal_100cornerRadius"
-                                android:layout_width="@dimen/_54pxh"
-                                android:layout_height="@dimen/_54pxv" android:layout_marginBottom="@dimen/_5pxv">
+                                android:layout_width="@dimen/_64pxh"
+                                android:layout_height="@dimen/_64pxv" android:layout_marginBottom="@dimen/_5pxv">
                                 <ImageView android:id="@+id/imageAvatar"
-                                    cornerRadius="@{@dimen/_10pxh}"
+                                    android:cornerRadius="@{@dimen/_10pxh}"
                                     android:layout_height="@dimen/_46pxh"
-                                    imageRes="@{@drawable/img_avatar}"
+                                    android:imageRes="@{@drawable/img_avatar}"
                                     android:layout_marginStart="@dimen/_3pxh"
                                     android:layout_marginTop="@dimen/_10pxv"
                                     android:layout_width="@dimen/_48pxh"
@@ -86,30 +61,39 @@
                                     android:layout_marginEnd="@dimen/_3pxh"
                                     tools:ignore="ContentDescription" tools:src="@drawable/img_avatar"/>
                             </FrameLayout>
-                            <LinearLayout android:id="@+id/linearColumnwelcome"
-                                android:layout_width="0dp"
+
+                            <LinearLayout
+                                android:id="@+id/linearColumnwelcome"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_7pxh"
                                 android:layout_marginTop="@dimen/_2pxv"
                                 android:layout_weight="0.65"
-                                android:gravity="start" android:orientation="vertical">
-                                <TextView android:id="@+id/txtWelcome"
+                                android:gravity="start"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtWelcome"
                                     style="@style/txtInterregular16"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="@dimen/_10pxh"
-                                    android:layout_width="wrap_content"
                                     android:ellipsize="end"
                                     android:singleLine="true"
-                                    android:text="@string/lbl_welcome" tools:text="@string/lbl_welcome"/>
-                                <TextView android:id="@+id/txtXuanHuy"
+                                    android:text="@string/lbl_welcome"
+                                    tools:text="@string/lbl_welcome" />
+
+                                <TextView
+                                    android:id="@+id/txtXuanHuy"
                                     style="@style/txtOutfitsemibold24"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/_10pxh"
                                     android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_6pxv"
-                                    android:singleLine="true"
+                                    android:layout_marginEnd="@dimen/_10pxh"
                                     android:ellipsize="end"
-                                    android:text="@string/lbl_xu_n_huy" tools:text="@string/lbl_xu_n_huy"/>
+                                    android:singleLine="true"
+                                    android:text="@string/lbl_xu_n_huy"
+                                    tools:text="@string/lbl_xu_n_huy" />
                             </LinearLayout>
                             <FrameLayout
                                 android:id="@+id/frameNotification"
@@ -132,12 +116,13 @@
                             </FrameLayout>
                         </LinearLayout>
                         <LinearLayout android:id="@+id/linearColumnmanageroombut"
-                            style="@style/groupStylebluegray_100_cccornerRadius"
+                            style="@style/groupStyleindigo_901cornerRadius"
                             android:layout_height="wrap_content"
-                            android:layout_width="match_parent"
+                            android:layout_width="380dp"
                             android:layout_marginTop="@dimen/_48pxv"
                             android:layout_marginEnd="@dimen/_10pxh"
-                            android:gravity="start" android:orientation="vertical">
+                            android:gravity="start"
+                            android:orientation="vertical">
                             <LinearLayout
                                 android:id="@+id/linearRowmanageroombut"
                                 android:layout_height="wrap_content"
@@ -178,20 +163,22 @@
                             <LinearLayout android:id="@+id/linearRowroom"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_6pxh"
-                                android:layout_marginStart="@dimen/_25pxh"
-                                android:layout_marginTop="@dimen/_4pxv"
-                                android:gravity="end" android:orientation="horizontal">
-                                <TextView android:id="@+id/txtRoom"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtRoom"
+                                    android:layout_marginLeft="10dp"
                                     style="@style/txtInterregular18"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
                                     android:layout_marginTop="@dimen/_1pxv"
                                     android:layout_weight="0.22"
-                                    android:layout_width="0dp"
+                                    android:ellipsize="end"
                                     android:lineSpacingExtra="@dimen/_4pxh"
                                     android:singleLine="true"
-                                    android:ellipsize="end"
-                                    android:text="@string/lbl_room" tools:text="@string/lbl_room"/>
+                                    android:text="@string/lbl_room"
+                                    tools:text="@string/lbl_room" />
                                 <TextView android:id="@+id/txtRoomkind"
                                     style="@style/txtInterregular18"
                                     android:layout_height="wrap_content"
@@ -228,10 +215,11 @@
                                     android:id="@+id/btnUser"
                                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                                     android:layout_width="@dimen/_50pxh"
-                                    android:paddingHorizontal="@dimen/_12pxh"
-                                    android:paddingVertical="@dimen/_12pxv"
+                                    android:paddingHorizontal="@dimen/_5pxh"
+                                    android:paddingVertical="@dimen/_5pxv"
                                     android:scaleType="fitCenter"
-                                    android:src="@drawable/img_user" tools:ignore="ContentDescription"/>
+                                    android:src="@drawable/img_user"
+                                    tools:ignore="ContentDescription"/>
                                 <ImageButton
                                     android:layout_width="@dimen/_50pxh"
                                     android:id="@+id/btnManagebillbut"
@@ -268,26 +256,24 @@
                                     android:layout_width="0dp"
                                     android:layout_weight="0.75" android:orientation="horizontal">
                                     <TextView android:id="@+id/txtCustomers"
-                                    style="@style/txtInterregular18"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/_1pxv"
-                                    android:layout_weight="0.73"
-                                    android:layout_width="0dp"
-                                    android:lineSpacingExtra="@dimen/_4pxh"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"
-                                    android:text="@string/lbl_customers" tools:text="@string/lbl_customers"/>
+                                        style="@style/txtInterregular18"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_1pxv"
+                                        android:layout_weight="0.73"
+                                        android:layout_width="0dp"
+                                        android:lineSpacingExtra="@dimen/_4pxh"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="@string/lbl_customers" tools:text="@string/lbl_customers"/>
                                     <TextView android:id="@+id/txtBills"
-                                    style="@style/txtInterregular18"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="@dimen/_1pxv"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="0.27"
-                                    android:layout_marginStart="@dimen/_51pxh"
-                                    android:lineSpacingExtra="@dimen/_4pxh"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"
-                                    android:text="@string/lbl_bills" tools:text="@string/lbl_bills"/>
+                                        style="@style/txtInterregular18"
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="0.27"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="@string/lbl_bills"
+                                        tools:text="@string/lbl_bills"/>
                                 </LinearLayout>
                                 <TextView android:id="@+id/txtReport"
                                     style="@style/txtInterregular18"
@@ -303,13 +289,49 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
+                    <LinearLayout android:id="@+id/linearRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="400dp"
+                        android:orientation="horizontal">
+                        <ImageView android:id="@+id/imageHotelimage"
+                            android:cornerRadius="@{@dimen/_20pxh}"
+                            android:layout_width="@dimen/_208pxh"
+                            android:scaleType="fitXY"
+                            android:imageRes="@{@drawable/img_hotelimage_348x208}"
+                            android:layout_height="@dimen/_348pxh"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_348x208"/>
+                        <ImageView android:id="@+id/imageHotelimageOne"
+                            android:layout_height="@dimen/_348pxh"
+                            android:layout_marginEnd="@dimen/_70pxh"
+                            android:cornerRadius="@{@dimen/_20pxh}"
+                            android:imageRes="@{@drawable/img_hotelimage_1}"
+                            android:scaleType="fitXY"
+                            android:layout_width="@dimen/_208pxh"
+                            android:layout_marginStart="@dimen/_20pxh"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_1"/>
+                        <ImageView android:id="@+id/imageHotelimageTwo"
+                            android:cornerRadius="@{@dimen/_20pxh}"
+                            android:layout_height="@dimen/_348pxh"
+                            android:layout_marginStart="@dimen/_10pxh"
+                            android:layout_marginTop="@dimen/_10pxv"
+                            android:imageRes="@{@drawable/img_hotelimage_2}"
+                            android:scaleType="fitXY"
+                            android:layout_width="@dimen/_208pxh"
+                            android:layout_gravity="bottom|end"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_2"/>
+                    </LinearLayout>
+
+
                 </FrameLayout>
             </HorizontalScrollView>
         </LinearLayout>
         <FrameLayout android:id="@+id/frameBottombar"
             style="@style/groupStyleindigo_900cornerRadius"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_marginStart="@dimen/_10pxh">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center">
             <LinearLayout android:id="@+id/linearNavigateBar"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
@@ -357,5 +379,5 @@
                     tools:ignore="ContentDescription" tools:src="@drawable/img_user_white_a700"/>
             </LinearLayout>
         </FrameLayout>
-    </LinearLayout>
-</layout>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

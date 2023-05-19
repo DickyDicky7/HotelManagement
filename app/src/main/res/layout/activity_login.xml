@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <LinearLayout android:id="@+id/linearLogin"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout android:id="@+id/linearErrorpassword"
         style="@style/groupStylewhite_A700"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -10,43 +14,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:gravity="start">
             <ImageView android:id="@+id/imageHotelimage"
-                imageRes="@{@drawable/img_hotelimage}"
+                imageRes="@{@drawable/img_hotelimage_3}"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:layout_gravity="start"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage"/>
+                tools:ignore="ContentDescription" tools:src="@drawable/img_hotelimage_3"/>
             <LinearLayout android:id="@+id/linearColumnlogo"
                 style="@style/groupStyle"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_gravity="start" android:orientation="vertical">
                 <FrameLayout android:id="@+id/frameStacklogo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_320pxv" android:gravity="start">
                     <ImageView android:id="@+id/imageLogo"
-                        imageRes="@{@drawable/img_logo}"
+                        imageRes="@{@drawable/img_logo_1}"
                         android:layout_height="@dimen/_320pxh"
                         android:layout_width="match_parent"
                         android:scaleType="fitXY"
                         android:layout_gravity="start"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_logo"/>
-                    <ImageView android:id="@+id/imageMail"
-                        android:layout_width="@dimen/_50pxh"
-                        android:layout_height="@dimen/_14pxh"
-                        android:layout_gravity="top|end"
-                        android:layout_marginEnd="@dimen/_25pxh"
-                        android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_16pxv"
-                        android:layout_marginBottom="@dimen/_16pxv"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_mail"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_mail"/>
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_logo_1"/>
                 </FrameLayout>
                 <EditText
                     android:background="@drawable/rectangle_bg_bluegray_200_cc_radius_10"
-                    android:drawablePadding="@dimen/_10pxh"
                     android:id="@+id/etEmailinput"
+                    android:drawableStart="@drawable/img_mail_black_900"
                     android:ellipsize="end"
                     android:hint="@string/lbl_email"
                     style="@style/etSolidRounded"
@@ -56,7 +49,7 @@
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_marginTop="@dimen/_8pxv"
                     android:layout_marginEnd="@dimen/_24pxh"
-                    android:drawableStart="@drawable/img_mail_black_900"
+                    android:drawablePadding="@dimen/_10pxh"
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingStart="@dimen/_14pxh"
                     android:paddingTop="@dimen/_14pxv"
@@ -66,11 +59,11 @@
                 <EditText
                     android:background="@drawable/rectangle_bg_bluegray_200_cc_radius_10"
                     android:drawableEnd="@drawable/img_eye"
-                    android:drawablePadding="@dimen/_30pxh"
+                    android:drawablePadding="@dimen/_10pxh"
                     android:id="@+id/etPasswordinput"
                     android:ellipsize="end"
                     android:hint="@string/lbl_password"
-                    style="@style/etSolidRounded"
+                    style="@style/etSolidRoundedOutline_1"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,20 +71,29 @@
                     android:layout_marginTop="@dimen/_24pxv"
                     android:layout_marginEnd="@dimen/_24pxh"
                     android:drawableStart="@drawable/img_lock"
-                    android:paddingEnd="@dimen/_11pxh"
+                    android:paddingEnd="@dimen/_10pxh"
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_14pxv"
                     android:singleLine="true"
                     android:paddingBottom="@dimen/_15pxv"
                     android:textColorHint="@color/black_900" tools:ignore="Autofill"/>
+                <LinearLayout android:id="@+id/linearRowwarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_36pxh"
+                    android:layout_marginStart="@dimen/_36pxh"
+                    android:layout_marginTop="@dimen/_2pxv"
+                    android:gravity="start" android:orientation="horizontal">
+                   </LinearLayout>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSignIn" style="@style/btnSolidRoundedOutline"
+                    android:id="@+id/btnSignIn"
+                    style="@style/groupStylebluegray_100_cccornerRadius"
                     android:layout_width="@dimen/_193pxh"
                     android:layout_gravity="center_horizontal"
-                    android:layout_height="@dimen/_56pxv"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_24pxh"
                     android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_32pxv"
+                    android:layout_marginTop="@dimen/_14pxv"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:paddingEnd="@dimen/_30pxh"
@@ -99,8 +101,11 @@
                     android:paddingTop="@dimen/_15pxv"
                     android:singleLine="true"
                     android:text="@string/lbl_sign_in"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:paddingBottom="@dimen/_15pxv"
-                    android:textAllCaps="false" tools:text="@string/lbl_sign_in"/>
+                    android:textAllCaps="false"
+                    tools:text="@string/lbl_sign_in"/>
                 <TextView android:id="@+id/txtForgotyourpas"
                     style="@style/txtIntersemibold16"
                     android:layout_width="wrap_content"
@@ -109,11 +114,11 @@
                     android:layout_marginEnd="@dimen/_24pxh"
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_marginTop="@dimen/_32pxv"
-                    android:layout_marginBottom="@dimen/_207pxv"
+                    android:layout_marginBottom="@dimen/_10pxv"
                     android:singleLine="true"
                     android:ellipsize="end"
                     android:text="@string/msg_forgot_your_pas" tools:text="@string/msg_forgot_your_pas"/>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
