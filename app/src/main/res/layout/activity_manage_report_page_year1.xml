@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <LinearLayout android:id="@+id/linearColumnhome"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <LinearLayout
+        android:id="@+id/linearColumnhome"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:orientation="vertical">
-        <LinearLayout android:id="@+id/linearColumnmail"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearColumnmail"
             android:layout_height="0dp"
             android:layout_marginEnd="@dimen/_11pxh"
             android:layout_width="match_parent"
@@ -59,7 +65,7 @@
                     android:layout_marginTop="@dimen/_19pxv"
                     android:layout_width="match_parent"
                     android:gravity="center_horizontal" android:orientation="vertical">
-                    <com.google.android.material.tabs.TabLayout
+                    <!--<com.google.android.material.tabs.TabLayout
                         style="@style/groupStylegray_700_99cornerRadius"
                         android:id="@+id/tabLayoutGroup12"
                         android:layout_height="wrap_content"
@@ -71,7 +77,7 @@
                         android:gravity="center_horizontal"
                         app:tabIndicatorColor="@android:color/transparent" app:tabIndicatorHeight="0dp"
                         app:tabMode="fixed"
-                        app:tabSelectedTextColor="@color/white_A700" app:tabTextColor="@color/bluegray_103"/>
+                        app:tabSelectedTextColor="@color/white_A700" app:tabTextColor="@color/bluegray_103"/>-->
                     <androidx.viewpager2.widget.ViewPager2
                         android:layout_width="match_parent"
                         android:id="@+id/viewPagerViewpager"

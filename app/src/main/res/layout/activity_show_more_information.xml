@@ -52,13 +52,12 @@
                 android:layout_width="match_parent"
                 android:layout_marginEnd="@dimen/_11pxh"
                 android:id="@+id/searchViewSearchbar"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
                 android:layout_marginStart="@dimen/_18pxh"
                 android:layout_marginTop="@dimen/_6pxv"
                 android:gravity="center_horizontal"
-                android:theme="@style/searchViewSearchbar"
-                app:iconifiedByDefault="false"
+
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/lbl_search_day" app:searchIcon="@drawable/img_search_gray_601"/>
             <FrameLayout
@@ -226,7 +225,7 @@
                             android:layout_height="@dimen/_28pxv">
 
                             <ImageView
-                                android:id="@+id/btn_edit"
+                                android:id="@+id/imageTicket"
                                 android:layout_gravity="center"
                                 android:layout_width="@dimen/_16pxh"
                                 android:layout_height="@dimen/_16pxh"
@@ -244,7 +243,7 @@
                             android:layout_height="@dimen/_28pxv" android:layout_marginStart="@dimen/_16pxh">
 
                             <ImageView
-                                android:id="@+id/btn_delete"
+                                android:id="@+id/imageFile"
                                 android:layout_width="@dimen/_12pxh"
                                 android:layout_height="@dimen/_16pxh"
                                 android:layout_gravity="center"
