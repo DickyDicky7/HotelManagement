@@ -15,7 +15,7 @@
 
         <ImageButton
             android:layout_width="@dimen/_45pxh"
-            android:id="@+id/btnArrowleft"
+            android:id="@+id/btn_back"
             android:layout_gravity="start"
             android:layout_height="@dimen/_45pxh"
             android:layout_marginEnd="@dimen/_308pxh"
@@ -64,7 +64,7 @@
                         tools:text="@string/lbl_room_number2" />
 
                     <EditText
-                        android:id="@+id/etGroupFour"
+                        android:id="@+id/edt_name"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -85,7 +85,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtKindofroom"
+                        android:id="@+id/txt_name"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

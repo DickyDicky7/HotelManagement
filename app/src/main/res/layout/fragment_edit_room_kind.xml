@@ -15,7 +15,7 @@
 
         <ImageButton
             android:layout_width="@dimen/_45pxh"
-            android:id="@+id/btnArrowleft"
+            android:id="@+id/btn_back"
             android:layout_gravity="start"
             android:layout_height="@dimen/_45pxh"
             android:layout_marginEnd="@dimen/_308pxh"
@@ -51,7 +51,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtKindofroom"
+                        android:id="@+id/txt_name"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_name"
-                        android:id="@+id/etGroupFour" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_name" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -83,7 +83,7 @@
                         android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
 
                     <TextView
-                        android:id="@+id/txtCapacity"
+                        android:id="@+id/txt_capacity"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_capacity"
-                        android:id="@+id/etGroupFive" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_capacity" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -113,7 +113,7 @@
                         android:paddingBottom="@dimen/_9pxv"
                         android:textSize="18.5sp"
                         android:textColorHint="@color/gray_600" tools:ignore="Autofill"/>
-                    <TextView android:id="@+id/txtNumberofbed"
+                    <TextView android:id="@+id/txt_numbed"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
@@ -128,7 +128,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/msg_enter_number_of"
-                        android:id="@+id/etGroupSix" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_numbed" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -145,7 +145,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtArea"
+                        android:id="@+id/txt_area"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                         tools:text="@string/lbl_area" />
 
                     <EditText
-                        android:id="@+id/etGroupSeven"
+                        android:id="@+id/edt_area"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -180,7 +180,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtPrice"
+                        android:id="@+id/txt_price"
                         style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_price"
-                        android:id="@+id/etGroupEight"
+                        android:id="@+id/edt_price"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -215,7 +215,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtSurchargePercentage"
+                        android:id="@+id/txt_surchargePercentage"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                         tools:text="@string/lbl_surcharge_percentage" />
 
                     <EditText
-                        android:id="@+id/etSurchargePercentage"
+                        android:id="@+id/edt_surchargePercentage"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
@@ -250,7 +250,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtSurchargeStartOrdinal"
+                        android:id="@+id/txt_surchargeStartOrdinal"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
                         tools:text="@string/lbl_surcharge_start_ordinal" />
 
                     <EditText
-                        android:id="@+id/etSurchargeStartOrdinal"
+                        android:id="@+id/edt_surchargeStartOrdinal"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
