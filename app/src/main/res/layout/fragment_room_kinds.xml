@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.lists.FragmentRoomKinds">
 
+    <data />
+
     <LinearLayout
         android:id="@+id/linearManageroomkind"
         style="@style/groupStylebluegray_900"
@@ -32,8 +34,11 @@
             android:layout_marginBottom="@dimen/_30pxv"
             android:layout_marginStart="@dimen/_10pxh"
             android:layout_marginTop="@dimen/_12pxv"
-            android:gravity="start" android:orientation="vertical">
-            <LinearLayout android:id="@+id/linearRowarrowleft"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearRowarrowleft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
@@ -63,15 +68,14 @@
                 android:layout_width="match_parent"
                 android:layout_marginEnd="@dimen/_20pxh"
                 android:id="@+id/searchViewSearchbar"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_6pxv"
                 android:gravity="center_horizontal"
-                android:theme="@style/searchViewSearchbar"
-                app:iconifiedByDefault="false"
                 app:queryBackground="@android:color/transparent"
                 app:queryHint="@string/msg_search_room_kin" app:searchIcon="@drawable/img_search_gray_601"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerListsingleroom"
                 android:layout_height="wrap_content"
@@ -79,7 +83,9 @@
 
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" tools:itemCount="5" tools:listitem="@layout/row_listsingleroom"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/row_listsingleroom" />
             <FrameLayout android:id="@+id/frameAddbutton"
                 android:layout_gravity="center_horizontal"
                 style="@style/groupStyleindigo_400cornerRadius"

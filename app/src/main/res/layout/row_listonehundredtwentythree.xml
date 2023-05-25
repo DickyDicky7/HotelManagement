@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <LinearLayout android:id="@+id/linearColumnonehundredtwentythree"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="12dp"
+    android:layout_marginTop="8dp">
+
+    <LinearLayout
+        android:id="@+id/linearColumnonehundredtwentythree"
         style="@style/groupStyleindigo_901cornerRadius"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:gravity="start" android:orientation="vertical">
-        <TextView android:id="@+id/txtOneHundredTwentyThree"
+        android:gravity="start"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtOneHundredTwentyThree"
             style="@style/txtOutfitsemibold28"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10pxh"
@@ -155,7 +164,7 @@
                 android:layout_height="@dimen/_28pxv">
 
                 <ImageView
-                    android:id="@+id/btn_edit"
+                    android:id="@+id/imageTicket"
                     android:layout_width="@dimen/_16pxh"
                     android:layout_height="@dimen/_16pxh"
                     android:layout_gravity="center"
@@ -173,7 +182,7 @@
                 android:layout_height="@dimen/_28pxv" android:layout_marginStart="@dimen/_16pxh">
 
                 <ImageView
-                    android:id="@+id/btn_delete"
+                    android:id="@+id/imageFile"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/_12pxh"
                     android:layout_height="@dimen/_16pxh"
@@ -200,8 +209,9 @@
                     android:layout_marginBottom="@dimen/_6pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_camera_white_a700"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_camera_white_a700"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_camera_white_a700" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

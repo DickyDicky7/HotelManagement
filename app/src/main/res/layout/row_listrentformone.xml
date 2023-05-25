@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
     <LinearLayout
         android:id="@+id/item_rentForm"
         style="@style/groupStyleindigo_900_99cornerRadius"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:id="@+id/linearRowvector"
@@ -17,7 +22,9 @@
             android:layout_marginTop="@dimen/_7pxv"
             android:layout_marginEnd="@dimen/_12pxh"
             android:orientation="horizontal">
-            <LinearLayout android:id="@+id/linearRowrentformone"
+
+            <LinearLayout
+                android:id="@+id/linearRowrentformone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" android:layout_weight="0.88" android:orientation="horizontal">
 
@@ -144,7 +151,8 @@
                 android:paddingHorizontal="@dimen/_6pxh"
                 android:paddingVertical="@dimen/_6pxv"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_file" tools:ignore="ContentDescription"/>
+                android:src="@drawable/img_file"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

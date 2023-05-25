@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.lists.FragmentBills">
 
@@ -32,8 +34,11 @@
             android:layout_marginBottom="@dimen/_30pxv"
             android:layout_marginStart="@dimen/_12pxh"
             android:layout_marginTop="@dimen/_12pxv"
-            android:gravity="start" android:orientation="vertical">
-            <LinearLayout android:id="@+id/linearRowarrowleft"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearRowarrowleft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10pxh"
@@ -58,21 +63,18 @@
                     android:singleLine="true"
                     android:text="@string/lbl_bill_list" tools:text="@string/lbl_bill_list"/>
             </LinearLayout>
+
             <androidx.appcompat.widget.SearchView
                 android:layout_width="match_parent"
-                android:layout_marginEnd="@dimen/_11pxh"
                 android:id="@+id/searchViewSearchbar"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
                 android:background="@drawable/rectangle_bg_white_a700_cc_border_white_a700_99_radius_21"
-                android:layout_marginStart="@dimen/_18pxh"
-                android:layout_marginTop="@dimen/_6pxv"
-                android:gravity="center_horizontal"
-                android:theme="@style/searchViewSearchbar"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/lbl_search_day" app:searchIcon="@drawable/img_search_gray_601"/>
-            <androidx.recyclerview.widget.RecyclerView
+                app:queryHint="@string/lbl_search_day"
+                app:searchIcon="@drawable/img_search_gray_601" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                itemSpace="@{@dimen/_16pxh}"
                 android:id="@+id/recyclerListonehundredtwentythree"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4pxh"
@@ -80,7 +82,9 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" tools:itemCount="2" tools:listitem="@layout/row_listonehundredtwentythree"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/row_listonehundredtwentythree" />
             <FrameLayout android:id="@+id/frameAddbutton"
                 style="@style/groupStyleindigo_400cornerRadius"
                 android:layout_height="@dimen/_50pxv"
@@ -98,8 +102,9 @@
                     android:layout_marginBottom="@dimen/_12pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_plus"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_plus"/>
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_plus" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
