@@ -7,7 +7,6 @@ mutation ROOMKIND_Update_Price_By_Id_Mutation($id: Int, $price: money) {
             price
             capacity
             surcharge_percentage
-            surcharge_start_ordinal
             created_at
             updated_at
         }

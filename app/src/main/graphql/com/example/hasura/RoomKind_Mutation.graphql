@@ -1,4 +1,4 @@
-mutation RoomKind_Muatation_Insert(
+mutation RoomKind_Insert(
     $name: String,
     $price: money,
     $capacity: smallint,
@@ -7,14 +7,30 @@ mutation RoomKind_Muatation_Insert(
     $surchargePercentage: Float,
 )
 {
-    insert_ROOMKIND(
-        objects: [
+    insert_ROOMKIND
+    (
+        objects:
+        [
             {
                 name: $name
                 price: $price
                 capacity: $capacity
-
+                number_of_beds: $numOfBed
+                area: $area
+                surcharge_percentage: $surchargePercentage
             }
         ]
     )
+    {
+        returning{
+            id
+            name
+            capacity
+            number_of_beds
+            area
+            surcharge_percentage
+            created_at
+            updated_at
+        }
+    }
 }
