@@ -26,19 +26,19 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         if (observable.getName().equals("")) {
             observable.setName(null);
         }
-        if (observable.getPrice().toString().equals("")) {
+        if (observable.getPriceString().equals("")) {
             observable.setPrice(null);
         }
-        if (observable.getCapacity().toString().equals("")){
+        if (observable.getCapacityString().equals("")) {
             observable.setCapacity(null);
         }
-        if (observable.getNumOfBed().toString().equals("")){
+        if (observable.getNumOfBedString().equals("")) {
             observable.setNumOfBed(null);
         }
-        if (observable.getArea().toString().equals("")) {
+        if (observable.getAreaString().equals("")) {
             observable.setArea(null);
         }
-        if (observable.getSurchargePercentage().toString().equals("")) {
+        if (observable.getSurchargePercentageString().equals("")) {
             observable.setSurchargePercentage(null);
         }
         insert(observable);
@@ -60,7 +60,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                     public void onResponse(@NonNull Response<RoomKind_InsertMutation.Data> response) {
                         List<RoomKindObservable> temp = modelState.getValue();
                         temp.add(observable);
-                        modelState.setValue(temp);
+                        modelState.postValue(temp);
                         System.out.println(response.getData().insert_ROOMKIND());
                     }
 

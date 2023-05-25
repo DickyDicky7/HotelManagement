@@ -12,9 +12,11 @@ public class ExtendedObservable extends BaseObservable {
     protected Integer id;
     protected Timestamp createdAt;
     protected Timestamp updatedAt;
-    public ExtendedObservable(){
+
+    public ExtendedObservable() {
 
     }
+
     public ExtendedObservable(Integer id,
                               Timestamp createdAt,
                               Timestamp updatedAt) {

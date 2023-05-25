@@ -10,20 +10,22 @@ import java.sql.Timestamp;
 public class RoomKindObservable extends ExtendedObservable {
 
     protected String name;
+    protected Double area;
     protected BigDecimal price;
     protected Integer capacity;
-    protected Double surchargePercentage;
     protected Integer numOfBed;
-    protected Double area;
-    public RoomKindObservable(){
+    protected Double surchargePercentage;
+
+    public RoomKindObservable() {
         super();
     }
+
     public RoomKindObservable(Integer id,
                               String name,
+                              Double area,
                               BigDecimal price,
                               Integer capacity,
                               Integer numOfBed,
-                              Double area,
                               Timestamp createdAt,
                               Timestamp updatedAt,
                               Double surchargePercentage) {
@@ -31,12 +33,13 @@ public class RoomKindObservable extends ExtendedObservable {
         super(id, createdAt, updatedAt);
 
         this.name = name;
+        this.area = area;
         this.price = price;
         this.capacity = capacity;
-        this.numOfBed=numOfBed;
-        this.area=area;
+        this.numOfBed = numOfBed;
         this.surchargePercentage = surchargePercentage;
     }
+
     //name
     @Bindable
     public String getName() {
@@ -47,6 +50,7 @@ public class RoomKindObservable extends ExtendedObservable {
         this.name = name;
         notifyPropertyChanged(BR.name);
     }
+
     //price
     @Bindable
     public BigDecimal getPrice() {
@@ -57,13 +61,25 @@ public class RoomKindObservable extends ExtendedObservable {
         this.price = price;
         notifyPropertyChanged(BR.priceString);
     }
+
     @Bindable
-    public String getPriceString(){
-        return price.toString();
+    public String getPriceString() {
+        try {
+            return price.toString();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
-    public void setPriceString(String priceString){
-        this.setPrice(new BigDecimal(priceString));
+
+    public void setPriceString(String priceString) {
+        try {
+            setPrice(new BigDecimal(priceString));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+
     //capacity
     @Bindable
     public Integer getCapacity() {
@@ -74,45 +90,83 @@ public class RoomKindObservable extends ExtendedObservable {
         this.capacity = capacity;
         notifyPropertyChanged(BR.capacityString);
     }
+
     @Bindable
-    public String getCapacityString(){
-        return capacity.toString();
+    public String getCapacityString() {
+        try {
+            return capacity.toString();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
-    public void setCapacityString(String capacityString){
-        this.setCapacity(Integer.valueOf(capacityString));
+
+    public void setCapacityString(String capacityString) {
+        try {
+            setCapacity(Integer.valueOf(capacityString));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+
     //number of bed
     @Bindable
-    public Integer getNumOfBed(){
+    public Integer getNumOfBed() {
         return this.numOfBed;
     }
-    public void setNumOfBed(Integer numOfBed){
-        this.numOfBed=numOfBed;
+
+    public void setNumOfBed(Integer numOfBed) {
+        this.numOfBed = numOfBed;
         notifyPropertyChanged(BR.numOfBedString);
     }
+
     @Bindable
-    public String getNumOfBedString(){
-        return this.numOfBed.toString();
+    public String getNumOfBedString() {
+        try {
+            return numOfBed.toString();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
-    public void setNumOfBedString(String numOfBedString){
-        this.setNumOfBed(Integer.valueOf(numOfBedString));
+
+    public void setNumOfBedString(String numOfBedString) {
+        try {
+            setNumOfBed(Integer.valueOf(numOfBedString));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+
     //area
     @Bindable
-    public Double getArea(){
+    public Double getArea() {
         return this.area;
     }
-    public void setArea(Double area){
-        this.area=area;
+
+    public void setArea(Double area) {
+        this.area = area;
         notifyPropertyChanged(BR.areaString);
     }
+
     @Bindable
-    public String getAreaString(){
-        return this.area.toString();
+    public String getAreaString() {
+        try {
+            return area.toString();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
-    public void setAreaString(String areaString){
-        setArea(Double.valueOf(areaString));
+
+    public void setAreaString(String areaString) {
+        try {
+            setArea(Double.valueOf(areaString));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+
     @Bindable
     public Double getSurchargePercentage() {
         return surchargePercentage;
@@ -122,11 +176,23 @@ public class RoomKindObservable extends ExtendedObservable {
         this.surchargePercentage = surchargePercentage;
         notifyPropertyChanged(BR.surchargePercentageString);
     }
+
     @Bindable
-    public String getSurchargePercentageString(){
-        return this.surchargePercentage.toString();
+    public String getSurchargePercentageString() {
+        try {
+            return surchargePercentage.toString();
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
     }
-    public void setSurchargePercentageString(String surchargePercentageString){
-        this.setSurchargePercentage(Double.valueOf(surchargePercentageString));
+
+    public void setSurchargePercentageString(String surchargePercentageString) {
+        try {
+            setSurchargePercentage(Double.valueOf(surchargePercentageString));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
+
 }
