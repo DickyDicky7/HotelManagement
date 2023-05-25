@@ -41,7 +41,7 @@
                 android:gravity="start" android:orientation="horizontal">
                 <ImageButton
                     android:layout_width="@dimen/_40pxh"
-                    android:id="@+id/btnArrowleft"
+                    android:id="@+id/btn_back"
                     android:layout_height="@dimen/_40pxh"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_4pxv"
