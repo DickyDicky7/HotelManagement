@@ -62,7 +62,6 @@ public class ActivityMain extends AppCompatActivity {
                     .price(400)
                     .capacity(5)
                     .surcharge_percentage(0.5)
-                    .surcharge_start_ordinal(5)
                     .build();
 
             Hasura.apolloClient.mutate(roomkindInsertMutation)

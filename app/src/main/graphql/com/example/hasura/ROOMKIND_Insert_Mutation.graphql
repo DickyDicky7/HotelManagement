@@ -4,7 +4,6 @@ mutation ROOMKIND_Insert_Mutation
     $price: money,
     $capacity: smallint,
     $surcharge_percentage: Float,
-    $surcharge_start_ordinal: smallint,
 )
 {
     insert_ROOMKIND
@@ -15,7 +14,6 @@ mutation ROOMKIND_Insert_Mutation
             price: $price,
             capacity: $capacity,
             surcharge_percentage: $surcharge_percentage,
-            surcharge_start_ordinal: $surcharge_start_ordinal,
         }
     ]
     )
@@ -27,7 +25,6 @@ mutation ROOMKIND_Insert_Mutation
             price
             capacity
             surcharge_percentage
-            surcharge_start_ordinal
             created_at
             updated_at
         }

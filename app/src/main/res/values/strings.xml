@@ -220,4 +220,5 @@
     <string name="rb_resolved">Resolved</string>
     <string name="rb_not_resolved">Not resolved</string>
     <string name="lbl_guest">Guest</string>
+    <string name="com_auth0_domain">dev-4dwcl4mq2h7sdwvj.au.auth0.com</string>
 </resources>

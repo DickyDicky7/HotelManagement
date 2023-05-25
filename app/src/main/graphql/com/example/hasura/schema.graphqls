@@ -2,14 +2,14 @@
 columns and relationships of "BILL"
 """
 type BILL {
-  """
-  An object relationship
-  """
-  GUEST: GUEST
-  """
-  An array relationship
-  """
-  RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+    """
+    An object relationship
+    """
+    GUEST: GUEST
+    """
+    An array relationship
+    """
+    RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
     """
     An aggregate relationship
     """
@@ -274,10 +274,10 @@ input BILL_pk_columns_input {
 select columns of table "BILL"
 """
 enum BILL_select_column {
-  """
-  column name
-  """
-  cost
+    """
+    column name
+    """
+    cost
     """
     column name
     """
@@ -434,10 +434,10 @@ input BILL_sum_order_by {
 update columns of table "BILL"
 """
 enum BILL_update_column {
-  """
-  column name
-  """
-  cost
+    """
+    column name
+    """
+    cost
     """
     column name
     """
@@ -2112,10 +2112,10 @@ input RENTALFORM_variance_order_by {
 columns and relationships of "ROOM"
 """
 type ROOM {
-  """
-  An array relationship
-  """
-  RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+    """
+    An array relationship
+    """
+    RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
     """
     An aggregate relationship
     """
