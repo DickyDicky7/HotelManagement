@@ -12,12 +12,14 @@ public class GuestObservable extends ExtendedObservable {
     protected String address;
     protected String idNumber;
     protected Integer guestKindId;
+    protected String phoneNumber;
 
     public GuestObservable(Integer id,
                            String name,
                            String address,
                            String idNumber,
                            Integer guestKindId,
+                           String phoneNumber,
                            Timestamp createdAt,
                            Timestamp updatedAt) {
 
@@ -27,7 +29,7 @@ public class GuestObservable extends ExtendedObservable {
         this.address = address;
         this.idNumber = idNumber;
         this.guestKindId = guestKindId;
-
+        this.phoneNumber = phoneNumber;
     }
 
     @Bindable
@@ -67,7 +69,31 @@ public class GuestObservable extends ExtendedObservable {
 
     public void setGuestKindId(Integer guestKindId) {
         this.guestKindId = guestKindId;
-        notifyPropertyChanged(BR.guestKindId);
+        notifyPropertyChanged(BR.guestKindIdString);
     }
-
+    @Bindable
+    public String getGuestKindIdString(){
+        try{
+            return this.guestKindId.toString();
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return "";
+        }
+    }
+    public void setGuestKindIdString(String guestKindIdString){
+        try{
+            setGuestKindId(Integer.valueOf(guestKindIdString));
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    @Bindable
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber=phoneNumber;
+    }
 }

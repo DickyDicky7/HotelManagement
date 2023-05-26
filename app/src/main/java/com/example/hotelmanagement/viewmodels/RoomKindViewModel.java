@@ -12,12 +12,6 @@ import com.example.hotelmanagement.observables.RoomKindObservable;
 import java.util.List;
 
 public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
-    //List<BillObservable> billObservables = modelState.getValue();
-    //billObservables.add(/* bill observable ỡ dây */);
-    // Nếu ko dùng thread
-    //modelState.setValue(billObservables);
-    // Nếu dùng thread
-    //modelState.postValue(billObservables);
     public RoomKindViewModel() {
         super();
     }
