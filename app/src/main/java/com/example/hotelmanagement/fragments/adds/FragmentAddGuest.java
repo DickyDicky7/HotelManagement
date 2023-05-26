@@ -10,6 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.databinding.FragmentAddGuestBinding;
+import com.example.hotelmanagement.observables.GuestKindObservable;
+import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
+import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
+
+import java.util.List;
 
 public class FragmentAddGuest extends Fragment {
 
@@ -25,6 +30,9 @@ public class FragmentAddGuest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        GuestKindViewModel guestKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), GuestKindViewModel.class);
+        List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
+        System.out.println("Number of guest kind observables: " + guestKindObservables.size());
     }
 
     @Override

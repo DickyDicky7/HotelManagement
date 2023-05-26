@@ -10,6 +10,10 @@ public class GuestKindObservable extends ExtendedObservable {
 
     protected String name;
 
+    public GuestKindObservable() {
+        super();
+    }
+
     public GuestKindObservable(Integer id,
                                String name,
                                Timestamp createdAt,

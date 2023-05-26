@@ -8,4 +8,10 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
         super();
     }
 
+    @Override
+    public void loadData() {
+        // Call Hasura to query all the data
+        dataLoaded = true;
+    }
+
 }

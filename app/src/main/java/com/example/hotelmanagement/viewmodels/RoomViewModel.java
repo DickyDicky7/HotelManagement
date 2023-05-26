@@ -8,4 +8,10 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
         super();
     }
 
+    @Override
+    public void loadData() {
+        // Call Hasura to query all the data
+        dataLoaded = true;
+    }
+
 }

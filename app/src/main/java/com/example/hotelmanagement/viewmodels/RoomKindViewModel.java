@@ -12,6 +12,7 @@ import com.example.hotelmanagement.observables.RoomKindObservable;
 import java.util.List;
 
 public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
+
     public RoomKindViewModel() {
         super();
     }
@@ -64,4 +65,11 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                     }
                 });
     }
+
+    @Override
+    public void loadData() {
+        // Call Hasura to query all the data
+        dataLoaded = true;
+    }
+
 }

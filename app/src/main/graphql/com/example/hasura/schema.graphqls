@@ -2125,6 +2125,7 @@ type ROOM {
     """
     ROOMKIND: ROOMKIND
     created_at: timestamp!
+    description: String
     id: Int!
     is_occupied: Boolean!
     name: String
@@ -2672,6 +2673,7 @@ input ROOM_bool_exp {
     _not: ROOM_bool_exp
     _or: [ROOM_bool_exp!]
     created_at: timestamp_comparison_exp
+    description: String_comparison_exp
     id: Int_comparison_exp
     is_occupied: Boolean_comparison_exp
     name: String_comparison_exp
@@ -2705,6 +2707,7 @@ input ROOM_insert_input {
     RENTALFORMs: RENTALFORM_arr_rel_insert_input
     ROOMKIND: ROOMKIND_obj_rel_insert_input
     created_at: timestamp
+    description: String
     id: Int
     is_occupied: Boolean
     name: String
@@ -2717,48 +2720,52 @@ input ROOM_insert_input {
 aggregate max on columns
 """
 type ROOM_max_fields {
-  created_at: timestamp
-  id: Int
-  name: String
-  note: String
-  roomkind_id: Int
-  updated_at: timestamp
+    created_at: timestamp
+    description: String
+    id: Int
+    name: String
+    note: String
+    roomkind_id: Int
+    updated_at: timestamp
 }
 
 """
 order by max() on columns of table "ROOM"
 """
 input ROOM_max_order_by {
-  created_at: order_by
-  id: order_by
-  name: order_by
-  note: order_by
-  roomkind_id: order_by
-  updated_at: order_by
+    created_at: order_by
+    description: order_by
+    id: order_by
+    name: order_by
+    note: order_by
+    roomkind_id: order_by
+    updated_at: order_by
 }
 
 """
 aggregate min on columns
 """
 type ROOM_min_fields {
-  created_at: timestamp
-  id: Int
-  name: String
-  note: String
-  roomkind_id: Int
-  updated_at: timestamp
+    created_at: timestamp
+    description: String
+    id: Int
+    name: String
+    note: String
+    roomkind_id: Int
+    updated_at: timestamp
 }
 
 """
 order by min() on columns of table "ROOM"
 """
 input ROOM_min_order_by {
-  created_at: order_by
-  id: order_by
-  name: order_by
-  note: order_by
-  roomkind_id: order_by
-  updated_at: order_by
+    created_at: order_by
+    description: order_by
+    id: order_by
+    name: order_by
+    note: order_by
+    roomkind_id: order_by
+    updated_at: order_by
 }
 
 """
@@ -2802,6 +2809,7 @@ input ROOM_order_by {
     RENTALFORMs_aggregate: RENTALFORM_aggregate_order_by
     ROOMKIND: ROOMKIND_order_by
     created_at: order_by
+    description: order_by
     id: order_by
     is_occupied: order_by
     name: order_by
@@ -2825,6 +2833,10 @@ enum ROOM_select_column {
     column name
     """
     created_at
+    """
+    column name
+    """
+    description
     """
     column name
     """
@@ -2876,6 +2888,7 @@ input type for updating data in table "ROOM"
 """
 input ROOM_set_input {
     created_at: timestamp
+    description: String
     id: Int
     is_occupied: Boolean
     name: String
@@ -2951,6 +2964,7 @@ Initial value of the column from where the streaming should start
 """
 input ROOM_stream_cursor_value_input {
     created_at: timestamp
+    description: String
     id: Int
     is_occupied: Boolean
     name: String
@@ -2983,6 +2997,10 @@ enum ROOM_update_column {
     column name
     """
     created_at
+    """
+    column name
+    """
+    description
     """
     column name
     """

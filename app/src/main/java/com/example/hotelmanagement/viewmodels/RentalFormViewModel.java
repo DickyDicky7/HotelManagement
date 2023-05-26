@@ -8,4 +8,10 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
         super();
     }
 
+    @Override
+    public void loadData() {
+        // Call Hasura to query all the data
+        dataLoaded = true;
+    }
+
 }
