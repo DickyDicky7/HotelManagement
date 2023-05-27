@@ -99,7 +99,7 @@ public class Hasura {
                     .addHeader
                             (
                                     "Authorization",
-                                    authorizationToken
+                                    "Bearer" + " " + authorizationToken
                             )
                     .build();
 
