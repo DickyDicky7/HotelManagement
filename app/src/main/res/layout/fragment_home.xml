@@ -333,14 +333,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/imageHotelimage"
+                            android:id="@+id/hotelImageView"
 
                             android:layout_width="@dimen/_208pxh"
                             android:layout_height="@dimen/_348pxh"
 
                             android:scaleType="fitXY"
                             tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_hotelimage_348x208" />
+                            tools:src="@drawable/img_hotelimage_2" />
 
                         <ImageView
                             android:id="@+id/imageHotelimageOne"

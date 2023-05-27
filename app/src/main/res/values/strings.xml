@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">dickydicky7_s_application3</string>
+    <string name="app_name">Paradise Palms - Hotel Management</string>
     <string name="loading">Loading…</string>
     <string name="no_internet_connection">No internet connection!</string>
     <string name="lbl_customer_list">Customer list</string>
@@ -220,6 +220,7 @@
     <string name="rb_resolved">Resolved</string>
     <string name="rb_not_resolved">Not resolved</string>
     <string name="lbl_guest">Guest</string>
+    <string name="com_auth0_scheme">paradisepalms</string>
     <string name="com_auth0_domain">dev-4dwcl4mq2h7sdwvj.au.auth0.com</string>
-    <string name="com_auth0_client_id">DnppavHV27yOQdgybjJGubw7WjzIwKuP</string>
+    <string name="com_auth0_client_id">Zs62ajeF0J182xoKCiJ0wPEAEZ09b8K1</string>
 </resources>

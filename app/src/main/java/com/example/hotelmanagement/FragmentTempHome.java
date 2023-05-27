@@ -10,12 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.callback.Callback;
-import com.auth0.android.provider.WebAuthProvider;
-import com.auth0.android.result.Credentials;
+import com.example.hasura.Hasura;
 import com.example.hotelmanagement.databinding.FragmentTempHomeBinding;
+
+import java.util.function.Consumer;
 
 public class FragmentTempHome extends Fragment {
 
@@ -32,19 +30,12 @@ public class FragmentTempHome extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button6.setOnClickListener(_view_ -> {
-            Auth0 account = new Auth0(getString(R.string.com_auth0_client_id), getString(R.string.com_auth0_domain));
-            WebAuthProvider.login(account).start(requireContext(), new Callback<Credentials, AuthenticationException>() {
-                @Override
-                public void onSuccess(Credentials credentials) {
-                    System.out.println(credentials.getUser().getEmail());
-                }
+//        if (Hasura.loginSuccessfully) System.out.println("LOGIN SUCCESSFULLY");
 
-                @Override
-                public void onFailure(@NonNull AuthenticationException e) {
-                    System.out.println(e);
-                }
-            });
+        binding.button7.setOnClickListener(_view_ -> {
+            Consumer<Void> onSuccessCallback = unused -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentTempHome_to_fragmentLogin);
+            Consumer<Void> onFailureCallback = null;
+            Hasura.logout(requireContext(), onSuccessCallback, onFailureCallback);
         });
 
         binding.button.setOnClickListener(_view -> {
