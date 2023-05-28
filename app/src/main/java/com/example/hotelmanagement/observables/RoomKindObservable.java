@@ -4,14 +4,13 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class RoomKindObservable extends ExtendedObservable {
 
     protected String name;
     protected Double area;
-    protected BigDecimal price;
+    protected Double price;
     protected Integer capacity;
     protected Integer numOfBed;
     protected Double surchargePercentage;
@@ -23,7 +22,7 @@ public class RoomKindObservable extends ExtendedObservable {
     public RoomKindObservable(Integer id,
                               String name,
                               Double area,
-                              BigDecimal price,
+                              Double price,
                               Integer capacity,
                               Integer numOfBed,
                               Timestamp createdAt,
@@ -53,11 +52,11 @@ public class RoomKindObservable extends ExtendedObservable {
 
     //price
     @Bindable
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
         notifyPropertyChanged(BR.priceString);
     }
@@ -67,16 +66,16 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return price.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
 
     public void setPriceString(String priceString) {
         try {
-            setPrice(new BigDecimal(priceString));
+            setPrice(Double.valueOf(priceString));
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -96,7 +95,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return capacity.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
@@ -105,7 +104,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             setCapacity(Integer.valueOf(capacityString));
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -125,7 +124,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return numOfBed.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
@@ -134,7 +133,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             setNumOfBed(Integer.valueOf(numOfBedString));
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -154,7 +153,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return area.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
@@ -163,7 +162,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             setArea(Double.valueOf(areaString));
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -182,7 +181,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return surchargePercentage.toString();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
@@ -191,7 +190,7 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             setSurchargePercentage(Double.valueOf(surchargePercentageString));
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

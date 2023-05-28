@@ -6,20 +6,20 @@ type BILL {
   An object relationship
   """
   GUEST: GUEST
-  """
-  An array relationship
-  """
-  RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
-  """
-  An aggregate relationship
-  """
-  RENTALFORMs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
-  cost: money
-  created_at: timestamp!
-  guest_id: Int
-  id: Int!
-  is_paid: Boolean!
-  updated_at: timestamp
+    """
+    An array relationship
+    """
+    RENTALFORMs("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+    """
+    An aggregate relationship
+    """
+    RENTALFORMs_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+    cost: Float
+    created_at: timestamp!
+    guest_id: Int
+    id: Int!
+    is_paid: Boolean!
+    updated_at: timestamp
 }
 
 """
@@ -124,18 +124,18 @@ input BILL_avg_order_by {
 Boolean expression to filter rows from the table "BILL". All fields are combined with a logical 'AND'.
 """
 input BILL_bool_exp {
-  GUEST: GUEST_bool_exp
-  RENTALFORMs: RENTALFORM_bool_exp
-  RENTALFORMs_aggregate: RENTALFORM_aggregate_bool_exp
-  _and: [BILL_bool_exp!]
-  _not: BILL_bool_exp
-  _or: [BILL_bool_exp!]
-  cost: money_comparison_exp
-  created_at: timestamp_comparison_exp
-  guest_id: Int_comparison_exp
-  id: Int_comparison_exp
-  is_paid: Boolean_comparison_exp
-  updated_at: timestamp_comparison_exp
+    GUEST: GUEST_bool_exp
+    RENTALFORMs: RENTALFORM_bool_exp
+    RENTALFORMs_aggregate: RENTALFORM_aggregate_bool_exp
+    _and: [BILL_bool_exp!]
+    _not: BILL_bool_exp
+    _or: [BILL_bool_exp!]
+    cost: Float_comparison_exp
+    created_at: timestamp_comparison_exp
+    guest_id: Int_comparison_exp
+    id: Int_comparison_exp
+    is_paid: Boolean_comparison_exp
+    updated_at: timestamp_comparison_exp
 }
 
 """
@@ -152,34 +152,34 @@ enum BILL_constraint {
 input type for incrementing numeric columns in table "BILL"
 """
 input BILL_inc_input {
-  cost: money
-  guest_id: Int
-  id: Int
+    cost: Float
+    guest_id: Int
+    id: Int
 }
 
 """
 input type for inserting data into table "BILL"
 """
 input BILL_insert_input {
-  GUEST: GUEST_obj_rel_insert_input
-  RENTALFORMs: RENTALFORM_arr_rel_insert_input
-  cost: money
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_paid: Boolean
-  updated_at: timestamp
+    GUEST: GUEST_obj_rel_insert_input
+    RENTALFORMs: RENTALFORM_arr_rel_insert_input
+    cost: Float
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_paid: Boolean
+    updated_at: timestamp
 }
 
 """
 aggregate max on columns
 """
 type BILL_max_fields {
-  cost: money
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  updated_at: timestamp
+    cost: Float
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    updated_at: timestamp
 }
 
 """
@@ -197,11 +197,11 @@ input BILL_max_order_by {
 aggregate min on columns
 """
 type BILL_min_fields {
-  cost: money
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  updated_at: timestamp
+    cost: Float
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    updated_at: timestamp
 }
 
 """
@@ -324,12 +324,12 @@ enum BILL_select_column_BILL_aggregate_bool_exp_bool_or_arguments_columns {
 input type for updating data in table "BILL"
 """
 input BILL_set_input {
-  cost: money
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_paid: Boolean
-  updated_at: timestamp
+    cost: Float
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_paid: Boolean
+    updated_at: timestamp
 }
 
 """
@@ -404,21 +404,21 @@ input BILL_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input BILL_stream_cursor_value_input {
-  cost: money
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_paid: Boolean
-  updated_at: timestamp
+    cost: Float
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_paid: Boolean
+    updated_at: timestamp
 }
 
 """
 aggregate sum on columns
 """
 type BILL_sum_fields {
-  cost: money
-  guest_id: Int
-  id: Int
+    cost: Float
+    guest_id: Int
+    id: Int
 }
 
 """
@@ -1415,30 +1415,30 @@ input Int_comparison_exp {
 columns and relationships of "RENTALFORM"
 """
 type RENTALFORM {
-  """
-  An object relationship
-  """
-  BILL: BILL
-  """
-  An object relationship
-  """
-  GUEST: GUEST
-  """
-  An object relationship
-  """
-  ROOM: ROOM
-  amount: money
-  bill_id: Int
-  created_at: timestamp!
-  guest_id: Int
-  id: Int!
-  is_resolved: Boolean!
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    """
+    An object relationship
+    """
+    BILL: BILL
+    """
+    An object relationship
+    """
+    GUEST: GUEST
+    """
+    An object relationship
+    """
+    ROOM: ROOM
+    amount: Float
+    bill_id: Int
+    created_at: timestamp!
+    guest_id: Int
+    id: Int!
+    is_resolved: Boolean!
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
@@ -1553,24 +1553,24 @@ input RENTALFORM_avg_order_by {
 Boolean expression to filter rows from the table "RENTALFORM". All fields are combined with a logical 'AND'.
 """
 input RENTALFORM_bool_exp {
-  BILL: BILL_bool_exp
-  GUEST: GUEST_bool_exp
-  ROOM: ROOM_bool_exp
-  _and: [RENTALFORM_bool_exp!]
-  _not: RENTALFORM_bool_exp
-  _or: [RENTALFORM_bool_exp!]
-  amount: money_comparison_exp
-  bill_id: Int_comparison_exp
-  created_at: timestamp_comparison_exp
-  guest_id: Int_comparison_exp
-  id: Int_comparison_exp
-  is_resolved: Boolean_comparison_exp
-  number_of_guests: smallint_comparison_exp
-  price_per_day: money_comparison_exp
-  rental_days: smallint_comparison_exp
-  room_id: Int_comparison_exp
-  start_date: date_comparison_exp
-  updated_at: timestamp_comparison_exp
+    BILL: BILL_bool_exp
+    GUEST: GUEST_bool_exp
+    ROOM: ROOM_bool_exp
+    _and: [RENTALFORM_bool_exp!]
+    _not: RENTALFORM_bool_exp
+    _or: [RENTALFORM_bool_exp!]
+    amount: Float_comparison_exp
+    bill_id: Int_comparison_exp
+    created_at: timestamp_comparison_exp
+    guest_id: Int_comparison_exp
+    id: Int_comparison_exp
+    is_resolved: Boolean_comparison_exp
+    number_of_guests: Int_comparison_exp
+    price_per_day: Float_comparison_exp
+    rental_days: Int_comparison_exp
+    room_id: Int_comparison_exp
+    start_date: date_comparison_exp
+    updated_at: timestamp_comparison_exp
 }
 
 """
@@ -1587,52 +1587,52 @@ enum RENTALFORM_constraint {
 input type for incrementing numeric columns in table "RENTALFORM"
 """
 input RENTALFORM_inc_input {
-  amount: money
-  bill_id: Int
-  guest_id: Int
-  id: Int
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
+    amount: Float
+    bill_id: Int
+    guest_id: Int
+    id: Int
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
 }
 
 """
 input type for inserting data into table "RENTALFORM"
 """
 input RENTALFORM_insert_input {
-  BILL: BILL_obj_rel_insert_input
-  GUEST: GUEST_obj_rel_insert_input
-  ROOM: ROOM_obj_rel_insert_input
-  amount: money
-  bill_id: Int
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_resolved: Boolean
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    BILL: BILL_obj_rel_insert_input
+    GUEST: GUEST_obj_rel_insert_input
+    ROOM: ROOM_obj_rel_insert_input
+    amount: Float
+    bill_id: Int
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_resolved: Boolean
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
 aggregate max on columns
 """
 type RENTALFORM_max_fields {
-  amount: money
-  bill_id: Int
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    amount: Float
+    bill_id: Int
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
@@ -1656,17 +1656,17 @@ input RENTALFORM_max_order_by {
 aggregate min on columns
 """
 type RENTALFORM_min_fields {
-  amount: money
-  bill_id: Int
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    amount: Float
+    bill_id: Int
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
@@ -1815,18 +1815,18 @@ enum RENTALFORM_select_column_RENTALFORM_aggregate_bool_exp_bool_or_arguments_co
 input type for updating data in table "RENTALFORM"
 """
 input RENTALFORM_set_input {
-  amount: money
-  bill_id: Int
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_resolved: Boolean
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    amount: Float
+    bill_id: Int
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_resolved: Boolean
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
@@ -1931,32 +1931,32 @@ input RENTALFORM_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input RENTALFORM_stream_cursor_value_input {
-  amount: money
-  bill_id: Int
-  created_at: timestamp
-  guest_id: Int
-  id: Int
-  is_resolved: Boolean
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
-  start_date: date
-  updated_at: timestamp
+    amount: Float
+    bill_id: Int
+    created_at: timestamp
+    guest_id: Int
+    id: Int
+    is_resolved: Boolean
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
+    start_date: date
+    updated_at: timestamp
 }
 
 """
 aggregate sum on columns
 """
 type RENTALFORM_sum_fields {
-  amount: money
-  bill_id: Int
-  guest_id: Int
-  id: Int
-  number_of_guests: smallint
-  price_per_day: money
-  rental_days: smallint
-  room_id: Int
+    amount: Float
+    bill_id: Int
+    guest_id: Int
+    id: Int
+    number_of_guests: Int
+    price_per_day: Float
+    rental_days: Int
+    room_id: Int
 }
 
 """
@@ -2156,23 +2156,23 @@ type ROOM {
 columns and relationships of "ROOMKIND"
 """
 type ROOMKIND {
-  """
-  An array relationship
-  """
-  ROOMs("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
-  """
-  An aggregate relationship
-  """
-  ROOMs_aggregate("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): ROOM_aggregate!
-  area: Float
-  capacity: smallint
-  created_at: timestamp!
-  id: Int!
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    """
+    An array relationship
+    """
+    ROOMs("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+    """
+    An aggregate relationship
+    """
+    ROOMs_aggregate("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): ROOM_aggregate!
+    area: Float
+    capacity: Int
+    created_at: timestamp!
+    id: Int!
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
@@ -2216,20 +2216,20 @@ type ROOMKIND_avg_fields {
 Boolean expression to filter rows from the table "ROOMKIND". All fields are combined with a logical 'AND'.
 """
 input ROOMKIND_bool_exp {
-  ROOMs: ROOM_bool_exp
-  ROOMs_aggregate: ROOM_aggregate_bool_exp
-  _and: [ROOMKIND_bool_exp!]
-  _not: ROOMKIND_bool_exp
-  _or: [ROOMKIND_bool_exp!]
-  area: Float_comparison_exp
-  capacity: smallint_comparison_exp
-  created_at: timestamp_comparison_exp
-  id: Int_comparison_exp
-  name: String_comparison_exp
-  number_of_beds: smallint_comparison_exp
-  price: money_comparison_exp
-  surcharge_percentage: Float_comparison_exp
-  updated_at: timestamp_comparison_exp
+    ROOMs: ROOM_bool_exp
+    ROOMs_aggregate: ROOM_aggregate_bool_exp
+    _and: [ROOMKIND_bool_exp!]
+    _not: ROOMKIND_bool_exp
+    _or: [ROOMKIND_bool_exp!]
+    area: Float_comparison_exp
+    capacity: Int_comparison_exp
+    created_at: timestamp_comparison_exp
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    number_of_beds: Int_comparison_exp
+    price: Float_comparison_exp
+    surcharge_percentage: Float_comparison_exp
+    updated_at: timestamp_comparison_exp
 }
 
 """
@@ -2246,58 +2246,58 @@ enum ROOMKIND_constraint {
 input type for incrementing numeric columns in table "ROOMKIND"
 """
 input ROOMKIND_inc_input {
-  area: Float
-  capacity: smallint
-  id: Int
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
+    area: Float
+    capacity: Int
+    id: Int
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
 }
 
 """
 input type for inserting data into table "ROOMKIND"
 """
 input ROOMKIND_insert_input {
-  ROOMs: ROOM_arr_rel_insert_input
-  area: Float
-  capacity: smallint
-  created_at: timestamp
-  id: Int
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    ROOMs: ROOM_arr_rel_insert_input
+    area: Float
+    capacity: Int
+    created_at: timestamp
+    id: Int
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
 aggregate max on columns
 """
 type ROOMKIND_max_fields {
-  area: Float
-  capacity: smallint
-  created_at: timestamp
-  id: Int
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    area: Float
+    capacity: Int
+    created_at: timestamp
+    id: Int
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
 aggregate min on columns
 """
 type ROOMKIND_min_fields {
-  area: Float
-  capacity: smallint
-  created_at: timestamp
-  id: Int
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    area: Float
+    capacity: Int
+    created_at: timestamp
+    id: Int
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
@@ -2403,15 +2403,15 @@ enum ROOMKIND_select_column {
 input type for updating data in table "ROOMKIND"
 """
 input ROOMKIND_set_input {
-  area: Float
-  capacity: smallint
-  created_at: timestamp
-  id: Int
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    area: Float
+    capacity: Int
+    created_at: timestamp
+    id: Int
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
@@ -2468,27 +2468,27 @@ input ROOMKIND_stream_cursor_input {
 Initial value of the column from where the streaming should start
 """
 input ROOMKIND_stream_cursor_value_input {
-  area: Float
-  capacity: smallint
-  created_at: timestamp
-  id: Int
-  name: String
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
-  updated_at: timestamp
+    area: Float
+    capacity: Int
+    created_at: timestamp
+    id: Int
+    name: String
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
+    updated_at: timestamp
 }
 
 """
 aggregate sum on columns
 """
 type ROOMKIND_sum_fields {
-  area: Float
-  capacity: smallint
-  id: Int
-  number_of_beds: smallint
-  price: money
-  surcharge_percentage: Float
+    area: Float
+    capacity: Int
+    id: Int
+    number_of_beds: Int
+    price: Float
+    surcharge_percentage: Float
 }
 
 """
@@ -3487,23 +3487,6 @@ input date_comparison_exp {
   _nin: [date!]
 }
 
-scalar money
-
-"""
-Boolean expression to compare columns of type "money". All fields are combined with logical 'AND'.
-"""
-input money_comparison_exp {
-  _eq: money
-  _gt: money
-  _gte: money
-  _in: [money!]
-  _is_null: Boolean
-  _lt: money
-  _lte: money
-  _neq: money
-  _nin: [money!]
-}
-
 """
 mutation root
 """
@@ -3821,23 +3804,6 @@ type query_root {
   fetch data from the table: "UNIQUE" using primary key columns
   """
   UNIQUE_by_pk(id: Int!): UNIQUE
-}
-
-scalar smallint
-
-"""
-Boolean expression to compare columns of type "smallint". All fields are combined with logical 'AND'.
-"""
-input smallint_comparison_exp {
-  _eq: smallint
-  _gt: smallint
-  _gte: smallint
-  _in: [smallint!]
-  _is_null: Boolean
-  _lt: smallint
-  _lte: smallint
-  _neq: smallint
-  _nin: [smallint!]
 }
 
 type subscription_root {

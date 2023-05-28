@@ -4,7 +4,6 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -12,21 +11,21 @@ public class RentalFormObservable extends ExtendedObservable {
 
     protected Integer roomId;
     protected Integer billId;
-    protected BigDecimal amount;
+    protected Double amount;
     protected Integer rentalDays;
     protected Boolean isResolved;
-    protected BigDecimal pricePerDay;
+    protected Double pricePerDay;
     protected LocalDateTime startDate;
 
     public RentalFormObservable(Integer id,
                                 Integer roomId,
                                 Integer billId,
-                                BigDecimal amount,
+                                Double amount,
                                 Integer rentalDays,
                                 Boolean isResolved,
                                 Timestamp createdAt,
                                 Timestamp updatedAt,
-                                BigDecimal pricePerDay,
+                                Double pricePerDay,
                                 LocalDateTime startDate) {
 
         super(id, createdAt, updatedAt);
@@ -62,11 +61,11 @@ public class RentalFormObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
         notifyPropertyChanged(BR.amount);
     }
@@ -92,11 +91,11 @@ public class RentalFormObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public BigDecimal getPricePerDay() {
+    public Double getPricePerDay() {
         return pricePerDay;
     }
 
-    public void setPricePerDay(BigDecimal pricePerDay) {
+    public void setPricePerDay(Double pricePerDay) {
         this.pricePerDay = pricePerDay;
         notifyPropertyChanged(BR.pricePerDay);
     }

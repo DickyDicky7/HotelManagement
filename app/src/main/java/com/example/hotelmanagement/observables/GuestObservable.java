@@ -77,7 +77,7 @@ public class GuestObservable extends ExtendedObservable {
             return this.guestKindId.toString();
         }
         catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
             return "";
         }
     }
@@ -86,7 +86,7 @@ public class GuestObservable extends ExtendedObservable {
             setGuestKindId(Integer.valueOf(guestKindIdString));
         }
         catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
     @Bindable

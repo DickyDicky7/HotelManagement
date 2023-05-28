@@ -4,19 +4,18 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class BillObservable extends ExtendedObservable {
 
     protected Boolean isPaid;
     protected Integer guestId;
-    protected BigDecimal cost;
+    protected Double cost;
 
     public BillObservable(Integer id,
                           Boolean isPaid,
                           Integer guestId,
-                          BigDecimal cost,
+                          Double cost,
                           Timestamp createdAt,
                           Timestamp updatedAt) {
 
@@ -49,11 +48,11 @@ public class BillObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public BigDecimal getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(BigDecimal cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
         notifyPropertyChanged(BR.cost);
     }
