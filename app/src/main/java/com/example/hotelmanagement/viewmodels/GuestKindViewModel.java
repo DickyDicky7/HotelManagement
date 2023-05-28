@@ -1,9 +1,16 @@
 package com.example.hotelmanagement.viewmodels;
 
+import androidx.annotation.NonNull;
+
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.example.hasura.GuestKind_AllQuery;
+import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Random;
 
 public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
 
@@ -14,12 +21,32 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        List<GuestKindObservable> guestKindObservables = modelState.getValue();
-        Random random = new Random();
-        int temp = random.nextInt(100);
-        for (int i = 1; i <= temp; i++) {
-            guestKindObservables.add(new GuestKindObservable());
-        }
+        Hasura.apolloClient.query(new GuestKind_AllQuery())
+                .enqueue(new ApolloCall.Callback<GuestKind_AllQuery.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<GuestKind_AllQuery.Data> response) {
+                        if (response.getData() != null) {
+                            List<GuestKindObservable> guestKindObservables = modelState.getValue();
+                            response.getData().GUESTKIND().forEach(item -> {
+                                GuestKindObservable temp = new GuestKindObservable(
+                                        item.id(),
+                                        item.name(),
+                                        (Timestamp) item.created_at(),
+                                        (Timestamp) item.updated_at());
+                                guestKindObservables.add(temp);
+                            });
+                            modelState.postValue(guestKindObservables);
+                        }
+                        if (response.getErrors() != null) {
+                            System.out.println(response.getErrors());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        System.out.println(e);
+                    }
+                });
         dataLoaded = true;
     }
 

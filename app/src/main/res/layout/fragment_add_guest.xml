@@ -40,15 +40,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/scollviewaddcuctomer">
-                <LinearLayout android:id="@+id/linearColumncccd"
+                <LinearLayout
+                    android:id="@+id/linearColumncccd"
                     style="@style/groupStyleindigo_901cornerRadius"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:layout_marginStart="@dimen/_12pxh"
                     android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_12pxh"
-                    android:gravity="start" android:orientation="vertical">
-                    <TextView android:id="@+id/txtCCCD" style="@style/txtIntersemibold24"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_IDnumber"
+                        style="@style/txtIntersemibold24"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -58,13 +63,13 @@
                         android:ellipsize="end"
                         android:text="@string/lbl_cccd"
                         tools:text="@string/lbl_cccd"
-                        android:textSize="27.5sp"/>
+                        android:textSize="27.5sp" />
 
                     <EditText
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_cccd"
-                        android:id="@+id/etRKName"
+                        android:id="@+id/edt_IDnumber"
                         style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"

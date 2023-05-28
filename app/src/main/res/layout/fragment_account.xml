@@ -183,13 +183,17 @@
                                 android:layout_marginTop="@dimen/_11pxv"
                                 android:layout_marginStart="@dimen/_12pxh"
                                 android:layout_marginEnd="@dimen/_12pxh" android:background="@color/gray_400"/>
-                            <LinearLayout android:id="@+id/linearRowcccd"
+                            <LinearLayout
+                                android:id="@+id/linearRowcccd"
                                 android:layout_height="wrap_content"
                                 android:layout_width="match_parent"
                                 android:layout_marginStart="@dimen/_12pxh"
                                 android:layout_marginTop="@dimen/_10pxv"
-                                android:layout_marginEnd="@dimen/_12pxh" android:orientation="horizontal">
-                                <TextView android:id="@+id/txtCCCD"
+                                android:layout_marginEnd="@dimen/_12pxh"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txt_IDnumber"
                                     style="@style/txtIntersemibold16"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="@dimen/_1pxv"
@@ -197,8 +201,11 @@
                                     android:layout_width="0dp"
                                     android:singleLine="true"
                                     android:ellipsize="end"
-                                    android:text="@string/lbl_cccd" tools:text="@string/lbl_cccd"/>
-                                <TextView android:id="@+id/txt048203008744"
+                                    android:text="@string/lbl_cccd"
+                                    tools:text="@string/lbl_cccd" />
+
+                                <TextView
+                                    android:id="@+id/txt048203008744"
                                     style="@style/txtIntersemibold16_3"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/_131pxh"

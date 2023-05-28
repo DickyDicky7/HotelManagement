@@ -11,6 +11,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
+
         dataLoaded = true;
     }
 

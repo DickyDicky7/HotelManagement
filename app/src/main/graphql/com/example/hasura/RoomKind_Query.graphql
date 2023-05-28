@@ -1,0 +1,13 @@
+query RoomKind_All{
+    ROOMKIND{
+        id
+        name
+        price
+        area
+        capacity
+        number_of_beds
+        surcharge_percentage
+        created_at
+        updated_at
+    }
+}

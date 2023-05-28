@@ -1,0 +1,11 @@
+query Guest_All{
+    GUEST {
+        name
+        address
+        id_number
+        guestkind_id
+        created_at
+        id
+        updated_at
+    }
+}

@@ -1,0 +1,33 @@
+mutation Room_Insert(
+    $name: String,
+    $note: String,
+    $description: String,
+    $roomkind_id: Int,
+    $isOccupied: Boolean,
+){
+    insert_ROOM
+    (
+        objects:
+        [
+            {
+                name:$name
+                note: $note
+                description: $description
+                roomkind_id: $roomkind_id
+                is_occupied: $isOccupied
+            }
+        ]
+    )
+    {
+        returning {
+            name
+            note
+            description
+            roomkind_id
+            is_occupied
+            id
+            created_at
+            updated_at
+        }
+    }
+}

@@ -32,7 +32,7 @@ public class FragmentAddGuest extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         GuestKindViewModel guestKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), GuestKindViewModel.class);
         List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
-        System.out.println("Number of guest kind observables: " + guestKindObservables.size());
+
     }
 
     @Override

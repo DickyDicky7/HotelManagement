@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
+import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
 public class FragmentAddRoomKind extends Fragment {
@@ -34,7 +34,7 @@ public class FragmentAddRoomKind extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+        roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
         roomKindObservable = new RoomKindObservable();
         binding.setRoomKindObservable(roomKindObservable);
         binding.btnDone.setOnClickListener(new View.OnClickListener() {

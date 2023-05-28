@@ -99,7 +99,7 @@
                         tools:text="@string/lbl_kind_of_room" />
 
                     <Spinner
-                        android:id="@+id/spinnerGroupFive"
+                        android:id="@+id/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_24pxh"
