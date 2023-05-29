@@ -66,7 +66,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 });
     }
@@ -81,6 +81,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                         if (response.getData() != null) {
                             List<RoomObservable> roomObservables = modelState.getValue();
                             response.getData().ROOM().forEach(item -> {
+                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
+                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
                                 RoomObservable temp = new RoomObservable(
                                         item.id(),
                                         item.name(),
@@ -88,8 +90,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                         item.is_occupied(),
                                         item.roomkind_id(),
                                         item.description(),
-                                        (Timestamp) item.created_at(),
-                                        (Timestamp) item.updated_at()
+                                        createdAt,
+                                        updatedAt
                                 );
                                 roomObservables.add(temp);
                             });
@@ -102,7 +104,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 });
         dataLoaded = true;

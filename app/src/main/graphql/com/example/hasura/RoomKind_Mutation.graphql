@@ -1,8 +1,8 @@
 mutation RoomKind_Insert(
     $name: String,
-    $price: money,
-    $capacity: smallint,
-    $numOfBed: smallint,
+    $price: Float,
+    $capacity: Int,
+    $numOfBed: Int,
     $area: Float,
     $surchargePercentage: Float,
 )

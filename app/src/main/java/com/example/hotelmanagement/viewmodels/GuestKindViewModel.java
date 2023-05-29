@@ -28,11 +28,13 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                         if (response.getData() != null) {
                             List<GuestKindObservable> guestKindObservables = modelState.getValue();
                             response.getData().GUESTKIND().forEach(item -> {
+                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
+                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
                                 GuestKindObservable temp = new GuestKindObservable(
                                         item.id(),
                                         item.name(),
-                                        (Timestamp) item.created_at(),
-                                        (Timestamp) item.updated_at());
+                                        createdAt,
+                                        updatedAt);
                                 guestKindObservables.add(temp);
                             });
                             modelState.postValue(guestKindObservables);
@@ -44,7 +46,7 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 });
         dataLoaded = true;

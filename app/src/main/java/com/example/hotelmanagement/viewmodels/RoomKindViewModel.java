@@ -13,7 +13,6 @@ import com.example.hasura.RoomKind_InsertMutation;
 import com.example.hotelmanagement.ActivityMain;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -78,7 +77,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 });
     }
@@ -93,57 +92,19 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         if (response.getData() != null) {
                             List<RoomKindObservable> roomKindObservableList = modelState.getValue();
                             response.getData().ROOMKIND().forEach(item -> {
-                                String name = null;
-                                Double area = null;
-                                BigDecimal Price = null;
-                                Integer capacity = null;
-                                Integer number_of_bed = null;
-                                Timestamp created_at = null;
-                                Timestamp updated_at = null;
-                                Double surcharge_percentage = null;
-                                if (item.name() != null) {
-                                    name = item.name();
-                                }
-                                if (item.area() != null) {
-                                    area = Double.valueOf(item.area());
-                                }
-                                if (item.price() != null) {
-                                    Price = new BigDecimal(item.price().toString().substring(1, item.price().toString().length() - 1));
-                                }
-                                if (item.capacity() != null) {
-                                    capacity = Integer.valueOf(item.capacity().toString());
-                                }
-                                if (item.number_of_beds() != null) {
-                                    number_of_bed = Integer.valueOf(item.number_of_beds().toString());
-                                }
-                                if (item.created_at() != null) {
-
-                                    String temp = item.created_at()
-                                            .toString()
-                                            .replaceAll("T", " ");
-                                    created_at = Timestamp.valueOf(temp);
-                                }
-                                if (item.updated_at() != null) {
-                                    String temp = item.updated_at()
-                                            .toString()
-                                            .replaceAll("T", " ");
-                                    updated_at = Timestamp.valueOf(temp);
-                                }
-                                if (item.surcharge_percentage() != null) {
-                                    surcharge_percentage = Double.valueOf(item.surcharge_percentage());
-                                }
+                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
+                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
                                 RoomKindObservable temp = new RoomKindObservable(
                                         item.id(),
-                                        name,
-                                        area,
-                                        Price,
-                                        capacity,
-                                        number_of_bed,
-                                        created_at,
-                                        updated_at,
-                                        surcharge_percentage
+                                        item.name(),
+                                        item.area(),
+                                        item.price(),
+                                        item.capacity(),
+                                        item.number_of_beds(),
+                                        createdAt,
+                                        updatedAt,
+                                        item.surcharge_percentage()
                                 );
-                                //System.out.println(created_at);
                             });
                             modelState.postValue(roomKindObservableList);
                         }
@@ -154,7 +115,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 });
         dataLoaded = true;
