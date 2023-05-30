@@ -105,6 +105,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                         updatedAt,
                                         item.surcharge_percentage()
                                 );
+                                roomKindObservableList.add(temp);
                             });
                             modelState.postValue(roomKindObservableList);
                         }
