@@ -203,7 +203,7 @@
     <string name="ubutton">UButton</string>
     <string name="lbl_cost">Cost</string>
     <string name="lbl_paid_status">Paid status</string>
-    <string name="lbl_guest_kind">Guset kind</string>
+    <string name="lbl_guest_kind">Guest kind</string>
     <string name="lbl_rental_day">Rental day</string>
     <string name="lbl_enter_rental_day">Enter rental day</string>
     <string name="lbl_price_per_day">Price per day</string>

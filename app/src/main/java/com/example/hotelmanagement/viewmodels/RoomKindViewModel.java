@@ -23,27 +23,27 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
     }
 
     public void checkObservable(RoomKindObservable observable) {
-        if (observable.getName().equals("")) {
+        if (observable.getName() == null || observable.getName().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Name is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (observable.getPriceString().equals("")) {
+        if (observable.getPriceString() == null || observable.getPriceString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Price is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (observable.getCapacityString().equals("")) {
+        if (observable.getCapacityString() == null || observable.getCapacityString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Capacity is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (observable.getNumOfBedString().equals("")) {
+        if (observable.getNumOfBedString() == null || observable.getNumOfBedString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Number of bed is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (observable.getAreaString().equals("")) {
+        if (observable.getAreaString() == null || observable.getAreaString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Area is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (observable.getSurchargePercentageString().equals("")) {
+        if (observable.getSurchargePercentageString() == null || observable.getSurchargePercentageString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Surcharge percentage is missing", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -73,6 +73,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());
                         }
+                        Toast.makeText(ActivityMain.getInstance(), "Add successfully", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

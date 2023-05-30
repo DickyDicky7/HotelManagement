@@ -23,17 +23,19 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
     }
 
     public void checkObservable(RoomObservable roomObservable) {
-        if (roomObservable.getName().equals("")) {
+        if (roomObservable.getName() == null || roomObservable.getName().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Name is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (roomObservable.getNote().equals("")) {
-            roomObservable.setNote(null);
+        if (roomObservable.getNote() != null) {
+            if (roomObservable.getNote().equals(""))
+                roomObservable.setNote(null);
         }
-        if (roomObservable.getDescription().equals("")) {
-            roomObservable.setDescription(null);
+        if (roomObservable.getDescription() != null) {
+            if (roomObservable.getDescription().equals(""))
+                roomObservable.setDescription(null);
         }
-        if (roomObservable.getRoomKindId() == null) {
+        if (roomObservable.getRoomKindId() == null || roomObservable.getRoomKindId().toString().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Kind of room is missing", Toast.LENGTH_SHORT).show();
             return;
         }

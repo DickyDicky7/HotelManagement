@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.hotelmanagement.ActivityMain;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
@@ -39,8 +40,10 @@ public class FragmentAddRoom extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         roomViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomViewModel.class);
         roomObservable = new RoomObservable();
+        binding.setRoomObservable(roomObservable);
         RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
         List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
+        //System.out.println(roomKindObservables.size());
         ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < roomKindObservables.size(); i++)
             arrayList.add(roomKindObservables.get(i).getName());
