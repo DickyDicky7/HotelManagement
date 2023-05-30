@@ -47,8 +47,10 @@ public class FragmentAddRoom extends Fragment {
         binding.spinner.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
-        roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables
-                -> arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new)));
+        roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
+            arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
+            System.out.println("it is " + updatedRoomKindObservables.size());
+        });
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
