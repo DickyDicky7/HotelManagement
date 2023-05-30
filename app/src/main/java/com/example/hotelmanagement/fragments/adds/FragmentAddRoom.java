@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hotelmanagement.ActivityMain;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
@@ -38,21 +37,23 @@ public class FragmentAddRoom extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         roomViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomViewModel.class);
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
-        RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
-        List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
-        //System.out.println(roomKindObservables.size());
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (int i = 0; i < roomKindObservables.size(); i++)
-            arrayList.add(roomKindObservables.get(i).getName());
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, arrayList);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, new ArrayList<String>());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         binding.spinner.setAdapter(arrayAdapter);
+
+        RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
+        roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables
+                -> arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new)));
+
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
                 roomObservable.setRoomKindId(roomKindObservables.get(i).getId());
             }
 
@@ -61,6 +62,7 @@ public class FragmentAddRoom extends Fragment {
 
             }
         });
+
         binding.btnDone.setOnClickListener(_view_ -> roomViewModel.checkObservable(roomObservable));
     }
 

@@ -69,25 +69,7 @@ public class GuestObservable extends ExtendedObservable {
 
     public void setGuestKindId(Integer guestKindId) {
         this.guestKindId = guestKindId;
-        notifyPropertyChanged(BR.guestKindIdString);
-    }
-    @Bindable
-    public String getGuestKindIdString(){
-        try{
-            return this.guestKindId.toString();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return "";
-        }
-    }
-    public void setGuestKindIdString(String guestKindIdString){
-        try{
-            setGuestKindId(Integer.valueOf(guestKindIdString));
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        notifyPropertyChanged(BR.guestKindId);
     }
     @Bindable
     public String getPhoneNumber(){

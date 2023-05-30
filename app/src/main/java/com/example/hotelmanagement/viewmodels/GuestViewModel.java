@@ -27,7 +27,14 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
             Toast.makeText(ActivityMain.getInstance(), "Address is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        if (guestObservable.getGuestKindId() == null || guestObservable.getGuestKindId().toString().equals("")){
+            Toast.makeText(ActivityMain.getInstance(), "Kind of guest is missing", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        insert(guestObservable);
+    }
+    public void insert (GuestObservable guestObservable){
+        
     }
     @Override
     public void loadData() {
