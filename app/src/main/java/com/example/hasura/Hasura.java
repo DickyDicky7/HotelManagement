@@ -29,10 +29,14 @@ public class Hasura {
     protected static Interceptor interceptor;
 
     public static void configAuth0(@NonNull String clientId, @NonNull String domain, @NonNull String scheme) {
-        auth0 = new Auth0(clientId, domain);
-        Hasura.scheme = scheme;
-        loginSuccessfully = false;
-        logoutSuccessfully = false;
+        try {
+            auth0 = new Auth0(clientId, domain);
+            Hasura.scheme = scheme;
+            loginSuccessfully = false;
+            logoutSuccessfully = false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void login(@NonNull Context context, @Nullable Consumer<Void> onSuccessCallback, @Nullable Consumer<Void> onFailureCallback) {
@@ -89,28 +93,36 @@ public class Hasura {
     }
 
     protected static void createInterceptor(@NonNull String authorizationToken) {
-        interceptor = chain -> {
-            Request request = chain.request().newBuilder()
-                    .addHeader
-                            (
-                                    "content-type",
-                                    "application/json"
-                            )
-                    .addHeader
-                            (
-                                    "Authorization",
-                                    "Bearer" + " " + authorizationToken
-                            )
-                    .build();
+        try {
+            interceptor = chain -> {
+                Request request = chain.request().newBuilder()
+                        .addHeader
+                                (
+                                        "content-type",
+                                        "application/json"
+                                )
+                        .addHeader
+                                (
+                                        "Authorization",
+                                        "Bearer" + " " + authorizationToken
+                                )
+                        .build();
 
-            return chain.proceed(request);
-        };
+                return chain.proceed(request);
+            };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected static void createApolloClient(@Nullable String serverURL) {
-        if (serverURL == null)
-            serverURL = "https://open-primate-91.hasura.app/v1/graphql";
-        apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(new OkHttpClient.Builder().addInterceptor(interceptor).build()).build();
+        try {
+            if (serverURL == null)
+                serverURL = "https://open-primate-91.hasura.app/v1/graphql";
+            apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(new OkHttpClient.Builder().addInterceptor(interceptor).build()).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

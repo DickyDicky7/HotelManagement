@@ -30,9 +30,8 @@ public class FragmentLogin extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        if (Hasura.logoutSuccessfully) System.out.println("LOG OUT SUCCESSFULLY");
         binding.btnSignIn.setOnClickListener(_view_ -> {
-            Consumer<Void> onSuccessCallback = unused -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentTempHome);
+            Consumer<Void> onSuccessCallback = unused -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
             Consumer<Void> onFailureCallback = null;
             Hasura.configAuth0
                     (

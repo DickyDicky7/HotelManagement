@@ -30,7 +30,7 @@
     <string name="lbl_new_password">New password</string>
     <string name="lbl_phone_number">Phone number</string>
     <string name="lbl_single_room">Single room</string>
-    <string name="lbl_customers">Customers</string>
+    <string name="lbl_customers">Guests</string>
     <string name="lbl_president_room">President room</string>
     <string name="lbl_log_out">Log out</string>
     <string name="lbl_check_out_day">Check-out day: </string>
@@ -72,7 +72,7 @@
     <string name="lbl_end_date">End date</string>
     <string name="lbl_enter_cccd">Enter ID Number</string>
     <string name="msg_enter_room_numb">Enter room number</string>
-    <string name="lbl_room_kind">Room kind</string>
+    <string name="lbl_room_kind">Room Kinds</string>
     <string name="lbl_p112">P112</string>
     <string name="lbl_123">123</string>
     <string name="lbl_p111">P111</string>
@@ -87,8 +87,8 @@
     <string name="lbl_2020">2020</string>
     <string name="lbl_10m">10M</string>
     <string name="msg_forgot_your_pas">Forgot your password?</string>
-    <string name="lbl_welcome">Welcome &#128075;</string>
-    <string name="lbl_rent_form">Rent form</string>
+    <string name="lbl_welcome">Welcome 👋</string>
+    <string name="lbl_rent_form">Rental Forms</string>
     <string name="lbl_check_in">Check - in</string>
     <string name="lbl_rental_form">Rental form</string>
     <string name="lbl_enter_address">Enter address</string>
