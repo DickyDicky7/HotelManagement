@@ -2,6 +2,7 @@ package com.example.hotelmanagement.fragments.lists;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class FragmentRooms extends Fragment {
         editText.setHintTextColor(Color.GRAY);
         searchIcon.setColorFilter(Color.GRAY);
         closeButton.setColorFilter(Color.GRAY);
+        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         editText.setOnFocusChangeListener((_view_, isFocused) -> {
             if (isFocused) {
                 editText.setTextColor(getResources().getColor(R.color.bluegray_900));

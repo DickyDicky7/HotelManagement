@@ -9,9 +9,57 @@
 
 
     <ImageButton
+        android:id="@+id/roomsBtnEdit"
+        style="@style/groupStyleindigo_1"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="5sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_ticket"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/roomsBtnDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/roomsBtnDelete"
+        style="@style/groupStyleindigo_1"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginBottom="20dp"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="5sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_file"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/roomsBtnEdit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/roomsBtnAdd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/roomsBtnBook"
+        style="@style/groupStyleindigo_400cornerRadius"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginBottom="20dp"
+        android:text="Book"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/roomsBtnAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
         android:id="@+id/roomsBtnAdd"
         style="@style/groupStyleindigo_400cornerRadius"
-        android:layout_width="200sp"
+        android:layout_width="100sp"
         android:layout_height="40sp"
         android:layout_marginBottom="20dp"
         android:src="@drawable/img_plus"

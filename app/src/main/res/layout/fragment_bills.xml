@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@id/billsBtnBack"
         app:layout_constraintVertical_bias="0.0"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="@string/lbl_search_date"
+        app:queryHint="DD/MM/YY, guest name, guest id number"
         app:searchIcon="@drawable/img_search_gray_601" />
 
     <androidx.recyclerview.widget.RecyclerView
