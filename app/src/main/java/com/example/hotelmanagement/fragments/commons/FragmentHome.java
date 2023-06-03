@@ -42,7 +42,13 @@ public class FragmentHome extends Fragment {
             binding.txtUser.setText(userMetaData.getOrDefault("real_name", "").toString());
         }
 
-        binding.billButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentAccount));
+        binding.roomButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRooms));
+        binding.billButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentBills));
+        binding.guestButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentGuests));
+        binding.roomKindButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRoomKinds));
+        binding.rentalFormButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRentalForms));
+
+        binding.reportButton2.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentAccount));
     }
 
     @Override

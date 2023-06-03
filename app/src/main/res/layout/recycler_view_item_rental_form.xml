@@ -1,195 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
-    <data />
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_rentForm"
+        android:layout_width="0dp"
+        android:layout_height="110sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_rentForm"
-            android:layout_width="0dp"
+            android:id="@+id/item_rf_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20"
-            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/item_rf_btns"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/item_rf_name"
+            <TextView
+                android:id="@+id/item_rentFormCode2"
+                style="@style/txtIntermedium14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/item_rentFormCode2"
-                    style="@style/txtIntermedium14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="0.23"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_1234"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/item_rentFormName2"
-                    tools:text="@string/lbl_1234" />
-
-                <TextView
-                    android:id="@+id/item_rentFormName2"
-                    style="@style/txtOutfitsemibold28"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_weight="0.77"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_rent_form_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_rent_form_1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/item_rf_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginBottom="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_rf_name">
-
-                <LinearLayout
-                    android:id="@+id/item_beginEndDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="start"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/item_customerName">
-
-                    <ImageView
-                        android:id="@+id/imageCalendar"
-                        android:layout_width="25sp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="@dimen/_1pxv"
-                        android:layout_marginVertical="@dimen/_1pxv"
-                        android:paddingHorizontal="2dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_calendar"
-                        tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_calendar" />
-
-                    <TextView
-                        android:id="@+id/beginEndDate"
-                        style="@style/txtInterregular14_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_1pxv"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/msg_17_04_2023_19"
-                        android:textSize="16sp"
-                        tools:text="@string/msg_17_04_2023_19" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/item_customerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:gravity="start"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/imageUser"
-                        android:layout_width="25sp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="@dimen/_1pxv"
-                        android:layout_marginVertical="@dimen/_1pxv"
-                        android:paddingHorizontal="2dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/img_user_white_a700_16x13"
-                        tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_user_white_a700_16x13" />
-
-                    <TextView
-                        android:id="@+id/customerName"
-                        style="@style/txtInterregular14_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_1pxv"
-                        android:layout_marginStart="@dimen/_10pxh"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_david"
-                        android:textSize="16sp"
-                        tools:text="@string/lbl_david" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:id="@+id/item_rf_btns"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_1234"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
-                app:layout_constraintStart_toEndOf="@+id/item_rf_info"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintStart_toEndOf="@+id/item_rentFormName2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-                <ImageButton
-                    android:id="@+id/btnEdit"
-                    style="@style/groupStyleindigo_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="@dimen/_20pxv"
-                    android:layout_marginVertical="@dimen/_10pxv"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/rectangle_bg_indigo_400_radius_10"
-                    android:contentDescription="@string/editbutton"
-                    android:paddingHorizontal="@dimen/_10sp"
-                    android:paddingVertical="@dimen/_10sp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_vector"
-                    tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/item_rentFormName2"
+                style="@style/txtOutfitsemibold28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_rent_form_1"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageButton
-                    android:id="@+id/btnDel"
-                    style="@style/groupStyleindigo_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginHorizontal="@dimen/_20pxv"
-                    android:layout_marginVertical="@dimen/_10pxv"
-                    android:layout_marginBottom="20dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/rectangle_bg_indigo_400_radius_10"
-                    android:contentDescription="@string/deletebutton"
-                    android:paddingHorizontal="@dimen/_10sp"
-                    android:paddingVertical="@dimen/_10sp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/img_file"
-                    tools:ignore="ContentDescription" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rf_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_rf_name"
+            app:layout_constraintVertical_bias="1.0">
 
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/imageUser"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_marginTop="2dp"
+                android:paddingHorizontal="2sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_user_white_a700_16x13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_user_white_a700_16x13" />
+
+            <TextView
+                android:id="@+id/customerName"
+                style="@style/txtInterregular14_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/lbl_david"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageUser"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/imageCalendar"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_calendar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/beginEndDate"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageUser"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_calendar" />
+
+            <TextView
+                android:id="@+id/beginEndDate"
+                style="@style/txtInterregular14_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/msg_17_04_2023_19"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageCalendar"
+                app:layout_constraintTop_toBottomOf="@+id/customerName"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_rf_btns"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/item_rf_info"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnEdit"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                android:contentDescription="@string/editbutton"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnDel"
+                style="@style/groupStyleindigo_1"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                android:contentDescription="@string/deletebutton"
+                android:paddingHorizontal="10sp"
+                android:paddingVertical="10sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_file"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEdit"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="ContentDescription" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
