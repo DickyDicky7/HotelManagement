@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
@@ -42,8 +43,11 @@ public class FragmentAddRoom extends Fragment {
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, new ArrayList<String>());
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                requireContext(),
+                R.layout.spinner_item,
+                new ArrayList<String>());
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinner.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);

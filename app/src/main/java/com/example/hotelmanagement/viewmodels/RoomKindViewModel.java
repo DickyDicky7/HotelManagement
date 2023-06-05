@@ -73,7 +73,6 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());
                         }
-                        Toast.makeText(ActivityMain.getInstance(), "Add successfully", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

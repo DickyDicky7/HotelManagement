@@ -10,3 +10,14 @@ query Room_All{
         created_at
     }
 }
+query Room_price_by_id(
+    $id: Int
+){
+    ROOM(where: {id: {_eq: $id}}) {
+        ROOMKIND {
+            price
+            surcharge_percentage
+            capacity
+        }
+    }
+}

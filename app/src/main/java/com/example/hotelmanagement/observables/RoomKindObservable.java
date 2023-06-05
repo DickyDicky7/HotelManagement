@@ -38,7 +38,6 @@ public class RoomKindObservable extends ExtendedObservable {
         this.numOfBed = numOfBed;
         this.surchargePercentage = surchargePercentage;
     }
-
     //name
     @Bindable
     public String getName() {

@@ -14,6 +14,10 @@ public class GuestObservable extends ExtendedObservable {
     protected Integer guestKindId;
     protected String phoneNumber;
 
+    public GuestObservable() {
+        super();
+    }
+
     public GuestObservable(Integer id,
                            String name,
                            String address,

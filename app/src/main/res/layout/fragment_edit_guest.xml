@@ -136,7 +136,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtGusetKind"
+                        android:id="@+id/txtGuestKind"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

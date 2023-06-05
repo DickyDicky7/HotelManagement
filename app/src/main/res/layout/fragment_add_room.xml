@@ -225,6 +225,7 @@
                                 android:inputType="text"
                                 android:singleLine="true"
                                 android:text="@={roomObservable.description}"
+                                android:textColorHint="#897e7e"
                                 android:textSize="18.5sp"
                                 tools:ignore="Autofill"
                                 tools:text="@string/msg_enter_descripti" />
@@ -261,6 +262,7 @@
                             android:inputType="text"
                             android:singleLine="true"
                             android:text="@={roomObservable.note}"
+                            android:textColorHint="#897e7e"
                             android:textSize="18.5sp"
                             tools:ignore="Autofill"
                             tools:text="@string/lbl_note2" />

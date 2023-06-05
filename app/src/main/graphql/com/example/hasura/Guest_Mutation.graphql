@@ -1,5 +1,30 @@
 mutation Guest_Insert(
-
+    $name: String,
+    $address: String,
+    $idNumber: String,
+    $guestKindId: Int,
+    $phoneNumber: String,
 ){
-
+    insert_GUEST(
+        objects:
+        [{
+            name: $name
+            address: $address
+            id_number: $idNumber
+            guestkind_id: $guestKindId
+            phone_number: $phoneNumber
+        }]
+    )
+    {
+        returning {
+            id
+            created_at
+            updated_at
+            id_number
+            name
+            address
+            phone_number
+            guestkind_id
+        }
+    }
 }

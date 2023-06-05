@@ -1,0 +1,23 @@
+query RentalForm_All{
+    RENTALFORM{
+        id
+        guest_id
+        room_id
+        bill_id
+        amount
+        rental_days
+        number_of_guests
+        is_resolved
+        price_per_day
+        start_date
+        created_at
+        updated_at
+    }
+}
+query RentalForm_amount_by_guestId(
+    $guestId: Int
+){
+    RENTALFORM(where: {guest_id: {_eq: $guestId}, is_resolved: {_eq: false}}) {
+        amount
+    }
+}

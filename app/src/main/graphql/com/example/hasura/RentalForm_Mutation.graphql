@@ -1,0 +1,41 @@
+mutation RentalForm_insert(
+    $guestId:Int,
+    $roomId: Int,
+    $billId: Int,
+    $amount: Float,
+    $rentalDays: Int,
+    $numOfGuests: Int
+    $isResolved: Boolean,
+    $pricePerDay: Float,
+    $startDay: date
+){
+    insert_RENTALFORM(
+        objects:
+        [
+            {
+                guest_id: $guestId
+                room_id: $roomId
+                bill_id: $billId
+                amount: $amount
+                rental_days: $rentalDays
+                number_of_guests: $numOfGuests
+                is_resolved: $isResolved
+                price_per_day: $pricePerDay
+                start_date: $startDay
+            }
+        ]
+    ){
+        returning {
+            id
+            room_id
+            bill_id
+            amount
+            rental_days
+            is_resolved
+            price_per_day
+            start_date
+            created_at
+            updated_at
+        }
+    }
+}

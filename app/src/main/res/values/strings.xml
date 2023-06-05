@@ -222,4 +222,10 @@
     <string name="lbl_guest">Guest</string>
     <string name="com_auth0_domain">dev-4dwcl4mq2h7sdwvj.au.auth0.com</string>
     <string name="com_auth0_client_id">DnppavHV27yOQdgybjJGubw7WjzIwKuP</string>
+    <string name="lbl_auto_name">Auto name</string>
+    <string name="lbl_auto_priceperday">Auto price per day</string>
+    <string name="lbl_auto_amount">Auto-calculated amount</string>
+    <string name="lbl_auto_cost">Auto cost</string>
+    <string name="lbl_numofguest">Number of guests</string>
+    <string name="lbl_enterNumOfGuests">Enter number of guests</string>
 </resources>
