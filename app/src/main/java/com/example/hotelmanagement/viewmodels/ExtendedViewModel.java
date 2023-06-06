@@ -1,12 +1,15 @@
 package com.example.hotelmanagement.viewmodels;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.databinding.BaseObservable;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,27 +17,31 @@ import java.util.function.Consumer;
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
     protected final MutableLiveData<List<BO>> modelState;
-    public Boolean dataLoaded;
     public Consumer<Void> onSuccessCallback;
     public Consumer<Void> onFailureCallback;
 
     public ExtendedViewModel() {
         super();
-        dataLoaded = false;
         modelState = new MutableLiveData<List<BO>>(new LinkedList<BO>());
     }
 
-    public static <BO extends BaseObservable, VM extends ExtendedViewModel<BO>>
-    VM getViewModel(FragmentActivity fragmentActivity, Class<VM> viewModelClass) {
-        VM viewModel = new ViewModelProvider(fragmentActivity).get(viewModelClass);
-        if (!viewModel.dataLoaded) viewModel.loadData();
-        return viewModel;
-    }
+    public abstract void loadData();
 
     public LiveData<List<BO>> getModelState() {
         return modelState;
     }
 
-    public abstract void loadData();
+    public Boolean checkObservable(BO baseObservable, Context context, String... excludedFields) throws IllegalAccessException {
+        for (Field field : baseObservable.getClass().getDeclaredFields()) {
+            if (Arrays.stream(excludedFields).noneMatch(excludedField -> excludedField.equals(field.getName()))) {
+                field.setAccessible(true);
+                if (field.get(baseObservable) == null || field.get(baseObservable).toString().equals("")) {
+                    Toast.makeText(context, ("missing " + field.getName()).toUpperCase(), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }

@@ -1,16 +1,13 @@
 package com.example.hotelmanagement.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
-import com.example.hasura.RoomKind_AllQuery;
-import com.example.hasura.RoomKind_InsertMutation;
-import com.example.hotelmanagement.ActivityMain;
+import com.example.hasura.RoomKindAllQuery;
+import com.example.hasura.RoomKindInsertMutation;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 
 import java.sql.Timestamp;
@@ -22,36 +19,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         super();
     }
 
-    public void checkObservable(RoomKindObservable observable) {
-        if (observable.getName() == null || observable.getName().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Name is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (observable.getPriceString() == null || observable.getPriceString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Price is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (observable.getCapacityString() == null || observable.getCapacityString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Capacity is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (observable.getNumOfBedString() == null || observable.getNumOfBedString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Number of bed is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (observable.getAreaString() == null || observable.getAreaString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Area is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (observable.getSurchargePercentageString() == null || observable.getSurchargePercentageString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Surcharge percentage is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        insert(observable);
-    }
-
     private void insert(RoomKindObservable observable) {
-        RoomKind_InsertMutation roomKindInsertMutation = RoomKind_InsertMutation
+        RoomKindInsertMutation roomKindInsertMutation = RoomKindInsertMutation
                 .builder()
                 .name(observable.getName())
                 .price(observable.getPrice())
@@ -61,9 +30,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                 .surchargePercentage(observable.getSurchargePercentage())
                 .build();
         Hasura.apolloClient.mutate(roomKindInsertMutation)
-                .enqueue(new ApolloCall.Callback<RoomKind_InsertMutation.Data>() {
+                .enqueue(new ApolloCall.Callback<RoomKindInsertMutation.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<RoomKind_InsertMutation.Data> response) {
+                    public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             List<RoomKindObservable> temp = modelState.getValue();
                             temp.add(observable);
@@ -97,10 +66,10 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new RoomKind_AllQuery())
-                .enqueue(new ApolloCall.Callback<RoomKind_AllQuery.Data>() {
+        Hasura.apolloClient.query(new RoomKindAllQuery())
+                .enqueue(new ApolloCall.Callback<RoomKindAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<RoomKind_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<RoomKindAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<RoomKindObservable> roomKindObservableList = modelState.getValue();
                             response.getData().ROOMKIND().forEach(item -> {
@@ -131,7 +100,6 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

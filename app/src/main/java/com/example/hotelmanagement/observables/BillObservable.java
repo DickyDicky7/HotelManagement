@@ -77,6 +77,9 @@ public class BillObservable extends ExtendedObservable {
     public String getGuestIdString() {
         try {
             return guestId.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -87,6 +90,8 @@ public class BillObservable extends ExtendedObservable {
         try {
             setGuestId(Integer.valueOf(guestIdString));
             notifyPropertyChanged(BR.guestIdString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,6 +111,9 @@ public class BillObservable extends ExtendedObservable {
     public String getCostString() {
         try {
             return cost.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -116,6 +124,8 @@ public class BillObservable extends ExtendedObservable {
         try {
             setCost(Double.valueOf(costString));
             notifyPropertyChanged(BR.costString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }

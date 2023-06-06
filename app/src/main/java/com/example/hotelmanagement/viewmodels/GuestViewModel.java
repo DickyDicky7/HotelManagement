@@ -1,16 +1,13 @@
 package com.example.hotelmanagement.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.Guest_AllQuery;
-import com.example.hasura.Guest_InsertMutation;
+import com.example.hasura.GuestAllQuery;
+import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.Hasura;
-import com.example.hotelmanagement.ActivityMain;
 import com.example.hotelmanagement.observables.GuestObservable;
 
 import java.sql.Timestamp;
@@ -22,32 +19,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
         super();
     }
 
-    public void checkObservable(GuestObservable guestObservable) {
-        if (guestObservable.getIdNumber() == null || guestObservable.getIdNumber().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "ID number is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (guestObservable.getName() == null || guestObservable.getName().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Name is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (guestObservable.getPhoneNumber() == null || guestObservable.getPhoneNumber().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Phone number is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (guestObservable.getAddress() == null || guestObservable.getAddress().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Address is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (guestObservable.getGuestKindId() == null || guestObservable.getGuestKindId().toString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Kind of guest is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        insert(guestObservable);
-    }
-
     public void insert(GuestObservable guestObservable) {
-        Guest_InsertMutation guestInsertMutation = Guest_InsertMutation
+        GuestInsertMutation guestInsertMutation = GuestInsertMutation
                 .builder()
                 .name(guestObservable.getName())
                 .idNumber(guestObservable.getIdNumber())
@@ -56,9 +29,9 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 .phoneNumber(guestObservable.getPhoneNumber())
                 .build();
         Hasura.apolloClient.mutate(guestInsertMutation)
-                .enqueue(new ApolloCall.Callback<Guest_InsertMutation.Data>() {
+                .enqueue(new ApolloCall.Callback<GuestInsertMutation.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Guest_InsertMutation.Data> response) {
+                    public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             List<GuestObservable> temp = modelState.getValue();
                             temp.add(guestObservable);
@@ -79,10 +52,10 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new Guest_AllQuery())
-                .enqueue(new ApolloCall.Callback<Guest_AllQuery.Data>() {
+        Hasura.apolloClient.query(new GuestAllQuery())
+                .enqueue(new ApolloCall.Callback<GuestAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Guest_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<GuestAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<GuestObservable> guestObservables = modelState.getValue();
                             response.getData().GUEST().forEach(item -> {
@@ -93,8 +66,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                         item.name(),
                                         item.address(),
                                         item.id_number(),
-                                        item.guestkind_id(),
                                         item.phone_number(),
+                                        item.guestkind_id(),
                                         createdAt,
                                         updatedAt
                                 );
@@ -111,7 +84,6 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

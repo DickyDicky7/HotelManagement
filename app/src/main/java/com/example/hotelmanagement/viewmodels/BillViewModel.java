@@ -1,18 +1,15 @@
 package com.example.hotelmanagement.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.Bill_AllQuery;
-import com.example.hasura.Bill_insertMutation;
-import com.example.hasura.Guest_by_idNumberQuery;
+import com.example.hasura.BillAllQuery;
+import com.example.hasura.BillInsertMutation;
+import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.Hasura;
-import com.example.hasura.RentalForm_amount_by_guestIdQuery;
-import com.example.hotelmanagement.ActivityMain;
+import com.example.hasura.RentalFormAmountByGuestIdQuery;
 import com.example.hotelmanagement.observables.BillObservable;
 
 import java.sql.Timestamp;
@@ -25,27 +22,15 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
         super();
     }
 
-    public void checkObservable(BillObservable billObservable) {
-        if (billObservable.getIdNumber() == null || billObservable.getIdNumber().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Guest's information is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (billObservable.getGuestIdString() == null || billObservable.getGuestIdString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Cannot find this guest", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        insert(billObservable);
-    }
-
     public void findGuestId(BillObservable billObservable) {
-        Guest_by_idNumberQuery guestByIdNumberQuery = Guest_by_idNumberQuery
+        GuestByIdNumberQuery guestByIdNumberQuery = GuestByIdNumberQuery
                 .builder()
                 .idNumber(billObservable.getIdNumber())
                 .build();
         Hasura.apolloClient.query(guestByIdNumberQuery)
-                .enqueue(new ApolloCall.Callback<Guest_by_idNumberQuery.Data>() {
+                .enqueue(new ApolloCall.Callback<GuestByIdNumberQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Guest_by_idNumberQuery.Data> response) {
+                    public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
                             response.getData().GUEST().forEach(item -> {
                                 billObservable.setName(item.name());
@@ -65,14 +50,14 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     }
 
     public void calculateCost(BillObservable billObservable) {
-        RentalForm_amount_by_guestIdQuery rentalFormAmountByGuestIdQuery = RentalForm_amount_by_guestIdQuery
+        RentalFormAmountByGuestIdQuery rentalFormAmountByGuestIdQuery = RentalFormAmountByGuestIdQuery
                 .builder()
                 .guestId(billObservable.getGuestId())
                 .build();
         Hasura.apolloClient.query(rentalFormAmountByGuestIdQuery)
-                .enqueue(new ApolloCall.Callback<RentalForm_amount_by_guestIdQuery.Data>() {
+                .enqueue(new ApolloCall.Callback<RentalFormAmountByGuestIdQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<RentalForm_amount_by_guestIdQuery.Data> response) {
+                    public void onResponse(@NonNull Response<RentalFormAmountByGuestIdQuery.Data> response) {
                         if (response.getData() != null) {
                             AtomicReference<Double> sum = new AtomicReference<>(0.0);
                             response.getData().RENTALFORM().forEach(item -> {
@@ -93,16 +78,16 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     }
 
     public void insert(BillObservable billObservable) {
-        Bill_insertMutation billInsertMutation = Bill_insertMutation
+        BillInsertMutation billInsertMutation = BillInsertMutation
                 .builder()
-                .guestid(billObservable.getGuestId())
+                .guestId(billObservable.getGuestId())
                 .cost(billObservable.getCost())
                 .isPaid(billObservable.getIsPaid())
                 .build();
         Hasura.apolloClient.mutate(billInsertMutation)
-                .enqueue(new ApolloCall.Callback<Bill_insertMutation.Data>() {
+                .enqueue(new ApolloCall.Callback<BillInsertMutation.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Bill_insertMutation.Data> response) {
+                    public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             List<BillObservable> temp = modelState.getValue();
                             temp.add(billObservable);
@@ -129,10 +114,10 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new Bill_AllQuery())
-                .enqueue(new ApolloCall.Callback<Bill_AllQuery.Data>() {
+        Hasura.apolloClient.query(new BillAllQuery())
+                .enqueue(new ApolloCall.Callback<BillAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Bill_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<BillAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<BillObservable> billObservables = modelState.getValue();
                             response.getData().BILL().forEach(item -> {
@@ -141,9 +126,9 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
 
                                 BillObservable temp = new BillObservable(
                                         item.id(),
+                                        item.cost(),
                                         item.is_paid(),
                                         item.guest_id(),
-                                        item.cost(),
                                         createdAt,
                                         updatedAt
                                 );
@@ -161,7 +146,6 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

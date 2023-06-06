@@ -1,0 +1,38 @@
+mutation RoomKindInsert
+(
+    $name               : String
+    $price              : Float
+    $capacity           : Int
+    $numOfBed           : Int
+    $area               : Float
+    $surchargePercentage: Float
+)
+{
+    insert_ROOMKIND
+    (
+        objects:
+        [
+            {
+                name                : $name
+                price               : $price
+                capacity            : $capacity
+                number_of_beds      : $numOfBed
+                area                : $area
+                surcharge_percentage: $surchargePercentage
+            }
+        ]
+    )
+    {
+        returning
+        {
+            id
+            name
+            area
+            capacity
+            created_at
+            updated_at
+            number_of_beds
+            surcharge_percentage
+        }
+    }
+}

@@ -3,96 +3,38 @@ package com.example.hotelmanagement;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.hotelmanagement.databinding.ActivityMainBinding;
+import com.example.hotelmanagement.viewmodels.BillViewModel;
+import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
+import com.example.hotelmanagement.viewmodels.GuestViewModel;
+import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
+import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
+import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
 public class ActivityMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        //region Hasura Testing
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-//        Thread thread = new Thread(() -> {
-//
-//            Hasura.apolloClient.query(new ROOMKIND_All_Query())
-//                    .enqueue(new ApolloCall.Callback<ROOMKIND_All_Query.Data>() {
-//                        @Override
-//                        public void onResponse(@NonNull Response<ROOMKIND_All_Query.Data> response) {
-//                            System.out.print("\n");
-//                            response.getData().ROOMKIND().forEach(System.out::println);
-//                            System.out.print("\n");
-//                        }
-//
-//                        @Override
-//                        public void onFailure(@NonNull ApolloException e) {
-//                            System.out.println(e);
-//                        }
-//                    });
-//
-//            Hasura.apolloClient.query(new ROOMKIND_By_Id_Query(new Input<Integer>(1, true)))
-//                    .enqueue(new ApolloCall.Callback<ROOMKIND_By_Id_Query.Data>() {
-//                        @Override
-//                        public void onResponse(@NonNull Response<ROOMKIND_By_Id_Query.Data> response) {
-//                            System.out.print("\n");
-//                            response.getData().ROOMKIND().forEach(System.out::println);
-//                            System.out.print("\n");
-//                        }
-//
-//                        @Override
-//                        public void onFailure(@NonNull ApolloException e) {
-//                            System.out.println(e);
-//                        }
-//                    });
-//
-//            ROOMKIND_Insert_Mutation roomkindInsertMutation = ROOMKIND_Insert_Mutation
-//                    .builder()
-//                    .name("Quad")
-//                    .price(400)
-//                    .capacity(5)
-//                    .surcharge_percentage(0.5)
-//                    .build();
-//
-//            Hasura.apolloClient.mutate(roomkindInsertMutation)
-//                    .enqueue(new ApolloCall.Callback<ROOMKIND_Insert_Mutation.Data>() {
-//                        @Override
-//                        public void onResponse(@NonNull Response<ROOMKIND_Insert_Mutation.Data> response) {
-//                            System.out.print("\n");
-//                            System.out.println(response.getData().insert_ROOMKIND());
-//                            System.out.print("\n");
-//                        }
-//
-//                        @Override
-//                        public void onFailure(@NonNull ApolloException e) {
-//                            System.out.println(e);
-//                        }
-//                    });
-//
-//            ROOMKIND_Update_Price_By_Id_Mutation roomkindUpdatePriceByIdMutation = ROOMKIND_Update_Price_By_Id_Mutation
-//                    .builder()
-//                    .id(1)
-//                    .price(600)
-//                    .build();
-//
-//            Hasura.apolloClient.mutate(roomkindUpdatePriceByIdMutation)
-//                    .enqueue(new ApolloCall.Callback<ROOMKIND_Update_Price_By_Id_Mutation.Data>() {
-//                        @Override
-//                        public void onResponse(@NonNull Response<ROOMKIND_Update_Price_By_Id_Mutation.Data> response) {
-//                            System.out.print("\n");
-//                            System.out.println(response.getData().update_ROOMKIND());
-//                            System.out.print("\n");
-//                        }
-//
-//                        @Override
-//                        public void onFailure(@NonNull ApolloException e) {
-//                            System.out.println(e);
-//                        }
-//                    });
-//
-//        });
-//        thread.start();
+        BillViewModel billViewModel = new ViewModelProvider(this).get(BillViewModel.class);
+        RoomViewModel roomViewModel = new ViewModelProvider(this).get(RoomViewModel.class);
+        GuestViewModel guestViewModel = new ViewModelProvider(this).get(GuestViewModel.class);
+        RoomKindViewModel roomKindViewModel = new ViewModelProvider(this).get(RoomKindViewModel.class);
+        GuestKindViewModel guestKindViewModel = new ViewModelProvider(this).get(GuestKindViewModel.class);
+        RentalFormViewModel rentalFormViewModel = new ViewModelProvider(this).get(RentalFormViewModel.class);
 
-        //endregion
+        billViewModel.loadData();
+        roomViewModel.loadData();
+        guestViewModel.loadData();
+        roomKindViewModel.loadData();
+        guestKindViewModel.loadData();
+        rentalFormViewModel.loadData();
     }
 
 }

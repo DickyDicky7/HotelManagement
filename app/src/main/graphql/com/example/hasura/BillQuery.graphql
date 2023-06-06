@@ -1,9 +1,11 @@
-query Bill_All{
-    BILL{
-        guest_id
+query BillAll
+{
+    BILL
+    {
+        id
         cost
         is_paid
-        id
+        guest_id
         created_at
         updated_at
     }

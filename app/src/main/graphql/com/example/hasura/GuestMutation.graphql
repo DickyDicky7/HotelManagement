@@ -1,0 +1,36 @@
+mutation GuestInsert
+(
+    $name       : String
+    $address    : String
+    $idNumber   : String
+    $guestKindId: Int
+    $phoneNumber: String
+)
+{
+    insert_GUEST
+    (
+        objects:
+        [
+            {
+                name        : $name
+                address     : $address
+                id_number   : $idNumber
+                guestkind_id: $guestKindId
+                phone_number: $phoneNumber
+            }
+        ]
+    )
+    {
+        returning
+        {
+            id
+            name
+            address
+            id_number
+            created_at
+            updated_at
+            phone_number
+            guestkind_id
+        }
+    }
+}

@@ -1,18 +1,15 @@
 package com.example.hotelmanagement.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.Guest_by_idNumberQuery;
+import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.Hasura;
-import com.example.hasura.RentalForm_AllQuery;
-import com.example.hasura.RentalForm_insertMutation;
-import com.example.hasura.Room_price_by_idQuery;
-import com.example.hotelmanagement.ActivityMain;
+import com.example.hasura.RentalFormAllQuery;
+import com.example.hasura.RentalFormInsertMutation;
+import com.example.hasura.RoomPriceByIdQuery;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 
 import java.sql.Date;
@@ -25,48 +22,15 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
         super();
     }
 
-    public void checkObservable(RentalFormObservable rentalFormObservable) {
-
-        if (rentalFormObservable.getIdNumber() == null || rentalFormObservable.getIdNumber().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Guest's information is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (rentalFormObservable.getRoomIdString() == null || rentalFormObservable.getRoomIdString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Room's id is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (rentalFormObservable.getRentalDaysString() == null || rentalFormObservable.getRentalDaysString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Rental days is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (rentalFormObservable.getStartDateString() == null || rentalFormObservable.getStartDateString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Start date is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (rentalFormObservable.getNumOfGuestsString() == null || rentalFormObservable.getNumOfGuestsString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Number of guests is missing", Toast.LENGTH_SHORT).show();
-        }
-        if (rentalFormObservable.getGuestId() == null) {
-            Toast.makeText(ActivityMain.getInstance(), "Cannot find this guest", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //set null for bill id
-        rentalFormObservable.setBillId(null);
-        //set false for isResolved
-        rentalFormObservable.setIsResolved(false);
-        //insert
-        insert(rentalFormObservable);
-    }
-
     public void findGuestId(RentalFormObservable rentalFormObservable) {
-        Guest_by_idNumberQuery guestByIdNumberQuery = Guest_by_idNumberQuery
+        GuestByIdNumberQuery guestByIdNumberQuery = GuestByIdNumberQuery
                 .builder()
                 .idNumber(rentalFormObservable.getIdNumber())
                 .build();
         Hasura.apolloClient.query(guestByIdNumberQuery)
-                .enqueue(new ApolloCall.Callback<Guest_by_idNumberQuery.Data>() {
+                .enqueue(new ApolloCall.Callback<GuestByIdNumberQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Guest_by_idNumberQuery.Data> response) {
+                    public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
                             response.getData().GUEST().forEach(item -> {
                                 rentalFormObservable.setName(item.name());
@@ -86,14 +50,14 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
     }
 
     public void findPrice(RentalFormObservable rentalFormObservable) {
-        Room_price_by_idQuery roomPriceByIdQuery = Room_price_by_idQuery
+        RoomPriceByIdQuery roomPriceByIdQuery = RoomPriceByIdQuery
                 .builder()
                 .id(rentalFormObservable.getRoomId())
                 .build();
         Hasura.apolloClient.query(roomPriceByIdQuery)
-                .enqueue(new ApolloCall.Callback<Room_price_by_idQuery.Data>() {
+                .enqueue(new ApolloCall.Callback<RoomPriceByIdQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Room_price_by_idQuery.Data> response) {
+                    public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
                                 Integer sub = rentalFormObservable.getNumOfGuests() - Objects.requireNonNull(item.ROOMKIND()).capacity();
@@ -119,7 +83,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
     }
 
     public void insert(RentalFormObservable rentalFormObservable) {
-        RentalForm_insertMutation rentalFormInsertMutation = RentalForm_insertMutation
+        RentalFormInsertMutation rentalFormInsertMutation = RentalFormInsertMutation
                 .builder()
                 .guestId(rentalFormObservable.getGuestId())
                 .roomId(rentalFormObservable.getRoomId())
@@ -129,12 +93,12 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .numOfGuests(rentalFormObservable.getNumOfGuests())
                 .isResolved(rentalFormObservable.getIsResolved())
                 .pricePerDay(rentalFormObservable.getPricePerDay())
-                .startDay(rentalFormObservable.getStartDate())
+                .startDate(rentalFormObservable.getStartDate())
                 .build();
         Hasura.apolloClient.mutate(rentalFormInsertMutation)
-                .enqueue(new ApolloCall.Callback<RentalForm_insertMutation.Data>() {
+                .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<RentalForm_insertMutation.Data> response) {
+                    public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             List<RentalFormObservable> temp = modelState.getValue();
                             temp.add(rentalFormObservable);
@@ -156,10 +120,10 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new RentalForm_AllQuery())
-                .enqueue(new ApolloCall.Callback<RentalForm_AllQuery.Data>() {
+        Hasura.apolloClient.query(new RentalFormAllQuery())
+                .enqueue(new ApolloCall.Callback<RentalFormAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<RentalForm_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<RentalFormAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<RentalFormObservable> rentalFormObservables = modelState.getValue();
                             response.getData().RENTALFORM().forEach(item -> {
@@ -169,15 +133,15 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
 
                                 RentalFormObservable temp = new RentalFormObservable(
                                         item.id(),
-                                        item.guest_id(),
+                                        item.amount(),
+                                        startDate,
                                         item.room_id(),
                                         item.bill_id(),
-                                        item.amount(),
+                                        item.guest_id(),
                                         item.rental_days(),
-                                        item.number_of_guests(),
                                         item.is_resolved(),
                                         item.price_per_day(),
-                                        startDate,
+                                        item.number_of_guests(),
                                         createdAt,
                                         updatedAt
                                 );
@@ -196,7 +160,6 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

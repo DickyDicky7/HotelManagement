@@ -1,0 +1,10 @@
+query GuestKindAll
+{
+    GUESTKIND
+    {
+        id
+        name
+        created_at
+        updated_at
+    }
+}

@@ -15,12 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRentalFormBinding;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
@@ -45,7 +45,7 @@ public class FragmentAddRentalForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        rentalFormViewModel = ExtendedViewModel.getViewModel(requireActivity(), RentalFormViewModel.class);
+        rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
         rentalFormObservable = new RentalFormObservable();
         binding.setRentalFormObservable(rentalFormObservable);
 
@@ -56,7 +56,7 @@ public class FragmentAddRentalForm extends Fragment {
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseRoom.setAdapter(arrayAdapter);
 
-        RoomViewModel roomViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomViewModel.class);
+        RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservable -> {
             arrayAdapter.addAll(updatedRoomObservable.stream().map(RoomObservable::getName).toArray(String[]::new));
         });
@@ -157,7 +157,15 @@ public class FragmentAddRentalForm extends Fragment {
                     Toast.makeText(requireActivity(), "Finish entering id number to process", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                rentalFormViewModel.checkObservable(rentalFormObservable);
+                try {
+                    rentalFormViewModel.checkObservable(rentalFormObservable, requireContext());
+                    //set null for bill id
+                    rentalFormObservable.setBillId(null);
+                    //set false for isResolved
+                    rentalFormObservable.setIsResolved(false);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

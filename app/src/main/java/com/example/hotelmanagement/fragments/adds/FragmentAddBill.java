@@ -11,11 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
-import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 
 public class FragmentAddBill extends Fragment {
 
@@ -34,7 +34,7 @@ public class FragmentAddBill extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         billObservable = new BillObservable();
-        billViewModel = ExtendedViewModel.getViewModel(requireActivity(), BillViewModel.class);
+        billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
         binding.setBillObservable(billObservable);
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             billViewModel.findGuestId(billObservable);
@@ -61,7 +61,11 @@ public class FragmentAddBill extends Fragment {
         });
 
         binding.btnDone.setOnClickListener(_view_ -> {
-            billViewModel.checkObservable(billObservable);
+            try {
+                billViewModel.checkObservable(billObservable, requireContext());
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 

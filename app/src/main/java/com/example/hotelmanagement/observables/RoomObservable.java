@@ -34,6 +34,7 @@ public class RoomObservable extends ExtendedObservable {
         this.isOccupied = isOccupied;
         this.roomKindId = roomKindId;
         this.description = description;
+
     }
 
     @Bindable

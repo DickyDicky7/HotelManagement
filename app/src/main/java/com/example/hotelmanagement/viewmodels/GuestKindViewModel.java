@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.GuestKind_AllQuery;
+import com.example.hasura.GuestKindAllQuery;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 
@@ -21,10 +21,10 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new GuestKind_AllQuery())
-                .enqueue(new ApolloCall.Callback<GuestKind_AllQuery.Data>() {
+        Hasura.apolloClient.query(new GuestKindAllQuery())
+                .enqueue(new ApolloCall.Callback<GuestKindAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<GuestKind_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<GuestKindAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<GuestKindObservable> guestKindObservables = modelState.getValue();
                             response.getData().GUESTKIND().forEach(item -> {
@@ -49,7 +49,6 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

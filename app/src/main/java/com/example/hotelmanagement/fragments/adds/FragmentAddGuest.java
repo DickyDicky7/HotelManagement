@@ -10,12 +10,12 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddGuestBinding;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
 import com.example.hotelmanagement.viewmodels.GuestViewModel;
 
@@ -38,7 +38,7 @@ public class FragmentAddGuest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        guestViewModel = ExtendedViewModel.getViewModel(requireActivity(), GuestViewModel.class);
+        guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
         guestObservable = new GuestObservable();
         binding.setGuestObservable(guestObservable);
 
@@ -49,7 +49,7 @@ public class FragmentAddGuest extends Fragment {
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseGuestKind.setAdapter(arrayAdapter);
 
-        GuestKindViewModel guestKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), GuestKindViewModel.class);
+        GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
         guestKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestKindObservables -> {
             arrayAdapter.addAll(updatedGuestKindObservables.stream().map(GuestKindObservable::getName).toArray(String[]::new));
         });
@@ -65,7 +65,13 @@ public class FragmentAddGuest extends Fragment {
 
             }
         });
-        binding.btnDone.setOnClickListener(_view_ -> guestViewModel.checkObservable(guestObservable));
+        binding.btnDone.setOnClickListener(_view_ -> {
+            try {
+                guestViewModel.checkObservable(guestObservable, requireContext());
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @Override

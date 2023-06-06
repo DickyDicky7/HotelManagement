@@ -1,0 +1,26 @@
+query GuestAll
+{
+    GUEST
+    {
+        id
+        name
+        address
+        id_number
+        created_at
+        updated_at
+        phone_number
+        guestkind_id
+    }
+}
+
+query GuestByIdNumber
+(
+    $idNumber: String
+)
+{
+    GUEST(where: { id_number: { _eq: $idNumber } })
+    {
+        id
+        name
+    }
+}

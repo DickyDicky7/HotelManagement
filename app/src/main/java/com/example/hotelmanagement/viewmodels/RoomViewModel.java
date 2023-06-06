@@ -1,16 +1,13 @@
 package com.example.hotelmanagement.viewmodels;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
-import com.example.hasura.Room_AllQuery;
-import com.example.hasura.Room_InsertMutation;
-import com.example.hotelmanagement.ActivityMain;
+import com.example.hasura.RoomAllQuery;
+import com.example.hasura.RoomInsertMutation;
 import com.example.hotelmanagement.observables.RoomObservable;
 
 import java.sql.Timestamp;
@@ -22,39 +19,19 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
         super();
     }
 
-    public void checkObservable(RoomObservable roomObservable) {
-        if (roomObservable.getName() == null || roomObservable.getName().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Name is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (roomObservable.getNote() != null) {
-            if (roomObservable.getNote().equals(""))
-                roomObservable.setNote(null);
-        }
-        if (roomObservable.getDescription() != null) {
-            if (roomObservable.getDescription().equals(""))
-                roomObservable.setDescription(null);
-        }
-        if (roomObservable.getRoomKindId() == null || roomObservable.getRoomKindId().toString().equals("")) {
-            Toast.makeText(ActivityMain.getInstance(), "Kind of room is missing", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        insert(roomObservable);
-    }
-
     public void insert(RoomObservable roomObservable) {
-        Room_InsertMutation roomInsertMutation = Room_InsertMutation
+        RoomInsertMutation roomInsertMutation = RoomInsertMutation
                 .builder()
                 .name(roomObservable.getName())
                 .note(roomObservable.getNote())
                 .description(roomObservable.getDescription())
-                .roomkind_id(roomObservable.getRoomKindId())
+                .roomKindId(roomObservable.getRoomKindId())
                 .isOccupied(roomObservable.getIsOccupied())
                 .build();
         Hasura.apolloClient.mutate(roomInsertMutation)
-                .enqueue(new ApolloCall.Callback<Room_InsertMutation.Data>() {
+                .enqueue(new ApolloCall.Callback<RoomInsertMutation.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Room_InsertMutation.Data> response) {
+                    public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             List<RoomObservable> temp = modelState.getValue();
                             temp.add(roomObservable);
@@ -76,10 +53,10 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
     @Override
     public void loadData() {
         // Call Hasura to query all the data
-        Hasura.apolloClient.query(new Room_AllQuery())
-                .enqueue(new ApolloCall.Callback<Room_AllQuery.Data>() {
+        Hasura.apolloClient.query(new RoomAllQuery())
+                .enqueue(new ApolloCall.Callback<RoomAllQuery.Data>() {
                     @Override
-                    public void onResponse(@NonNull Response<Room_AllQuery.Data> response) {
+                    public void onResponse(@NonNull Response<RoomAllQuery.Data> response) {
                         if (response.getData() != null) {
                             List<RoomObservable> roomObservables = modelState.getValue();
                             response.getData().ROOM().forEach(item -> {
@@ -109,7 +86,6 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                         e.printStackTrace();
                     }
                 });
-        dataLoaded = true;
     }
 
 }

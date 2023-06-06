@@ -96,6 +96,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getRoomIdString() {
         try {
             return roomId.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -106,6 +109,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setRoomId(Integer.valueOf(roomIdString));
             notifyPropertyChanged(BR.roomIdString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -125,6 +130,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getBillIdString() {
         try {
             return billId.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -135,6 +143,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setBillId(Integer.valueOf(billIdString));
             notifyPropertyChanged(BR.billIdString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -154,6 +164,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getAmountString() {
         try {
             return amount.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -164,6 +177,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setAmount(Double.valueOf(amountString));
             notifyPropertyChanged(BR.amountString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -183,6 +198,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getRentalDaysString() {
         try {
             return rentalDays.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -193,6 +211,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setRentalDays(Integer.valueOf(rentalDaysString));
             notifyPropertyChanged(BR.rentalDaysString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -222,6 +242,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getPricePerDayString() {
         try {
             return pricePerDay.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -232,6 +255,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setPricePerDay(Double.valueOf(pricePerDayString));
             notifyPropertyChanged(BR.pricePerDayString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -251,6 +276,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getStartDateString() {
         try {
             return startDate.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -261,6 +289,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setStartDate(Date.valueOf(startDateString));
             notifyPropertyChanged(BR.startDateString);
+        } catch (NullPointerException | IllegalArgumentException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -280,6 +310,9 @@ public class RentalFormObservable extends ExtendedObservable {
     public String getNumOfGuestsString() {
         try {
             return numOfGuests.toString();
+        } catch (NullPointerException e) {
+
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -290,6 +323,8 @@ public class RentalFormObservable extends ExtendedObservable {
         try {
             setNumOfGuests(Integer.valueOf(numOfGuestsString));
             notifyPropertyChanged(BR.numOfGuestsString);
+        } catch (NullPointerException | NumberFormatException e) {
+
         } catch (Exception e) {
             e.printStackTrace();
         }

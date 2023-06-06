@@ -10,12 +10,12 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
@@ -39,7 +39,7 @@ public class FragmentAddRoom extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        roomViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomViewModel.class);
+        roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
 
@@ -50,7 +50,7 @@ public class FragmentAddRoom extends Fragment {
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinner.setAdapter(arrayAdapter);
 
-        RoomKindViewModel roomKindViewModel = ExtendedViewModel.getViewModel(requireActivity(), RoomKindViewModel.class);
+        RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
             System.out.println("it is " + updatedRoomKindObservables.size());
@@ -69,7 +69,21 @@ public class FragmentAddRoom extends Fragment {
             }
         });
 
-        binding.btnDone.setOnClickListener(_view_ -> roomViewModel.checkObservable(roomObservable));
+        binding.btnDone.setOnClickListener(_view_ -> {
+            try {
+                roomViewModel.checkObservable(roomObservable, requireContext());
+                if (roomObservable.getNote() != null) {
+                    if (roomObservable.getNote().equals(""))
+                        roomObservable.setNote(null);
+                }
+                if (roomObservable.getDescription() != null) {
+                    if (roomObservable.getDescription().equals(""))
+                        roomObservable.setDescription(null);
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @Override
