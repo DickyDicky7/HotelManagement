@@ -1,0 +1,10 @@
+query Bill_All{
+    BILL{
+        guest_id
+        cost
+        is_paid
+        id
+        created_at
+        updated_at
+    }
+}

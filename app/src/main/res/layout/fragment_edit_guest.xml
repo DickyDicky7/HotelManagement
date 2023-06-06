@@ -13,7 +13,7 @@
         android:gravity="end" android:orientation="vertical">
         <ImageButton
             android:layout_width="@dimen/_45pxh"
-            android:id="@+id/btnArrowleft"
+            android:id="@+id/btn_back"
             android:layout_gravity="start"
             android:layout_height="@dimen/_45pxh"
             android:layout_marginEnd="@dimen/_308pxh"
@@ -60,7 +60,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_name"
-                        android:id="@+id/etGroupFour" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_name" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -89,7 +89,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/msg_enter_phone_num"
-                        android:id="@+id/etGroupFive" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_capacity" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -119,7 +119,7 @@
                         android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                         android:ellipsize="end"
                         android:hint="@string/lbl_enter_address"
-                        android:id="@+id/etGroupSeven" style="@style/etSolidRounded_1"
+                        android:id="@+id/edt_area" style="@style/etSolidRounded_1"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="@dimen/_24pxh"
@@ -136,7 +136,7 @@
                         tools:ignore="Autofill" />
 
                     <TextView
-                        android:id="@+id/txtGusetKind"
+                        android:id="@+id/txtGuestKind"
                         style="@style/txtIntersemibold24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

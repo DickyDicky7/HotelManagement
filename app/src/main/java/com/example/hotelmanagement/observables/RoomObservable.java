@@ -10,14 +10,20 @@ public class RoomObservable extends ExtendedObservable {
 
     protected String name;
     protected String note;
+    protected String description;
     protected Boolean isOccupied;
     protected Integer roomKindId;
+
+    public RoomObservable() {
+        super();
+    }
 
     public RoomObservable(Integer id,
                           String name,
                           String note,
                           Boolean isOccupied,
                           Integer roomKindId,
+                          String description,
                           Timestamp createdAt,
                           Timestamp updatedAt) {
 
@@ -27,7 +33,7 @@ public class RoomObservable extends ExtendedObservable {
         this.note = note;
         this.isOccupied = isOccupied;
         this.roomKindId = roomKindId;
-
+        this.description = description;
     }
 
     @Bindable
@@ -60,6 +66,7 @@ public class RoomObservable extends ExtendedObservable {
         notifyPropertyChanged(BR.isOccupied);
     }
 
+
     @Bindable
     public Integer getRoomKindId() {
         return roomKindId;
@@ -70,4 +77,12 @@ public class RoomObservable extends ExtendedObservable {
         notifyPropertyChanged(BR.roomKindId);
     }
 
+    @Bindable
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

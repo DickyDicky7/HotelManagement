@@ -223,4 +223,10 @@
     <string name="com_auth0_scheme">paradisepalms</string>
     <string name="com_auth0_domain">dev-4dwcl4mq2h7sdwvj.au.auth0.com</string>
     <string name="com_auth0_client_id">Zs62ajeF0J182xoKCiJ0wPEAEZ09b8K1</string>
+    <string name="lbl_auto_name">Auto name</string>
+    <string name="lbl_auto_priceperday">Auto price per day</string>
+    <string name="lbl_auto_amount">Auto-calculated amount</string>
+    <string name="lbl_auto_cost">Auto cost</string>
+    <string name="lbl_numofguest">Number of guests</string>
+    <string name="lbl_enterNumOfGuests">Enter number of guests</string>
 </resources>

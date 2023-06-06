@@ -45,7 +45,7 @@
                     tools:ignore="ContentDescription" tools:src="@drawable/img_laptop"/>
                 <ImageButton
                     android:layout_width="@dimen/_40pxh"
-                    android:id="@+id/btnArrowleft"
+                    android:id="@+id/btn_back"
                     android:layout_gravity="start"
                     android:layout_height="@dimen/_40pxh"
                     android:layout_marginEnd="@dimen/_10pxh"
@@ -73,7 +73,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:text="@string/lbl_single_room2" tools:text="@string/lbl_single_room2"/>
-            <TextView android:id="@+id/txtPrice" style="@style/txtOutfitsemibold24"
+            <TextView android:id="@+id/txt_price" style="@style/txtOutfitsemibold24"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/_16pxh"

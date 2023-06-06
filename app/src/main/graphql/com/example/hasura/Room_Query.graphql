@@ -1,0 +1,23 @@
+query Room_All{
+    ROOM{
+        name
+        note
+        is_occupied
+        roomkind_id
+        updated_at
+        id
+        description
+        created_at
+    }
+}
+query Room_price_by_id(
+    $id: Int
+){
+    ROOM(where: {id: {_eq: $id}}) {
+        ROOMKIND {
+            price
+            surcharge_percentage
+            capacity
+        }
+    }
+}

@@ -1,0 +1,25 @@
+mutation Bill_insert(
+    $guestid: Int
+    $cost: Float
+    $isPaid: Boolean
+){
+    insert_BILL(
+        objects:
+        [
+            {
+                guest_id: $guestid
+                cost: $cost
+                is_paid: $isPaid
+            }
+        ]
+    ){
+        returning {
+            guest_id
+            cost
+            is_paid
+            id
+            created_at
+            updated_at
+        }
+    }
+}
