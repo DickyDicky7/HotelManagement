@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        manifestPlaceholders = [auth0Domain: '@string/com_auth0_domain', auth0Scheme: 'https']
+        manifestPlaceholders = [auth0Domain: '@string/com_auth0_domain', auth0Scheme: '@string/com_auth0_scheme']
     }
 
     buildTypes {
@@ -39,6 +39,8 @@ android {
 
 dependencies {
 
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.auth0.android:auth0:2.9.3'
     implementation 'com.apollographql.apollo:apollo-runtime:2.5.14'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'

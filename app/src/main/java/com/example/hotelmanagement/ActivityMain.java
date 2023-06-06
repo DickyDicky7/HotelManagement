@@ -5,15 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityMain extends AppCompatActivity {
-    public static ActivityMain instance;
-
-    public ActivityMain() {
-        instance = this;
-    }
-
-    public static ActivityMain getInstance() {
-        return instance;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +91,8 @@ public class ActivityMain extends AppCompatActivity {
 //
 //        });
 //        thread.start();
-//
-//        //endregion
+
+        //endregion
     }
 
 }
