@@ -3,6 +3,7 @@ package com.example.hotelmanagement.viewmodels;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
@@ -18,6 +19,7 @@ import com.example.hotelmanagement.observables.BillObservable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 public class BillViewModel extends ExtendedViewModel<BillObservable> {
 
@@ -25,7 +27,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
         super();
     }
 
-    public void checkObservable(BillObservable billObservable) {
+    public void checkObservable(BillObservable billObservable, @Nullable Consumer<Void> onSuccessCallback, @Nullable Consumer<Void> onFailureCallback) {
         if (billObservable.getIdNumber() == null || billObservable.getIdNumber().equals("")) {
             Toast.makeText(ActivityMain.getInstance(), "Guest's information is missing", Toast.LENGTH_SHORT).show();
             return;
@@ -34,7 +36,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
             Toast.makeText(ActivityMain.getInstance(), "Cannot find this guest", Toast.LENGTH_SHORT).show();
             return;
         }
-        insert(billObservable);
+        insert(billObservable, onSuccessCallback, onFailureCallback);
     }
 
     public void findGuestId(BillObservable billObservable) {
@@ -92,7 +94,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 });
     }
 
-    public void insert(BillObservable billObservable) {
+    public void insert(BillObservable billObservable, @Nullable Consumer<Void> onSuccessCallback, @Nullable Consumer<Void> onFailureCallback) {
         Bill_insertMutation billInsertMutation = Bill_insertMutation
                 .builder()
                 .guestid(billObservable.getGuestId())
@@ -107,15 +109,27 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                             List<BillObservable> temp = modelState.getValue();
                             temp.add(billObservable);
                             modelState.postValue(temp);
+
+                            if (onSuccessCallback != null) // Nếu có truyền vào callback
+                                onSuccessCallback.accept(null); // Thì gọi hàm callback được truyền
+
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());
+
+                            if (onFailureCallback != null)
+                                onFailureCallback.accept(null);
+
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
                         e.printStackTrace();
+
+                        if (onFailureCallback != null)
+                            onFailureCallback.accept(null);
+
                     }
                 });
     }
