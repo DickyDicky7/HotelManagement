@@ -17,8 +17,6 @@ import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 
-import java.util.function.Consumer;
-
 public class FragmentAddBill extends Fragment {
 
     private FragmentAddBillBinding binding;
@@ -38,11 +36,8 @@ public class FragmentAddBill extends Fragment {
         billObservable = new BillObservable();
         billViewModel = ExtendedViewModel.getViewModel(requireActivity(), BillViewModel.class);
         binding.setBillObservable(billObservable);
-        binding.edtIdNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                billViewModel.findGuestId(billObservable);
-            }
+        binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
+            billViewModel.findGuestId(billObservable);
         });
         binding.edtName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,26 +60,8 @@ public class FragmentAddBill extends Fragment {
             }
         });
 
-        binding.btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Consumer<Void> onSuccessCallback = unused -> {
-                    // Gọi navigate ở đây hoặc tạo biến observable mới ở đây
-                };
-                Consumer<Void> onFailureCallback = null; // Ko muốn truyền callback thì để null hoặc tạo callback rỗng
-                billViewModel.checkObservable(billObservable, onSuccessCallback, onFailureCallback);
-
-//                NOTE: Ngoài việc truyền callback ntn này, ô có thể biến 2 hàm callback náy thành 2 field trong ExtendedViewModel
-//                class ExtendedViewModel
-//                {
-//                    // ...
-//                    public Consumer<Void> onSuccessCallback;
-//                    public Consumer<Void> onFailureCallback;
-//                    // ...
-//                }
-//                Và ô vẫn check null 2 hàm này bình thường và gọi nó ở những vị trí cần thiết trong view model
-//                -> Nó giống với kiểu event handler trong WinForm
-            }
+        binding.btnDone.setOnClickListener(_view_ -> {
+            billViewModel.checkObservable(billObservable);
         });
     }
 

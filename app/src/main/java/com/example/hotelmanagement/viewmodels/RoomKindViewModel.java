@@ -69,15 +69,27 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             temp.add(observable);
                             modelState.postValue(temp);
                             System.out.println(response.getData().insert_ROOMKIND());
+
+                            if (onSuccessCallback != null)
+                                onSuccessCallback.accept(null);
+
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());
+
+                            if (onFailureCallback != null)
+                                onFailureCallback.accept(null);
+
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
                         e.printStackTrace();
+
+                        if (onFailureCallback != null)
+                            onFailureCallback.accept(null);
+
                     }
                 });
     }
