@@ -7,48 +7,49 @@ import com.example.hotelmanagement.BR;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-
 public class RentalFormObservable extends ExtendedObservable {
-    protected String idNumber;
+
     protected String name;
-    protected Integer guestId;
+    protected Double amount;
     protected Integer roomId;
     protected Integer billId;
-    protected Integer numOfGuests;
-    protected Double amount;
+    protected Date startDate;
+    protected String idNumber;
+    protected Integer guestId;
     protected Integer rentalDays;
     protected Boolean isResolved;
     protected Double pricePerDay;
-    protected Date startDate;
+    protected Integer numOfGuests;
 
     public RentalFormObservable() {
         super();
     }
 
-    public RentalFormObservable(Integer id,                     //auto generate
-                                Integer guestId,                //find by id number
-                                Integer roomId,                 //input
-                                Integer billId,                //default null
-                                Double amount,                  //auto calculate
-                                Integer rentalDays,             //input
-                                Integer numOfGuests,            //input
-                                Boolean isResolved,             //default false
-                                Double pricePerDay,             //find by room id
-                                Date startDate,                 //input
-                                Timestamp createdAt,            //auto generate
-                                Timestamp updatedAt) {          //auto generate
+    public RentalFormObservable(Integer id,
+                                Double amount,
+                                Date startDate,
+                                Integer roomId,
+                                Integer billId,
+                                Integer guestId,
+                                Integer rentalDays,
+                                Boolean isResolved,
+                                Double pricePerDay,
+                                Integer numOfGuests,
+                                Timestamp createdAt,
+                                Timestamp updatedAt) {
 
         super(id, createdAt, updatedAt);
 
-        this.guestId = guestId;
         this.roomId = roomId;
         this.billId = billId;
         this.amount = amount;
+        this.guestId = guestId;
         this.startDate = startDate;
         this.rentalDays = rentalDays;
         this.isResolved = isResolved;
         this.pricePerDay = pricePerDay;
         this.numOfGuests = numOfGuests;
+
     }
 
     @Bindable
@@ -57,7 +58,6 @@ public class RentalFormObservable extends ExtendedObservable {
     }
 
     public void setName(String name) {
-
         this.name = name;
         notifyPropertyChanged(BR.name);
     }
@@ -89,7 +89,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
-        notifyPropertyChanged(BR.roomIdString);
+        notifyPropertyChanged(BR.roomId);
     }
 
     @Bindable
@@ -105,6 +105,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setRoomIdString(String roomIdString) {
         try {
             setRoomId(Integer.valueOf(roomIdString));
+            notifyPropertyChanged(BR.roomIdString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +118,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setBillId(Integer billId) {
         this.billId = billId;
-        notifyPropertyChanged(BR.billIdString);
+        notifyPropertyChanged(BR.billId);
     }
 
     @Bindable
@@ -130,9 +131,10 @@ public class RentalFormObservable extends ExtendedObservable {
         }
     }
 
-    public void setBillILdString(String billILdString) {
+    public void setBillIdString(String billIdString) {
         try {
-            setBillId(Integer.valueOf(billILdString));
+            setBillId(Integer.valueOf(billIdString));
+            notifyPropertyChanged(BR.billIdString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,7 +147,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
-        notifyPropertyChanged(BR.amountString);
+        notifyPropertyChanged(BR.amount);
     }
 
     @Bindable
@@ -161,6 +163,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setAmountString(String amountString) {
         try {
             setAmount(Double.valueOf(amountString));
+            notifyPropertyChanged(BR.amountString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,7 +176,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setRentalDays(Integer rentalDays) {
         this.rentalDays = rentalDays;
-        notifyPropertyChanged(BR.rentalDaysString);
+        notifyPropertyChanged(BR.rentalDays);
     }
 
     @Bindable
@@ -189,6 +192,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setRentalDaysString(String rentalDaysString) {
         try {
             setRentalDays(Integer.valueOf(rentalDaysString));
+            notifyPropertyChanged(BR.rentalDaysString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -211,7 +215,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setPricePerDay(Double pricePerDay) {
         this.pricePerDay = pricePerDay;
-        notifyPropertyChanged(BR.pricePerDayString);
+        notifyPropertyChanged(BR.pricePerDay);
     }
 
     @Bindable
@@ -227,6 +231,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setPricePerDayString(String pricePerDayString) {
         try {
             setPricePerDay(Double.valueOf(pricePerDayString));
+            notifyPropertyChanged(BR.pricePerDayString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -239,7 +244,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
-        notifyPropertyChanged(BR.startDateString);
+        notifyPropertyChanged(BR.startDate);
     }
 
     @Bindable
@@ -255,6 +260,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setStartDateString(String startDateString) {
         try {
             setStartDate(Date.valueOf(startDateString));
+            notifyPropertyChanged(BR.startDateString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -283,8 +289,10 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setNumOfGuestsString(String numOfGuestsString) {
         try {
             setNumOfGuests(Integer.valueOf(numOfGuestsString));
+            notifyPropertyChanged(BR.numOfGuestsString);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }

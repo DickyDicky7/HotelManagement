@@ -38,7 +38,7 @@ public class RoomKindObservable extends ExtendedObservable {
         this.numOfBed = numOfBed;
         this.surchargePercentage = surchargePercentage;
     }
-    //name
+
     @Bindable
     public String getName() {
         return name;
@@ -49,7 +49,6 @@ public class RoomKindObservable extends ExtendedObservable {
         notifyPropertyChanged(BR.name);
     }
 
-    //price
     @Bindable
     public Double getPrice() {
         return price;
@@ -57,7 +56,7 @@ public class RoomKindObservable extends ExtendedObservable {
 
     public void setPrice(Double price) {
         this.price = price;
-        notifyPropertyChanged(BR.priceString);
+        notifyPropertyChanged(BR.price);
     }
 
     @Bindable
@@ -73,12 +72,12 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setPriceString(String priceString) {
         try {
             setPrice(Double.valueOf(priceString));
+            notifyPropertyChanged(BR.priceString);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //capacity
     @Bindable
     public Integer getCapacity() {
         return capacity;
@@ -86,7 +85,7 @@ public class RoomKindObservable extends ExtendedObservable {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
-        notifyPropertyChanged(BR.capacityString);
+        notifyPropertyChanged(BR.capacity);
     }
 
     @Bindable
@@ -102,20 +101,20 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setCapacityString(String capacityString) {
         try {
             setCapacity(Integer.valueOf(capacityString));
+            notifyPropertyChanged(BR.capacityString);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //number of bed
     @Bindable
     public Integer getNumOfBed() {
-        return this.numOfBed;
+        return numOfBed;
     }
 
     public void setNumOfBed(Integer numOfBed) {
         this.numOfBed = numOfBed;
-        notifyPropertyChanged(BR.numOfBedString);
+        notifyPropertyChanged(BR.numOfBed);
     }
 
     @Bindable
@@ -131,20 +130,20 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setNumOfBedString(String numOfBedString) {
         try {
             setNumOfBed(Integer.valueOf(numOfBedString));
+            notifyPropertyChanged(BR.numOfBedString);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //area
     @Bindable
     public Double getArea() {
-        return this.area;
+        return area;
     }
 
     public void setArea(Double area) {
         this.area = area;
-        notifyPropertyChanged(BR.areaString);
+        notifyPropertyChanged(BR.area);
     }
 
     @Bindable
@@ -160,6 +159,7 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setAreaString(String areaString) {
         try {
             setArea(Double.valueOf(areaString));
+            notifyPropertyChanged(BR.areaString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -172,7 +172,7 @@ public class RoomKindObservable extends ExtendedObservable {
 
     public void setSurchargePercentage(Double surchargePercentage) {
         this.surchargePercentage = surchargePercentage;
-        notifyPropertyChanged(BR.surchargePercentageString);
+        notifyPropertyChanged(BR.surchargePercentage);
     }
 
     @Bindable
@@ -188,6 +188,7 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setSurchargePercentageString(String surchargePercentageString) {
         try {
             setSurchargePercentage(Double.valueOf(surchargePercentageString));
+            notifyPropertyChanged(BR.surchargePercentageString);
         } catch (Exception e) {
             e.printStackTrace();
         }

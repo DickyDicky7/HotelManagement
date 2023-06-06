@@ -14,7 +14,7 @@ public class ExtendedObservable extends BaseObservable {
     protected Timestamp updatedAt;
 
     public ExtendedObservable() {
-
+        super();
     }
 
     public ExtendedObservable(Integer id,

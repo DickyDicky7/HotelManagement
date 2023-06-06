@@ -7,29 +7,30 @@ import com.example.hotelmanagement.BR;
 import java.sql.Timestamp;
 
 public class BillObservable extends ExtendedObservable {
-    protected String idNumber;
+
     protected String name;
-    protected Boolean isPaid;
-    protected Integer guestId;
     protected Double cost;
+    protected Boolean isPaid;
+    protected String idNumber;
+    protected Integer guestId;
 
     public BillObservable() {
         super();
     }
 
-    public BillObservable(Integer id,               //auto generate
-                          Boolean isPaid,           //input
-                          Integer guestId,          //find by id number
-                          Double cost,              //auto calculate
-                          Timestamp createdAt,      //auto generate
-                          Timestamp updatedAt)      //auto generate
-    {
+    public BillObservable(Integer id,
+                          Double cost,
+                          Boolean isPaid,
+                          Integer guestId,
+                          Timestamp createdAt,
+                          Timestamp updatedAt) {
 
         super(id, createdAt, updatedAt);
 
         this.cost = cost;
         this.isPaid = isPaid;
         this.guestId = guestId;
+
     }
 
     @Bindable
@@ -69,7 +70,7 @@ public class BillObservable extends ExtendedObservable {
 
     public void setGuestId(Integer guestId) {
         this.guestId = guestId;
-        notifyPropertyChanged(BR.guestIdString);
+        notifyPropertyChanged(BR.guestId);
     }
 
     @Bindable
@@ -85,6 +86,7 @@ public class BillObservable extends ExtendedObservable {
     public void setGuestIdString(String guestIdString) {
         try {
             setGuestId(Integer.valueOf(guestIdString));
+            notifyPropertyChanged(BR.guestIdString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +99,7 @@ public class BillObservable extends ExtendedObservable {
 
     public void setCost(Double cost) {
         this.cost = cost;
-        notifyPropertyChanged(BR.costString);
+        notifyPropertyChanged(BR.cost);
     }
 
     @Bindable
@@ -113,8 +115,10 @@ public class BillObservable extends ExtendedObservable {
     public void setCostString(String costString) {
         try {
             setCost(Double.valueOf(costString));
+            notifyPropertyChanged(BR.costString);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }

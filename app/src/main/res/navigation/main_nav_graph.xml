@@ -6,34 +6,6 @@
     app:startDestination="@id/fragmentLogin">
 
     <fragment
-        android:id="@+id/fragmentTempHome"
-        android:name="com.example.hotelmanagement.FragmentTempHome"
-        android:label="fragment_temp_home"
-        tools:layout="@layout/fragment_temp_home">
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentAddBill"
-            app:destination="@id/fragmentAddBill" />
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentAddGuest"
-            app:destination="@id/fragmentAddGuest" />
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentAddRoomKind"
-            app:destination="@id/fragmentAddRoomKind" />
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentAddRoom"
-            app:destination="@id/fragmentAddRoom" />
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentAddRentalForm"
-            app:destination="@id/fragmentAddRentalForm" />
-        <action
-            android:id="@+id/action_fragmentTempHome_to_fragmentLogin"
-            app:destination="@id/fragmentLogin"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
         android:id="@+id/fragmentAddBill"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddBill"
         android:label="fragment_add_bill"
@@ -78,13 +50,6 @@
         android:name="com.example.hotelmanagement.fragments.commons.FragmentHome"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentTempHome"
-            app:destination="@id/fragmentTempHome"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentAccount"
             app:destination="@id/fragmentAccount"
@@ -147,25 +112,65 @@
         android:id="@+id/fragmentRentalForms"
         android:name="com.example.hotelmanagement.fragments.lists.FragmentRentalForms"
         android:label="fragment_rental_forms"
-        tools:layout="@layout/fragment_rental_forms" />
+        tools:layout="@layout/fragment_rental_forms">
+        <action
+            android:id="@+id/action_fragmentRentalForms_to_fragmentAddRentalForm"
+            app:destination="@id/fragmentAddRentalForm"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentRooms"
         android:name="com.example.hotelmanagement.fragments.lists.FragmentRooms"
         android:label="fragment_rooms"
-        tools:layout="@layout/fragment_rooms" />
+        tools:layout="@layout/fragment_rooms">
+        <action
+            android:id="@+id/action_fragmentRooms_to_fragmentAddRoom"
+            app:destination="@id/fragmentAddRoom"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentGuests"
         android:name="com.example.hotelmanagement.fragments.lists.FragmentGuests"
         android:label="fragment_guests"
-        tools:layout="@layout/fragment_guests" />
+        tools:layout="@layout/fragment_guests">
+        <action
+            android:id="@+id/action_fragmentGuests_to_fragmentAddGuest"
+            app:destination="@id/fragmentAddGuest"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentRoomKinds"
         android:name="com.example.hotelmanagement.fragments.lists.FragmentRoomKinds"
         android:label="fragment_room_kinds"
-        tools:layout="@layout/fragment_room_kinds" />
+        tools:layout="@layout/fragment_room_kinds">
+        <action
+            android:id="@+id/action_fragmentRoomKinds_to_fragmentAddRoomKind"
+            app:destination="@id/fragmentAddRoomKind"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentBills"
         android:name="com.example.hotelmanagement.fragments.lists.FragmentBills"
         android:label="fragment_bills"
-        tools:layout="@layout/fragment_bills" />
+        tools:layout="@layout/fragment_bills">
+        <action
+            android:id="@+id/action_fragmentBills_to_fragmentAddBill"
+            app:destination="@id/fragmentAddBill"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

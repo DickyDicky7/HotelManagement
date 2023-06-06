@@ -66,7 +66,6 @@ public class RoomObservable extends ExtendedObservable {
         notifyPropertyChanged(BR.isOccupied);
     }
 
-
     @Bindable
     public Integer getRoomKindId() {
         return roomKindId;
@@ -79,10 +78,12 @@ public class RoomObservable extends ExtendedObservable {
 
     @Bindable
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+        notifyPropertyChanged(BR.description);
     }
+
 }
