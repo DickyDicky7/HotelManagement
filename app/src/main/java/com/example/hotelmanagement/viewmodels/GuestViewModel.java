@@ -89,7 +89,9 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                     guestObservables.add(guestObservable);
                                 }
                             });
-                            modelState.postValue(guestObservables);
+                            if (guestObservables != null) {
+                                modelState.postValue(guestObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());

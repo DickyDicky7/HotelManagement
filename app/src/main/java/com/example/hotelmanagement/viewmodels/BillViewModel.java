@@ -145,7 +145,9 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                     billObservables.add(billObservable);
                                 }
                             });
-                            modelState.postValue(billObservables);
+                            if (billObservables != null) {
+                                modelState.postValue(billObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());

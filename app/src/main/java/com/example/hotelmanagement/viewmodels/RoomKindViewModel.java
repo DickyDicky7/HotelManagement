@@ -91,7 +91,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                     roomKindObservables.add(roomKindObservable);
                                 }
                             });
-                            modelState.postValue(roomKindObservables);
+                            if (roomKindObservables != null) {
+                                modelState.postValue(roomKindObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());

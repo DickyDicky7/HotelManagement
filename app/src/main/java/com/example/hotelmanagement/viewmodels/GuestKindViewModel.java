@@ -38,7 +38,9 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                                     guestKindObservables.add(guestKindObservable);
                                 }
                             });
-                            modelState.postValue(guestKindObservables);
+                            if (guestKindObservables != null) {
+                                modelState.postValue(guestKindObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());

@@ -89,7 +89,9 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                     roomObservables.add(roomObservable);
                                 }
                             });
-                            modelState.postValue(roomObservables);
+                            if (roomObservables != null) {
+                                modelState.postValue(roomObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println((response.getErrors()));

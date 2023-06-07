@@ -160,7 +160,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                     rentalFormObservables.add(rentalFormObservable);
                                 }
                             });
-                            modelState.postValue(rentalFormObservables);
+                            if (rentalFormObservables != null) {
+                                modelState.postValue(rentalFormObservables);
+                            }
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());
