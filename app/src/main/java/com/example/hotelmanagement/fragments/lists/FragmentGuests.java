@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
@@ -53,6 +54,10 @@ public class FragmentGuests extends Fragment {
                 searchIcon.setColorFilter(Color.GRAY);
                 closeButton.setColorFilter(Color.GRAY);
             }
+        });
+
+        binding.guestsBtnAdd.setOnClickListener(_view_ -> {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentAddGuest);
         });
 
     }

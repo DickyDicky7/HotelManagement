@@ -43,55 +43,57 @@ public class FragmentAddRoom extends Fragment {
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                requireContext(),
-                R.layout.spinner_item,
-                new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinner.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
-            System.out.println("it is " + updatedRoomKindObservables.size());
         });
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
-                roomObservable.setRoomKindId(roomKindObservables.get(i).getId());
+                if (roomKindObservables != null) {
+                    roomObservable.setRoomKindId(roomKindObservables.get(i).getId());
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                roomObservable.setRoomKindId(null);
             }
         });
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                roomViewModel.checkObservable(roomObservable, requireContext());
-                if (roomObservable.getNote() != null) {
-                    if (roomObservable.getNote().equals(""))
+                roomViewModel.onSuccessCallback = unused -> {
+                };
+                roomViewModel.onFailureCallback = null;
+                if (roomViewModel.checkObservable(roomObservable, requireContext())) {
+                    if (roomObservable.getNote() != null && roomObservable.getNote().equals("")) {
                         roomObservable.setNote(null);
-                }
-                if (roomObservable.getDescription() != null) {
-                    if (roomObservable.getDescription().equals(""))
+                    }
+                    if (roomObservable.getDescription() != null && roomObservable.getDescription().equals("")) {
                         roomObservable.setDescription(null);
+                    }
+                    roomViewModel.insert(roomObservable);
                 }
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        roomObservable = null;
         roomViewModel = null;
+        roomObservable = null;
     }
 
 }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,9 +30,8 @@ import java.util.List;
 public class FragmentAddRentalForm extends Fragment {
 
     private FragmentAddRentalFormBinding binding;
-
-    private RentalFormObservable rentalFormObservable;
     private RentalFormViewModel rentalFormViewModel;
+    private RentalFormObservable rentalFormObservable;
 
     @Nullable
     @Override
@@ -45,27 +43,26 @@ public class FragmentAddRentalForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
         rentalFormObservable = new RentalFormObservable();
         binding.setRentalFormObservable(rentalFormObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                requireContext(),
-                R.layout.spinner_item,
-                new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseRoom.setAdapter(arrayAdapter);
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
-        roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservable -> {
-            arrayAdapter.addAll(updatedRoomObservable.stream().map(RoomObservable::getName).toArray(String[]::new));
+        roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
+            arrayAdapter.addAll(updatedRoomObservables.stream().map(RoomObservable::getName).toArray(String[]::new));
         });
-        binding.edtIDnumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
+
+        binding.edtIDnumber.setOnFocusChangeListener((_view_, b) -> {
+            if (!b) {
                 rentalFormViewModel.findGuestId(rentalFormObservable);
             }
         });
+
         binding.etRentalDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -84,22 +81,20 @@ public class FragmentAddRentalForm extends Fragment {
                 }
             }
         });
-        binding.imageCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar currentDate = Calendar.getInstance();
-                int year = currentDate.get(Calendar.YEAR);
-                int month = currentDate.get(Calendar.MONTH);
-                int day = currentDate.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog mDatePicker = new DatePickerDialog(requireActivity(), new DatePickerDialog.OnDateSetListener() {
-                    public void onDateSet(DatePicker datepicker, int selectedYear, int selectedMonth, int selectedDay) {
-                        rentalFormObservable.setStartDateString(selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay);
-                    }
-                }, year, month, day);
-                mDatePicker.setTitle("Select date");
-                mDatePicker.show();
-            }
+
+        binding.imageCalendar.setOnClickListener(_view_ -> {
+            Calendar currentDate = Calendar.getInstance();
+            int y = currentDate.get(Calendar.YEAR);
+            int m = currentDate.get(Calendar.MONTH);
+            int d = currentDate.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog mDatePicker = new DatePickerDialog(requireActivity()
+                    , (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                rentalFormObservable.setStartDateString(selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay);
+            }, y, m, d);
+            mDatePicker.setTitle("Select Date");
+            mDatePicker.show();
         });
+
         binding.etPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -118,6 +113,7 @@ public class FragmentAddRentalForm extends Fragment {
                 }
             }
         });
+
         binding.edtNumOfGuest.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -134,15 +130,18 @@ public class FragmentAddRentalForm extends Fragment {
                 rentalFormViewModel.findPrice(rentalFormObservable);
             }
         });
+
         binding.spinnerChooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
-                rentalFormObservable.setRoomId(roomObservables.get(i).getId());
-                if (rentalFormObservable.getNumOfGuestsString() == null || rentalFormObservable.getNumOfGuestsString().equals("")) {
-                    return;
+                if (roomObservables != null) {
+                    rentalFormObservable.setRoomId(roomObservables.get(i).getId());
+                    if (rentalFormObservable.getNumOfGuestsString() == null || rentalFormObservable.getNumOfGuestsString().equals("")) {
+                        return;
+                    }
+                    rentalFormViewModel.findPrice(rentalFormObservable);
                 }
-                rentalFormViewModel.findPrice(rentalFormObservable);
             }
 
             @Override
@@ -150,30 +149,34 @@ public class FragmentAddRentalForm extends Fragment {
 
             }
         });
-        binding.btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        binding.btnDone.setOnClickListener(_view_ -> {
+            try {
                 if (binding.edtIDnumber.isFocused()) {
-                    Toast.makeText(requireActivity(), "Finish entering id number to process", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                try {
-                    rentalFormViewModel.checkObservable(rentalFormObservable, requireContext());
-                    //set null for bill id
+                rentalFormViewModel.onSuccessCallback = unused -> {
+                };
+                rentalFormViewModel.onFailureCallback = null;
+                if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext())) {
                     rentalFormObservable.setBillId(null);
-                    //set false for isResolved
                     rentalFormObservable.setIsResolved(false);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
+                    rentalFormViewModel.insert(rentalFormObservable);
                 }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        rentalFormViewModel = null;
+        rentalFormObservable = null;
     }
 
 }

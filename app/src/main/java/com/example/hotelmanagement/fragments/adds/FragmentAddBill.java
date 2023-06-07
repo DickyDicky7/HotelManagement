@@ -33,12 +33,17 @@ public class FragmentAddBill extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         billObservable = new BillObservable();
         billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
         binding.setBillObservable(billObservable);
+
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
-            billViewModel.findGuestId(billObservable);
+            if (!b) {
+                billViewModel.findGuestId(billObservable);
+            }
         });
+
         binding.edtName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -53,7 +58,7 @@ public class FragmentAddBill extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (binding.edtIdNumber.isFocused()) {
-                    Toast.makeText(requireActivity(), "Finish entering id number to process", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 billViewModel.calculateCost(billObservable);
@@ -62,19 +67,25 @@ public class FragmentAddBill extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                billViewModel.checkObservable(billObservable, requireContext());
+                billViewModel.onSuccessCallback = unused -> {
+                };
+                billViewModel.onFailureCallback = null;
+                if (billViewModel.checkObservable(billObservable, requireContext())) {
+                    billViewModel.insert(billObservable);
+                }
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-        billObservable = null;
         billViewModel = null;
+        billObservable = null;
     }
 
 }

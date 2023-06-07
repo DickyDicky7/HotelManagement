@@ -38,14 +38,12 @@ public class FragmentAddGuest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
         guestObservable = new GuestObservable();
         binding.setGuestObservable(guestObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                requireContext(),
-                R.layout.spinner_item,
-                new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseGuestKind.setAdapter(arrayAdapter);
 
@@ -53,31 +51,43 @@ public class FragmentAddGuest extends Fragment {
         guestKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestKindObservables -> {
             arrayAdapter.addAll(updatedGuestKindObservables.stream().map(GuestKindObservable::getName).toArray(String[]::new));
         });
+
         binding.spinnerChooseGuestKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<GuestKindObservable> guestObservables = guestKindViewModel.getModelState().getValue();
-                guestObservable.setGuestKindId(guestObservables.get(i).getId());
+                List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
+                if (guestKindObservables != null) {
+                    guestObservable.setGuestKindId(guestKindObservables.get(i).getId());
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                guestObservable.setGuestKindId(null);
             }
         });
+
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                guestViewModel.checkObservable(guestObservable, requireContext());
+                guestViewModel.onSuccessCallback = unused -> {
+                };
+                guestViewModel.onFailureCallback = null;
+                if (guestViewModel.checkObservable(guestObservable, requireContext())) {
+                    guestViewModel.insert(guestObservable);
+                }
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        guestViewModel = null;
+        guestObservable = null;
     }
 
 }

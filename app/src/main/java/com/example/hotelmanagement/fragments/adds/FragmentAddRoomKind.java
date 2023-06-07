@@ -35,19 +35,21 @@ public class FragmentAddRoomKind extends Fragment {
         roomKindObservable = new RoomKindObservable();
         binding.setRoomKindObservable(roomKindObservable);
         binding.btnDone.setOnClickListener(_view_ -> {
-            roomKindViewModel.onSuccessCallback = unused -> {
-                requireActivity().runOnUiThread(() -> {
-//                    NavHostFragment.findNavController(this).navigate(R.id.action_fragmentAddRoomKind_to_fragmentTempHome);
-                });
-                //roomKindObservable = new RoomKindObservable();
-            };
-            roomKindViewModel.onFailureCallback = null;
             try {
-                roomKindViewModel.checkObservable(roomKindObservable, requireContext());
+                roomKindViewModel.onSuccessCallback = unused -> {
+                    requireActivity().runOnUiThread(() -> {
+                    });
+                    //roomKindObservable = new RoomKindObservable();
+                };
+                roomKindViewModel.onFailureCallback = null;
+                if (roomKindViewModel.checkObservable(roomKindObservable, requireContext())) {
+                    roomKindViewModel.insert(roomKindObservable);
+                }
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
+
     }
 
     @Override
