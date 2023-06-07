@@ -20,7 +20,6 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new GuestKindAllQuery())
                 .enqueue(new ApolloCall.Callback<GuestKindAllQuery.Data>() {
                     @Override
@@ -30,12 +29,14 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                             response.getData().GUESTKIND().forEach(item -> {
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-                                GuestKindObservable temp = new GuestKindObservable(
+                                GuestKindObservable guestKindObservable = new GuestKindObservable(
                                         item.id(),
                                         item.name(),
                                         createdAt,
                                         updatedAt);
-                                guestKindObservables.add(temp);
+                                if (guestKindObservables != null) {
+                                    guestKindObservables.add(guestKindObservable);
+                                }
                             });
                             modelState.postValue(guestKindObservables);
                         }

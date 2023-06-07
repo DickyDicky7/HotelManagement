@@ -23,8 +23,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
         GuestInsertMutation guestInsertMutation = GuestInsertMutation
                 .builder()
                 .name(guestObservable.getName())
-                .idNumber(guestObservable.getIdNumber())
                 .address(guestObservable.getAddress())
+                .idNumber(guestObservable.getIdNumber())
                 .guestKindId(guestObservable.getGuestKindId())
                 .phoneNumber(guestObservable.getPhoneNumber())
                 .build();
@@ -33,17 +33,32 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<GuestObservable> temp = modelState.getValue();
-                            temp.add(guestObservable);
-                            modelState.postValue(temp);
+                            List<GuestObservable> guestObservables = modelState.getValue();
+                            if (guestObservables != null) {
+                                guestObservables.add(guestObservable);
+                            }
+                            modelState.postValue(guestObservables);
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.accept(null);
+                                onSuccessCallback = null;
+                            }
+                            System.out.println(response.getData().insert_GUEST());
                         }
                         if (response.getErrors() != null) {
+                            if (onFailureCallback != null) {
+                                onFailureCallback.accept(null);
+                                onFailureCallback = null;
+                            }
                             System.out.println(response.getErrors());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
+                        if (onFailureCallback != null) {
+                            onFailureCallback.accept(null);
+                            onFailureCallback = null;
+                        }
                         e.printStackTrace();
                     }
                 });
@@ -51,7 +66,6 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new GuestAllQuery())
                 .enqueue(new ApolloCall.Callback<GuestAllQuery.Data>() {
                     @Override
@@ -61,7 +75,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                             response.getData().GUEST().forEach(item -> {
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-                                GuestObservable temp = new GuestObservable(
+                                GuestObservable guestObservable = new GuestObservable(
                                         item.id(),
                                         item.name(),
                                         item.address(),
@@ -71,6 +85,9 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                         createdAt,
                                         updatedAt
                                 );
+                                if (guestObservables != null) {
+                                    guestObservables.add(guestObservable);
+                                }
                             });
                             modelState.postValue(guestObservables);
                         }

@@ -24,27 +24,41 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 .builder()
                 .name(roomObservable.getName())
                 .note(roomObservable.getNote())
-                .description(roomObservable.getDescription())
                 .roomKindId(roomObservable.getRoomKindId())
                 .isOccupied(roomObservable.getIsOccupied())
+                .description(roomObservable.getDescription())
                 .build();
         Hasura.apolloClient.mutate(roomInsertMutation)
                 .enqueue(new ApolloCall.Callback<RoomInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<RoomObservable> temp = modelState.getValue();
-                            temp.add(roomObservable);
-                            modelState.postValue(temp);
+                            List<RoomObservable> roomObservables = modelState.getValue();
+                            if (roomObservables != null) {
+                                roomObservables.add(roomObservable);
+                                modelState.postValue(roomObservables);
+                            }
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.accept(null);
+                                onSuccessCallback = null;
+                            }
                             System.out.println(response.getData().insert_ROOM());
                         }
                         if (response.getErrors() != null) {
+                            if (onFailureCallback != null) {
+                                onFailureCallback.accept(null);
+                                onFailureCallback = null;
+                            }
                             System.out.println(response.getErrors());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
+                        if (onFailureCallback != null) {
+                            onFailureCallback.accept(null);
+                            onFailureCallback = null;
+                        }
                         e.printStackTrace();
                     }
                 });
@@ -52,7 +66,6 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new RoomAllQuery())
                 .enqueue(new ApolloCall.Callback<RoomAllQuery.Data>() {
                     @Override
@@ -62,7 +75,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                             response.getData().ROOM().forEach(item -> {
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-                                RoomObservable temp = new RoomObservable(
+                                RoomObservable roomObservable = new RoomObservable(
                                         item.id(),
                                         item.name(),
                                         item.note(),
@@ -72,7 +85,9 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                         createdAt,
                                         updatedAt
                                 );
-                                roomObservables.add(temp);
+                                if (roomObservables != null) {
+                                    roomObservables.add(roomObservable);
+                                }
                             });
                             modelState.postValue(roomObservables);
                         }

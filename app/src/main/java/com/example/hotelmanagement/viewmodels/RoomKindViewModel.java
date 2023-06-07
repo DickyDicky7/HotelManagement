@@ -19,63 +19,64 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         super();
     }
 
-    private void insert(RoomKindObservable observable) {
+    public void insert(RoomKindObservable roomKindObservable) {
         RoomKindInsertMutation roomKindInsertMutation = RoomKindInsertMutation
                 .builder()
-                .name(observable.getName())
-                .price(observable.getPrice())
-                .capacity(observable.getCapacity())
-                .numOfBed(observable.getNumOfBed())
-                .area(observable.getArea())
-                .surchargePercentage(observable.getSurchargePercentage())
+                .name(roomKindObservable.getName())
+                .area(roomKindObservable.getArea())
+                .price(roomKindObservable.getPrice())
+                .capacity(roomKindObservable.getCapacity())
+                .numOfBed(roomKindObservable.getNumOfBed())
+                .surchargePercentage(roomKindObservable.getSurchargePercentage())
                 .build();
         Hasura.apolloClient.mutate(roomKindInsertMutation)
                 .enqueue(new ApolloCall.Callback<RoomKindInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<RoomKindObservable> temp = modelState.getValue();
-                            temp.add(observable);
-                            modelState.postValue(temp);
-                            System.out.println(response.getData().insert_ROOMKIND());
-
-                            if (onSuccessCallback != null)
+                            List<RoomKindObservable> roomKindObservables = modelState.getValue();
+                            if (roomKindObservables != null) {
+                                roomKindObservables.add(roomKindObservable);
+                                modelState.postValue(roomKindObservables);
+                            }
+                            if (onSuccessCallback != null) {
                                 onSuccessCallback.accept(null);
-
+                                onSuccessCallback = null;
+                            }
+                            System.out.println(response.getData().insert_ROOMKIND());
                         }
                         if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
-
-                            if (onFailureCallback != null)
+                            if (onFailureCallback != null) {
                                 onFailureCallback.accept(null);
-
+                                onFailureCallback = null;
+                            }
+                            System.out.println(response.getErrors());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-
-                        if (onFailureCallback != null)
+                        if (onFailureCallback != null) {
                             onFailureCallback.accept(null);
-
+                            onFailureCallback = null;
+                        }
+                        e.printStackTrace();
                     }
                 });
     }
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new RoomKindAllQuery())
                 .enqueue(new ApolloCall.Callback<RoomKindAllQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomKindAllQuery.Data> response) {
                         if (response.getData() != null) {
-                            List<RoomKindObservable> roomKindObservableList = modelState.getValue();
+                            List<RoomKindObservable> roomKindObservables = modelState.getValue();
                             response.getData().ROOMKIND().forEach(item -> {
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-                                RoomKindObservable temp = new RoomKindObservable(
+                                RoomKindObservable roomKindObservable = new RoomKindObservable(
                                         item.id(),
                                         item.name(),
                                         item.area(),
@@ -86,9 +87,11 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                         updatedAt,
                                         item.surcharge_percentage()
                                 );
-                                roomKindObservableList.add(temp);
+                                if (roomKindObservables != null) {
+                                    roomKindObservables.add(roomKindObservable);
+                                }
                             });
-                            modelState.postValue(roomKindObservableList);
+                            modelState.postValue(roomKindObservables);
                         }
                         if (response.getErrors() != null) {
                             System.out.println(response.getErrors());

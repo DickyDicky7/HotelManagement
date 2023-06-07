@@ -61,7 +61,9 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                         if (response.getData() != null) {
                             AtomicReference<Double> sum = new AtomicReference<>(0.0);
                             response.getData().RENTALFORM().forEach(item -> {
-                                sum.set(sum.get() + item.amount());
+                                if (item.amount() != null) {
+                                    sum.set(sum.get() + item.amount());
+                                }
                             });
                             billObservable.setCost(sum.get());
                         }
@@ -89,31 +91,39 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<BillObservable> temp = modelState.getValue();
-                            temp.add(billObservable);
-                            modelState.postValue(temp);
-
-
+                            List<BillObservable> billObservables = modelState.getValue();
+                            if (billObservables != null) {
+                                billObservables.add(billObservable);
+                                modelState.postValue(billObservables);
+                            }
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.accept(null);
+                                onSuccessCallback = null;
+                            }
+                            System.out.println(response.getData().insert_BILL());
                         }
                         if (response.getErrors() != null) {
+                            if (onFailureCallback != null) {
+                                onFailureCallback.accept(null);
+                                onFailureCallback = null;
+                            }
                             System.out.println(response.getErrors());
-
-
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
+                        if (onFailureCallback != null) {
+                            onFailureCallback.accept(null);
+                            onFailureCallback = null;
+                        }
                         e.printStackTrace();
-
-
                     }
                 });
     }
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new BillAllQuery())
                 .enqueue(new ApolloCall.Callback<BillAllQuery.Data>() {
                     @Override
@@ -123,8 +133,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                             response.getData().BILL().forEach(item -> {
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-
-                                BillObservable temp = new BillObservable(
+                                BillObservable billObservable = new BillObservable(
                                         item.id(),
                                         item.cost(),
                                         item.is_paid(),
@@ -132,7 +141,9 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                         createdAt,
                                         updatedAt
                                 );
-                                billObservables.add(temp);
+                                if (billObservables != null) {
+                                    billObservables.add(billObservable);
+                                }
                             });
                             modelState.postValue(billObservables);
                         }

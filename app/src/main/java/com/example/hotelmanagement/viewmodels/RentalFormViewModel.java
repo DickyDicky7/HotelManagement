@@ -15,9 +15,9 @@ import com.example.hotelmanagement.observables.RentalFormObservable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Objects;
 
 public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable> {
+
     public RentalFormViewModel() {
         super();
     }
@@ -60,14 +60,13 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
-                                Integer sub = rentalFormObservable.getNumOfGuests() - Objects.requireNonNull(item.ROOMKIND()).capacity();
-                                if (sub < 0)
-                                    sub = 0;
-                                Double pricePerDay = item.ROOMKIND().price() +
-                                        item.ROOMKIND().surcharge_percentage() / 100 *
-                                                item.ROOMKIND().price() *
-                                                sub;
-                                rentalFormObservable.setPricePerDay(pricePerDay);
+                                if (item.ROOMKIND() != null) {
+                                    Integer sub = rentalFormObservable.getNumOfGuests() - item.ROOMKIND().capacity();
+                                    if (sub < 0)
+                                        sub = 0;
+                                    Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
+                                    rentalFormObservable.setPricePerDay(pricePerDay);
+                                }
                             });
                         }
                         if (response.getErrors() != null) {
@@ -85,33 +84,47 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
     public void insert(RentalFormObservable rentalFormObservable) {
         RentalFormInsertMutation rentalFormInsertMutation = RentalFormInsertMutation
                 .builder()
-                .guestId(rentalFormObservable.getGuestId())
                 .roomId(rentalFormObservable.getRoomId())
                 .billId(rentalFormObservable.getBillId())
                 .amount(rentalFormObservable.getAmount())
-                .rentalDays(rentalFormObservable.getRentalDays())
-                .numOfGuests(rentalFormObservable.getNumOfGuests())
-                .isResolved(rentalFormObservable.getIsResolved())
-                .pricePerDay(rentalFormObservable.getPricePerDay())
+                .guestId(rentalFormObservable.getGuestId())
                 .startDate(rentalFormObservable.getStartDate())
+                .rentalDays(rentalFormObservable.getRentalDays())
+                .isResolved(rentalFormObservable.getIsResolved())
+                .numOfGuests(rentalFormObservable.getNumOfGuests())
+                .pricePerDay(rentalFormObservable.getPricePerDay())
                 .build();
         Hasura.apolloClient.mutate(rentalFormInsertMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<RentalFormObservable> temp = modelState.getValue();
-                            temp.add(rentalFormObservable);
-                            modelState.postValue(temp);
-                            //System.out.println(response.getData().insert_RENTALFORM());
+                            List<RentalFormObservable> rentalFormObservables = modelState.getValue();
+                            if (rentalFormObservables != null) {
+                                rentalFormObservables.add(rentalFormObservable);
+                                modelState.postValue(rentalFormObservables);
+                            }
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.accept(null);
+                                onSuccessCallback = null;
+                            }
+                            System.out.println(response.getData().insert_RENTALFORM());
                         }
                         if (response.getErrors() != null) {
+                            if (onFailureCallback != null) {
+                                onFailureCallback.accept(null);
+                                onFailureCallback = null;
+                            }
                             System.out.println(response.getErrors());
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
+                        if (onFailureCallback != null) {
+                            onFailureCallback.accept(null);
+                            onFailureCallback = null;
+                        }
                         e.printStackTrace();
                     }
                 });
@@ -119,7 +132,6 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
 
     @Override
     public void loadData() {
-        // Call Hasura to query all the data
         Hasura.apolloClient.query(new RentalFormAllQuery())
                 .enqueue(new ApolloCall.Callback<RentalFormAllQuery.Data>() {
                     @Override
@@ -130,8 +142,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 Date startDate = item.start_date() != null ? Date.valueOf(item.start_date().toString()) : null;
                                 Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
                                 Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
-
-                                RentalFormObservable temp = new RentalFormObservable(
+                                RentalFormObservable rentalFormObservable = new RentalFormObservable(
                                         item.id(),
                                         item.amount(),
                                         startDate,
@@ -145,8 +156,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                         createdAt,
                                         updatedAt
                                 );
-                                //System.out.println(item.start_date());
-                                rentalFormObservables.add(temp);
+                                if (rentalFormObservables != null) {
+                                    rentalFormObservables.add(rentalFormObservable);
+                                }
                             });
                             modelState.postValue(rentalFormObservables);
                         }
