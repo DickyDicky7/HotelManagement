@@ -37,7 +37,7 @@
     <string name="lbl_sign_in">Sign In</string>
     <string name="lbl_wifi">Wifi</string>
     <string name="lbl_room_kind2">Room kind:</string>
-    <string name="lbl_note2">Note</string>
+    <string name="lbl_note2">Enter note</string>
     <string name="lbl_0905980355">0905980355</string>
     <string name="msg_17_04_2023_19">17/04/2023 - 19/4/2023</string>
     <string name="lbl_customer_s_name">Guest name</string>
@@ -203,7 +203,7 @@
     <string name="ubutton">UButton</string>
     <string name="lbl_cost">Cost</string>
     <string name="lbl_paid_status">Paid status</string>
-    <string name="lbl_guest_kind">Guset kind</string>
+    <string name="lbl_guest_kind">Guest kind</string>
     <string name="lbl_rental_day">Rental day</string>
     <string name="lbl_enter_rental_day">Enter rental day</string>
     <string name="lbl_price_per_day">Price per day</string>
