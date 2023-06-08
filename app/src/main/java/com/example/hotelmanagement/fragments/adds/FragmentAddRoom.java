@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 
@@ -25,6 +28,16 @@ public class FragmentAddRoom extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.btnArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //getParentFragmentManager().popBackStack();
+
+
+
+            }
+        });
     }
 
     @Override

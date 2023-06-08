@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
@@ -54,7 +55,7 @@ public class FragmentRoomKinds extends Fragment {
                 closeButton.setColorFilter(Color.GRAY);
             }
         });
-
+        binding.roomKindsBtnAdd.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentAddRoomKind));
     }
 
     @Override

@@ -12,9 +12,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
+import com.example.hotelmanagement.fragments.adds.FragmentAddRoom;
 
 public class FragmentRooms extends Fragment {
 
@@ -55,6 +58,18 @@ public class FragmentRooms extends Fragment {
             }
         });
 
+        binding.roomsBtnAdd.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentAddRoom));
+
+        binding.roomsBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //getParentFragmentManager().popBackStack();
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -62,5 +77,7 @@ public class FragmentRooms extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 
 }
