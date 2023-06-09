@@ -7,6 +7,7 @@ query RoomKindAll
         price
         area
         capacity
+        image_url
         created_at
         updated_at
         number_of_beds

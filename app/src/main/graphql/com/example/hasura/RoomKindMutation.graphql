@@ -2,6 +2,7 @@ mutation RoomKindInsert
 (
     $name               : String
     $price              : Float
+    $imageUrl           : String
     $capacity           : Int
     $numOfBed           : Int
     $area               : Float
@@ -16,6 +17,7 @@ mutation RoomKindInsert
                 name                : $name
                 price               : $price
                 capacity            : $capacity
+                image_url           : $imageUrl
                 number_of_beds      : $numOfBed
                 area                : $area
                 surcharge_percentage: $surchargePercentage
@@ -29,6 +31,7 @@ mutation RoomKindInsert
             name
             area
             capacity
+            image_url
             created_at
             updated_at
             number_of_beds

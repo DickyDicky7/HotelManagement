@@ -534,25 +534,341 @@ Boolean expression to compare columns of type "Boolean". All fields are combined
 """
 input Boolean_comparison_exp {
   _eq: Boolean
-  _gt: Boolean
-  _gte: Boolean
-  _in: [Boolean!]
-  _is_null: Boolean
-  _lt: Boolean
-  _lte: Boolean
-  _neq: Boolean
-  _nin: [Boolean!]
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"""
+columns and relationships of "CLOUDINARY"
+"""
+type CLOUDINARY {
+    api_key: String!
+    api_secret: String!
+    cloud_name: String!
+    created_at: timestamp!
+    id: Int!
+    updated_at: timestamp
+}
+
+"""
+aggregated selection of "CLOUDINARY"
+"""
+type CLOUDINARY_aggregate {
+    aggregate: CLOUDINARY_aggregate_fields
+    nodes: [CLOUDINARY!]!
+}
+
+"""
+aggregate fields of "CLOUDINARY"
+"""
+type CLOUDINARY_aggregate_fields {
+    avg: CLOUDINARY_avg_fields
+    count(columns: [CLOUDINARY_select_column!], distinct: Boolean): Int!
+    max: CLOUDINARY_max_fields
+    min: CLOUDINARY_min_fields
+    stddev: CLOUDINARY_stddev_fields
+    stddev_pop: CLOUDINARY_stddev_pop_fields
+    stddev_samp: CLOUDINARY_stddev_samp_fields
+    sum: CLOUDINARY_sum_fields
+    var_pop: CLOUDINARY_var_pop_fields
+    var_samp: CLOUDINARY_var_samp_fields
+    variance: CLOUDINARY_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type CLOUDINARY_avg_fields {
+    id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "CLOUDINARY". All fields are combined with a logical 'AND'.
+"""
+input CLOUDINARY_bool_exp {
+    _and: [CLOUDINARY_bool_exp!]
+    _not: CLOUDINARY_bool_exp
+    _or: [CLOUDINARY_bool_exp!]
+    api_key: String_comparison_exp
+    api_secret: String_comparison_exp
+    cloud_name: String_comparison_exp
+    created_at: timestamp_comparison_exp
+    id: Int_comparison_exp
+    updated_at: timestamp_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "CLOUDINARY"
+"""
+enum CLOUDINARY_constraint {
+    """
+    unique or primary key constraint on columns "id"
+    """
+    CLOUDINARY_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "CLOUDINARY"
+"""
+input CLOUDINARY_inc_input {
+    id: Int
+}
+
+"""
+input type for inserting data into table "CLOUDINARY"
+"""
+input CLOUDINARY_insert_input {
+    api_key: String
+    api_secret: String
+    cloud_name: String
+    created_at: timestamp
+    id: Int
+    updated_at: timestamp
+}
+
+"""
+aggregate max on columns
+"""
+type CLOUDINARY_max_fields {
+    api_key: String
+    api_secret: String
+    cloud_name: String
+    created_at: timestamp
+    id: Int
+    updated_at: timestamp
+}
+
+"""
+aggregate min on columns
+"""
+type CLOUDINARY_min_fields {
+    api_key: String
+    api_secret: String
+    cloud_name: String
+    created_at: timestamp
+    id: Int
+    updated_at: timestamp
+}
+
+"""
+response of any mutation on the table "CLOUDINARY"
+"""
+type CLOUDINARY_mutation_response {
+    """
+    number of rows affected by the mutation
+    """
+    affected_rows: Int!
+    """
+    data from the rows affected by the mutation
+    """
+    returning: [CLOUDINARY!]!
+}
+
+"""
+on_conflict condition type for table "CLOUDINARY"
+"""
+input CLOUDINARY_on_conflict {
+    constraint: CLOUDINARY_constraint!
+    update_columns: [CLOUDINARY_update_column!]! = []
+    where: CLOUDINARY_bool_exp
+}
+
+"""
+Ordering options when selecting data from "CLOUDINARY".
+"""
+input CLOUDINARY_order_by {
+    api_key: order_by
+    api_secret: order_by
+    cloud_name: order_by
+    created_at: order_by
+    id: order_by
+    updated_at: order_by
+}
+
+"""
+primary key columns input for table: CLOUDINARY
+"""
+input CLOUDINARY_pk_columns_input {
+    id: Int!
+}
+
+"""
+select columns of table "CLOUDINARY"
+"""
+enum CLOUDINARY_select_column {
+    """
+    column name
+    """
+    api_key
+    """
+    column name
+    """
+    api_secret
+    """
+    column name
+    """
+    cloud_name
+    """
+    column name
+    """
+    created_at
+    """
+    column name
+    """
+    id
+    """
+    column name
+    """
+    updated_at
+}
+
+"""
+input type for updating data in table "CLOUDINARY"
+"""
+input CLOUDINARY_set_input {
+    api_key: String
+    api_secret: String
+    cloud_name: String
+    created_at: timestamp
+    id: Int
+    updated_at: timestamp
+}
+
+"""
+aggregate stddev on columns
+"""
+type CLOUDINARY_stddev_fields {
+    id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type CLOUDINARY_stddev_pop_fields {
+    id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type CLOUDINARY_stddev_samp_fields {
+    id: Float
+}
+
+"""
+Streaming cursor of the table "CLOUDINARY"
+"""
+input CLOUDINARY_stream_cursor_input {
+    """
+    Stream column input with initial value
+    """
+    initial_value: CLOUDINARY_stream_cursor_value_input!
+    """
+    cursor ordering
+    """
+    ordering: cursor_ordering
+}
+
+"""
+Initial value of the column from where the streaming should start
+"""
+input CLOUDINARY_stream_cursor_value_input {
+    api_key: String
+    api_secret: String
+    cloud_name: String
+    created_at: timestamp
+    id: Int
+    updated_at: timestamp
+}
+
+"""
+aggregate sum on columns
+"""
+type CLOUDINARY_sum_fields {
+    id: Int
+}
+
+"""
+update columns of table "CLOUDINARY"
+"""
+enum CLOUDINARY_update_column {
+    """
+    column name
+    """
+    api_key
+    """
+    column name
+    """
+    api_secret
+    """
+    column name
+    """
+    cloud_name
+    """
+    column name
+    """
+    created_at
+    """
+    column name
+    """
+    id
+    """
+    column name
+    """
+    updated_at
+}
+
+input CLOUDINARY_updates {
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: CLOUDINARY_inc_input
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: CLOUDINARY_set_input
+    """
+    filter the rows which have to be updated
+    """
+    where: CLOUDINARY_bool_exp!
+}
+
+"""
+aggregate var_pop on columns
+"""
+type CLOUDINARY_var_pop_fields {
+    id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type CLOUDINARY_var_samp_fields {
+    id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type CLOUDINARY_variance_fields {
+    id: Float
 }
 
 """
 Boolean expression to compare columns of type "Float". All fields are combined with logical 'AND'.
 """
 input Float_comparison_exp {
-  _eq: Float
-  _gt: Float
-  _gte: Float
-  _in: [Float!]
-  _is_null: Boolean
+    _eq: Float
+    _gt: Float
+    _gte: Float
+    _in: [Float!]
+    _is_null: Boolean
   _lt: Float
   _lte: Float
   _neq: Float
@@ -3507,25 +3823,33 @@ input date_comparison_exp {
 mutation root
 """
 type mutation_root {
-  """
-  delete data from the table: "BILL"
-  """
-  delete_BILL("""filter the rows which have to be deleted""" where: BILL_bool_exp!): BILL_mutation_response
-  """
-  delete single row from the table: "BILL"
-  """
-  delete_BILL_by_pk(id: Int!): BILL
-  """
-  delete data from the table: "GUEST"
-  """
-  delete_GUEST("""filter the rows which have to be deleted""" where: GUEST_bool_exp!): GUEST_mutation_response
-  """
-  delete data from the table: "GUESTKIND"
-  """
-  delete_GUESTKIND("""filter the rows which have to be deleted""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
-  """
-  delete single row from the table: "GUESTKIND"
-  """
+    """
+    delete data from the table: "BILL"
+    """
+    delete_BILL("""filter the rows which have to be deleted""" where: BILL_bool_exp!): BILL_mutation_response
+    """
+    delete single row from the table: "BILL"
+    """
+    delete_BILL_by_pk(id: Int!): BILL
+    """
+    delete data from the table: "CLOUDINARY"
+    """
+    delete_CLOUDINARY("""filter the rows which have to be deleted""" where: CLOUDINARY_bool_exp!): CLOUDINARY_mutation_response
+    """
+    delete single row from the table: "CLOUDINARY"
+    """
+    delete_CLOUDINARY_by_pk(id: Int!): CLOUDINARY
+    """
+    delete data from the table: "GUEST"
+    """
+    delete_GUEST("""filter the rows which have to be deleted""" where: GUEST_bool_exp!): GUEST_mutation_response
+    """
+    delete data from the table: "GUESTKIND"
+    """
+    delete_GUESTKIND("""filter the rows which have to be deleted""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
+    """
+    delete single row from the table: "GUESTKIND"
+    """
   delete_GUESTKIND_by_pk(id: Int!): GUESTKIND
   """
   delete single row from the table: "GUEST"
@@ -3563,25 +3887,33 @@ type mutation_root {
   delete single row from the table: "UNIQUE"
   """
   delete_UNIQUE_by_pk(id: Int!): UNIQUE
-  """
-  insert data into the table: "BILL"
-  """
-  insert_BILL("""the rows to be inserted""" objects: [BILL_insert_input!]!, """upsert condition""" on_conflict: BILL_on_conflict): BILL_mutation_response
-  """
-  insert a single row into the table: "BILL"
-  """
-  insert_BILL_one("""the row to be inserted""" object: BILL_insert_input!, """upsert condition""" on_conflict: BILL_on_conflict): BILL
-  """
-  insert data into the table: "GUEST"
-  """
-  insert_GUEST("""the rows to be inserted""" objects: [GUEST_insert_input!]!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST_mutation_response
-  """
-  insert data into the table: "GUESTKIND"
-  """
-  insert_GUESTKIND("""the rows to be inserted""" objects: [GUESTKIND_insert_input!]!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND_mutation_response
-  """
-  insert a single row into the table: "GUESTKIND"
-  """
+    """
+    insert data into the table: "BILL"
+    """
+    insert_BILL("""the rows to be inserted""" objects: [BILL_insert_input!]!, """upsert condition""" on_conflict: BILL_on_conflict): BILL_mutation_response
+    """
+    insert a single row into the table: "BILL"
+    """
+    insert_BILL_one("""the row to be inserted""" object: BILL_insert_input!, """upsert condition""" on_conflict: BILL_on_conflict): BILL
+    """
+    insert data into the table: "CLOUDINARY"
+    """
+    insert_CLOUDINARY("""the rows to be inserted""" objects: [CLOUDINARY_insert_input!]!, """upsert condition""" on_conflict: CLOUDINARY_on_conflict): CLOUDINARY_mutation_response
+    """
+    insert a single row into the table: "CLOUDINARY"
+    """
+    insert_CLOUDINARY_one("""the row to be inserted""" object: CLOUDINARY_insert_input!, """upsert condition""" on_conflict: CLOUDINARY_on_conflict): CLOUDINARY
+    """
+    insert data into the table: "GUEST"
+    """
+    insert_GUEST("""the rows to be inserted""" objects: [GUEST_insert_input!]!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST_mutation_response
+    """
+    insert data into the table: "GUESTKIND"
+    """
+    insert_GUESTKIND("""the rows to be inserted""" objects: [GUESTKIND_insert_input!]!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND_mutation_response
+    """
+    insert a single row into the table: "GUESTKIND"
+    """
   insert_GUESTKIND_one("""the row to be inserted""" object: GUESTKIND_insert_input!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND
   """
   insert a single row into the table: "GUEST"
@@ -3623,25 +3955,37 @@ type mutation_root {
   update data of the table: "BILL"
   """
   update_BILL("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, """filter the rows which have to be updated""" where: BILL_bool_exp!): BILL_mutation_response
-  """
-  update single row of the table: "BILL"
-  """
-  update_BILL_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, pk_columns: BILL_pk_columns_input!): BILL
-  """
-  update multiples rows of table: "BILL"
-  """
-  update_BILL_many("""updates to execute, in order""" updates: [BILL_updates!]!): [BILL_mutation_response]
-  """
-  update data of the table: "GUEST"
-  """
-  update_GUEST("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, """filter the rows which have to be updated""" where: GUEST_bool_exp!): GUEST_mutation_response
-  """
-  update data of the table: "GUESTKIND"
-  """
-  update_GUESTKIND("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, """filter the rows which have to be updated""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
-  """
-  update single row of the table: "GUESTKIND"
-  """
+    """
+    update single row of the table: "BILL"
+    """
+    update_BILL_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, pk_columns: BILL_pk_columns_input!): BILL
+    """
+    update multiples rows of table: "BILL"
+    """
+    update_BILL_many("""updates to execute, in order""" updates: [BILL_updates!]!): [BILL_mutation_response]
+    """
+    update data of the table: "CLOUDINARY"
+    """
+    update_CLOUDINARY("""increments the numeric columns with given value of the filtered values""" _inc: CLOUDINARY_inc_input, """sets the columns of the filtered rows to the given values""" _set: CLOUDINARY_set_input, """filter the rows which have to be updated""" where: CLOUDINARY_bool_exp!): CLOUDINARY_mutation_response
+    """
+    update single row of the table: "CLOUDINARY"
+    """
+    update_CLOUDINARY_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: CLOUDINARY_inc_input, """sets the columns of the filtered rows to the given values""" _set: CLOUDINARY_set_input, pk_columns: CLOUDINARY_pk_columns_input!): CLOUDINARY
+    """
+    update multiples rows of table: "CLOUDINARY"
+    """
+    update_CLOUDINARY_many("""updates to execute, in order""" updates: [CLOUDINARY_updates!]!): [CLOUDINARY_mutation_response]
+    """
+    update data of the table: "GUEST"
+    """
+    update_GUEST("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, """filter the rows which have to be updated""" where: GUEST_bool_exp!): GUEST_mutation_response
+    """
+    update data of the table: "GUESTKIND"
+    """
+    update_GUESTKIND("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, """filter the rows which have to be updated""" where: GUESTKIND_bool_exp!): GUESTKIND_mutation_response
+    """
+    update single row of the table: "GUESTKIND"
+    """
   update_GUESTKIND_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, pk_columns: GUESTKIND_pk_columns_input!): GUESTKIND
   """
   update multiples rows of table: "GUESTKIND"
@@ -3740,25 +4084,37 @@ type query_root {
   fetch data from the table: "BILL"
   """
   BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
-  """
-  fetch aggregated fields from the table: "BILL"
-  """
-  BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
-  """
-  fetch data from the table: "BILL" using primary key columns
-  """
-  BILL_by_pk(id: Int!): BILL
-  """
-  fetch data from the table: "GUEST"
-  """
-  GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
-  """
-  fetch data from the table: "GUESTKIND"
-  """
-  GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
-  """
-  fetch aggregated fields from the table: "GUESTKIND"
-  """
+    """
+    fetch aggregated fields from the table: "BILL"
+    """
+    BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
+    """
+    fetch data from the table: "BILL" using primary key columns
+    """
+    BILL_by_pk(id: Int!): BILL
+    """
+    fetch data from the table: "CLOUDINARY"
+    """
+    CLOUDINARY("""distinct select on columns""" distinct_on: [CLOUDINARY_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [CLOUDINARY_order_by!], """filter the rows returned""" where: CLOUDINARY_bool_exp): [CLOUDINARY!]!
+    """
+    fetch aggregated fields from the table: "CLOUDINARY"
+    """
+    CLOUDINARY_aggregate("""distinct select on columns""" distinct_on: [CLOUDINARY_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [CLOUDINARY_order_by!], """filter the rows returned""" where: CLOUDINARY_bool_exp): CLOUDINARY_aggregate!
+    """
+    fetch data from the table: "CLOUDINARY" using primary key columns
+    """
+    CLOUDINARY_by_pk(id: Int!): CLOUDINARY
+    """
+    fetch data from the table: "GUEST"
+    """
+    GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+    """
+    fetch data from the table: "GUESTKIND"
+    """
+    GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+    """
+    fetch aggregated fields from the table: "GUESTKIND"
+    """
   GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
   """
   fetch data from the table: "GUESTKIND" using primary key columns
@@ -3831,25 +4187,41 @@ type subscription_root {
   fetch aggregated fields from the table: "BILL"
   """
   BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
-  """
-  fetch data from the table: "BILL" using primary key columns
-  """
-  BILL_by_pk(id: Int!): BILL
-  """
-  fetch data from the table in a streaming manner: "BILL"
-  """
-  BILL_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [BILL_stream_cursor_input]!, """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
-  """
-  fetch data from the table: "GUEST"
-  """
-  GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
-  """
-  fetch data from the table: "GUESTKIND"
-  """
-  GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
-  """
-  fetch aggregated fields from the table: "GUESTKIND"
-  """
+    """
+    fetch data from the table: "BILL" using primary key columns
+    """
+    BILL_by_pk(id: Int!): BILL
+    """
+    fetch data from the table in a streaming manner: "BILL"
+    """
+    BILL_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [BILL_stream_cursor_input]!, """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+    """
+    fetch data from the table: "CLOUDINARY"
+    """
+    CLOUDINARY("""distinct select on columns""" distinct_on: [CLOUDINARY_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [CLOUDINARY_order_by!], """filter the rows returned""" where: CLOUDINARY_bool_exp): [CLOUDINARY!]!
+    """
+    fetch aggregated fields from the table: "CLOUDINARY"
+    """
+    CLOUDINARY_aggregate("""distinct select on columns""" distinct_on: [CLOUDINARY_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [CLOUDINARY_order_by!], """filter the rows returned""" where: CLOUDINARY_bool_exp): CLOUDINARY_aggregate!
+    """
+    fetch data from the table: "CLOUDINARY" using primary key columns
+    """
+    CLOUDINARY_by_pk(id: Int!): CLOUDINARY
+    """
+    fetch data from the table in a streaming manner: "CLOUDINARY"
+    """
+    CLOUDINARY_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [CLOUDINARY_stream_cursor_input]!, """filter the rows returned""" where: CLOUDINARY_bool_exp): [CLOUDINARY!]!
+    """
+    fetch data from the table: "GUEST"
+    """
+    GUEST("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
+    """
+    fetch data from the table: "GUESTKIND"
+    """
+    GUESTKIND("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+    """
+    fetch aggregated fields from the table: "GUESTKIND"
+    """
   GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
   """
   fetch data from the table: "GUESTKIND" using primary key columns

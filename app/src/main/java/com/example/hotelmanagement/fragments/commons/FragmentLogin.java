@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.fragments.commons;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import com.cloudinary.Configuration;
+import com.cloudinary.android.MediaManager;
+import com.example.hasura.CloudinaryAllQuery;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentLoginBinding;
@@ -53,6 +60,29 @@ public class FragmentLogin extends Fragment {
                 roomKindViewModel.loadData();
                 guestKindViewModel.loadData();
                 rentalFormViewModel.loadData();
+                Context capturedRequiredContext = requireContext();
+                Hasura.apolloClient.query(new CloudinaryAllQuery()).enqueue(new ApolloCall.Callback<CloudinaryAllQuery.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<CloudinaryAllQuery.Data> response) {
+                        if (response.getData() != null) {
+                            CloudinaryAllQuery.CLOUDINARY cloudinary = response.getData().CLOUDINARY().get(0);
+                            Configuration configuration = new Configuration();
+                            configuration.secure = true;
+                            configuration.apiKey = cloudinary.api_key();
+                            configuration.apiSecret = cloudinary.api_secret();
+                            configuration.cloudName = cloudinary.cloud_name();
+                            MediaManager.init(capturedRequiredContext, configuration);
+                        }
+                        if (response.getErrors() != null) {
+                            System.out.println(response.getErrors());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        e.printStackTrace();
+                    }
+                });
                 NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
             };
             Consumer<Void> onFailureCallback = null;

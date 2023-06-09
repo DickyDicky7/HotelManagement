@@ -1,0 +1,12 @@
+query CloudinaryAll
+{
+    CLOUDINARY
+    {
+        id
+        api_key
+        api_secret
+        cloud_name
+        created_at
+        updated_at
+    }
+}

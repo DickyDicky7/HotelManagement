@@ -11,6 +11,7 @@ public class RoomKindObservable extends ExtendedObservable {
     protected String name;
     protected Double area;
     protected Double price;
+    protected String imageURL;
     protected Integer capacity;
     protected Integer numOfBed;
     protected Double surchargePercentage;
@@ -23,6 +24,7 @@ public class RoomKindObservable extends ExtendedObservable {
                               String name,
                               Double area,
                               Double price,
+                              String imageURL,
                               Integer capacity,
                               Integer numOfBed,
                               Timestamp createdAt,
@@ -34,6 +36,7 @@ public class RoomKindObservable extends ExtendedObservable {
         this.name = name;
         this.area = area;
         this.price = price;
+        this.imageURL = imageURL;
         this.capacity = capacity;
         this.numOfBed = numOfBed;
         this.surchargePercentage = surchargePercentage;
@@ -218,6 +221,16 @@ public class RoomKindObservable extends ExtendedObservable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Bindable
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+        notifyPropertyChanged(BR.imageURL);
     }
 
 }
