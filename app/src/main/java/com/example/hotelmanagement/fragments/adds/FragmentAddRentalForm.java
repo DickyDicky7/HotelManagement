@@ -82,7 +82,7 @@ public class FragmentAddRentalForm extends Fragment {
             }
         });
 
-        binding.imageCalendar.setOnClickListener(_view_ -> {
+        binding.edtDate.setOnClickListener(_view_->{
             Calendar currentDate = Calendar.getInstance();
             int y = currentDate.get(Calendar.YEAR);
             int m = currentDate.get(Calendar.MONTH);
@@ -94,7 +94,8 @@ public class FragmentAddRentalForm extends Fragment {
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
         });
-
+        binding.radioResolved.setEnabled(false);
+        rentalFormObservable.setIsResolved(false);
         binding.etPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -161,7 +162,7 @@ public class FragmentAddRentalForm extends Fragment {
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext())) {
                     rentalFormObservable.setBillId(null);
-                    rentalFormObservable.setIsResolved(false);
+                    //rentalFormObservable.setIsResolved(false);
                     rentalFormViewModel.insert(rentalFormObservable);
                 }
             } catch (IllegalAccessException e) {
