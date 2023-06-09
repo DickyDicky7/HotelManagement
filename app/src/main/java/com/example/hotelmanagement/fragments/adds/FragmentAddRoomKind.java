@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
@@ -53,8 +54,13 @@ public class FragmentAddRoomKind extends Fragment {
             try {
                 roomKindViewModel.onSuccessCallback = unused -> {
                     requireActivity().runOnUiThread(() -> {
+                        // Những task buộc phải chạy trên main thread thì gọi ở đây
+                        // Ví dụ như navigation
                     });
-                    //roomKindObservable = new RoomKindObservable();
+                    roomKindObservable = new RoomKindObservable();
+                    binding.setRoomKindObservable(roomKindObservable);
+                    binding.edtImage.setColorFilter(Color.WHITE);
+                    Glide.with(this).load(getResources().getDrawable(R.drawable.upload_image)).centerInside().into(binding.edtImage);
                 };
                 roomKindViewModel.onFailureCallback = null;
                 if (roomKindViewModel.checkObservable(roomKindObservable, requireContext())) {

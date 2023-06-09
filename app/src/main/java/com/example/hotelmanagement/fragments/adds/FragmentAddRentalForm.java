@@ -94,8 +94,10 @@ public class FragmentAddRentalForm extends Fragment {
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
         });
+
         binding.radioResolved.setEnabled(false);
         rentalFormObservable.setIsResolved(false);
+
         binding.etPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

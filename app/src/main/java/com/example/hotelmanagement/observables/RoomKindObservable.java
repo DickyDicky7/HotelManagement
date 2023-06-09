@@ -68,7 +68,6 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return price.toString();
         } catch (NullPointerException e) {
-
             return "";
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,10 +78,10 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setPriceString(String priceString) {
         try {
             setPrice(Double.valueOf(priceString));
-            notifyPropertyChanged(BR.priceString);
         } catch (NullPointerException | NumberFormatException e) {
-
+            setPrice(null);
         } catch (Exception e) {
+            setPrice(null);
             e.printStackTrace();
         }
     }
@@ -102,7 +101,6 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return capacity.toString();
         } catch (NullPointerException e) {
-
             return "";
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,10 +111,10 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setCapacityString(String capacityString) {
         try {
             setCapacity(Integer.valueOf(capacityString));
-            notifyPropertyChanged(BR.capacityString);
         } catch (NullPointerException | NumberFormatException e) {
-
+            setCapacity(null);
         } catch (Exception e) {
+            setCapacity(null);
             e.printStackTrace();
         }
     }
@@ -136,7 +134,6 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return numOfBed.toString();
         } catch (NullPointerException e) {
-
             return "";
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,10 +144,10 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setNumOfBedString(String numOfBedString) {
         try {
             setNumOfBed(Integer.valueOf(numOfBedString));
-            notifyPropertyChanged(BR.numOfBedString);
         } catch (NullPointerException | NumberFormatException e) {
-
+            setNumOfBed(null);
         } catch (Exception e) {
+            setNumOfBed(null);
             e.printStackTrace();
         }
     }
@@ -170,7 +167,6 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return area.toString();
         } catch (NullPointerException e) {
-
             return "";
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,10 +177,10 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setAreaString(String areaString) {
         try {
             setArea(Double.valueOf(areaString));
-            notifyPropertyChanged(BR.areaString);
         } catch (NullPointerException | NumberFormatException e) {
-
+            setArea(null);
         } catch (Exception e) {
+            setArea(null);
             e.printStackTrace();
         }
     }
@@ -204,7 +200,6 @@ public class RoomKindObservable extends ExtendedObservable {
         try {
             return surchargePercentage.toString();
         } catch (NullPointerException e) {
-
             return "";
         } catch (Exception e) {
             e.printStackTrace();
@@ -215,10 +210,10 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setSurchargePercentageString(String surchargePercentageString) {
         try {
             setSurchargePercentage(Double.valueOf(surchargePercentageString));
-            notifyPropertyChanged(BR.surchargePercentageString);
         } catch (NullPointerException | NumberFormatException e) {
-
+            setSurchargePercentage(null);
         } catch (Exception e) {
+            setSurchargePercentage(null);
             e.printStackTrace();
         }
     }

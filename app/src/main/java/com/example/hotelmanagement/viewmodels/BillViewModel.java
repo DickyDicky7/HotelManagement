@@ -82,9 +82,9 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     public void insert(BillObservable billObservable) {
         BillInsertMutation billInsertMutation = BillInsertMutation
                 .builder()
-                .guestId(billObservable.getGuestId())
                 .cost(billObservable.getCost())
                 .isPaid(billObservable.getIsPaid())
+                .guestId(billObservable.getGuestId())
                 .build();
         Hasura.apolloClient.mutate(billInsertMutation)
                 .enqueue(new ApolloCall.Callback<BillInsertMutation.Data>() {
