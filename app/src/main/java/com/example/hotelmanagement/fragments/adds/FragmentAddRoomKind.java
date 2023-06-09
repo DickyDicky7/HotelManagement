@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.fragments.adds;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class FragmentAddRoomKind extends Fragment {
                     roomKindObservable.setImageURL(uri.toString());
                     binding.edtImage.setColorFilter(Color.TRANSPARENT);
                     Glide.with(this).load(uri).centerInside().into(binding.edtImage);
+                    requireContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 }
             });
 
