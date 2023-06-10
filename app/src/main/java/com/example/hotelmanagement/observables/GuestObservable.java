@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class GuestObservable extends ExtendedObservable {
 
@@ -21,19 +21,19 @@ public class GuestObservable extends ExtendedObservable {
     public GuestObservable(Integer id,
                            String name,
                            String address,
-                           String idNumber,
-                           String phoneNumber,
-                           Integer guestKindId,
-                           Timestamp createdAt,
-                           Timestamp updatedAt) {
+                           String id_number,
+                           String phone_number,
+                           Integer guestkind_id,
+                           LocalDateTime created_at,
+                           LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.name = name;
         this.address = address;
-        this.idNumber = idNumber;
-        this.guestKindId = guestKindId;
-        this.phoneNumber = phoneNumber;
+        this.idNumber = id_number;
+        this.guestKindId = guestkind_id;
+        this.phoneNumber = phone_number;
 
     }
 

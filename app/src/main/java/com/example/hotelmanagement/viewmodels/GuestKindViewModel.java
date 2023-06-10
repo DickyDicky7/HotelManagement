@@ -9,7 +9,7 @@ import com.example.hasura.GuestKindAllQuery;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
@@ -27,13 +27,14 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                         if (response.getData() != null) {
                             List<GuestKindObservable> guestKindObservables = modelState.getValue();
                             response.getData().GUESTKIND().forEach(item -> {
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 GuestKindObservable guestKindObservable = new GuestKindObservable(
                                         item.id(),
                                         item.name(),
-                                        createdAt,
-                                        updatedAt);
+                                        item_created_at,
+                                        item_updated_at
+                                );
                                 if (guestKindObservables != null) {
                                     guestKindObservables.add(guestKindObservable);
                                 }

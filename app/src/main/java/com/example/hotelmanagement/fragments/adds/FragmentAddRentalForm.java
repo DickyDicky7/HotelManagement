@@ -140,7 +140,7 @@ public class FragmentAddRentalForm extends Fragment {
                 List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
                 if (roomObservables != null) {
                     rentalFormObservable.setRoomId(roomObservables.get(i).getId());
-                    if (rentalFormObservable.getNumOfGuestsString() == null || rentalFormObservable.getNumOfGuestsString().equals("")) {
+                    if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
                         return;
                     }
                     rentalFormViewModel.findPrice(rentalFormObservable);

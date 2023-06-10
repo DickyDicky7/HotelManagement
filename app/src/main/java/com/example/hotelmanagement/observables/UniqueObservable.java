@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class UniqueObservable extends ExtendedObservable {
 
@@ -12,10 +12,10 @@ public class UniqueObservable extends ExtendedObservable {
 
     public UniqueObservable(Integer id,
                             Double coefficient,
-                            Timestamp createdAt,
-                            Timestamp updatedAt) {
+                            LocalDateTime created_at,
+                            LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.coefficient = coefficient;
 

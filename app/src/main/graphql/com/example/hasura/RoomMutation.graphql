@@ -2,9 +2,9 @@ mutation RoomInsert
 (
     $name       : String
     $note       : String
-    $description: String
     $roomKindId : Int
     $isOccupied : Boolean
+    $description: String
 )
 {
     insert_ROOM
@@ -12,11 +12,11 @@ mutation RoomInsert
         objects:
         [
             {
-                name       :$name
+                name       : $name
                 note       : $note
-                description: $description
                 roomkind_id: $roomKindId
                 is_occupied: $isOccupied
+                description: $description
             }
         ]
     )

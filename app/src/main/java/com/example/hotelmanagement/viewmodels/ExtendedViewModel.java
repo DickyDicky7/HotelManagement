@@ -36,7 +36,10 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
             if (Arrays.stream(excludedFields).noneMatch(excludedField -> excludedField.equals(field.getName()))) {
                 field.setAccessible(true);
                 if (field.get(baseObservable) == null || field.get(baseObservable).toString().equals("")) {
-                    Toast.makeText(context, ("missing " + field.getName()).toUpperCase(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, ("missing " + Arrays.stream(field.getName().split
+                            ("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")).reduce
+                            ("", (sentence, word) -> sentence + " " + word))
+                            .toUpperCase(), Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }

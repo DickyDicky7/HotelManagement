@@ -4,8 +4,8 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class RentalFormObservable extends ExtendedObservable {
 
@@ -13,13 +13,13 @@ public class RentalFormObservable extends ExtendedObservable {
     protected Double amount;
     protected Integer roomId;
     protected Integer billId;
-    protected Date startDate;
     protected String idNumber;
     protected Integer guestId;
     protected Integer rentalDays;
     protected Boolean isResolved;
     protected Double pricePerDay;
-    protected Integer numOfGuests;
+    protected LocalDate startDate;
+    protected Integer numberOfGuests;
 
     public RentalFormObservable() {
         super();
@@ -27,28 +27,28 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public RentalFormObservable(Integer id,
                                 Double amount,
-                                Date startDate,
-                                Integer roomId,
-                                Integer billId,
-                                Integer guestId,
-                                Integer rentalDays,
-                                Boolean isResolved,
-                                Double pricePerDay,
-                                Integer numOfGuests,
-                                Timestamp createdAt,
-                                Timestamp updatedAt) {
+                                Integer room_id,
+                                Integer bill_id,
+                                Integer guest_id,
+                                Integer rental_days,
+                                Boolean is_resolved,
+                                Double price_per_day,
+                                LocalDate start_date,
+                                Integer number_of_guests,
+                                LocalDateTime created_at,
+                                LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
-        this.roomId = roomId;
-        this.billId = billId;
         this.amount = amount;
-        this.guestId = guestId;
-        this.startDate = startDate;
-        this.rentalDays = rentalDays;
-        this.isResolved = isResolved;
-        this.pricePerDay = pricePerDay;
-        this.numOfGuests = numOfGuests;
+        this.roomId = room_id;
+        this.billId = bill_id;
+        this.guestId = guest_id;
+        this.startDate = start_date;
+        this.rentalDays = rental_days;
+        this.isResolved = is_resolved;
+        this.pricePerDay = price_per_day;
+        this.numberOfGuests = number_of_guests;
 
     }
 
@@ -258,11 +258,11 @@ public class RentalFormObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
         notifyPropertyChanged(BR.startDate);
     }
@@ -281,7 +281,7 @@ public class RentalFormObservable extends ExtendedObservable {
 
     public void setStartDateString(String startDateString) {
         try {
-            setStartDate(Date.valueOf(startDateString));
+            setStartDate(LocalDate.parse(startDateString));
         } catch (NullPointerException | IllegalArgumentException e) {
             setStartDate(null);
         } catch (Exception e) {
@@ -291,19 +291,19 @@ public class RentalFormObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public Integer getNumOfGuests() {
-        return numOfGuests;
+    public Integer getNumberOfGuests() {
+        return numberOfGuests;
     }
 
-    public void setNumOfGuests(Integer numOfGuests) {
-        this.numOfGuests = numOfGuests;
-        notifyPropertyChanged(BR.numOfGuests);
+    public void setNumberOfGuests(Integer numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+        notifyPropertyChanged(BR.numberOfGuests);
     }
 
     @Bindable
-    public String getNumOfGuestsString() {
+    public String getNumberOfGuestsString() {
         try {
-            return numOfGuests.toString();
+            return numberOfGuests.toString();
         } catch (NullPointerException e) {
             return "";
         } catch (Exception e) {
@@ -312,13 +312,13 @@ public class RentalFormObservable extends ExtendedObservable {
         }
     }
 
-    public void setNumOfGuestsString(String numOfGuestsString) {
+    public void setNumberOfGuestsString(String numberOfGuestsString) {
         try {
-            setNumOfGuests(Integer.valueOf(numOfGuestsString));
+            setNumberOfGuests(Integer.valueOf(numberOfGuestsString));
         } catch (NullPointerException | NumberFormatException e) {
-            setNumOfGuests(null);
+            setNumberOfGuests(null);
         } catch (Exception e) {
-            setNumOfGuests(null);
+            setNumberOfGuests(null);
             e.printStackTrace();
         }
     }

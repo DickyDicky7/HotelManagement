@@ -1,14 +1,14 @@
 mutation RentalFormInsert
 (
-    $guestId    : Int
-    $roomId     : Int
-    $billId     : Int
-    $amount     : Float
-    $rentalDays : Int
-    $numOfGuests: Int
-    $isResolved : Boolean
-    $pricePerDay: Float
-    $startDate  : date
+    $roomId        : Int
+    $billId        : Int
+    $amount        : Float
+    $guestId       : Int
+    $startDate     : date
+    $rentalDays    : Int
+    $isResolved    : Boolean
+    $pricePerDay   : Float
+    $numberOfGuests: Int
 )
 {
     insert_RENTALFORM
@@ -16,15 +16,15 @@ mutation RentalFormInsert
         objects:
         [
             {
-                guest_id        : $guestId
                 room_id         : $roomId
                 bill_id         : $billId
                 amount          : $amount
+                guest_id        : $guestId
+                start_date      : $startDate
                 rental_days     : $rentalDays
-                number_of_guests: $numOfGuests
                 is_resolved     : $isResolved
                 price_per_day   : $pricePerDay
-                start_date      : $startDate
+                number_of_guests: $numberOfGuests
             }
         ]
     )
@@ -35,12 +35,14 @@ mutation RentalFormInsert
             amount
             room_id
             bill_id
+            guest_id
             start_date
             created_at
             updated_at
             rental_days
             is_resolved
             price_per_day
+            number_of_guests
         }
     }
 }

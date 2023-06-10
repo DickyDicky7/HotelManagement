@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class BillObservable extends ExtendedObservable {
 
@@ -20,16 +20,16 @@ public class BillObservable extends ExtendedObservable {
 
     public BillObservable(Integer id,
                           Double cost,
-                          Boolean isPaid,
-                          Integer guestId,
-                          Timestamp createdAt,
-                          Timestamp updatedAt) {
+                          Boolean is_paid,
+                          Integer guest_id,
+                          LocalDateTime created_at,
+                          LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.cost = cost;
-        this.isPaid = isPaid;
-        this.guestId = guestId;
+        this.isPaid = is_paid;
+        this.guestId = guest_id;
 
     }
 

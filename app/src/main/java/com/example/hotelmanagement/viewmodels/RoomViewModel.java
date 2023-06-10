@@ -10,7 +10,7 @@ import com.example.hasura.RoomAllQuery;
 import com.example.hasura.RoomInsertMutation;
 import com.example.hotelmanagement.observables.RoomObservable;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
@@ -73,17 +73,17 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                         if (response.getData() != null) {
                             List<RoomObservable> roomObservables = modelState.getValue();
                             response.getData().ROOM().forEach(item -> {
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 RoomObservable roomObservable = new RoomObservable(
                                         item.id(),
                                         item.name(),
                                         item.note(),
+                                        item.description(),
                                         item.is_occupied(),
                                         item.roomkind_id(),
-                                        item.description(),
-                                        createdAt,
-                                        updatedAt
+                                        item_created_at,
+                                        item_updated_at
                                 );
                                 if (roomObservables != null) {
                                     roomObservables.add(roomObservable);

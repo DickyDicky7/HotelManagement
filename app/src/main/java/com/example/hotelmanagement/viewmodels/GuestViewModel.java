@@ -10,7 +10,7 @@ import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestObservable;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
@@ -73,8 +73,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                         if (response.getData() != null) {
                             List<GuestObservable> guestObservables = modelState.getValue();
                             response.getData().GUEST().forEach(item -> {
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 GuestObservable guestObservable = new GuestObservable(
                                         item.id(),
                                         item.name(),
@@ -82,8 +82,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                         item.id_number(),
                                         item.phone_number(),
                                         item.guestkind_id(),
-                                        createdAt,
-                                        updatedAt
+                                        item_created_at,
+                                        item_updated_at
                                 );
                                 if (guestObservables != null) {
                                     guestObservables.add(guestObservable);

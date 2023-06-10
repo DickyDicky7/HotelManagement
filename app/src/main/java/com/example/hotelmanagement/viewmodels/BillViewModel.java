@@ -12,7 +12,7 @@ import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormAmountByGuestIdQuery;
 import com.example.hotelmanagement.observables.BillObservable;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -131,15 +131,15 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                         if (response.getData() != null) {
                             List<BillObservable> billObservables = modelState.getValue();
                             response.getData().BILL().forEach(item -> {
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 BillObservable billObservable = new BillObservable(
                                         item.id(),
                                         item.cost(),
                                         item.is_paid(),
                                         item.guest_id(),
-                                        createdAt,
-                                        updatedAt
+                                        item_created_at,
+                                        item_updated_at
                                 );
                                 if (billObservables != null) {
                                     billObservables.add(billObservable);

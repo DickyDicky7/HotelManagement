@@ -12,8 +12,8 @@ import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RoomPriceByIdQuery;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable> {
@@ -61,7 +61,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
                                 if (item.ROOMKIND() != null) {
-                                    Integer sub = rentalFormObservable.getNumOfGuests() - item.ROOMKIND().capacity();
+                                    Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
                                     if (sub < 0)
                                         sub = 0;
                                     Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
@@ -91,8 +91,8 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .startDate(rentalFormObservable.getStartDate())
                 .rentalDays(rentalFormObservable.getRentalDays())
                 .isResolved(rentalFormObservable.getIsResolved())
-                .numOfGuests(rentalFormObservable.getNumOfGuests())
                 .pricePerDay(rentalFormObservable.getPricePerDay())
+                .numberOfGuests(rentalFormObservable.getNumberOfGuests())
                 .build();
         Hasura.apolloClient.mutate(rentalFormInsertMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
@@ -139,22 +139,22 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             List<RentalFormObservable> rentalFormObservables = modelState.getValue();
                             response.getData().RENTALFORM().forEach(item -> {
-                                Date startDate = item.start_date() != null ? Date.valueOf(item.start_date().toString()) : null;
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDate item_start_date = item.start_date() != null ? LocalDate.parse(item.start_date().toString()) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 RentalFormObservable rentalFormObservable = new RentalFormObservable(
                                         item.id(),
                                         item.amount(),
-                                        startDate,
                                         item.room_id(),
                                         item.bill_id(),
                                         item.guest_id(),
                                         item.rental_days(),
                                         item.is_resolved(),
                                         item.price_per_day(),
+                                        item_start_date,
                                         item.number_of_guests(),
-                                        createdAt,
-                                        updatedAt
+                                        item_created_at,
+                                        item_updated_at
                                 );
                                 if (rentalFormObservables != null) {
                                     rentalFormObservables.add(rentalFormObservable);

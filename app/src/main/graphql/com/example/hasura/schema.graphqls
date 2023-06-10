@@ -533,7 +533,7 @@ input BILL_variance_order_by {
 Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
 """
 input Boolean_comparison_exp {
-  _eq: Boolean
+    _eq: Boolean
     _gt: Boolean
     _gte: Boolean
     _in: [Boolean!]
@@ -869,10 +869,10 @@ input Float_comparison_exp {
     _gte: Float
     _in: [Float!]
     _is_null: Boolean
-  _lt: Float
-  _lte: Float
-  _neq: Float
-  _nin: [Float!]
+    _lt: Float
+    _lte: Float
+    _neq: Float
+    _nin: [Float!]
 }
 
 """
@@ -3850,16 +3850,16 @@ type mutation_root {
     """
     delete single row from the table: "GUESTKIND"
     """
-  delete_GUESTKIND_by_pk(id: Int!): GUESTKIND
-  """
-  delete single row from the table: "GUEST"
-  """
-  delete_GUEST_by_pk(id: Int!): GUEST
-  """
-  delete data from the table: "RENTALFORM"
-  """
-  delete_RENTALFORM("""filter the rows which have to be deleted""" where: RENTALFORM_bool_exp!): RENTALFORM_mutation_response
-  """
+    delete_GUESTKIND_by_pk(id: Int!): GUESTKIND
+    """
+    delete single row from the table: "GUEST"
+    """
+    delete_GUEST_by_pk(id: Int!): GUEST
+    """
+    delete data from the table: "RENTALFORM"
+    """
+    delete_RENTALFORM("""filter the rows which have to be deleted""" where: RENTALFORM_bool_exp!): RENTALFORM_mutation_response
+    """
   delete single row from the table: "RENTALFORM"
   """
   delete_RENTALFORM_by_pk(id: Int!): RENTALFORM
@@ -3879,14 +3879,14 @@ type mutation_root {
   delete single row from the table: "ROOM"
   """
   delete_ROOM_by_pk(id: Int!): ROOM
-  """
-  delete data from the table: "UNIQUE"
-  """
-  delete_UNIQUE("""filter the rows which have to be deleted""" where: UNIQUE_bool_exp!): UNIQUE_mutation_response
-  """
-  delete single row from the table: "UNIQUE"
-  """
-  delete_UNIQUE_by_pk(id: Int!): UNIQUE
+    """
+    delete data from the table: "UNIQUE"
+    """
+    delete_UNIQUE("""filter the rows which have to be deleted""" where: UNIQUE_bool_exp!): UNIQUE_mutation_response
+    """
+    delete single row from the table: "UNIQUE"
+    """
+    delete_UNIQUE_by_pk(id: Int!): UNIQUE
     """
     insert data into the table: "BILL"
     """
@@ -3914,16 +3914,16 @@ type mutation_root {
     """
     insert a single row into the table: "GUESTKIND"
     """
-  insert_GUESTKIND_one("""the row to be inserted""" object: GUESTKIND_insert_input!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND
-  """
-  insert a single row into the table: "GUEST"
-  """
-  insert_GUEST_one("""the row to be inserted""" object: GUEST_insert_input!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST
-  """
-  insert data into the table: "RENTALFORM"
-  """
-  insert_RENTALFORM("""the rows to be inserted""" objects: [RENTALFORM_insert_input!]!, """upsert condition""" on_conflict: RENTALFORM_on_conflict): RENTALFORM_mutation_response
-  """
+    insert_GUESTKIND_one("""the row to be inserted""" object: GUESTKIND_insert_input!, """upsert condition""" on_conflict: GUESTKIND_on_conflict): GUESTKIND
+    """
+    insert a single row into the table: "GUEST"
+    """
+    insert_GUEST_one("""the row to be inserted""" object: GUEST_insert_input!, """upsert condition""" on_conflict: GUEST_on_conflict): GUEST
+    """
+    insert data into the table: "RENTALFORM"
+    """
+    insert_RENTALFORM("""the rows to be inserted""" objects: [RENTALFORM_insert_input!]!, """upsert condition""" on_conflict: RENTALFORM_on_conflict): RENTALFORM_mutation_response
+    """
   insert a single row into the table: "RENTALFORM"
   """
   insert_RENTALFORM_one("""the row to be inserted""" object: RENTALFORM_insert_input!, """upsert condition""" on_conflict: RENTALFORM_on_conflict): RENTALFORM
@@ -3947,14 +3947,14 @@ type mutation_root {
   insert data into the table: "UNIQUE"
   """
   insert_UNIQUE("""the rows to be inserted""" objects: [UNIQUE_insert_input!]!, """upsert condition""" on_conflict: UNIQUE_on_conflict): UNIQUE_mutation_response
-  """
-  insert a single row into the table: "UNIQUE"
-  """
-  insert_UNIQUE_one("""the row to be inserted""" object: UNIQUE_insert_input!, """upsert condition""" on_conflict: UNIQUE_on_conflict): UNIQUE
-  """
-  update data of the table: "BILL"
-  """
-  update_BILL("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, """filter the rows which have to be updated""" where: BILL_bool_exp!): BILL_mutation_response
+    """
+    insert a single row into the table: "UNIQUE"
+    """
+    insert_UNIQUE_one("""the row to be inserted""" object: UNIQUE_insert_input!, """upsert condition""" on_conflict: UNIQUE_on_conflict): UNIQUE
+    """
+    update data of the table: "BILL"
+    """
+    update_BILL("""increments the numeric columns with given value of the filtered values""" _inc: BILL_inc_input, """sets the columns of the filtered rows to the given values""" _set: BILL_set_input, """filter the rows which have to be updated""" where: BILL_bool_exp!): BILL_mutation_response
     """
     update single row of the table: "BILL"
     """
@@ -3986,16 +3986,16 @@ type mutation_root {
     """
     update single row of the table: "GUESTKIND"
     """
-  update_GUESTKIND_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, pk_columns: GUESTKIND_pk_columns_input!): GUESTKIND
-  """
-  update multiples rows of table: "GUESTKIND"
-  """
-  update_GUESTKIND_many("""updates to execute, in order""" updates: [GUESTKIND_updates!]!): [GUESTKIND_mutation_response]
-  """
-  update single row of the table: "GUEST"
-  """
-  update_GUEST_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, pk_columns: GUEST_pk_columns_input!): GUEST
-  """
+    update_GUESTKIND_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUESTKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUESTKIND_set_input, pk_columns: GUESTKIND_pk_columns_input!): GUESTKIND
+    """
+    update multiples rows of table: "GUESTKIND"
+    """
+    update_GUESTKIND_many("""updates to execute, in order""" updates: [GUESTKIND_updates!]!): [GUESTKIND_mutation_response]
+    """
+    update single row of the table: "GUEST"
+    """
+    update_GUEST_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: GUEST_inc_input, """sets the columns of the filtered rows to the given values""" _set: GUEST_set_input, pk_columns: GUEST_pk_columns_input!): GUEST
+    """
   update multiples rows of table: "GUEST"
   """
   update_GUEST_many("""updates to execute, in order""" updates: [GUEST_updates!]!): [GUEST_mutation_response]
@@ -4080,10 +4080,10 @@ enum order_by {
 }
 
 type query_root {
-  """
-  fetch data from the table: "BILL"
-  """
-  BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+    """
+    fetch data from the table: "BILL"
+    """
+    BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
     """
     fetch aggregated fields from the table: "BILL"
     """
@@ -4115,16 +4115,16 @@ type query_root {
     """
     fetch aggregated fields from the table: "GUESTKIND"
     """
-  GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
-  """
-  fetch data from the table: "GUESTKIND" using primary key columns
-  """
-  GUESTKIND_by_pk(id: Int!): GUESTKIND
-  """
-  fetch aggregated fields from the table: "GUEST"
-  """
-  GUEST_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!
-  """
+    GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
+    """
+    fetch data from the table: "GUESTKIND" using primary key columns
+    """
+    GUESTKIND_by_pk(id: Int!): GUESTKIND
+    """
+    fetch aggregated fields from the table: "GUEST"
+    """
+    GUEST_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!
+    """
   fetch data from the table: "GUEST" using primary key columns
   """
   GUEST_by_pk(id: Int!): GUEST
@@ -4179,14 +4179,14 @@ type query_root {
 }
 
 type subscription_root {
-  """
-  fetch data from the table: "BILL"
-  """
-  BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
-  """
-  fetch aggregated fields from the table: "BILL"
-  """
-  BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
+    """
+    fetch data from the table: "BILL"
+    """
+    BILL("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): [BILL!]!
+    """
+    fetch aggregated fields from the table: "BILL"
+    """
+    BILL_aggregate("""distinct select on columns""" distinct_on: [BILL_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [BILL_order_by!], """filter the rows returned""" where: BILL_bool_exp): BILL_aggregate!
     """
     fetch data from the table: "BILL" using primary key columns
     """
@@ -4222,16 +4222,16 @@ type subscription_root {
     """
     fetch aggregated fields from the table: "GUESTKIND"
     """
-  GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
-  """
-  fetch data from the table: "GUESTKIND" using primary key columns
-  """
-  GUESTKIND_by_pk(id: Int!): GUESTKIND
-  """
-  fetch data from the table in a streaming manner: "GUESTKIND"
-  """
-  GUESTKIND_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [GUESTKIND_stream_cursor_input]!, """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
-  """
+    GUESTKIND_aggregate("""distinct select on columns""" distinct_on: [GUESTKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUESTKIND_order_by!], """filter the rows returned""" where: GUESTKIND_bool_exp): GUESTKIND_aggregate!
+    """
+    fetch data from the table: "GUESTKIND" using primary key columns
+    """
+    GUESTKIND_by_pk(id: Int!): GUESTKIND
+    """
+    fetch data from the table in a streaming manner: "GUESTKIND"
+    """
+    GUESTKIND_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [GUESTKIND_stream_cursor_input]!, """filter the rows returned""" where: GUESTKIND_bool_exp): [GUESTKIND!]!
+    """
   fetch aggregated fields from the table: "GUEST"
   """
   GUEST_aggregate("""distinct select on columns""" distinct_on: [GUEST_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [GUEST_order_by!], """filter the rows returned""" where: GUEST_bool_exp): GUEST_aggregate!

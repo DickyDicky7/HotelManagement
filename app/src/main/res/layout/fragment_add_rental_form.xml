@@ -168,7 +168,7 @@
                             android:paddingHorizontal="10sp"
                             android:paddingVertical="10sp"
                             android:singleLine="true"
-                            android:text="@={rentalFormObservable.numOfGuestsString}"
+                            android:text="@={rentalFormObservable.numberOfGuestsString}"
                             android:textColor="@color/bluegray_900"
                             android:textColorHint="@color/gray_600"
                             android:textColorLink="@color/indigo_400"

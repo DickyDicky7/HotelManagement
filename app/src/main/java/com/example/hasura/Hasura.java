@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloClient;
+import com.apollographql.apollo.subscription.WebSocketSubscriptionTransport;
 import com.auth0.android.Auth0;
 import com.auth0.android.authentication.AuthenticationException;
 import com.auth0.android.callback.Callback;
@@ -20,20 +21,22 @@ import okhttp3.Request;
 
 public class Hasura {
 
-    public static Boolean loginSuccessfully;
-    public static Boolean logoutSuccessfully;
     public static Credentials credentials;
     public static ApolloClient apolloClient;
-    protected static String scheme;
+    public static Boolean loginSuccessfully;
+    public static Boolean logoutSuccessfully;
+
     protected static Auth0 auth0;
+    protected static String scheme;
     protected static Interceptor interceptor;
+    protected static OkHttpClient okHttpClient;
 
     public static void configAuth0(@NonNull String clientId, @NonNull String domain, @NonNull String scheme) {
         try {
-            auth0 = new Auth0(clientId, domain);
             Hasura.scheme = scheme;
             loginSuccessfully = false;
             logoutSuccessfully = false;
+            auth0 = new Auth0(clientId, domain);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,7 +49,7 @@ public class Hasura {
                 @Override
                 public void onSuccess(Credentials credentials) {
                     createInterceptor(credentials.getIdToken());
-                    createApolloClient(null);
+                    createApolloClient(null, null);
                     Hasura.credentials = credentials;
                     loginSuccessfully = true;
                     if (onSuccessCallback != null)
@@ -107,7 +110,6 @@ public class Hasura {
                                         "Bearer" + " " + authorizationToken
                                 )
                         .build();
-
                 return chain.proceed(request);
             };
         } catch (Exception e) {
@@ -115,11 +117,18 @@ public class Hasura {
         }
     }
 
-    protected static void createApolloClient(@Nullable String serverURL) {
+    protected static void createApolloClient(@Nullable String serverURL, @Nullable String webSocketURL) {
         try {
+
             if (serverURL == null)
                 serverURL = "https://open-primate-91.hasura.app/v1/graphql";
-            apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(new OkHttpClient.Builder().addInterceptor(interceptor).build()).build();
+            if (webSocketURL == null)
+                webSocketURL = "wss://open-primate-91.hasura.app/v1/graphql";
+
+            okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+            WebSocketSubscriptionTransport.Factory webSocketSubscriptionTransportFactory = new WebSocketSubscriptionTransport.Factory(webSocketURL, okHttpClient);
+            apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(okHttpClient).subscriptionTransportFactory(webSocketSubscriptionTransportFactory).build();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

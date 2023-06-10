@@ -4,8 +4,8 @@ query RoomKindAll
     {
         id
         name
-        price
         area
+        price
         capacity
         image_url
         created_at

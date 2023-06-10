@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class RoomObservable extends ExtendedObservable {
 
@@ -21,18 +21,18 @@ public class RoomObservable extends ExtendedObservable {
     public RoomObservable(Integer id,
                           String name,
                           String note,
-                          Boolean isOccupied,
-                          Integer roomKindId,
                           String description,
-                          Timestamp createdAt,
-                          Timestamp updatedAt) {
+                          Boolean is_occupied,
+                          Integer roomkind_id,
+                          LocalDateTime created_at,
+                          LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.name = name;
         this.note = note;
-        this.isOccupied = isOccupied;
-        this.roomKindId = roomKindId;
+        this.isOccupied = is_occupied;
+        this.roomKindId = roomkind_id;
         this.description = description;
 
     }

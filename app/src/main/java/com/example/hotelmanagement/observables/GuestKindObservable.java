@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class GuestKindObservable extends ExtendedObservable {
 
@@ -16,10 +16,10 @@ public class GuestKindObservable extends ExtendedObservable {
 
     public GuestKindObservable(Integer id,
                                String name,
-                               Timestamp createdAt,
-                               Timestamp updatedAt) {
+                               LocalDateTime created_at,
+                               LocalDateTime updated_at) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.name = name;
 

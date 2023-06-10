@@ -1,11 +1,11 @@
 mutation RoomKindInsert
 (
     $name               : String
+    $area               : Float
     $price              : Float
     $imageUrl           : String
     $capacity           : Int
-    $numOfBed           : Int
-    $area               : Float
+    $numberOfBeds       : Int
     $surchargePercentage: Float
 )
 {
@@ -15,11 +15,11 @@ mutation RoomKindInsert
         [
             {
                 name                : $name
+                area                : $area
                 price               : $price
                 capacity            : $capacity
                 image_url           : $imageUrl
-                number_of_beds      : $numOfBed
-                area                : $area
+                number_of_beds      : $numberOfBeds
                 surcharge_percentage: $surchargePercentage
             }
         ]
@@ -30,6 +30,7 @@ mutation RoomKindInsert
             id
             name
             area
+            price
             capacity
             image_url
             created_at

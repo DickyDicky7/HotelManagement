@@ -4,7 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class RoomKindObservable extends ExtendedObservable {
 
@@ -13,7 +13,7 @@ public class RoomKindObservable extends ExtendedObservable {
     protected Double price;
     protected String imageURL;
     protected Integer capacity;
-    protected Integer numOfBed;
+    protected Integer numberOfBeds;
     protected Double surchargePercentage;
 
     public RoomKindObservable() {
@@ -24,22 +24,22 @@ public class RoomKindObservable extends ExtendedObservable {
                               String name,
                               Double area,
                               Double price,
-                              String imageURL,
+                              String image_url,
                               Integer capacity,
-                              Integer numOfBed,
-                              Timestamp createdAt,
-                              Timestamp updatedAt,
-                              Double surchargePercentage) {
+                              Integer number_of_beds,
+                              LocalDateTime created_at,
+                              LocalDateTime updated_at,
+                              Double surcharge_percentage) {
 
-        super(id, createdAt, updatedAt);
+        super(id, created_at, updated_at);
 
         this.name = name;
         this.area = area;
         this.price = price;
-        this.imageURL = imageURL;
         this.capacity = capacity;
-        this.numOfBed = numOfBed;
-        this.surchargePercentage = surchargePercentage;
+        this.imageURL = image_url;
+        this.numberOfBeds = number_of_beds;
+        this.surchargePercentage = surcharge_percentage;
 
     }
 
@@ -120,19 +120,19 @@ public class RoomKindObservable extends ExtendedObservable {
     }
 
     @Bindable
-    public Integer getNumOfBed() {
-        return numOfBed;
+    public Integer getNumberOfBeds() {
+        return numberOfBeds;
     }
 
-    public void setNumOfBed(Integer numOfBed) {
-        this.numOfBed = numOfBed;
-        notifyPropertyChanged(BR.numOfBed);
+    public void setNumberOfBeds(Integer numberOfBeds) {
+        this.numberOfBeds = numberOfBeds;
+        notifyPropertyChanged(BR.numberOfBeds);
     }
 
     @Bindable
-    public String getNumOfBedString() {
+    public String getNumberOfBedsString() {
         try {
-            return numOfBed.toString();
+            return numberOfBeds.toString();
         } catch (NullPointerException e) {
             return "";
         } catch (Exception e) {
@@ -141,13 +141,13 @@ public class RoomKindObservable extends ExtendedObservable {
         }
     }
 
-    public void setNumOfBedString(String numOfBedString) {
+    public void setNumberOfBedsString(String numberOfBedsString) {
         try {
-            setNumOfBed(Integer.valueOf(numOfBedString));
+            setNumberOfBeds(Integer.valueOf(numberOfBedsString));
         } catch (NullPointerException | NumberFormatException e) {
-            setNumOfBed(null);
+            setNumberOfBeds(null);
         } catch (Exception e) {
-            setNumOfBed(null);
+            setNumberOfBeds(null);
             e.printStackTrace();
         }
     }

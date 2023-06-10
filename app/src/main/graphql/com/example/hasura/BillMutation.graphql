@@ -1,8 +1,8 @@
 mutation BillInsert
 (
-    $guestId: Int
     $cost   : Float
     $isPaid : Boolean
+    $guestId: Int
 )
 {
     insert_BILL
@@ -10,9 +10,9 @@ mutation BillInsert
         objects:
         [
             {
-                guest_id: $guestId
                 cost    : $cost
                 is_paid : $isPaid
+                guest_id: $guestId
             }
         ]
     )

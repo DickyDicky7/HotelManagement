@@ -16,7 +16,7 @@ import com.example.hasura.RoomKindAllQuery;
 import com.example.hasura.RoomKindInsertMutation;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +51,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         .price(roomKindObservable.getPrice())
                         .imageUrl(roomKindObservable.getImageURL())
                         .capacity(roomKindObservable.getCapacity())
-                        .numOfBed(roomKindObservable.getNumOfBed())
+                        .numberOfBeds(roomKindObservable.getNumberOfBeds())
                         .surchargePercentage(roomKindObservable.getSurchargePercentage())
                         .build();
                 Hasura.apolloClient.mutate(roomKindInsertMutation)
@@ -111,8 +111,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         if (response.getData() != null) {
                             List<RoomKindObservable> roomKindObservables = modelState.getValue();
                             response.getData().ROOMKIND().forEach(item -> {
-                                Timestamp createdAt = item.created_at() != null ? Timestamp.valueOf(item.created_at().toString().replaceAll("T", " ")) : null;
-                                Timestamp updatedAt = item.updated_at() != null ? Timestamp.valueOf(item.updated_at().toString().replaceAll("T", " ")) : null;
+                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                                 RoomKindObservable roomKindObservable = new RoomKindObservable(
                                         item.id(),
                                         item.name(),
@@ -121,8 +121,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                         item.image_url(),
                                         item.capacity(),
                                         item.number_of_beds(),
-                                        createdAt,
-                                        updatedAt,
+                                        item_created_at,
+                                        item_updated_at,
                                         item.surcharge_percentage()
                                 );
                                 if (roomKindObservables != null) {
