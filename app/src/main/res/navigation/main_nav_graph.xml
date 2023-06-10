@@ -38,8 +38,8 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
             app:destination="@id/fragmentHome"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/fragmentLogin"
@@ -53,45 +53,45 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentAccount"
             app:destination="@id/fragmentAccount"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentRentalForms"
             app:destination="@id/fragmentRentalForms"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentRooms"
             app:destination="@id/fragmentRooms"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentBills"
             app:destination="@id/fragmentBills"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentGuests"
             app:destination="@id/fragmentGuests"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentRoomKinds"
             app:destination="@id/fragmentRoomKinds"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentAccount"
@@ -101,8 +101,8 @@
         <action
             android:id="@+id/action_fragmentAccount_to_fragmentLogin"
             app:destination="@id/fragmentLogin"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/fragmentHome"
@@ -116,10 +116,10 @@
         <action
             android:id="@+id/action_fragmentRentalForms_to_fragmentAddRentalForm"
             app:destination="@id/fragmentAddRentalForm"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRooms"
@@ -129,10 +129,10 @@
         <action
             android:id="@+id/action_fragmentRooms_to_fragmentAddRoom"
             app:destination="@id/fragmentAddRoom"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGuests"
@@ -142,10 +142,10 @@
         <action
             android:id="@+id/action_fragmentGuests_to_fragmentAddGuest"
             app:destination="@id/fragmentAddGuest"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRoomKinds"
@@ -155,10 +155,10 @@
         <action
             android:id="@+id/action_fragmentRoomKinds_to_fragmentAddRoomKind"
             app:destination="@id/fragmentAddRoomKind"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentBills"
@@ -168,9 +168,9 @@
         <action
             android:id="@+id/action_fragmentBills_to_fragmentAddBill"
             app:destination="@id/fragmentAddBill"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/anim_enter"
+            app:exitAnim="@anim/anim_exit"
+            app:popEnterAnim="@anim/anim_enter"
+            app:popExitAnim="@anim/anim_exit" />
     </fragment>
 </navigation>
