@@ -1,0 +1,14 @@
+subscription GuestSubscription
+{
+    GUEST
+    {
+        id
+        name
+        address
+        id_number
+        created_at
+        updated_at
+        phone_number
+        guestkind_id
+    }
+}

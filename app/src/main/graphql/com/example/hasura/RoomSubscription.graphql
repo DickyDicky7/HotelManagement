@@ -1,0 +1,14 @@
+subscription RoomSubscription
+{
+    ROOM
+    {
+        id
+        name
+        note
+        created_at
+        updated_at
+        description
+        is_occupied
+        roomkind_id
+    }
+}

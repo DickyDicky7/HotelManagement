@@ -1,0 +1,12 @@
+subscription BillSubscription
+{
+    BILL
+    {
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
+    }
+}
