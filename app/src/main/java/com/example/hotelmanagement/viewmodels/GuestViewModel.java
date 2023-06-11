@@ -1,12 +1,15 @@
 package com.example.hotelmanagement.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.GuestAllQuery;
 import com.example.hasura.GuestInsertMutation;
+import com.example.hasura.GuestSubscription;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestObservable;
 
@@ -33,23 +36,18 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<GuestObservable> guestObservables = modelState.getValue();
-                            if (guestObservables != null) {
-                                guestObservables.add(guestObservable);
-                            }
-                            modelState.postValue(guestObservables);
                             if (onSuccessCallback != null) {
                                 onSuccessCallback.accept(null);
                                 onSuccessCallback = null;
                             }
-                            System.out.println(response.getData().insert_GUEST());
+                            Log.d("GuestViewModel Insert Response Debug", response.getData().insert_GUEST().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
                                 onFailureCallback.accept(null);
                                 onFailureCallback = null;
                             }
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("GuestViewModel Insert Error", error.toString()));
                         }
                     }
 
@@ -65,44 +63,61 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
     }
 
     @Override
-    public void loadData() {
-        Hasura.apolloClient.query(new GuestAllQuery())
-                .enqueue(new ApolloCall.Callback<GuestAllQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<GuestAllQuery.Data> response) {
-                        if (response.getData() != null) {
-                            List<GuestObservable> guestObservables = modelState.getValue();
-                            response.getData().GUEST().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                GuestObservable guestObservable = new GuestObservable(
-                                        item.id(),
-                                        item.name(),
-                                        item.address(),
-                                        item.id_number(),
-                                        item.phone_number(),
-                                        item.guestkind_id(),
-                                        item_created_at,
-                                        item_updated_at
-                                );
-                                if (guestObservables != null) {
-                                    guestObservables.add(guestObservable);
-                                }
-                            });
-                            if (guestObservables != null) {
-                                modelState.postValue(guestObservables);
-                            }
-                        }
-                        if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
-                        }
+    public void startSubscription() {
+        Hasura.apolloClient.subscribe(new GuestSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestSubscription.Data>() {
+            @Override
+            public void onResponse(@NonNull Response<GuestSubscription.Data> response) {
+                if (response.getData() != null) {
+                    List<GuestObservable> guestObservables = modelState.getValue();
+                    if (guestObservables != null) {
+                        guestObservables.clear();
                     }
+                    response.getData().GUEST().forEach(item -> {
+                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
+                        GuestObservable guestObservable = new GuestObservable(
+                                item.id(),
+                                item.name(),
+                                item.address(),
+                                item.id_number(),
+                                item.phone_number(),
+                                item.guestkind_id(),
+                                item_created_at,
+                                item_updated_at
+                        );
+                        if (guestObservables != null) {
+                            guestObservables.add(guestObservable);
+                        }
+                    });
+                    if (guestObservables != null) {
+                        modelState.postValue(guestObservables);
+                    }
+                }
+                if (response.getErrors() != null) {
+                    response.getErrors().forEach(error -> Log.e("GuestViewModel Subscription Error", error.toString()));
+                }
+            }
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+            @Override
+            public void onFailure(@NonNull ApolloException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.i("GuestViewModel Subscription Info", "Subscription Completed");
+            }
+
+            @Override
+            public void onTerminated() {
+                Log.i("GuestViewModel Subscription Info", "Subscription Terminated");
+            }
+
+            @Override
+            public void onConnected() {
+                Log.i("GuestViewModel Subscription Info", "Subscription Connected");
+            }
+        });
     }
 
 }

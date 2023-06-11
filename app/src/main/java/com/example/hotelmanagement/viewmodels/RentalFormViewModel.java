@@ -1,14 +1,17 @@
 package com.example.hotelmanagement.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.Hasura;
-import com.example.hasura.RentalFormAllQuery;
 import com.example.hasura.RentalFormInsertMutation;
+import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RoomPriceByIdQuery;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 
@@ -38,7 +41,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                             });
                         }
                         if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find GuestId Error", error.toString()));
                         }
                     }
 
@@ -70,7 +73,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                             });
                         }
                         if (response.getErrors() != null) {
-                            System.out.println((response.getErrors()));
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Price Error", error.toString()));
                         }
                     }
 
@@ -99,23 +102,18 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<RentalFormObservable> rentalFormObservables = modelState.getValue();
-                            if (rentalFormObservables != null) {
-                                rentalFormObservables.add(rentalFormObservable);
-                                modelState.postValue(rentalFormObservables);
-                            }
                             if (onSuccessCallback != null) {
                                 onSuccessCallback.accept(null);
                                 onSuccessCallback = null;
                             }
-                            System.out.println(response.getData().insert_RENTALFORM());
+                            Log.d("RentalFormViewModel Insert Response Debug", response.getData().insert_RENTALFORM().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
                                 onFailureCallback.accept(null);
                                 onFailureCallback = null;
                             }
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Insert Error", error.toString()));
                         }
                     }
 
@@ -131,49 +129,66 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
     }
 
     @Override
-    public void loadData() {
-        Hasura.apolloClient.query(new RentalFormAllQuery())
-                .enqueue(new ApolloCall.Callback<RentalFormAllQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<RentalFormAllQuery.Data> response) {
-                        if (response.getData() != null) {
-                            List<RentalFormObservable> rentalFormObservables = modelState.getValue();
-                            response.getData().RENTALFORM().forEach(item -> {
-                                LocalDate item_start_date = item.start_date() != null ? LocalDate.parse(item.start_date().toString()) : null;
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                RentalFormObservable rentalFormObservable = new RentalFormObservable(
-                                        item.id(),
-                                        item.amount(),
-                                        item.room_id(),
-                                        item.bill_id(),
-                                        item.guest_id(),
-                                        item.rental_days(),
-                                        item.is_resolved(),
-                                        item.price_per_day(),
-                                        item_start_date,
-                                        item.number_of_guests(),
-                                        item_created_at,
-                                        item_updated_at
-                                );
-                                if (rentalFormObservables != null) {
-                                    rentalFormObservables.add(rentalFormObservable);
-                                }
-                            });
-                            if (rentalFormObservables != null) {
-                                modelState.postValue(rentalFormObservables);
-                            }
-                        }
-                        if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
-                        }
+    public void startSubscription() {
+        Hasura.apolloClient.subscribe(new RentalFormSubscription()).execute(new ApolloSubscriptionCall.Callback<RentalFormSubscription.Data>() {
+            @Override
+            public void onResponse(@NonNull Response<RentalFormSubscription.Data> response) {
+                if (response.getData() != null) {
+                    List<RentalFormObservable> rentalFormObservables = modelState.getValue();
+                    if (rentalFormObservables != null) {
+                        rentalFormObservables.clear();
                     }
+                    response.getData().RENTALFORM().forEach(item -> {
+                        LocalDate item_start_date = item.start_date() != null ? LocalDate.parse(item.start_date().toString()) : null;
+                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
+                        RentalFormObservable rentalFormObservable = new RentalFormObservable(
+                                item.id(),
+                                item.amount(),
+                                item.room_id(),
+                                item.bill_id(),
+                                item.guest_id(),
+                                item.rental_days(),
+                                item.is_resolved(),
+                                item.price_per_day(),
+                                item_start_date,
+                                item.number_of_guests(),
+                                item_created_at,
+                                item_updated_at
+                        );
+                        if (rentalFormObservables != null) {
+                            rentalFormObservables.add(rentalFormObservable);
+                        }
+                    });
+                    if (rentalFormObservables != null) {
+                        modelState.postValue(rentalFormObservables);
+                    }
+                }
+                if (response.getErrors() != null) {
+                    response.getErrors().forEach(error -> Log.e("RentalFormViewModel Subscription Error", error.toString()));
+                }
+            }
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+            @Override
+            public void onFailure(@NonNull ApolloException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.i("RentalFormViewModel Subscription Info", "Subscription Completed");
+            }
+
+            @Override
+            public void onTerminated() {
+                Log.i("RentalFormViewModel Subscription Info", "Subscription Terminated");
+            }
+
+            @Override
+            public void onConnected() {
+                Log.i("RentalFormViewModel Subscription Info", "Subscription Connected");
+            }
+        });
     }
 
 }

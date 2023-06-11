@@ -25,7 +25,7 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
         modelState = new MutableLiveData<List<BO>>(new LinkedList<BO>());
     }
 
-    public abstract void loadData();
+    public abstract void startSubscription();
 
     public LiveData<List<BO>> getModelState() {
         return modelState;

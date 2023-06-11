@@ -54,13 +54,15 @@ public class FragmentAddRoomKind extends Fragment {
             try {
                 roomKindViewModel.onSuccessCallback = unused -> {
                     requireActivity().runOnUiThread(() -> {
-                        // Những task buộc phải chạy trên main thread thì gọi ở đây
+                        // Những task buộc phải chạy trên main thread thì gọi ở đây (thường liên quan đến UI)
                         // Ví dụ như navigation
+                        // NavHostFragment.findNavController(this).popBackStack();
+                        // Hoặc set observable mới
+                        roomKindObservable = new RoomKindObservable();
+                        binding.setRoomKindObservable(roomKindObservable);
+                        binding.edtImage.setColorFilter(Color.WHITE);
+                        Glide.with(this).load(getResources().getDrawable(R.drawable.upload_image)).centerInside().into(binding.edtImage);
                     });
-                    roomKindObservable = new RoomKindObservable();
-                    binding.setRoomKindObservable(roomKindObservable);
-                    binding.edtImage.setColorFilter(Color.WHITE);
-                    Glide.with(this).load(getResources().getDrawable(R.drawable.upload_image)).centerInside().into(binding.edtImage);
                 };
                 roomKindViewModel.onFailureCallback = null;
                 if (roomKindViewModel.checkObservable(roomKindObservable, requireContext())) {

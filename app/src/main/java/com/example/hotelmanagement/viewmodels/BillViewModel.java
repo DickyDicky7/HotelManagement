@@ -1,12 +1,15 @@
 package com.example.hotelmanagement.viewmodels;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.BillAllQuery;
 import com.example.hasura.BillInsertMutation;
+import com.example.hasura.BillSubscription;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormAmountByGuestIdQuery;
@@ -38,7 +41,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                             });
                         }
                         if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Find GuestId Error", error.toString()));
                         }
                     }
 
@@ -68,7 +71,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                             billObservable.setCost(sum.get());
                         }
                         if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Calculate Cost Error", error.toString()));
                         }
                     }
 
@@ -91,23 +94,18 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            List<BillObservable> billObservables = modelState.getValue();
-                            if (billObservables != null) {
-                                billObservables.add(billObservable);
-                                modelState.postValue(billObservables);
-                            }
                             if (onSuccessCallback != null) {
                                 onSuccessCallback.accept(null);
                                 onSuccessCallback = null;
                             }
-                            System.out.println(response.getData().insert_BILL());
+                            Log.d("BillViewModel Insert Response Debug", response.getData().insert_BILL().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
                                 onFailureCallback.accept(null);
                                 onFailureCallback = null;
                             }
-                            System.out.println(response.getErrors());
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Insert Error", error.toString()));
                         }
                     }
 
@@ -123,42 +121,59 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     }
 
     @Override
-    public void loadData() {
-        Hasura.apolloClient.query(new BillAllQuery())
-                .enqueue(new ApolloCall.Callback<BillAllQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<BillAllQuery.Data> response) {
-                        if (response.getData() != null) {
-                            List<BillObservable> billObservables = modelState.getValue();
-                            response.getData().BILL().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                BillObservable billObservable = new BillObservable(
-                                        item.id(),
-                                        item.cost(),
-                                        item.is_paid(),
-                                        item.guest_id(),
-                                        item_created_at,
-                                        item_updated_at
-                                );
-                                if (billObservables != null) {
-                                    billObservables.add(billObservable);
-                                }
-                            });
-                            if (billObservables != null) {
-                                modelState.postValue(billObservables);
-                            }
-                        }
-                        if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
-                        }
+    public void startSubscription() {
+        Hasura.apolloClient.subscribe(new BillSubscription()).execute(new ApolloSubscriptionCall.Callback<BillSubscription.Data>() {
+            @Override
+            public void onResponse(@NonNull Response<BillSubscription.Data> response) {
+                if (response.getData() != null) {
+                    List<BillObservable> billObservables = modelState.getValue();
+                    if (billObservables != null) {
+                        billObservables.clear();
                     }
+                    response.getData().BILL().forEach(item -> {
+                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
+                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
+                        BillObservable billObservable = new BillObservable(
+                                item.id(),
+                                item.cost(),
+                                item.is_paid(),
+                                item.guest_id(),
+                                item_created_at,
+                                item_updated_at
+                        );
+                        if (billObservables != null) {
+                            billObservables.add(billObservable);
+                        }
+                    });
+                    if (billObservables != null) {
+                        modelState.postValue(billObservables);
+                    }
+                }
+                if (response.getErrors() != null) {
+                    response.getErrors().forEach(error -> Log.e("BillViewModel Subscription Error", error.toString()));
+                }
+            }
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+            @Override
+            public void onFailure(@NonNull ApolloException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.i("BillViewModel Subscription Info", "Subscription Completed");
+            }
+
+            @Override
+            public void onTerminated() {
+                Log.i("BillViewModel Subscription Info", "Subscription Terminated");
+            }
+
+            @Override
+            public void onConnected() {
+                Log.i("BillViewModel Subscription Info", "Subscription Connected");
+            }
+        });
     }
 
 }

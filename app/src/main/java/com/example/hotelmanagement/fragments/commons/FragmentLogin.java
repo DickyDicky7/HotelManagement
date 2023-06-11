@@ -54,12 +54,12 @@ public class FragmentLogin extends Fragment {
                 RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
                 GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
                 RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
-                billViewModel.loadData();
-                roomViewModel.loadData();
-                guestViewModel.loadData();
-                roomKindViewModel.loadData();
-                guestKindViewModel.loadData();
-                rentalFormViewModel.loadData();
+                billViewModel.startSubscription();
+                roomViewModel.startSubscription();
+                guestViewModel.startSubscription();
+                roomKindViewModel.startSubscription();
+                guestKindViewModel.startSubscription();
+                rentalFormViewModel.startSubscription();
                 Context capturedRequiredContext = requireContext();
                 Hasura.apolloClient.query(new CloudinaryAllQuery()).enqueue(new ApolloCall.Callback<CloudinaryAllQuery.Data>() {
                     @Override
