@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_btns"
+            android:id="@+id/item_buttons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_address">
 
             <ImageButton
-                android:id="@+id/btn_delete"
+                android:id="@+id/deleteButton"
                 style="@style/groupStyleindigo_1"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
@@ -44,13 +44,13 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_file"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_edit"
+                app:layout_constraintEnd_toStartOf="@+id/editButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/btn_edit"
+                android:id="@+id/editButton"
                 style="@style/groupStyleindigo_1"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
@@ -61,7 +61,7 @@
                 android:src="@drawable/img_ticket"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_delete"
+                app:layout_constraintStart_toEndOf="@+id/deleteButton"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
@@ -78,17 +78,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_birthday">
+            app:layout_constraintTop_toBottomOf="@+id/item_createdAt">
 
             <ImageView
-                android:id="@+id/imageLocation"
+                android:id="@+id/addressImageView"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:paddingHorizontal="2sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_location"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/address"
+                app:layout_constraintEnd_toStartOf="@+id/addressTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -97,7 +97,7 @@
                 tools:src="@drawable/img_location" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/addressTextView"
                 style="@style/txtInterregular14_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,13 +108,13 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageLocation"
+                app:layout_constraintStart_toEndOf="@+id/addressImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_birthday"
+            android:id="@+id/item_createdAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -124,16 +124,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_tel">
+            app:layout_constraintTop_toBottomOf="@+id/item_phoneNumber">
 
             <ImageView
-                android:id="@+id/imageCalendar"
+                android:id="@+id/createdAtImageView"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_calendar_white_a700"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/birthday"
+                app:layout_constraintEnd_toStartOf="@+id/createdAtTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -142,7 +142,7 @@
                 tools:src="@drawable/img_calendar_white_a700" />
 
             <TextView
-                android:id="@+id/birthday"
+                android:id="@+id/createdAtTextView"
                 style="@style/txtInterregular14_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,13 +153,13 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageCalendar"
+                app:layout_constraintStart_toEndOf="@+id/createdAtImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_tel"
+            android:id="@+id/item_phoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -169,16 +169,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_nationalID">
+            app:layout_constraintTop_toBottomOf="@+id/item_idNumber">
 
             <ImageView
-                android:id="@+id/imageCall"
+                android:id="@+id/phongNumberImageView"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_call"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tel"
+                app:layout_constraintEnd_toStartOf="@+id/phoneNumberTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -187,7 +187,7 @@
                 tools:src="@drawable/img_call" />
 
             <TextView
-                android:id="@+id/tel"
+                android:id="@+id/phoneNumberTextView"
                 style="@style/txtInterregular14_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -198,13 +198,13 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageCall"
+                app:layout_constraintStart_toEndOf="@+id/phongNumberImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_nationalID"
+            android:id="@+id/item_idNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -214,16 +214,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_c_customerName">
+            app:layout_constraintTop_toBottomOf="@+id/guestNameTextView">
 
             <ImageView
-                android:id="@+id/imageSave"
+                android:id="@+id/idNumberImageView"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_save"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/nationalid"
+                app:layout_constraintEnd_toStartOf="@+id/idNumberTextView"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -232,7 +232,7 @@
                 tools:src="@drawable/img_save" />
 
             <TextView
-                android:id="@+id/nationalid"
+                android:id="@+id/idNumberTextView"
                 style="@style/txtInterregular14_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -243,14 +243,14 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageSave"
+                app:layout_constraintStart_toEndOf="@+id/idNumberImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="@string/lbl_048203008744" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/item_c_customerName"
+            android:id="@+id/guestNameTextView"
             style="@style/txtOutfitsemibold28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -56,7 +56,10 @@ public class FragmentAddRoomKind extends Fragment {
                     requireActivity().runOnUiThread(() -> {
                         // Những task buộc phải chạy trên main thread thì gọi ở đây (thường liên quan đến UI)
                         // Ví dụ như navigation
+                        // Cách 1:
                         // NavHostFragment.findNavController(this).popBackStack();
+                        // Cách 2:
+                        // requireActivity().onBackPressed();
                         // Hoặc set observable mới
                         roomKindObservable = new RoomKindObservable();
                         binding.setRoomKindObservable(roomKindObservable);

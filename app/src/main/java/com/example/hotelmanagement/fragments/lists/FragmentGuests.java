@@ -12,10 +12,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.adapters.GuestAdapter;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
+import com.example.hotelmanagement.viewmodels.GuestViewModel;
 
 public class FragmentGuests extends Fragment {
 
@@ -58,6 +62,15 @@ public class FragmentGuests extends Fragment {
 
         binding.guestsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentAddGuest);
+        });
+
+        GuestAdapter guestAdapter = new GuestAdapter(requireActivity());
+        binding.guestsRecyclerView.setAdapter(guestAdapter);
+        binding.guestsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
+        guestViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestObservables -> {
+            guestAdapter.Clear();
+            guestAdapter.Fill(updatedGuestObservables);
         });
 
     }

@@ -4,15 +4,23 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.hotelmanagement.databinding.RecyclerViewItemGuestBinding;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewholders.GuestViewHolder;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHolder> {
 
-    public GuestAdapter() {
-        super();
+    public GuestAdapter(FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
+    }
+
+    public GuestAdapter(FragmentActivity fragmentActivity, List<GuestObservable> guestObservables) {
+        super(fragmentActivity, guestObservables);
     }
 
     @NonNull
@@ -25,8 +33,16 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
     @Override
     public void onBindViewHolder(@NonNull GuestViewHolder holder, int position) {
         if (baseObservables != null) {
+
             RecyclerViewItemGuestBinding binding = RecyclerViewItemGuestBinding.bind(holder.itemView);
             GuestObservable guestObservable = baseObservables.get(position);
+
+            binding.guestNameTextView.setText(guestObservable.getName());
+            binding.addressTextView.setText(guestObservable.getAddress());
+            binding.idNumberTextView.setText(guestObservable.getIdNumber());
+            binding.phoneNumberTextView.setText(guestObservable.getPhoneNumber());
+            binding.createdAtTextView.setText(guestObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
         }
     }
 

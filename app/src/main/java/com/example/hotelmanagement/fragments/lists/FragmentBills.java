@@ -12,10 +12,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.adapters.BillAdapter;
 import com.example.hotelmanagement.databinding.FragmentBillsBinding;
+import com.example.hotelmanagement.viewmodels.BillViewModel;
 
 public class FragmentBills extends Fragment {
 
@@ -58,6 +62,15 @@ public class FragmentBills extends Fragment {
 
         binding.billsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentAddBill);
+        });
+
+        BillAdapter billAdapter = new BillAdapter(requireActivity());
+        binding.billsRecyclerView.setAdapter(billAdapter);
+        binding.billsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
+        billViewModel.getModelState().observe(getViewLifecycleOwner(), updatedBillObservables -> {
+            billAdapter.Clear();
+            billAdapter.Fill(updatedBillObservables);
         });
 
     }

@@ -12,10 +12,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.adapters.RentalFormAdapter;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
+import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 
 public class FragmentRentalForms extends Fragment {
 
@@ -58,6 +62,15 @@ public class FragmentRentalForms extends Fragment {
 
         binding.rentalFormsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentAddRentalForm);
+        });
+
+        RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity());
+        binding.rentalFormsRecyclerView.setAdapter(rentalFormAdapter);
+        binding.rentalFormsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
+        rentalFormViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRentalFormObservables -> {
+            rentalFormAdapter.Clear();
+            rentalFormAdapter.Fill(updatedRentalFormObservables);
         });
 
     }

@@ -12,10 +12,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
+import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
 public class FragmentRoomKinds extends Fragment {
 
@@ -58,6 +62,15 @@ public class FragmentRoomKinds extends Fragment {
 
         binding.roomKindsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentAddRoomKind);
+        });
+
+        RoomKindAdapter roomKindAdapter = new RoomKindAdapter(requireActivity());
+        binding.roomKindsRecyclerView.setAdapter(roomKindAdapter);
+        binding.roomKindsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+        roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
+            roomKindAdapter.Clear();
+            roomKindAdapter.Fill(updatedRoomKindObservables);
         });
 
     }
