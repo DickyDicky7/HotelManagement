@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -31,6 +32,7 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
         return new RoomKindViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RoomKindViewHolder holder, int position) {
         if (baseObservables != null) {
@@ -39,7 +41,7 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
             RoomKindObservable roomKindObservable = baseObservables.get(position);
 
             binding.roomkindName.setText(roomKindObservable.getName());
-            binding.roomArea.setText(String.valueOf(roomKindObservable.getArea()));
+            binding.roomArea.setText(roomKindObservable.getArea() + " m\u00B2");
             binding.roomBed.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
             binding.roomMaxGuest.setText(String.valueOf(roomKindObservable.getCapacity()));
             Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners(30)).into(binding.itemRkImage);

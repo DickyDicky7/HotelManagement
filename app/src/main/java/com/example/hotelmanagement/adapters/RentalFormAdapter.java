@@ -44,7 +44,7 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
             RecyclerViewItemRentalFormBinding binding = RecyclerViewItemRentalFormBinding.bind(holder.itemView);
             RentalFormObservable rentalFormObservable = baseObservables.get(position);
 
-            binding.itemRentFormCode2.setText(String.valueOf(rentalFormObservable.getId()));
+            binding.itemRentFormCode2.setText("#" + rentalFormObservable.getId());
             binding.itemRentFormName2.setText("Rental Form " + rentalFormObservable.getId());
             LocalDate startDate = rentalFormObservable.getStartDate();
             LocalDate endDate = startDate.plusDays(rentalFormObservable.getRentalDays());
