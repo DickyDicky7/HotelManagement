@@ -103,14 +103,14 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             if (onSuccessCallback != null) {
-                                onSuccessCallback.accept(null);
+                                onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
                             Log.d("RentalFormViewModel Insert Response Debug", response.getData().insert_RENTALFORM().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
-                                onFailureCallback.accept(null);
+                                onFailureCallback.run();
                                 onFailureCallback = null;
                             }
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Insert Error", error.toString()));
@@ -120,7 +120,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
                         if (onFailureCallback != null) {
-                            onFailureCallback.accept(null);
+                            onFailureCallback.run();
                             onFailureCallback = null;
                         }
                         e.printStackTrace();

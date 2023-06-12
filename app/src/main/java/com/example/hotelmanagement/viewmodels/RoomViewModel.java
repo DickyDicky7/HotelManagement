@@ -37,14 +37,14 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             if (onSuccessCallback != null) {
-                                onSuccessCallback.accept(null);
+                                onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
                             Log.d("RoomViewModel Insert Response Debug", response.getData().insert_ROOM().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
-                                onFailureCallback.accept(null);
+                                onFailureCallback.run();
                                 onFailureCallback = null;
                             }
                             response.getErrors().forEach(error -> Log.e("RoomViewModel Insert Error", error.toString()));
@@ -54,7 +54,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
                         if (onFailureCallback != null) {
-                            onFailureCallback.accept(null);
+                            onFailureCallback.run();
                             onFailureCallback = null;
                         }
                         e.printStackTrace();

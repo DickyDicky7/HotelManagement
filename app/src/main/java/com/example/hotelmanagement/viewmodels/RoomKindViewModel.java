@@ -61,14 +61,14 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
                                 if (response.getData() != null) {
                                     if (onSuccessCallback != null) {
-                                        onSuccessCallback.accept(null);
+                                        onSuccessCallback.run();
                                         onSuccessCallback = null;
                                     }
                                     Log.d("RoomKindViewModel Insert Response Debug", response.getData().insert_ROOMKIND().toString());
                                 }
                                 if (response.getErrors() != null) {
                                     if (onFailureCallback != null) {
-                                        onFailureCallback.accept(null);
+                                        onFailureCallback.run();
                                         onFailureCallback = null;
                                     }
                                     response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
@@ -78,7 +78,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             @Override
                             public void onFailure(@NonNull ApolloException e) {
                                 if (onFailureCallback != null) {
-                                    onFailureCallback.accept(null);
+                                    onFailureCallback.run();
                                     onFailureCallback = null;
                                 }
                                 e.printStackTrace();

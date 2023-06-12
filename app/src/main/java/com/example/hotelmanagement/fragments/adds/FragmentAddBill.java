@@ -67,7 +67,7 @@ public class FragmentAddBill extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                billViewModel.onSuccessCallback = unused -> {
+                billViewModel.onSuccessCallback = () -> {
                 };
                 billViewModel.onFailureCallback = null;
                 if (billViewModel.checkObservable(billObservable, requireContext())) {

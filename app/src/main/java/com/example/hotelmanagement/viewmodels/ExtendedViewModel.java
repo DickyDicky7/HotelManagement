@@ -12,13 +12,12 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
     protected final MutableLiveData<List<BO>> modelState;
-    public Consumer<Void> onSuccessCallback;
-    public Consumer<Void> onFailureCallback;
+    public Runnable onSuccessCallback;
+    public Runnable onFailureCallback;
 
     public ExtendedViewModel() {
         super();

@@ -13,8 +13,6 @@ import com.auth0.android.callback.Callback;
 import com.auth0.android.provider.WebAuthProvider;
 import com.auth0.android.result.Credentials;
 
-import java.util.function.Consumer;
-
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,7 +40,7 @@ public class Hasura {
         }
     }
 
-    public static void login(@NonNull Context context, @Nullable Consumer<Void> onSuccessCallback, @Nullable Consumer<Void> onFailureCallback) {
+    public static void login(@NonNull Context context, @Nullable Runnable onSuccessCallback, @Nullable Runnable onFailureCallback) {
         try {
             WebAuthProvider.login(auth0).withScheme(scheme).start(context, new Callback<Credentials, AuthenticationException>() {
 
@@ -53,7 +51,7 @@ public class Hasura {
                     Hasura.credentials = credentials;
                     loginSuccessfully = true;
                     if (onSuccessCallback != null)
-                        onSuccessCallback.accept(null);
+                        onSuccessCallback.run();
                 }
 
                 @Override
@@ -61,7 +59,7 @@ public class Hasura {
                     System.out.println(e.getDescription());
                     loginSuccessfully = false;
                     if (onFailureCallback != null)
-                        onFailureCallback.accept(null);
+                        onFailureCallback.run();
                 }
 
             });
@@ -70,7 +68,7 @@ public class Hasura {
         }
     }
 
-    public static void logout(@NonNull Context context, @Nullable Consumer<Void> onSuccessCallback, @Nullable Consumer<Void> onFailureCallback) {
+    public static void logout(@NonNull Context context, @Nullable Runnable onSuccessCallback, @Nullable Runnable onFailureCallback) {
         try {
             WebAuthProvider.logout(auth0).withScheme(scheme).start(context, new Callback<Void, AuthenticationException>() {
 
@@ -78,7 +76,7 @@ public class Hasura {
                 public void onSuccess(Void unused) {
                     logoutSuccessfully = true;
                     if (onSuccessCallback != null)
-                        onSuccessCallback.accept(null);
+                        onSuccessCallback.run();
                 }
 
                 @Override
@@ -86,7 +84,7 @@ public class Hasura {
                     System.out.println(e.getDescription());
                     logoutSuccessfully = false;
                     if (onFailureCallback != null)
-                        onFailureCallback.accept(null);
+                        onFailureCallback.run();
                 }
 
             });

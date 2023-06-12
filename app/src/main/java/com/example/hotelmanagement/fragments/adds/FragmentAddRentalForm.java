@@ -82,7 +82,7 @@ public class FragmentAddRentalForm extends Fragment {
             }
         });
 
-        binding.edtDate.setOnClickListener(_view_->{
+        binding.edtDate.setOnClickListener(_view_ -> {
             Calendar currentDate = Calendar.getInstance();
             int y = currentDate.get(Calendar.YEAR);
             int m = currentDate.get(Calendar.MONTH);
@@ -159,7 +159,7 @@ public class FragmentAddRentalForm extends Fragment {
                     Toast.makeText(requireActivity(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                rentalFormViewModel.onSuccessCallback = unused -> {
+                rentalFormViewModel.onSuccessCallback = () -> {
                 };
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext())) {

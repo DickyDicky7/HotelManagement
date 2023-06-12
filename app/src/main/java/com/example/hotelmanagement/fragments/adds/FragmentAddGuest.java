@@ -69,7 +69,7 @@ public class FragmentAddGuest extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                guestViewModel.onSuccessCallback = unused -> {
+                guestViewModel.onSuccessCallback = () -> {
                 };
                 guestViewModel.onFailureCallback = null;
                 if (guestViewModel.checkObservable(guestObservable, requireContext())) {

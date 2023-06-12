@@ -52,7 +52,7 @@ public class FragmentAddRoomKind extends Fragment {
         binding.setRoomKindObservable(roomKindObservable);
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                roomKindViewModel.onSuccessCallback = unused -> {
+                roomKindViewModel.onSuccessCallback = () -> {
                     requireActivity().runOnUiThread(() -> {
                         // Những task buộc phải chạy trên main thread thì gọi ở đây (thường liên quan đến UI)
                         // Ví dụ như navigation

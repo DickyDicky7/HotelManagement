@@ -17,7 +17,6 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAccountBinding;
 
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class FragmentAccount extends Fragment {
 
@@ -52,8 +51,8 @@ public class FragmentAccount extends Fragment {
         }
 
         binding.signOutButton.setOnClickListener(_view_ -> {
-            Consumer<Void> onSuccessCallback = unused -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentAccount_to_fragmentLogin);
-            Consumer<Void> onFailureCallback = null;
+            Runnable onSuccessCallback = () -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentAccount_to_fragmentLogin);
+            Runnable onFailureCallback = null;
             Hasura.logout
                     (
                             requireContext(),

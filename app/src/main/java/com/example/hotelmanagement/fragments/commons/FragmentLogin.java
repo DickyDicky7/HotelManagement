@@ -28,8 +28,6 @@ import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
-import java.util.function.Consumer;
-
 public class FragmentLogin extends Fragment {
 
     private FragmentLoginBinding binding;
@@ -47,7 +45,7 @@ public class FragmentLogin extends Fragment {
 
         binding.btnSignIn.setOnClickListener(_view_ -> {
 
-            Consumer<Void> onSuccessCallback = unused -> {
+            Runnable onSuccessCallback = () -> {
                 BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
                 RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
                 GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
@@ -85,7 +83,7 @@ public class FragmentLogin extends Fragment {
                 });
                 NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
             };
-            Consumer<Void> onFailureCallback = null;
+            Runnable onFailureCallback = null;
             Hasura.configAuth0
                     (
                             getString(R.string.com_auth0_client_id),

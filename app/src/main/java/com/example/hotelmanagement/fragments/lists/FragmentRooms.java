@@ -1,7 +1,9 @@
 package com.example.hotelmanagement.fragments.lists;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
 public class FragmentRooms extends Fragment {
 
+    private Handler handler;
+    private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
 
     @Nullable
@@ -32,6 +36,7 @@ public class FragmentRooms extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,12 +78,37 @@ public class FragmentRooms extends Fragment {
             roomAdapter.Fill(updatedRoomObservables);
         });
 
+        binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
+        binding.roomsBtnBook.setVisibility(View.INVISIBLE);
+        binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
+        binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
+        int delayMilliseconds = 3000;
+        handler = new Handler();
+        timeoutCallback = () -> {
+            binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
+            binding.roomsBtnBook.setVisibility(View.INVISIBLE);
+            binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
+            binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
+        };
+        binding.roomsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
+            handler.removeCallbacks(timeoutCallback);
+            binding.roomsBtnAdd.setVisibility(View.VISIBLE);
+            binding.roomsBtnBook.setVisibility(View.VISIBLE);
+            binding.roomsBtnEdit.setVisibility(View.VISIBLE);
+            binding.roomsBtnDelete.setVisibility(View.VISIBLE);
+            handler.postDelayed(timeoutCallback, delayMilliseconds);
+            return false;
+        });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        handler.removeCallbacks(timeoutCallback);
+        handler = null;
+        timeoutCallback = null;
     }
 
 }

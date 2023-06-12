@@ -37,14 +37,14 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             if (onSuccessCallback != null) {
-                                onSuccessCallback.accept(null);
+                                onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
                             Log.d("GuestViewModel Insert Response Debug", response.getData().insert_GUEST().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
-                                onFailureCallback.accept(null);
+                                onFailureCallback.run();
                                 onFailureCallback = null;
                             }
                             response.getErrors().forEach(error -> Log.e("GuestViewModel Insert Error", error.toString()));
@@ -54,7 +54,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
                         if (onFailureCallback != null) {
-                            onFailureCallback.accept(null);
+                            onFailureCallback.run();
                             onFailureCallback = null;
                         }
                         e.printStackTrace();

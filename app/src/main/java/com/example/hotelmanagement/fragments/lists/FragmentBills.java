@@ -1,7 +1,9 @@
 package com.example.hotelmanagement.fragments.lists;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.example.hotelmanagement.viewmodels.BillViewModel;
 
 public class FragmentBills extends Fragment {
 
+    private Handler handler;
+    private Runnable timeoutCallback;
     private FragmentBillsBinding binding;
 
     @Nullable
@@ -32,6 +36,7 @@ public class FragmentBills extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,12 +78,26 @@ public class FragmentBills extends Fragment {
             billAdapter.Fill(updatedBillObservables);
         });
 
+        binding.billsBtnAdd.setVisibility(View.INVISIBLE);
+        int delayMilliseconds = 3000;
+        handler = new Handler();
+        timeoutCallback = () -> binding.billsBtnAdd.setVisibility(View.INVISIBLE);
+        binding.billsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
+            handler.removeCallbacks(timeoutCallback);
+            binding.billsBtnAdd.setVisibility(View.VISIBLE);
+            handler.postDelayed(timeoutCallback, delayMilliseconds);
+            return false;
+        });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        handler.removeCallbacks(timeoutCallback);
+        handler = null;
+        timeoutCallback = null;
     }
 
 }

@@ -69,7 +69,7 @@ public class FragmentAddRoom extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                roomViewModel.onSuccessCallback = unused -> {
+                roomViewModel.onSuccessCallback = () -> {
                 };
                 roomViewModel.onFailureCallback = null;
                 if (roomViewModel.checkObservable(roomObservable, requireContext())) {
