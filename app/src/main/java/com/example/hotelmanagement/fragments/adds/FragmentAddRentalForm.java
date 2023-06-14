@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.library.baseAdapters.BR;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,6 +24,7 @@ import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -54,7 +56,7 @@ public class FragmentAddRentalForm extends Fragment {
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
-            arrayAdapter.addAll(updatedRoomObservables.stream().map(RoomObservable::getName).toArray(String[]::new));
+            arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
         });
 
         binding.edtIDnumber.setOnFocusChangeListener((_view_, b) -> {
@@ -78,6 +80,7 @@ public class FragmentAddRentalForm extends Fragment {
             public void afterTextChanged(Editable editable) {
                 if (rentalFormObservable.getPricePerDay() != null && rentalFormObservable.getRentalDays() != null) {
                     rentalFormObservable.setAmount(rentalFormObservable.getPricePerDay() * rentalFormObservable.getRentalDays());
+                    rentalFormObservable.notifyPropertyChanged(BR.amountString);
                 }
             }
         });
@@ -89,7 +92,8 @@ public class FragmentAddRentalForm extends Fragment {
             int d = currentDate.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog mDatePicker = new DatePickerDialog(requireActivity()
                     , (datePicker, selectedYear, selectedMonth, selectedDay) -> {
-                rentalFormObservable.setStartDateString(selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay);
+                LocalDate date = LocalDate.of(selectedYear, selectedMonth, selectedDay);
+                rentalFormObservable.setStartDateString(date.toString());
             }, y, m, d);
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
@@ -113,6 +117,7 @@ public class FragmentAddRentalForm extends Fragment {
             public void afterTextChanged(Editable editable) {
                 if (rentalFormObservable.getPricePerDay() != null && rentalFormObservable.getRentalDays() != null) {
                     rentalFormObservable.setAmount(rentalFormObservable.getPricePerDay() * rentalFormObservable.getRentalDays());
+                    rentalFormObservable.notifyPropertyChanged(BR.amountString);
                 }
             }
         });
@@ -131,6 +136,7 @@ public class FragmentAddRentalForm extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 rentalFormViewModel.findPrice(rentalFormObservable);
+
             }
         });
 
@@ -160,9 +166,11 @@ public class FragmentAddRentalForm extends Fragment {
                     return;
                 }
                 rentalFormViewModel.onSuccessCallback = () -> {
+                    rentalFormObservable = new RentalFormObservable();
+                    binding.setRentalFormObservable(rentalFormObservable);
                 };
                 rentalFormViewModel.onFailureCallback = null;
-                if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext())) {
+                if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext(), "billId")) {
                     rentalFormObservable.setBillId(null);
                     //rentalFormObservable.setIsResolved(false);
                     rentalFormViewModel.insert(rentalFormObservable);

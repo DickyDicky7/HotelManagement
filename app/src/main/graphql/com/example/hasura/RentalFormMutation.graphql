@@ -46,3 +46,24 @@ mutation RentalFormInsert
         }
     }
 }
+mutation RentalFormUpdateBillIdAndIsResolvedById(
+    $id: Int
+    $isResolved: Boolean
+    $billId: Int
+){
+    update_RENTALFORM(where: {id: {_eq: $id}}, _set: {bill_id: $billId, is_resolved: $isResolved})
+    {returning{
+        id
+        amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
+    }}
+}

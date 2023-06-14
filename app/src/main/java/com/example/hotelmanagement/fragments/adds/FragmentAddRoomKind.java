@@ -68,7 +68,8 @@ public class FragmentAddRoomKind extends Fragment {
                     });
                 };
                 roomKindViewModel.onFailureCallback = null;
-                if (roomKindViewModel.checkObservable(roomKindObservable, requireContext())) {
+                roomKindObservable.setImageURL("android.resource://" + R.class.getPackage().getName() + "/" + R.drawable.img_room_sin);
+                if (roomKindViewModel.checkObservable(roomKindObservable, requireContext(), "imageURL")) {
                     roomKindViewModel.insert(roomKindObservable);
                 }
             } catch (IllegalAccessException e) {
