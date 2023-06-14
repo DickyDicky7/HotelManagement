@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_bill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170sp"
+        android:layout_height="270sp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
@@ -58,7 +58,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_createdAt"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -87,12 +87,13 @@
             <TextView
                 android:id="@+id/createdAtTextView"
                 style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_20_4_2020"
+                android:textAlignment="textStart"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +104,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_guestName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -133,12 +134,13 @@
             <TextView
                 android:id="@+id/guestNameTextView"
                 style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_david"
+                android:textAlignment="textStart"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +151,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_idNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -178,12 +180,13 @@
             <TextView
                 android:id="@+id/idNumberTextView"
                 style="@style/txtInterregular14_3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_048203008744"
+                android:textAlignment="textStart"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +205,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_123"
-            android:textSize="25sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

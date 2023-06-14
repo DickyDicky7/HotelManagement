@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/bluegray_900</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/bluegray_900</item>
     </style>
 </resources>

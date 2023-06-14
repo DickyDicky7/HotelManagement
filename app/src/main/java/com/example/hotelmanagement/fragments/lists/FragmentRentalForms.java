@@ -18,10 +18,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RentalFormAdapter;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
+
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRentalForms extends Fragment {
 
@@ -69,8 +74,10 @@ public class FragmentRentalForms extends Fragment {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentAddRentalForm);
         });
 
+        binding.rentalFormsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
+
         RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity());
-        binding.rentalFormsRecyclerView.setAdapter(rentalFormAdapter);
+        binding.rentalFormsRecyclerView.setAdapter(new ScaleInAnimationAdapter(rentalFormAdapter));
         binding.rentalFormsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
         rentalFormViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRentalFormObservables -> {
@@ -81,10 +88,20 @@ public class FragmentRentalForms extends Fragment {
         binding.rentalFormsBtnAdd.setVisibility(View.INVISIBLE);
         int delayMilliseconds = 3000;
         handler = new Handler();
-        timeoutCallback = () -> binding.rentalFormsBtnAdd.setVisibility(View.INVISIBLE);
+        timeoutCallback = () -> {
+            if (binding != null && binding.rentalFormsBtnAdd.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.rentalFormsBtnAdd.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.rentalFormsBtnAdd);
+            }
+        };
         binding.rentalFormsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
-            binding.rentalFormsBtnAdd.setVisibility(View.VISIBLE);
+            if (binding.rentalFormsBtnAdd.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.rentalFormsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.rentalFormsBtnAdd);
+            }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
         });

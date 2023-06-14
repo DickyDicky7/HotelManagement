@@ -44,7 +44,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
 
             @Override
             public void onSuccess(String requestId, Map resultData) {
-                roomKindObservable.setImageURL(resultData.getOrDefault("url", "").toString());
+                roomKindObservable.setImageURL(resultData.getOrDefault("secure_url", "").toString());
                 RoomKindInsertMutation roomKindInsertMutation = RoomKindInsertMutation
                         .builder()
                         .name(roomKindObservable.getName())

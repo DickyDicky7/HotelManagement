@@ -16,12 +16,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.BillAdapter;
 import com.example.hotelmanagement.databinding.FragmentBillsBinding;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentBills extends Fragment {
 
@@ -69,9 +77,15 @@ public class FragmentBills extends Fragment {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentAddBill);
         });
 
+        binding.billsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
+
         BillAdapter billAdapter = new BillAdapter(requireActivity());
-        binding.billsRecyclerView.setAdapter(billAdapter);
-        binding.billsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.billsRecyclerView.setAdapter(new ScaleInAnimationAdapter(billAdapter));
+        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
+        flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
+        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
+        flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
+        binding.billsRecyclerView.setLayoutManager(flexboxLayoutManager);
         BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
         billViewModel.getModelState().observe(getViewLifecycleOwner(), updatedBillObservables -> {
             billAdapter.Clear();
@@ -81,10 +95,20 @@ public class FragmentBills extends Fragment {
         binding.billsBtnAdd.setVisibility(View.INVISIBLE);
         int delayMilliseconds = 3000;
         handler = new Handler();
-        timeoutCallback = () -> binding.billsBtnAdd.setVisibility(View.INVISIBLE);
+        timeoutCallback = () -> {
+            if (binding != null && binding.billsBtnAdd.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.billsBtnAdd.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.billsBtnAdd);
+            }
+        };
         binding.billsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
-            binding.billsBtnAdd.setVisibility(View.VISIBLE);
+            if (binding.billsBtnAdd.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.billsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.billsBtnAdd);
+            }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
         });
