@@ -28,9 +28,6 @@ public class ActivityMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         List<String> permissions = new LinkedList<>();
         permissions.add(Manifest.permission.INTERNET);
         permissions.add(Manifest.permission.ACCESS_NETWORK_STATE);
@@ -41,6 +38,9 @@ public class ActivityMain extends AppCompatActivity {
                 requestPermissionLauncher.launch(permission);
             }
         }
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
     }
 

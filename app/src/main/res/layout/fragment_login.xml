@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.commons.FragmentLogin">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/img_hotelimage_1"
         android:backgroundTint="#FFFFFF"
         android:backgroundTintMode="multiply"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/groupStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:orientation="vertical">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignIn"
                 style="@style/groupStylebluegray_100_cccornerRadius"
-                android:layout_width="@dimen/_190pxv"
+                android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_24pxv"
-                android:layout_marginTop="@dimen/_350pxh"
-                android:layout_marginEnd="@dimen/_24pxv"
+                android:layout_marginTop="20dp"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:paddingStart="@dimen/_30pxv"
-                android:paddingTop="@dimen/_10pxh"
-                android:paddingEnd="@dimen/_30pxv"
-                android:paddingBottom="@dimen/_10pxh"
+                android:paddingStart="30sp"
+                android:paddingTop="10sp"
+                android:paddingEnd="30sp"
+                android:paddingBottom="10sp"
                 android:singleLine="true"
                 android:text="@string/lbl_sign_in"
                 android:textAllCaps="false"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/lbl_sign_in" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

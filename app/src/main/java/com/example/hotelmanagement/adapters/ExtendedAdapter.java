@@ -1,6 +1,5 @@
 package com.example.hotelmanagement.adapters;
 
-import android.annotation.SuppressLint;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -28,19 +27,21 @@ public abstract class ExtendedAdapter<BO extends BaseObservable, VH extends Recy
         this.fragmentActivity = fragmentActivity;
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     public void Fill(@NonNull List<BO> newBaseObservables) {
         if (baseObservables != null) {
+            int startIndex = 0;
+            int itemNumber = newBaseObservables.size();
             baseObservables.addAll(newBaseObservables);
-            notifyDataSetChanged();
+            notifyItemRangeInserted(startIndex, itemNumber);
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     public void Clear() {
         if (baseObservables != null) {
+            int startIndex = 0;
+            int itemNumber = baseObservables.size();
             baseObservables.clear();
-            notifyDataSetChanged();
+            notifyItemRangeRemoved(startIndex, itemNumber);
         }
     }
 

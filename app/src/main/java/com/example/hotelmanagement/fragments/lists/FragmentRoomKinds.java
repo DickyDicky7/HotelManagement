@@ -18,10 +18,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
+
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRoomKinds extends Fragment {
 
@@ -69,8 +74,10 @@ public class FragmentRoomKinds extends Fragment {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentAddRoomKind);
         });
 
+        binding.roomKindsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
+
         RoomKindAdapter roomKindAdapter = new RoomKindAdapter(requireActivity());
-        binding.roomKindsRecyclerView.setAdapter(roomKindAdapter);
+        binding.roomKindsRecyclerView.setAdapter(new ScaleInAnimationAdapter(roomKindAdapter));
         binding.roomKindsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
@@ -81,10 +88,20 @@ public class FragmentRoomKinds extends Fragment {
         binding.roomKindsBtnAdd.setVisibility(View.INVISIBLE);
         int delayMilliseconds = 3000;
         handler = new Handler();
-        timeoutCallback = () -> binding.roomKindsBtnAdd.setVisibility(View.INVISIBLE);
+        timeoutCallback = () -> {
+            if (binding != null && binding.roomKindsBtnAdd.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.roomKindsBtnAdd.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.roomKindsBtnAdd);
+            }
+        };
         binding.roomKindsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
-            binding.roomKindsBtnAdd.setVisibility(View.VISIBLE);
+            if (binding.roomKindsBtnAdd.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomKindsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomKindsBtnAdd);
+            }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
         });

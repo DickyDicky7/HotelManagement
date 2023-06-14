@@ -16,12 +16,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRooms extends Fragment {
 
@@ -69,9 +77,15 @@ public class FragmentRooms extends Fragment {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentAddRoom);
         });
 
+        binding.roomsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
+
         RoomAdapter roomAdapter = new RoomAdapter(requireActivity());
-        binding.roomsRecyclerView.setAdapter(roomAdapter);
-        binding.roomsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.roomsRecyclerView.setAdapter(new ScaleInAnimationAdapter(roomAdapter));
+        FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
+        flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
+        flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
+        flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
+        binding.roomsRecyclerView.setLayoutManager(flexboxLayoutManager);
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             roomAdapter.Clear();
@@ -85,17 +99,49 @@ public class FragmentRooms extends Fragment {
         int delayMilliseconds = 3000;
         handler = new Handler();
         timeoutCallback = () -> {
-            binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
-            binding.roomsBtnBook.setVisibility(View.INVISIBLE);
-            binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
-            binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
+            if (binding != null && binding.roomsBtnAdd.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.roomsBtnAdd);
+            }
+            if (binding != null && binding.roomsBtnBook.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.roomsBtnBook.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.roomsBtnBook);
+            }
+            if (binding != null && binding.roomsBtnEdit.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.roomsBtnEdit);
+            }
+            if (binding != null && binding.roomsBtnDelete.getVisibility() != View.INVISIBLE) {
+                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                    if (binding != null) {
+                        binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
+                    }
+                }).playOn(binding.roomsBtnDelete);
+            }
         };
         binding.roomsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
-            binding.roomsBtnAdd.setVisibility(View.VISIBLE);
-            binding.roomsBtnBook.setVisibility(View.VISIBLE);
-            binding.roomsBtnEdit.setVisibility(View.VISIBLE);
-            binding.roomsBtnDelete.setVisibility(View.VISIBLE);
+            if (binding.roomsBtnAdd.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnAdd);
+            }
+            if (binding.roomsBtnBook.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnBook.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnBook);
+            }
+            if (binding.roomsBtnEdit.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnEdit.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnEdit);
+            }
+            if (binding.roomsBtnDelete.getVisibility() != View.VISIBLE) {
+                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnDelete.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnDelete);
+            }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
         });

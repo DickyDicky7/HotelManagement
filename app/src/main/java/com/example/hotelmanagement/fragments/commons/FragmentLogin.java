@@ -2,6 +2,7 @@ package com.example.hotelmanagement.fragments.commons;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.cloudinary.Configuration;
 import com.cloudinary.android.MediaManager;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hasura.CloudinaryAllQuery;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.R;
@@ -42,6 +45,11 @@ public class FragmentLogin extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.btnSignIn.setVisibility(View.INVISIBLE);
+        Handler handler = new Handler();
+        handler.postDelayed(() -> YoYo.with(Techniques.FadeIn).duration(300).onStart
+                (animator -> binding.btnSignIn.setVisibility(View.VISIBLE)).playOn(binding.btnSignIn), 3000);
 
         binding.btnSignIn.setOnClickListener(_view_ -> {
 
@@ -99,6 +107,14 @@ public class FragmentLogin extends Fragment {
 
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Hasura.loginSuccessfully != null && Hasura.loginSuccessfully) {
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
+        }
     }
 
     @Override

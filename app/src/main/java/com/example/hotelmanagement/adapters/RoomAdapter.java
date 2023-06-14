@@ -30,7 +30,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
     @NonNull
     @Override
     public RoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == 1) {
+        if (viewType == 0) {
             RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
             return new RoomViewHolder(binding);
         }
@@ -51,7 +51,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 optionalRoomKindObservable = roomKindObservables.stream().filter(roomKindObservable -> roomKindObservable.getId().equals(roomObservable.getRoomKindId())).findFirst();
             }
 
-            if (holder.getItemViewType() == 1) {
+            if (holder.getItemViewType() == 0) {
                 RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
                 binding.itemRRoomName.setText(roomObservable.getName());
                 if (optionalRoomKindObservable.isPresent()) {
