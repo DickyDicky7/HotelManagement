@@ -282,6 +282,7 @@ public class RentalFormObservable extends ExtendedObservable {
     public void setStartDateString(String startDateString) {
         try {
             setStartDate(LocalDate.parse(startDateString));
+            notifyPropertyChanged(BR.startDateString);
         } catch (NullPointerException | IllegalArgumentException e) {
             setStartDate(null);
         } catch (Exception e) {
