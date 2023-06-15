@@ -66,6 +66,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
                                 if (item.ROOMKIND() != null) {
+                                    System.out.println(item.ROOMKIND().capacity());
+                                    System.out.println(item.ROOMKIND().price());
+                                    System.out.println(item.ROOMKIND().surcharge_percentage());
                                     Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
                                     if (sub < 0)
                                         sub = 0;
@@ -107,7 +110,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation =
                                     RoomUpdateIsOccupiedByIdMutation.builder()
-                                            .id(response.getData().insert_RENTALFORM().returning().get(0).id())
+                                            .id(response.getData().insert_RENTALFORM().returning().get(0).room_id())
                                             .isOccupied(true)
                                             .build();
                             Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {

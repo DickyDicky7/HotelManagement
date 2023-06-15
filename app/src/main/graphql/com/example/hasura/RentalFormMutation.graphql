@@ -47,11 +47,11 @@ mutation RentalFormInsert
     }
 }
 mutation RentalFormUpdateBillIdAndIsResolvedById(
-    $id: Int
+    $guestId: Int
     $isResolved: Boolean
     $billId: Int
 ){
-    update_RENTALFORM(where: {id: {_eq: $id}}, _set: {bill_id: $billId, is_resolved: $isResolved})
+    update_RENTALFORM(where: {guest_id: {_eq: $guestId}, is_resolved: {_eq: false}}, _set: {bill_id: $billId, is_resolved: $isResolved})
     {returning{
         id
         amount

@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FragmentAddRentalForm extends Fragment {
 
@@ -56,9 +57,11 @@ public class FragmentAddRentalForm extends Fragment {
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
+            arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
         });
-
+        binding.radioResolved.setEnabled(false);
+        rentalFormObservable.setIsResolved(false);
         binding.edtIDnumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
                 rentalFormViewModel.findGuestId(rentalFormObservable);
@@ -98,10 +101,6 @@ public class FragmentAddRentalForm extends Fragment {
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
         });
-
-        binding.radioResolved.setEnabled(false);
-        rentalFormObservable.setIsResolved(false);
-
         binding.etPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -135,15 +134,18 @@ public class FragmentAddRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (rentalFormObservable.getNumberOfGuestsString() == null ||
+                        rentalFormObservable.getNumberOfGuestsString().equals("")) {
+                    return;
+                }
                 rentalFormViewModel.findPrice(rentalFormObservable);
-
             }
         });
 
         binding.spinnerChooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
+                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
                 if (roomObservables != null) {
                     rentalFormObservable.setRoomId(roomObservables.get(i).getId());
                     if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
@@ -168,6 +170,9 @@ public class FragmentAddRentalForm extends Fragment {
                 rentalFormViewModel.onSuccessCallback = () -> {
                     rentalFormObservable = new RentalFormObservable();
                     binding.setRentalFormObservable(rentalFormObservable);
+                    List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
+                    rentalFormObservable.setRoomId(roomObservables.get(binding.spinnerChooseRoom.getSelectedItemPosition()).getId());
+                    rentalFormObservable.setIsResolved(false);
                 };
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext(), "billId")) {

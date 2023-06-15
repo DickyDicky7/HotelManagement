@@ -48,14 +48,15 @@ public class FragmentAddRoom extends Fragment {
         binding.spinner.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+        List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
+            arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
         });
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
                 if (roomKindObservables != null) {
                     roomObservable.setRoomKindId(roomKindObservables.get(i).getId());
                 }
@@ -73,6 +74,8 @@ public class FragmentAddRoom extends Fragment {
                     requireActivity().runOnUiThread(() -> {
                         roomObservable = new RoomObservable();
                         binding.setRoomObservable(roomObservable);
+                        roomObservable.setRoomKindId(roomKindObservables.get(binding.spinner.getSelectedItemPosition()).getId());
+                        roomObservable.setIsOccupied(false);
                     });
                 };
                 roomViewModel.onFailureCallback = null;

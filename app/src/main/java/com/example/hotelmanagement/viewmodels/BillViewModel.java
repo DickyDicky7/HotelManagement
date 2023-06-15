@@ -3,6 +3,7 @@ package com.example.hotelmanagement.viewmodels;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.library.baseAdapters.BR;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
@@ -13,6 +14,8 @@ import com.example.hasura.BillSubscription;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormAmountByGuestIdQuery;
+import com.example.hasura.RentalFormUpdateBillIdAndIsResolvedByIdMutation;
+import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
 import com.example.hotelmanagement.observables.BillObservable;
 
 import java.time.LocalDateTime;
@@ -69,6 +72,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                 }
                             });
                             billObservable.setCost(sum.get());
+                            billObservable.notifyPropertyChanged(BR.costString);
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("BillViewModel Calculate Cost Error", error.toString()));
@@ -94,6 +98,51 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
+                            RentalFormUpdateBillIdAndIsResolvedByIdMutation rentalFormUpdateBillIdAndIsResolvedByIdMutation =
+                                    RentalFormUpdateBillIdAndIsResolvedByIdMutation
+                                            .builder()
+                                            .guestId(response.getData().insert_BILL().returning().get(0).guest_id())
+                                            .billId(response.getData().insert_BILL().returning().get(0).id())
+                                            .isResolved(true)
+                                            .build();
+                            Hasura.apolloClient.mutate(rentalFormUpdateBillIdAndIsResolvedByIdMutation)
+                                    .enqueue(new ApolloCall.Callback<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data>() {
+                                        @Override
+                                        public void onResponse(@NonNull Response<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data> response) {
+                                            if (response.getData() != null) {
+                                                response.getData().update_RENTALFORM().returning().forEach(item -> {
+                                                    RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation
+                                                            = RoomUpdateIsOccupiedByIdMutation
+                                                            .builder()
+                                                            .id(item.room_id())
+                                                            .isOccupied(false)
+                                                            .build();
+                                                    Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation)
+                                                            .enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                                                @Override
+                                                                public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
+                                                                    if (response.getErrors() != null) {
+                                                                        response.getErrors().forEach(error -> Log.e("room update isOccupied error", error.toString()));
+                                                                    }
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(@NonNull ApolloException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            });
+                                                });
+                                            }
+                                            if (response.getErrors() != null) {
+                                                response.getErrors().forEach(error -> Log.e("rental form update bill and isResolved error", error.toString()));
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(@NonNull ApolloException e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
                             if (onSuccessCallback != null) {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
