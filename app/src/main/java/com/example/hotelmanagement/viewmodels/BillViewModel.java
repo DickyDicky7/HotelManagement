@@ -122,7 +122,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                                                 @Override
                                                                 public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
                                                                     if (response.getErrors() != null) {
-                                                                        response.getErrors().forEach(error -> Log.e("room update isOccupied error", error.toString()));
+                                                                        response.getErrors().forEach(error -> Log.e("Room Update isOccupied Error", error.toString()));
                                                                     }
                                                                 }
 
@@ -134,7 +134,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                                 });
                                             }
                                             if (response.getErrors() != null) {
-                                                response.getErrors().forEach(error -> Log.e("rental form update bill and isResolved error", error.toString()));
+                                                response.getErrors().forEach(error -> Log.e("Rental Form Update billId And isResolved Error", error.toString()));
                                             }
                                         }
 
