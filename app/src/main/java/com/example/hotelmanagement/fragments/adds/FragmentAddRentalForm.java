@@ -168,11 +168,15 @@ public class FragmentAddRentalForm extends Fragment {
                     return;
                 }
                 rentalFormViewModel.onSuccessCallback = () -> {
-                    rentalFormObservable = new RentalFormObservable();
-                    binding.setRentalFormObservable(rentalFormObservable);
-                    List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
-                    rentalFormObservable.setRoomId(roomObservables.get(binding.spinnerChooseRoom.getSelectedItemPosition()).getId());
-                    rentalFormObservable.setIsResolved(false);
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            rentalFormObservable = new RentalFormObservable();
+                            binding.setRentalFormObservable(rentalFormObservable);
+                            List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
+                            rentalFormObservable.setRoomId(roomObservables.get(binding.spinnerChooseRoom.getSelectedItemPosition()).getId());
+                            rentalFormObservable.setIsResolved(false);
+                        });
+                    }
                 };
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext(), "billId")) {
