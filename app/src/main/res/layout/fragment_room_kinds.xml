@@ -97,4 +97,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageButton
+        android:id="@+id/roomKindsBtnHelp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@android:color/transparent"
+        android:paddingHorizontal="5sp"
+        android:paddingVertical="5sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_question"
+        app:layout_constraintBottom_toTopOf="@+id/roomKindsSearchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/roomKindsTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

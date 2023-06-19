@@ -53,8 +53,8 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentAccount"
             app:destination="@id/fragmentAccount"
-            app:enterAnim="@anim/animate_card_enter"
-            app:exitAnim="@anim/animate_card_exit"
+            app:enterAnim="@anim/animate_in_out_enter"
+            app:exitAnim="@anim/animate_in_out_exit"
             app:popEnterAnim="@anim/animate_shrink_enter"
             app:popExitAnim="@anim/animate_shrink_exit" />
         <action

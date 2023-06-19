@@ -128,6 +128,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                     });
                     if (roomKindObservables != null) {
                         modelState.postValue(roomKindObservables);
+                        notifySubscriptionObservers();
                     }
                 }
                 if (response.getErrors() != null) {

@@ -3,6 +3,7 @@ package com.example.hotelmanagement.viewmodels;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.library.baseAdapters.BR;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
@@ -69,6 +70,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                         sub = 0;
                                     Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
                                     rentalFormObservable.setPricePerDay(pricePerDay);
+                                    rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
                                 }
                             });
                         }
@@ -162,6 +164,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     });
                     if (rentalFormObservables != null) {
                         modelState.postValue(rentalFormObservables);
+                        notifySubscriptionObservers();
                     }
                 }
                 if (response.getErrors() != null) {

@@ -54,7 +54,9 @@ public class FragmentAddRentalForm extends Fragment {
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
+            arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomObservables.stream().map(RoomObservable::getName).toArray(String[]::new));
+            arrayAdapter.notifyDataSetChanged();
         });
 
         binding.edtIDnumber.setOnFocusChangeListener((_view_, b) -> {
