@@ -34,3 +34,25 @@ mutation RoomInsert
         }
     }
 }
+
+mutation RoomUpdateIsOccupiedById
+(
+    $id        : Int
+    $isOccupied: Boolean
+)
+{
+    update_ROOM(where: { id: { _eq: $id } }, _set: { is_occupied: $isOccupied })
+    {
+        returning
+        {
+            id
+            name
+            note
+            created_at
+            updated_at
+            description
+            roomkind_id
+            is_occupied
+        }
+    }
+}

@@ -14,6 +14,7 @@ import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RoomPriceByIdQuery;
+import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 
 import java.time.LocalDate;
@@ -65,6 +66,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
                                 if (item.ROOMKIND() != null) {
+                                    System.out.println(item.ROOMKIND().capacity());
+                                    System.out.println(item.ROOMKIND().price());
+                                    System.out.println(item.ROOMKIND().surcharge_percentage());
                                     Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
                                     if (sub < 0)
                                         sub = 0;
@@ -104,6 +108,22 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
+                            RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation =
+                                    RoomUpdateIsOccupiedByIdMutation.builder()
+                                            .id(response.getData().insert_RENTALFORM().returning().get(0).room_id())
+                                            .isOccupied(true)
+                                            .build();
+                            Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                @Override
+                                public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(@NonNull ApolloException e) {
+
+                                }
+                            });
                             if (onSuccessCallback != null) {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;

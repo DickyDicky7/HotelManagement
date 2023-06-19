@@ -48,14 +48,15 @@ public class FragmentAddGuest extends Fragment {
         binding.spinnerChooseGuestKind.setAdapter(arrayAdapter);
 
         GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
+        List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
         guestKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestKindObservables -> {
+            arrayAdapter.clear();
             arrayAdapter.addAll(updatedGuestKindObservables.stream().map(GuestKindObservable::getName).toArray(String[]::new));
         });
 
         binding.spinnerChooseGuestKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
                 if (guestKindObservables != null) {
                     guestObservable.setGuestKindId(guestKindObservables.get(i).getId());
                 }
@@ -70,6 +71,13 @@ public class FragmentAddGuest extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 guestViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            guestObservable = new GuestObservable();
+                            binding.setGuestObservable(guestObservable);
+                            guestObservable.setGuestKindId(guestKindObservables.get(binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
+                        });
+                    }
                 };
                 guestViewModel.onFailureCallback = null;
                 if (guestViewModel.checkObservable(guestObservable, requireContext())) {

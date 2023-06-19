@@ -68,10 +68,21 @@ public class FragmentAddBill extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 billViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            billObservable = new BillObservable();
+                            binding.setBillObservable(billObservable);
+                            billObservable.setIsPaid(false);
+                        });
+                    }
                 };
                 billViewModel.onFailureCallback = null;
                 if (billViewModel.checkObservable(billObservable, requireContext())) {
-                    billViewModel.insert(billObservable);
+                    if (billObservable.getCost() == 0) {
+                        Toast.makeText(requireActivity(), "This guest does not have any rental form", Toast.LENGTH_SHORT).show();
+                    } else {
+                        billViewModel.insert(billObservable);
+                    }
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
