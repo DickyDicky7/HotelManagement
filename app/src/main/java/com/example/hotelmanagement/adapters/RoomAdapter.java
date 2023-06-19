@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,10 @@ import java.util.Optional;
 
 public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder> {
 
-    public RoomAdapter(FragmentActivity fragmentActivity) {
+    private RoomListener listener;
+    public RoomAdapter(FragmentActivity fragmentActivity,RoomListener listener) {
         super(fragmentActivity);
+        this.listener = listener;
     }
 
     public RoomAdapter(FragmentActivity fragmentActivity, List<RoomObservable> roomObservables) {
@@ -60,6 +63,12 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemRRoomKind.setText("");
                 }
+                binding.itemRoom.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onRoomLisnener(roomObservable);
+                    }
+                });
             } else {
                 RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
                 binding.itemBrRoomName.setText(roomObservable.getName());
@@ -69,6 +78,13 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemBrRoomKind.setText("");
                 }
+                binding.itemBookedroom.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onRoomLisnener(roomObservable);
+                    }
+                });
+                
             }
 
         }
@@ -79,4 +95,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
         return baseObservables != null ? (baseObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
     }
 
+    public interface RoomListener{
+        void onRoomLisnener(RoomObservable roomObservable);
+    }
 }

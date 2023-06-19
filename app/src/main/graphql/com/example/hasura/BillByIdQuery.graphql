@@ -1,0 +1,17 @@
+query BillByIdQuery
+(   $id: Int    ) 
+{
+    BILL   (
+        where: {
+            id: {   _eq: $id    }
+            }
+        ) 
+        {
+            id
+            cost
+            is_paid
+            guest_id
+            created_at
+            updated_at
+    }
+}

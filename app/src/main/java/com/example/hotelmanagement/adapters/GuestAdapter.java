@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHolder> {
-
-    public GuestAdapter(FragmentActivity fragmentActivity) {
+    private GuestListener listener;
+    public GuestAdapter(FragmentActivity fragmentActivity, GuestListener listener) {
         super(fragmentActivity);
+        this.listener = listener;
     }
 
     public GuestAdapter(FragmentActivity fragmentActivity, List<GuestObservable> guestObservables) {
@@ -42,8 +44,15 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
             binding.idNumberTextView.setText(guestObservable.getIdNumber());
             binding.phoneNumberTextView.setText(guestObservable.getPhoneNumber());
             binding.createdAtTextView.setText(guestObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-
+            binding.editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.OnGuestClick(guestObservable);
+                }
+            });
         }
     }
-
+    public interface GuestListener{
+        void OnGuestClick(GuestObservable guestObservable);
+    }
 }

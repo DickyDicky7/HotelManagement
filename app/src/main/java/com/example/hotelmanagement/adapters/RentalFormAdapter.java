@@ -2,6 +2,7 @@ package com.example.hotelmanagement.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,15 @@ import java.util.Optional;
 
 public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, RentalFormViewHolder> {
 
-    public RentalFormAdapter(FragmentActivity fragmentActivity) {
+    RentalFormListener listener;
+    public RentalFormAdapter(FragmentActivity fragmentActivity, RentalFormListener listener) {
         super(fragmentActivity);
+        this.listener = listener;
     }
 
     public RentalFormAdapter(FragmentActivity fragmentActivity, List<RentalFormObservable> rentalFormObservables) {
         super(fragmentActivity, rentalFormObservables);
+
     }
 
     @NonNull
@@ -63,8 +67,16 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
             } else {
                 binding.customerName.setText("");
             }
+            binding.btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onRentalFormClick(rentalFormObservable);
+                }
+            });
 
         }
     }
-
+    public interface RentalFormListener{
+        void onRentalFormClick(RentalFormObservable rentalFormObservable);
+    }
 }

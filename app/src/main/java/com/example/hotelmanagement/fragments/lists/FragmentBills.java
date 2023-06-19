@@ -22,6 +22,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.BillAdapter;
 import com.example.hotelmanagement.databinding.FragmentBillsBinding;
+import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
@@ -31,7 +32,7 @@ import com.google.android.flexbox.JustifyContent;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentBills extends Fragment {
+public class FragmentBills extends Fragment implements BillAdapter.BillListener {
 
     private Handler handler;
     private Runnable timeoutCallback;
@@ -79,7 +80,7 @@ public class FragmentBills extends Fragment {
 
         binding.billsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        BillAdapter billAdapter = new BillAdapter(requireActivity());
+        BillAdapter billAdapter = new BillAdapter(requireActivity(),this);
         binding.billsRecyclerView.setAdapter(new ScaleInAnimationAdapter(billAdapter));
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
         flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
@@ -124,4 +125,10 @@ public class FragmentBills extends Fragment {
         timeoutCallback = null;
     }
 
+    @Override
+    public void onBillListener(BillObservable billObservable) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", billObservable.getId());
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentEditBill,bundle);
+    }
 }

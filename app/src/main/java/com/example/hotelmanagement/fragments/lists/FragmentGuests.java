@@ -22,6 +22,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.GuestAdapter;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
+import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestViewModel;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
@@ -31,7 +32,7 @@ import com.google.android.flexbox.JustifyContent;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentGuests extends Fragment {
+public class FragmentGuests extends Fragment implements GuestAdapter.GuestListener {
 
     private Handler handler;
     private Runnable timeoutCallback;
@@ -79,7 +80,7 @@ public class FragmentGuests extends Fragment {
 
         binding.guestsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        GuestAdapter guestAdapter = new GuestAdapter(requireActivity());
+        GuestAdapter guestAdapter = new GuestAdapter(requireActivity(), this);
         binding.guestsRecyclerView.setAdapter(new ScaleInAnimationAdapter(guestAdapter));
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
         flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
@@ -124,4 +125,11 @@ public class FragmentGuests extends Fragment {
         timeoutCallback = null;
     }
 
+    @Override
+    public void OnGuestClick(GuestObservable guestObservable) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",guestObservable.getId());
+
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentEditGuest,bundle);
+    }
 }

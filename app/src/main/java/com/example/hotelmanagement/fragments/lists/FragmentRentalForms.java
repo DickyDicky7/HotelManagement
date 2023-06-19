@@ -23,12 +23,13 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RentalFormAdapter;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
+import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRentalForms extends Fragment {
+public class FragmentRentalForms extends Fragment implements RentalFormAdapter.RentalFormListener {
 
     private Handler handler;
     private Runnable timeoutCallback;
@@ -76,7 +77,7 @@ public class FragmentRentalForms extends Fragment {
 
         binding.rentalFormsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity());
+        RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity(),this);
         binding.rentalFormsRecyclerView.setAdapter(new ScaleInAnimationAdapter(rentalFormAdapter));
         binding.rentalFormsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
@@ -117,4 +118,11 @@ public class FragmentRentalForms extends Fragment {
         timeoutCallback = null;
     }
 
+    @Override
+    public void onRentalFormClick(RentalFormObservable rentalFormObservable) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", rentalFormObservable.getId());
+
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentEditRentalForm, bundle);
+    }
 }

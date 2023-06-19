@@ -8,28 +8,43 @@
     <fragment
         android:id="@+id/fragmentAddBill"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddBill"
-        android:label="fragment_add_bill"
-        tools:layout="@layout/fragment_add_bill" />
+        android:label="fragment_add_bill" />
+    <fragment
+        android:id="@+id/fragmentEditBill"
+        android:name="com.example.hotelmanagement.fragments.edits.FragmentEditBill"
+        android:label="fragment_edit_bill" />
     <fragment
         android:id="@+id/fragmentAddGuest"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddGuest"
-        android:label="fragment_add_guest"
-        tools:layout="@layout/fragment_add_guest" />
+        android:label="fragment_add_guest" />
+    <fragment
+        android:id="@+id/fragmentEditGuest"
+        android:name="com.example.hotelmanagement.fragments.edits.FragmentEditGuest"
+        android:label="fragment_edit_guest" />
     <fragment
         android:id="@+id/fragmentAddRentalForm"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRentalForm"
-        android:label="fragment_add_rental_form"
-        tools:layout="@layout/fragment_add_rental_form" />
+        android:label="fragment_add_rental_form" />
+    <fragment
+        android:id="@+id/fragmentEditRentalForm"
+        android:name="com.example.hotelmanagement.fragments.edits.FragmentEditRentalForm"
+        android:label="fragment_edit_rental_form" />
     <fragment
         android:id="@+id/fragmentAddRoom"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRoom"
-        android:label="fragment_add_room"
-        tools:layout="@layout/fragment_add_room" />
+        android:label="fragment_add_room" />
+    <fragment
+        android:id="@+id/fragmentEditRoom"
+        android:name="com.example.hotelmanagement.fragments.edits.FragmentEditRoom"
+        android:label="fragment_edit_room" />
     <fragment
         android:id="@+id/fragmentAddRoomKind"
         android:name="com.example.hotelmanagement.fragments.adds.FragmentAddRoomKind"
-        android:label="fragment_add_room_kind"
-        tools:layout="@layout/fragment_add_room_kind" />
+        android:label="fragment_add_room_kind" />
+    <fragment
+        android:id="@+id/fragmentEditRoomKind"
+        android:name="com.example.hotelmanagement.fragments.edits.FragmentEditRoomKind"
+        android:label="fragment_add_room_kind" />
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.example.hotelmanagement.fragments.commons.FragmentLogin"
@@ -120,6 +135,13 @@
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"
             app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentRentalForms_to_fragmentEditRentalForm"
+            app:destination="@id/fragmentEditRentalForm"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRooms"
@@ -129,6 +151,13 @@
         <action
             android:id="@+id/action_fragmentRooms_to_fragmentAddRoom"
             app:destination="@id/fragmentAddRoom"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentRooms_to_fragmentEditRoom"
+            app:destination="@id/fragmentEditRoom"
             app:enterAnim="@anim/animate_slide_down_enter"
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"
@@ -146,6 +175,13 @@
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"
             app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentGuests_to_fragmentEditGuest"
+            app:destination="@id/fragmentEditGuest"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRoomKinds"
@@ -159,6 +195,13 @@
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"
             app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentRoomKinds_to_fragmentEditRoomKind"
+            app:destination="@id/fragmentEditRoomKind"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentBills"
@@ -168,6 +211,13 @@
         <action
             android:id="@+id/action_fragmentBills_to_fragmentAddBill"
             app:destination="@id/fragmentAddBill"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentBills_to_fragmentEditBill"
+            app:destination="@id/fragmentEditBill"
             app:enterAnim="@anim/animate_slide_down_enter"
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"

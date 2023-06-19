@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.fragments.lists;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,12 +24,14 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
+import com.example.hotelmanagement.fragments.edits.FragmentEditRoomKind;
+import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRoomKinds extends Fragment {
+public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomKindListener {
 
     private Handler handler;
     private Runnable timeoutCallback;
@@ -75,8 +78,7 @@ public class FragmentRoomKinds extends Fragment {
         });
 
         binding.roomKindsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
-
-        RoomKindAdapter roomKindAdapter = new RoomKindAdapter(requireActivity());
+        RoomKindAdapter roomKindAdapter = new RoomKindAdapter(requireActivity(), this );
         binding.roomKindsRecyclerView.setAdapter(new ScaleInAnimationAdapter(roomKindAdapter));
         binding.roomKindsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
@@ -106,6 +108,7 @@ public class FragmentRoomKinds extends Fragment {
             return false;
         });
 
+
     }
 
     @Override
@@ -117,4 +120,11 @@ public class FragmentRoomKinds extends Fragment {
         timeoutCallback = null;
     }
 
+    @Override
+    public void onRoomKindClick(RoomKindObservable roomKindObservable) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",roomKindObservable.getId());
+
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentEditRoomKind, bundle);
+    }
 }

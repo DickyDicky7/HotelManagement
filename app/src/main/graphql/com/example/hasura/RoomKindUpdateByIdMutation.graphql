@@ -1,0 +1,44 @@
+mutation RoomkindUpdateByIdMutation
+(
+    $id                 : Int, 
+    $name               : String,
+    $area               : Float,
+    $price              : Float,
+    $imageUrl           : String,
+    $capacity           : Int,
+    $numberOfBeds       : Int,
+    $surchargePercentage: Float,
+    ) 
+    {
+    update_ROOMKIND
+    (   
+        where:  
+        {      
+            id: {   _eq: $id    }
+        },
+         _set: {
+            name                : $name
+            area                : $area
+            price               : $price
+            capacity            : $capacity
+            image_url           : $imageUrl
+            number_of_beds      : $numberOfBeds
+            surcharge_percentage: $surchargePercentage
+        }
+    ) 
+    {
+        affected_rows
+        returning {
+            id
+            name
+            area
+            price
+            capacity
+            image_url
+            created_at
+            updated_at
+            number_of_beds
+            surcharge_percentage
+        }
+    }
+}

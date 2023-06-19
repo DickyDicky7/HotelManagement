@@ -10,6 +10,7 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestKindSubscription;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestKindObservable;
+import com.example.hotelmanagement.observables.RoomKindObservable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,7 +20,18 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
     public GuestKindViewModel() {
         super();
     }
+    public String guestkindname(int id){
+        String name ="";
+        List<GuestKindObservable> temp = modelState.getValue();
 
+        for (int j =0; j< temp.size(); j++) {
+            if (id == temp.get(j).getId()) {
+                name = temp.get(j).getName();
+                break;
+            }
+        }
+        return name;
+    }
     @Override
     public void startSubscription() {
         Hasura.apolloClient.subscribe(new GuestKindSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestKindSubscription.Data>() {

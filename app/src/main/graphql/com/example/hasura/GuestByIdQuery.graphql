@@ -1,0 +1,19 @@
+query GuestByIdQuery
+(   $id: Int    ) 
+{
+    GUEST   (
+        where: {
+            id: {   _eq: $id    }
+            }
+        ) 
+        {
+        id
+        name
+        address
+        id_number
+        guestkind_id
+        phone_number
+        created_at
+        updated_at
+    }
+}

@@ -2,6 +2,7 @@ package com.example.hotelmanagement.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,10 @@ import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 import java.util.List;
 
 public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKindViewHolder> {
-
-    public RoomKindAdapter(FragmentActivity fragmentActivity) {
+    private RoomKindListener listener;
+    public RoomKindAdapter(FragmentActivity fragmentActivity , RoomKindListener listener) {
         super(fragmentActivity);
+        this.listener = listener;
     }
 
     public RoomKindAdapter(FragmentActivity fragmentActivity, List<RoomKindObservable> roomKindObservables) {
@@ -45,8 +47,15 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
             binding.roomBed.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
             binding.roomMaxGuest.setText(String.valueOf(roomKindObservable.getCapacity()));
             Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners(30)).into(binding.itemRkImage);
-
+            binding.itemRkBtnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onRoomKindClick(roomKindObservable);
+                }
+            });
         }
     }
-
+    public interface RoomKindListener{
+        void onRoomKindClick(RoomKindObservable roomKindObservable);
+    }
 }

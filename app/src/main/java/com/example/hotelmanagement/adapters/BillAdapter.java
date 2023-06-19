@@ -1,6 +1,7 @@
 package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,8 +20,10 @@ import java.util.Optional;
 
 public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder> {
 
-    public BillAdapter(FragmentActivity fragmentActivity) {
+    private BillListener listener;
+    public BillAdapter(FragmentActivity fragmentActivity, BillListener listener) {
         super(fragmentActivity);
+        this.listener = listener;
     }
 
     public BillAdapter(FragmentActivity fragmentActivity, List<BillObservable> billObservables) {
@@ -60,8 +63,15 @@ public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder>
                 binding.idNumberTextView.setText("");
                 binding.guestNameTextView.setText("");
             }
-
+            binding.editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onBillListener(billObservable);
+                }
+            });
         }
     }
-
+    public interface BillListener{
+        void onBillListener(BillObservable billObservable);
+    }
 }

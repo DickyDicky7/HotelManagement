@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
+import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
@@ -31,11 +33,13 @@ import com.google.android.flexbox.JustifyContent;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRooms extends Fragment {
+public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener {
 
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
+
+    private int id = -1;
 
     @Nullable
     @Override
@@ -79,7 +83,7 @@ public class FragmentRooms extends Fragment {
 
         binding.roomsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        RoomAdapter roomAdapter = new RoomAdapter(requireActivity());
+        RoomAdapter roomAdapter = new RoomAdapter(requireActivity(), this);
         binding.roomsRecyclerView.setAdapter(new ScaleInAnimationAdapter(roomAdapter));
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
         flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
@@ -146,6 +150,18 @@ public class FragmentRooms extends Fragment {
             return false;
         });
 
+
+        binding.roomsBtnEdit.setOnClickListener(_view_ -> {
+            if (id == -1){
+                Toast.makeText(getContext(),"Chua chon phong ",Toast.LENGTH_LONG).show();
+            }
+            else {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id",id);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentEditRoom,bundle);
+            }
+        });
+
     }
 
     @Override
@@ -157,4 +173,8 @@ public class FragmentRooms extends Fragment {
         timeoutCallback = null;
     }
 
+    @Override
+    public void onRoomLisnener(RoomObservable roomObservable) {
+        id = roomObservable.getId();
+    }
 }
