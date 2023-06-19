@@ -40,7 +40,10 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            Log.d("GuestViewModel Insert Response Debug", response.getData().insert_GUEST().toString());
+                            GuestInsertMutation.Insert_GUEST insert_guest = response.getData().insert_GUEST();
+                            if (insert_guest != null) {
+                                Log.d("GuestViewModel Insert Response Debug", insert_guest.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {

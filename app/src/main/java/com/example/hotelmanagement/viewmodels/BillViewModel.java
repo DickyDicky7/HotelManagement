@@ -97,7 +97,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 .enqueue(new ApolloCall.Callback<BillInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
-                        if (response.getData() != null) {
+                        if (response.getData() != null && response.getData().insert_BILL() != null) {
                             RentalFormUpdateBillIdAndIsResolvedByIdMutation rentalFormUpdateBillIdAndIsResolvedByIdMutation =
                                     RentalFormUpdateBillIdAndIsResolvedByIdMutation
                                             .builder()
@@ -109,7 +109,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                     .enqueue(new ApolloCall.Callback<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data>() {
                                         @Override
                                         public void onResponse(@NonNull Response<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data> response) {
-                                            if (response.getData() != null) {
+                                            if (response.getData() != null && response.getData().update_RENTALFORM() != null) {
                                                 response.getData().update_RENTALFORM().returning().forEach(item -> {
                                                     RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation
                                                             = RoomUpdateIsOccupiedByIdMutation
@@ -147,7 +147,10 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            Log.d("BillViewModel Insert Response Debug", response.getData().insert_BILL().toString());
+                            BillInsertMutation.Insert_BILL insert_bill = response.getData().insert_BILL();
+                            if (insert_bill != null) {
+                                Log.d("BillViewModel Insert Response Debug", insert_bill.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {

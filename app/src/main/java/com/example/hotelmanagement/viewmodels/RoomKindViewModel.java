@@ -64,7 +64,10 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                         onSuccessCallback.run();
                                         onSuccessCallback = null;
                                     }
-                                    Log.d("RoomKindViewModel Insert Response Debug", response.getData().insert_ROOMKIND().toString());
+                                    RoomKindInsertMutation.Insert_ROOMKIND insert_roomkind = response.getData().insert_ROOMKIND();
+                                    if (insert_roomkind != null) {
+                                        Log.d("RoomKindViewModel Insert Response Debug", insert_roomkind.toString());
+                                    }
                                 }
                                 if (response.getErrors() != null) {
                                     if (onFailureCallback != null) {
