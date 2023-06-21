@@ -61,7 +61,7 @@ public class FragmentEditRentalForm extends Fragment {
 
         while (rentalFormObservable.getGuestId() == null);
         rentalFormViewModel.GuestQueryById(rentalFormObservable);
-        billViewModel.filldata(billObservable,rentalFormObservable.getBillId());
+        if (rentalFormObservable.getBillId() != null ) billViewModel.filldata(billObservable,rentalFormObservable.getBillId());
 
         while (rentalFormObservable.getIdNumber() == null);
         binding.setRentalFormObservable(rentalFormObservable);
@@ -190,12 +190,10 @@ public class FragmentEditRentalForm extends Fragment {
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext(), "billId")) {
                     rentalFormViewModel.update(rentalFormObservable,rentalFormObservable1,id);
-                    if (Math.abs(rentalFormObservable1.getAmount()) != Math.abs(rentalFormObservable.getAmount())){
+                    if ( ( Math.abs(rentalFormObservable1.getAmount()) != Math.abs(rentalFormObservable.getAmount())) && rentalFormObservable.getBillId()!= null ){
                         Double amount;
                         if (Math.abs(billObservable.getCost()) == Math.abs(rentalFormObservable1.getAmount())) amount = rentalFormObservable.getAmount();
                         else amount = billObservable.getCost() + rentalFormObservable.getAmount() - rentalFormObservable1.getAmount();
-                        System.out.println("1 " + rentalFormObservable1.getAmount());
-                        System.out.println("2 " +rentalFormObservable.getAmount());
                         billViewModel.updateAmount(billObservable, amount);
                     }
                 }
