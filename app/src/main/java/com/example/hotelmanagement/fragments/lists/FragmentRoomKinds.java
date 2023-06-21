@@ -124,7 +124,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     public void onRoomKindClick(RoomKindObservable roomKindObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id",roomKindObservable.getId());
-
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentEditRoomKind, bundle);
     }
+
 }

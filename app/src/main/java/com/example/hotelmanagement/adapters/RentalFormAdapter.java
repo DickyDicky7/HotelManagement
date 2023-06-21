@@ -22,14 +22,16 @@ import java.util.Optional;
 
 public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, RentalFormViewHolder> {
 
-    RentalFormListener listener;
-    public RentalFormAdapter(FragmentActivity fragmentActivity, RentalFormListener listener) {
+    private final RentalFormListener rentalFormListener;
+
+    public RentalFormAdapter(FragmentActivity fragmentActivity, RentalFormListener rentalFormListener) {
         super(fragmentActivity);
-        this.listener = listener;
+        this.rentalFormListener = rentalFormListener;
     }
 
-    public RentalFormAdapter(FragmentActivity fragmentActivity, List<RentalFormObservable> rentalFormObservables) {
+    public RentalFormAdapter(FragmentActivity fragmentActivity, RentalFormListener rentalFormListener, List<RentalFormObservable> rentalFormObservables) {
         super(fragmentActivity, rentalFormObservables);
+        this.rentalFormListener=rentalFormListener;
 
     }
 
@@ -67,16 +69,13 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
             } else {
                 binding.customerName.setText("");
             }
-            binding.btnEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onRentalFormClick(rentalFormObservable);
-                }
-            });
+
+            binding.btnEdit.setOnClickListener(view -> rentalFormListener.onRentalFormClick(rentalFormObservable));
 
         }
     }
     public interface RentalFormListener{
         void onRentalFormClick(RentalFormObservable rentalFormObservable);
     }
+
 }

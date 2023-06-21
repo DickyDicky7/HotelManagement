@@ -122,7 +122,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     public void onRentalFormClick(RentalFormObservable rentalFormObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", rentalFormObservable.getId());
-
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentEditRentalForm, bundle);
     }
+
 }

@@ -126,9 +126,10 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     }
 
     @Override
-    public void onBillListener(BillObservable billObservable) {
+    public void onBillClick(BillObservable billObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", billObservable.getId());
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentEditBill,bundle);
     }
+
 }

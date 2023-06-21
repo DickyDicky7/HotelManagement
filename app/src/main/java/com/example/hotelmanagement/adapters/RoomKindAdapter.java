@@ -17,14 +17,17 @@ import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 import java.util.List;
 
 public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKindViewHolder> {
-    private RoomKindListener listener;
-    public RoomKindAdapter(FragmentActivity fragmentActivity , RoomKindListener listener) {
+
+    private final RoomKindListener roomKindListener;
+
+    public RoomKindAdapter(FragmentActivity fragmentActivity, RoomKindListener roomKindListener) {
         super(fragmentActivity);
-        this.listener = listener;
+        this.roomKindListener = roomKindListener;
     }
 
-    public RoomKindAdapter(FragmentActivity fragmentActivity, List<RoomKindObservable> roomKindObservables) {
+    public RoomKindAdapter(FragmentActivity fragmentActivity, RoomKindListener roomKindListener, List<RoomKindObservable> roomKindObservables) {
         super(fragmentActivity, roomKindObservables);
+        this.roomKindListener = roomKindListener;
     }
 
     @NonNull
@@ -47,15 +50,14 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
             binding.roomBed.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
             binding.roomMaxGuest.setText(String.valueOf(roomKindObservable.getCapacity()));
             Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners(30)).into(binding.itemRkImage);
-            binding.itemRkBtnEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onRoomKindClick(roomKindObservable);
-                }
-            });
+
+            binding.itemRkBtnEdit.setOnClickListener(view -> roomKindListener.onRoomKindClick(roomKindObservable));
+
         }
     }
-    public interface RoomKindListener{
+
+    public interface RoomKindListener {
         void onRoomKindClick(RoomKindObservable roomKindObservable);
     }
+
 }
