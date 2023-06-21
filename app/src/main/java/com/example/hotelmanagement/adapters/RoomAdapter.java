@@ -1,7 +1,6 @@
 package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -22,14 +21,14 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
 
     private final RoomListener roomListener;
 
-    public RoomAdapter(FragmentActivity fragmentActivity,RoomListener roomListener) {
+    public RoomAdapter(FragmentActivity fragmentActivity, RoomListener roomListener) {
         super(fragmentActivity);
         this.roomListener = roomListener;
     }
 
-    public RoomAdapter(FragmentActivity fragmentActivity, RoomListener roomListener,List<RoomObservable> roomObservables) {
+    public RoomAdapter(FragmentActivity fragmentActivity, RoomListener roomListener, List<RoomObservable> roomObservables) {
         super(fragmentActivity, roomObservables);
-        this.roomListener=roomListener;
+        this.roomListener = roomListener;
     }
 
     @NonNull
@@ -65,7 +64,9 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemRRoomKind.setText("");
                 }
+
                 binding.itemRoom.setOnClickListener(view -> roomListener.onRoomClick(roomObservable));
+
             } else {
                 RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
                 binding.itemBrRoomName.setText(roomObservable.getName());
@@ -75,7 +76,9 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemBrRoomKind.setText("");
                 }
+
                 binding.itemBookedroom.setOnClickListener(view -> roomListener.onRoomClick(roomObservable));
+
             }
 
         }
@@ -86,7 +89,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
         return baseObservables != null ? (baseObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
     }
 
-    public interface RoomListener{
+    public interface RoomListener {
         void onRoomClick(RoomObservable roomObservable);
     }
 

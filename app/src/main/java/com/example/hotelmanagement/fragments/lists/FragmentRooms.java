@@ -35,11 +35,10 @@ import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener {
 
+    private int id = -1;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
-
-    private int id = -1;
 
     @Nullable
     @Override
@@ -150,15 +149,13 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             return false;
         });
 
-
         binding.roomsBtnEdit.setOnClickListener(_view_ -> {
-            if (id == -1){
-                Toast.makeText(getContext(),"Chua chon phong ",Toast.LENGTH_LONG).show();
-            }
-            else {
+            if (id == -1) {
+                Toast.makeText(requireContext(), "PLEASE SELECT A ROOM", Toast.LENGTH_LONG).show();
+            } else {
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",id);
-                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentEditRoom,bundle);
+                bundle.putInt("id", id);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentEditRoom, bundle);
             }
         });
 

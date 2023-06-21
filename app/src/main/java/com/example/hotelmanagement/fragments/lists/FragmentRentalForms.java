@@ -77,7 +77,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
 
         binding.rentalFormsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity(),this);
+        RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity(), this);
         binding.rentalFormsRecyclerView.setAdapter(new ScaleInAnimationAdapter(rentalFormAdapter));
         binding.rentalFormsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);

@@ -80,7 +80,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
 
         binding.billsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
-        BillAdapter billAdapter = new BillAdapter(requireActivity(),this);
+        BillAdapter billAdapter = new BillAdapter(requireActivity(), this);
         binding.billsRecyclerView.setAdapter(new ScaleInAnimationAdapter(billAdapter));
         FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
         flexboxLayoutManager.setAlignItems(AlignItems.CENTER);
@@ -129,7 +129,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     public void onBillClick(BillObservable billObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", billObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentEditBill,bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentEditBill, bundle);
     }
 
 }
