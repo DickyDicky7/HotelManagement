@@ -1,7 +1,6 @@
 package com.example.hotelmanagement.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,7 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
         this.guestListener = guestListener;
     }
 
-    public GuestAdapter(FragmentActivity fragmentActivity,GuestListener guestListener, List<GuestObservable> guestObservables) {
+    public GuestAdapter(FragmentActivity fragmentActivity, GuestListener guestListener, List<GuestObservable> guestObservables) {
         super(fragmentActivity, guestObservables);
         this.guestListener = guestListener;
     }
@@ -52,7 +51,8 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
 
         }
     }
-    public interface GuestListener{
+
+    public interface GuestListener {
         void onGuestClick(GuestObservable guestObservable);
     }
 

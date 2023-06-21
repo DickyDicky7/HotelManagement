@@ -2,7 +2,6 @@ package com.example.hotelmanagement.adapters;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
 
     public RentalFormAdapter(FragmentActivity fragmentActivity, RentalFormListener rentalFormListener, List<RentalFormObservable> rentalFormObservables) {
         super(fragmentActivity, rentalFormObservables);
-        this.rentalFormListener=rentalFormListener;
+        this.rentalFormListener = rentalFormListener;
 
     }
 
@@ -74,7 +73,8 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
 
         }
     }
-    public interface RentalFormListener{
+
+    public interface RentalFormListener {
         void onRentalFormClick(RentalFormObservable rentalFormObservable);
     }
 

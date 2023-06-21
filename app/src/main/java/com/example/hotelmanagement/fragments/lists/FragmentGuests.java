@@ -128,8 +128,8 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     @Override
     public void onGuestClick(GuestObservable guestObservable) {
         Bundle bundle = new Bundle();
-        bundle.putInt("id",guestObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentEditGuest,bundle);
+        bundle.putInt("id", guestObservable.getId());
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentEditGuest, bundle);
     }
 
 }
