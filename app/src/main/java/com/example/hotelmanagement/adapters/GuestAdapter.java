@@ -15,14 +15,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHolder> {
-    private GuestListener listener;
-    public GuestAdapter(FragmentActivity fragmentActivity, GuestListener listener) {
+
+    private final GuestListener guestListener;
+
+    public GuestAdapter(FragmentActivity fragmentActivity, GuestListener guestListener) {
         super(fragmentActivity);
-        this.listener = listener;
+        this.guestListener = guestListener;
     }
 
-    public GuestAdapter(FragmentActivity fragmentActivity, List<GuestObservable> guestObservables) {
+    public GuestAdapter(FragmentActivity fragmentActivity,GuestListener guestListener, List<GuestObservable> guestObservables) {
         super(fragmentActivity, guestObservables);
+        this.guestListener = guestListener;
     }
 
     @NonNull
@@ -44,15 +47,13 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
             binding.idNumberTextView.setText(guestObservable.getIdNumber());
             binding.phoneNumberTextView.setText(guestObservable.getPhoneNumber());
             binding.createdAtTextView.setText(guestObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            binding.editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.OnGuestClick(guestObservable);
-                }
-            });
+
+            binding.editButton.setOnClickListener(view -> guestListener.onGuestClick(guestObservable));
+
         }
     }
     public interface GuestListener{
-        void OnGuestClick(GuestObservable guestObservable);
+        void onGuestClick(GuestObservable guestObservable);
     }
+
 }

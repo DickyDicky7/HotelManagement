@@ -20,14 +20,16 @@ import java.util.Optional;
 
 public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder> {
 
-    private BillListener listener;
-    public BillAdapter(FragmentActivity fragmentActivity, BillListener listener) {
+    private final BillListener billListener;
+
+    public BillAdapter(FragmentActivity fragmentActivity, BillListener billListener) {
         super(fragmentActivity);
-        this.listener = listener;
+        this.billListener = billListener;
     }
 
-    public BillAdapter(FragmentActivity fragmentActivity, List<BillObservable> billObservables) {
+    public BillAdapter(FragmentActivity fragmentActivity, BillListener billListener, List<BillObservable> billObservables) {
         super(fragmentActivity, billObservables);
+        this.billListener = billListener;
     }
 
     @NonNull
@@ -63,15 +65,14 @@ public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder>
                 binding.idNumberTextView.setText("");
                 binding.guestNameTextView.setText("");
             }
-            binding.editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onBillListener(billObservable);
-                }
-            });
+
+            binding.editButton.setOnClickListener(view -> billListener.onBillClick(billObservable));
+
         }
     }
-    public interface BillListener{
-        void onBillListener(BillObservable billObservable);
+
+    public interface BillListener {
+        void onBillClick(BillObservable billObservable);
     }
+
 }

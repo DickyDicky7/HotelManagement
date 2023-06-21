@@ -174,7 +174,8 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
     }
 
     @Override
-    public void onRoomLisnener(RoomObservable roomObservable) {
+    public void onRoomClick(RoomObservable roomObservable) {
         id = roomObservable.getId();
     }
+
 }

@@ -20,14 +20,16 @@ import java.util.Optional;
 
 public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder> {
 
-    private RoomListener listener;
-    public RoomAdapter(FragmentActivity fragmentActivity,RoomListener listener) {
+    private final RoomListener roomListener;
+
+    public RoomAdapter(FragmentActivity fragmentActivity,RoomListener roomListener) {
         super(fragmentActivity);
-        this.listener = listener;
+        this.roomListener = roomListener;
     }
 
-    public RoomAdapter(FragmentActivity fragmentActivity, List<RoomObservable> roomObservables) {
+    public RoomAdapter(FragmentActivity fragmentActivity, RoomListener roomListener,List<RoomObservable> roomObservables) {
         super(fragmentActivity, roomObservables);
+        this.roomListener=roomListener;
     }
 
     @NonNull
@@ -63,12 +65,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemRRoomKind.setText("");
                 }
-                binding.itemRoom.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onRoomLisnener(roomObservable);
-                    }
-                });
+                binding.itemRoom.setOnClickListener(view -> roomListener.onRoomClick(roomObservable));
             } else {
                 RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
                 binding.itemBrRoomName.setText(roomObservable.getName());
@@ -78,13 +75,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                 } else {
                     binding.itemBrRoomKind.setText("");
                 }
-                binding.itemBookedroom.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onRoomLisnener(roomObservable);
-                    }
-                });
-                
+                binding.itemBookedroom.setOnClickListener(view -> roomListener.onRoomClick(roomObservable));
             }
 
         }
@@ -96,6 +87,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
     }
 
     public interface RoomListener{
-        void onRoomLisnener(RoomObservable roomObservable);
+        void onRoomClick(RoomObservable roomObservable);
     }
+
 }
