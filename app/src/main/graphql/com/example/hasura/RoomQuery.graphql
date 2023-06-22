@@ -28,3 +28,25 @@ query RoomPriceById
         }
     }
 }
+
+query RoomByIdQuery ( $id: Int )  {
+    ROOM
+    (
+        where: 
+        {
+            id: {
+                _eq: $id
+                }
+            }
+    ) 
+{
+        id
+        name
+        note
+        description
+        is_occupied
+        roomkind_id
+        updated_at
+        created_at
+    }
+}

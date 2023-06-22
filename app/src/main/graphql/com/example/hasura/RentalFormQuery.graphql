@@ -27,3 +27,27 @@ query RentalFormAmountByGuestId
         amount
     }
 }
+
+query RentalFormByIdQuery
+(   $id: Int    ) 
+{
+    RENTALFORM   (
+        where: {
+            id: {   _eq: $id    }
+            }
+        ) 
+        {
+            id
+            amount
+            room_id
+            bill_id
+            guest_id
+            start_date
+            created_at
+            updated_at
+            rental_days
+            is_resolved
+            price_per_day
+            number_of_guests
+    }
+}

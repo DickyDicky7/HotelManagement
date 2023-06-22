@@ -50,7 +50,7 @@ public class FragmentEditRoomKind extends Fragment {
         roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindObservable = new RoomKindObservable();
         int id = getArguments().getInt("id");
-        System.out.println(id);
+
         roomKindViewModel.filldata(roomKindObservable, id);
         while (roomKindObservable.getImageURL() == null);
         System.out.println(roomKindObservable.getImageURL());

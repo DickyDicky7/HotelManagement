@@ -271,8 +271,6 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
     }
 
     public void updateAmount(BillObservable billObservable, double amount){
-        System.out.println("3 " +billObservable.getCost());
-        System.out.println("4 " +amount);
         BillUpdateCostByIdMutation billUpdateCostByIdMutation = BillUpdateCostByIdMutation
                 .builder()
                 .id(billObservable.getId())

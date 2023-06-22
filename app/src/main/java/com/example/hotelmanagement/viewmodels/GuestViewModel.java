@@ -98,7 +98,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                 onFailureCallback.run();
                                 onFailureCallback = null;
                             }
-                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("GuestViewModel Update Error", error.toString()));
                         }
                     }
 
@@ -129,7 +129,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
 
                         }
                         if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Query By Id Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("GuestViewModel Query By Id Error", error.toString()));
                         }
                     }
 

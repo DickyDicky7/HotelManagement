@@ -14,3 +14,25 @@ query RoomKindAll
         surcharge_percentage
     }
 }
+
+query RoomkindByIdQuery ( $id: Int   ) 
+{
+    ROOMKIND
+    (   where: 
+        {
+            id: {   _eq: $id    }
+            }
+        ) 
+    {
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
+    }
+}

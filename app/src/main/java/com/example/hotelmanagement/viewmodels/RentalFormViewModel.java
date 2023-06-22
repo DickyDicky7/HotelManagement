@@ -228,7 +228,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 onFailureCallback.run();
                                 onFailureCallback = null;
                             }
-                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Update Error", error.toString()));
                         }
                     }
 

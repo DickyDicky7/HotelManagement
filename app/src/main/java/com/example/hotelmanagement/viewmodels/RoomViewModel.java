@@ -92,7 +92,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                 if (id == temp.get(j).getId()) temp.set(j, roomObservable);
                             }
                             modelState.postValue(temp);
-                            Log.d("RoomKindViewModel Update Response Debug", response.getData().update_ROOM().toString());
+                            Log.d("RoomViewModel Update Response Debug", response.getData().update_ROOM().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
