@@ -34,3 +34,37 @@ mutation GuestInsert
         }
     }
 }
+
+mutation GuestUpdateByIdMutation
+(
+    $id         : Int,
+    $name       : String,
+    $address    : String,
+    $idNumber   : String,
+    $guestKindId: Int,
+    $phoneNumber: String,
+    ) {
+    update_GUEST
+    (
+        where: {    id: {   _eq: $id    }
+        },
+         _set: {
+            name        : $name
+            address     : $address
+            id_number   : $idNumber
+            guestkind_id: $guestKindId
+            phone_number: $phoneNumber
+         }
+    ) {
+        affected_rows
+        returning {
+            created_at
+            updated_at
+            id_number
+            name
+            address
+            phone_number
+            guestkind_id
+        }
+    }
+}

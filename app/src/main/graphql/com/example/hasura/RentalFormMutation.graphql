@@ -73,3 +73,55 @@ mutation RentalFormUpdateBillIdAndIsResolvedById
         }
     }
 }
+
+mutation RentalFormUpdateByIdMutation
+(
+    $id            : Int,
+    $roomId        : Int
+    $billId        : Int
+    $amount        : Float
+    $guestId       : Int
+    $startDate     : date
+    $rentalDays    : Int
+    $isResolved    : Boolean
+    $pricePerDay   : Float
+    $numberOfGuests: Int
+    ) 
+    {
+    update_RENTALFORM
+    (
+        where: 
+        {
+            id: {   _eq: $id    }
+            },
+         _set: {
+                room_id         : $roomId
+                bill_id         : $billId
+                amount          : $amount
+                guest_id        : $guestId
+                start_date      : $startDate
+                rental_days     : $rentalDays
+                is_resolved     : $isResolved
+                price_per_day   : $pricePerDay
+                number_of_guests: $numberOfGuests
+         }
+    ) 
+    {
+        affected_rows
+        returning {
+            id
+            amount
+            room_id
+            bill_id
+            guest_id
+            start_date
+            created_at
+            updated_at
+            rental_days
+            is_resolved
+            price_per_day
+            number_of_guests
+        }
+    }
+}
+
