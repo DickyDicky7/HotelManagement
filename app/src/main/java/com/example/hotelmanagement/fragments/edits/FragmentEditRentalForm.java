@@ -75,8 +75,8 @@ public class FragmentEditRentalForm extends Fragment {
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
-            arrayAdapter.add(roomViewModel.roomname(rentalFormObservable.getRoomId()).getName());
-            binding.spinnerChooseRoom.setSelection(arrayAdapter.getPosition(roomViewModel.roomname(rentalFormObservable.getRoomId()).getName()));
+            arrayAdapter.add(roomViewModel.getRoomName(rentalFormObservable.getRoomId()));
+            binding.spinnerChooseRoom.setSelection(arrayAdapter.getPosition(roomViewModel.getRoomName(rentalFormObservable.getRoomId())));
         });
 
         binding.etRentalDay.addTextChangedListener(new TextWatcher() {
@@ -158,7 +158,7 @@ public class FragmentEditRentalForm extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
-                roomObservables.add(roomViewModel.roomname(rentalFormObservable1.getRoomId()));
+                roomObservables.add(roomViewModel.getBaseObservable(rentalFormObservable.getRoomId()));
                 if (roomObservables != null) {
                     rentalFormObservable.setRoomId(roomObservables.get(i).getId());
                     if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
