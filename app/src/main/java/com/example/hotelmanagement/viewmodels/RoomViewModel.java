@@ -3,6 +3,7 @@ package com.example.hotelmanagement.viewmodels;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
@@ -10,15 +11,12 @@ import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
+import com.example.hasura.RoomByIdQuery;
 import com.example.hasura.RoomInsertMutation;
 import com.example.hasura.RoomSubscription;
-import com.example.hasura.RoomByIdQuery;
 import com.example.hasura.RoomUpdateByIdMutation;
-import com.example.hasura.RoomkindUpdateByIdMutation;
-import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -67,7 +65,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     }
                 });
     }
-    public void update(RoomObservable roomObservable,int id){
+
+    public void update(RoomObservable roomObservable, int id) {
         RoomUpdateByIdMutation room_update_by_id_mutation = RoomUpdateByIdMutation
                 .builder()
                 .id(id)
@@ -88,7 +87,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                             }
                             List<RoomObservable> temp = modelState.getValue();
 
-                            for (int j =0; j< temp.size(); j++) {
+                            for (int j = 0; j < temp.size(); j++) {
                                 if (id == temp.get(j).getId()) temp.set(j, roomObservable);
                             }
                             modelState.postValue(temp);
@@ -114,7 +113,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void filldata(int i, RoomObservable roomObservable){
+    public void filldata(int i, RoomObservable roomObservable) {
 
         Hasura.apolloClient.query(new RoomByIdQuery(new Input<Integer>(i, true)))
                 .enqueue(new ApolloCall.Callback<RoomByIdQuery.Data>() {
@@ -134,7 +133,6 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                 roomObservable.setUpdatedAt(item_updated_at);
 
                             });
-                            ;
 
                         }
                         if (response.getErrors() != null) {
@@ -150,18 +148,16 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
 
     }
-    public RoomObservable roomname(int id){
-        RoomObservable roomObservable = new RoomObservable();
-        List<RoomObservable> temp = modelState.getValue();
 
-        for (int j =0; j< temp.size(); j++) {
-            if (id == temp.get(j).getId()) {
-                roomObservable = temp.get(j);
-                break;
-            }
+    @Nullable
+    public String getRoomName(@Nullable Integer id) {
+        RoomObservable roomObservable = getBaseObservable(id);
+        if (roomObservable != null && roomObservable.getName() != null) {
+            return roomObservable.getName();
         }
-        return roomObservable;
+        return "";
     }
+
     @Override
     public void startSubscription() {
         Hasura.apolloClient.subscribe(new RoomSubscription()).execute(new ApolloSubscriptionCall.Callback<RoomSubscription.Data>() {

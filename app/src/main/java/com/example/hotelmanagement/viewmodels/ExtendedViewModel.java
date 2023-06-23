@@ -3,15 +3,19 @@ package com.example.hotelmanagement.viewmodels;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.hotelmanagement.observables.ExtendedObservable;
+
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
@@ -28,6 +32,22 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
 
     public LiveData<List<BO>> getModelState() {
         return modelState;
+    }
+
+    @Nullable
+    public BO getBaseObservable(@Nullable Integer baseObservableId) {
+        BO baseObservable = null;
+        if (baseObservableId != null) {
+            List<BO> baseObservables = modelState.getValue();
+            if (baseObservables != null) {
+                Optional<BO> optionalBaseObservable = baseObservables.stream().filter(_baseObservable_
+                        -> ((ExtendedObservable) _baseObservable_).getId().equals(baseObservableId)).findFirst();
+                if (optionalBaseObservable.isPresent()) {
+                    baseObservable = optionalBaseObservable.get();
+                }
+            }
+        }
+        return baseObservable;
     }
 
     public Boolean checkObservable(BO baseObservable, Context context, String... excludedFields) throws IllegalAccessException {
