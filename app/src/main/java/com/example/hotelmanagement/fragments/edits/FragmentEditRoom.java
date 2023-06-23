@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
@@ -38,22 +39,19 @@ public class FragmentEditRoom extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
-        roomObservable = new RoomObservable();
-        int id = getArguments().getInt("id");
-        
-        roomViewModel.filldata(id,roomObservable);
-        binding.setRoomObservable(roomObservable);
+        roomObservable = roomViewModel.getObservable(requireArguments().getInt("id"));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinner.setAdapter(arrayAdapter);
+        binding.setRoomObservable(roomObservable);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
-            while (roomObservable.getRoomKindId() == null);
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
-            binding.spinner.setSelection(arrayAdapter.getPosition(roomKindViewModel.roomkindname(roomObservable.getRoomKindId())));
+            binding.spinner.setSelection(arrayAdapter.getPosition(roomKindViewModel.getRoomKindName(roomObservable.getRoomKindId())));
         });
 
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -74,6 +72,9 @@ public class FragmentEditRoom extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 roomViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                    }
                 };
                 roomViewModel.onFailureCallback = null;
                 if (roomViewModel.checkObservable(roomObservable, requireContext())) {
@@ -83,12 +84,13 @@ public class FragmentEditRoom extends Fragment {
                     if (roomObservable.getDescription() != null && roomObservable.getDescription().equals("")) {
                         roomObservable.setDescription(null);
                     }
-                    roomViewModel.update(roomObservable,id);
+                    roomViewModel.update(roomObservable);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         });
+
     }
 
     @Override

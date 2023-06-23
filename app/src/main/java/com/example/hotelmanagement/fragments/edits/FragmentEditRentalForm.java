@@ -158,7 +158,7 @@ public class FragmentEditRentalForm extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
-                roomObservables.add(roomViewModel.getBaseObservable(rentalFormObservable.getRoomId()));
+                roomObservables.add(roomViewModel.getObservable(rentalFormObservable.getRoomId()));
                 if (roomObservables != null) {
                     rentalFormObservable.setRoomId(roomObservables.get(i).getId());
                     if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {

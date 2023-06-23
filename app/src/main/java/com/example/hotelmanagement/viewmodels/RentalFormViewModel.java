@@ -4,7 +4,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.library.baseAdapters.BR;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
@@ -20,10 +19,7 @@ import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
 import com.example.hasura.RoomPriceByIdQuery;
 import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
-import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.observables.RoomKindObservable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -157,7 +153,8 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     }
                 });
     }
-    public void update(RentalFormObservable rentalFormObservable,RentalFormObservable rentalFormObservable1, int id){
+
+    public void update(RentalFormObservable rentalFormObservable, RentalFormObservable rentalFormObservable1, int id) {
         RentalFormUpdateByIdMutation rentalFormUpdateByIdMutation = RentalFormUpdateByIdMutation
                 .builder()
                 .id(id)
@@ -182,12 +179,12 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                             }
                             List<RentalFormObservable> temp = modelState.getValue();
 
-                            for (int j =0; j< temp.size(); j++) {
+                            for (int j = 0; j < temp.size(); j++) {
                                 if (id == temp.get(j).getId()) temp.set(j, rentalFormObservable);
                             }
                             modelState.postValue(temp);
                             Log.d("RentalViewModel Update Response Debug", response.getData().update_RENTALFORM().toString());
-                            if (rentalFormObservable.getRoomId() != rentalFormObservable1.getRoomId()){
+                            if (rentalFormObservable.getRoomId() != rentalFormObservable1.getRoomId()) {
                                 RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation = RoomUpdateIsOccupiedByIdMutation
                                         .builder()
                                         .id(rentalFormObservable1.getRoomId())
@@ -238,8 +235,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     }
                 });
     }
-    public void filldata(RentalFormObservable rentalFormObservable,RentalFormObservable rentalFormObservable1, int id){
-        Hasura.apolloClient.query(new RentalFormByIdQuery( new Input<Integer>(id, true)))
+
+    public void filldata(RentalFormObservable rentalFormObservable, RentalFormObservable rentalFormObservable1, int id) {
+        Hasura.apolloClient.query(new RentalFormByIdQuery(new Input<Integer>(id, true)))
                 .enqueue(new ApolloCall.Callback<RentalFormByIdQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormByIdQuery.Data> response) {
@@ -278,7 +276,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void GuestQueryById(RentalFormObservable rentalFormObservable){
+    public void GuestQueryById(RentalFormObservable rentalFormObservable) {
         Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(rentalFormObservable.getGuestId(), true)))
                 .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
                     @Override
@@ -301,6 +299,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     }
                 });
     }
+
     @Override
     public void startSubscription() {
         Hasura.apolloClient.subscribe(new RentalFormSubscription()).execute(new ApolloSubscriptionCall.Callback<RentalFormSubscription.Data>() {

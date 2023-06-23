@@ -7,11 +7,9 @@ import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
-import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
-import com.example.hasura.RoomByIdQuery;
 import com.example.hasura.RoomInsertMutation;
 import com.example.hasura.RoomSubscription;
 import com.example.hasura.RoomUpdateByIdMutation;
@@ -66,17 +64,17 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void update(RoomObservable roomObservable, int id) {
-        RoomUpdateByIdMutation room_update_by_id_mutation = RoomUpdateByIdMutation
+    public void update(RoomObservable roomObservable) {
+        RoomUpdateByIdMutation roomUpdateByIdMutation = RoomUpdateByIdMutation
                 .builder()
-                .id(id)
+                .id(roomObservable.getId())
                 .name(roomObservable.getName())
                 .note(roomObservable.getNote())
-                .description(roomObservable.getDescription())
-                .roomkind_id(roomObservable.getRoomKindId())
                 .isOccupied(roomObservable.getIsOccupied())
+                .roomkind_id(roomObservable.getRoomKindId())
+                .description(roomObservable.getDescription())
                 .build();
-        Hasura.apolloClient.mutate(room_update_by_id_mutation)
+        Hasura.apolloClient.mutate(roomUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<RoomUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomUpdateByIdMutation.Data> response) {
@@ -85,13 +83,10 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            List<RoomObservable> temp = modelState.getValue();
-
-                            for (int j = 0; j < temp.size(); j++) {
-                                if (id == temp.get(j).getId()) temp.set(j, roomObservable);
+                            RoomUpdateByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
+                            if (update_room != null) {
+                                Log.d("RoomViewModel Update Response Debug", update_room.toString());
                             }
-                            modelState.postValue(temp);
-                            Log.d("RoomViewModel Update Response Debug", response.getData().update_ROOM().toString());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -113,45 +108,9 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void filldata(int i, RoomObservable roomObservable) {
-
-        Hasura.apolloClient.query(new RoomByIdQuery(new Input<Integer>(i, true)))
-                .enqueue(new ApolloCall.Callback<RoomByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<RoomByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            response.getData().ROOM().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                roomObservable.setId(item.id());
-                                roomObservable.setName(item.name());
-                                roomObservable.setNote(item.note());
-                                roomObservable.setDescription(item.description());
-                                roomObservable.setIsOccupied(item.is_occupied());
-                                roomObservable.setRoomKindId(item.roomkind_id());
-                                roomObservable.setCreatedAt(item_created_at);
-                                roomObservable.setUpdatedAt(item_updated_at);
-
-                            });
-
-                        }
-                        if (response.getErrors() != null) {
-
-                            System.out.println(response.getErrors());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-
-                    }
-                });
-
-    }
-
-    @Nullable
+    @NonNull
     public String getRoomName(@Nullable Integer id) {
-        RoomObservable roomObservable = getBaseObservable(id);
+        RoomObservable roomObservable = getObservable(id);
         if (roomObservable != null && roomObservable.getName() != null) {
             return roomObservable.getName();
         }

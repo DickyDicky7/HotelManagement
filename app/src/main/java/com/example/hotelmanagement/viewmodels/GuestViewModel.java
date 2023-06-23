@@ -9,13 +9,12 @@ import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.GuestSubscription;
-import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.GuestUpdateByIdMutation;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.observables.RoomKindObservable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -65,6 +64,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     }
                 });
     }
+
     public void update (GuestObservable guestObservable , int id){
         GuestUpdateByIdMutation guest_update_by_id_mutation = GuestUpdateByIdMutation
                 .builder()
@@ -108,6 +108,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     }
                 });
     }
+
     public void filldata(GuestObservable guestObservable,int id){
         Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(id, true)))
                 .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
@@ -139,6 +140,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     }
                 });
     }
+
     @Override
     public void startSubscription() {
         Hasura.apolloClient.subscribe(new GuestSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestSubscription.Data>() {

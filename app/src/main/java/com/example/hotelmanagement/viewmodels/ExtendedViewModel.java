@@ -35,13 +35,14 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
     }
 
     @Nullable
-    public BO getBaseObservable(@Nullable Integer baseObservableId) {
+    public BO getObservable(@Nullable Integer baseObservableId) {
         BO baseObservable = null;
         if (baseObservableId != null) {
             List<BO> baseObservables = modelState.getValue();
             if (baseObservables != null) {
-                Optional<BO> optionalBaseObservable = baseObservables.stream().filter(_baseObservable_
-                        -> ((ExtendedObservable) _baseObservable_).getId().equals(baseObservableId)).findFirst();
+                Optional<BO> optionalBaseObservable = baseObservables.stream().filter
+                        (_baseObservable_ -> _baseObservable_ instanceof ExtendedObservable
+                                && ((ExtendedObservable) _baseObservable_).getId().equals(baseObservableId)).findFirst();
                 if (optionalBaseObservable.isPresent()) {
                     baseObservable = optionalBaseObservable.get();
                 }
