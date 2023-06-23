@@ -4,12 +4,21 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Process;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.databinding.ActivityMainBinding;
 
 import java.util.LinkedList;
@@ -23,6 +32,10 @@ public class ActivityMain extends AppCompatActivity {
                     Process.killProcess(Process.myPid());
                 }
             });
+
+    private GestureDetectorCompat gestureDetectorCompat;
+    private NavController navController;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +52,69 @@ public class ActivityMain extends AppCompatActivity {
             }
         }
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.navConstraintLayout.setVisibility(View.INVISIBLE);
+        navController = ((NavHostFragment) binding.mainNavHostFragment.getFragment()).getNavController();
 
+        gestureDetectorCompat = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onScroll(@NonNull MotionEvent e1, @NonNull MotionEvent e2, float distanceX, float distanceY) {
+                float angle = (float) Math.toDegrees(Math.atan2(e1.getY() - e2.getY(), e2.getX() - e1.getX()));
+                if (angle < -45.0f && angle >= -135.0f) {
+                    hideNavigationBar();
+                }
+                if (angle > +45.0f && angle <= +135.0f) {
+                    showNavigationBar();
+                }
+                return super.onScroll(e1, e2, distanceX, distanceY);
+            }
+        });
+
+        navController.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+            if (navDestination.getId() == R.id.fragmentHome) {
+                showNavigationBar();
+            } else {
+                hideNavigationBar();
+            }
+        });
+
+        binding.navigationBar.accountButton.setOnClickListener(_view_ -> {
+            navController.navigate(R.id.action_fragmentHome_to_fragmentAccount);
+        });
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (navController.getCurrentDestination() != null) {
+            if (navController.getCurrentDestination().getId() == R.id.fragmentHome) {
+                gestureDetectorCompat.onTouchEvent(event);
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void showNavigationBar() {
+        if (binding.navConstraintLayout.getVisibility() != View.VISIBLE) {
+            YoYo.with(Techniques.SlideInUp).duration(300).onStart
+                    (animator -> binding.navConstraintLayout.setVisibility(View.VISIBLE)).playOn(binding.navConstraintLayout);
+        }
+    }
+
+    public void hideNavigationBar() {
+        if (binding.navConstraintLayout.getVisibility() != View.INVISIBLE) {
+            YoYo.with(Techniques.SlideOutDown).duration(300).onEnd
+                    (animator -> binding.navConstraintLayout.setVisibility(View.INVISIBLE)).playOn(binding.navConstraintLayout);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        gestureDetectorCompat = null;
+        navController = null;
+        binding = null;
         requestPermissionLauncher.unregister();
         requestPermissionLauncher = null;
     }

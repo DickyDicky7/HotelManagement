@@ -30,9 +30,10 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignIn"
                 style="@style/groupStylebluegray_100_cccornerRadius"
-                android:layout_width="150sp"
+                android:layout_width="170sp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
+                android:elevation="10sp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:paddingStart="30sp"

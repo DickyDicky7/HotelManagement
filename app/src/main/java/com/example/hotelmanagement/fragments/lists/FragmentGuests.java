@@ -54,7 +54,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
         EditText editText = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
         ImageView searchIcon = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
         ImageView closeButton = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(false);
+        editText.setCursorVisible(true);
         editText.setTextColor(Color.GRAY);
         editText.setHintTextColor(Color.GRAY);
         searchIcon.setColorFilter(Color.GRAY);

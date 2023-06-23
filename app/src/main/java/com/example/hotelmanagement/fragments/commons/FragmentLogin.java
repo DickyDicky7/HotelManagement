@@ -46,10 +46,12 @@ public class FragmentLogin extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnSignIn.setVisibility(View.INVISIBLE);
-        Handler handler = new Handler();
-        handler.postDelayed(() -> YoYo.with(Techniques.FadeIn).duration(300).onStart
-                (animator -> binding.btnSignIn.setVisibility(View.VISIBLE)).playOn(binding.btnSignIn), 3000);
+        if (Hasura.loginSuccessfully == null || !Hasura.loginSuccessfully) {
+            binding.btnSignIn.setVisibility(View.INVISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> YoYo.with(Techniques.FadeIn).duration(300).onStart
+                    (animator -> binding.btnSignIn.setVisibility(View.VISIBLE)).playOn(binding.btnSignIn), 3000);
+        }
 
         binding.btnSignIn.setOnClickListener(_view_ -> {
 
@@ -60,6 +62,12 @@ public class FragmentLogin extends Fragment {
                 RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
                 GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
                 RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
+                billViewModel.insertSubscriptionObserver(null);
+                roomViewModel.insertSubscriptionObserver(null);
+                guestViewModel.insertSubscriptionObserver(billViewModel::repostModelState);
+                roomKindViewModel.insertSubscriptionObserver(roomViewModel::repostModelState);
+                guestKindViewModel.insertSubscriptionObserver(guestViewModel::repostModelState);
+                rentalFormViewModel.insertSubscriptionObserver(null);
                 billViewModel.startSubscription();
                 roomViewModel.startSubscription();
                 guestViewModel.startSubscription();
@@ -113,6 +121,18 @@ public class FragmentLogin extends Fragment {
     public void onResume() {
         super.onResume();
         if (Hasura.loginSuccessfully != null && Hasura.loginSuccessfully) {
+            BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
+            RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
+            GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
+            RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+            GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
+            RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
+            billViewModel.startSubscription();
+            roomViewModel.startSubscription();
+            guestViewModel.startSubscription();
+            roomKindViewModel.startSubscription();
+            guestKindViewModel.startSubscription();
+            rentalFormViewModel.startSubscription();
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
         }
     }

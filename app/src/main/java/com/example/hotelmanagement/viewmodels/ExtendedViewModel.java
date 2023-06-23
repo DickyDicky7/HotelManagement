@@ -16,15 +16,18 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Objects;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
     protected final MutableLiveData<List<BO>> modelState;
+    protected final List<Runnable> subscriptionObservers;
     public Runnable onSuccessCallback;
     public Runnable onFailureCallback;
 
     public ExtendedViewModel() {
         super();
+        subscriptionObservers = new LinkedList<Runnable>();
         modelState = new MutableLiveData<List<BO>>(new LinkedList<BO>());
     }
 
@@ -32,6 +35,35 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
 
     public LiveData<List<BO>> getModelState() {
         return modelState;
+    }
+
+    public void fillSubscriptionObservers(List<Runnable> newSubscriptionObservers) {
+        subscriptionObservers.addAll(newSubscriptionObservers);
+    }
+
+    public void clearSubscriptionObservers() {
+        subscriptionObservers.clear();
+    }
+
+    public void insertSubscriptionObserver(Runnable subscriptionObserver) {
+        subscriptionObservers.add(subscriptionObserver);
+    }
+
+    public void removeSubscriptionObserver(Runnable subscriptionObserver) {
+        subscriptionObservers.remove(subscriptionObserver);
+    }
+
+    public void notifySubscriptionObservers() {
+        subscriptionObservers.removeIf(Objects::isNull);
+        subscriptionObservers.forEach(Runnable::run);
+    }
+
+    public void repostModelState() {
+        modelState.postValue(modelState.getValue());
+    }
+
+    public void resetModelState() {
+        modelState.setValue(modelState.getValue());
     }
 
     @Nullable

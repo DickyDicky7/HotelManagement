@@ -70,15 +70,18 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         if (response.getData() != null) {
                             response.getData().ROOM().forEach(item -> {
                                 if (item.ROOMKIND() != null) {
-                                    System.out.println(item.ROOMKIND().capacity());
-                                    System.out.println(item.ROOMKIND().price());
-                                    System.out.println(item.ROOMKIND().surcharge_percentage());
-                                    Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
-                                    if (sub < 0)
-                                        sub = 0;
-                                    Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
-                                    rentalFormObservable.setPricePerDay(pricePerDay);
-                                    rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                                    if (item.ROOMKIND().price() != null && item.ROOMKIND().capacity() != null && item.ROOMKIND().surcharge_percentage() != null && rentalFormObservable.getNumberOfGuests() != null) {
+                                        System.out.println(item.ROOMKIND().price());
+                                        System.out.println(item.ROOMKIND().capacity());
+                                        System.out.println(item.ROOMKIND().surcharge_percentage());
+                                        Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
+                                        if (sub < 0) {
+                                            sub = 0;
+                                        }
+                                        Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
+                                        rentalFormObservable.setPricePerDay(pricePerDay);
+                                        rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                                    }
                                 }
                             });
                         }
@@ -111,7 +114,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
-                        if (response.getData() != null) {
+                        if (response.getData() != null && response.getData().insert_RENTALFORM() != null) {
                             RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation =
                                     RoomUpdateIsOccupiedByIdMutation.builder()
                                             .id(response.getData().insert_RENTALFORM().returning().get(0).room_id())
@@ -132,7 +135,10 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            Log.d("RentalFormViewModel Insert Response Debug", response.getData().insert_RENTALFORM().toString());
+                            RentalFormInsertMutation.Insert_RENTALFORM insert_rentalform = response.getData().insert_RENTALFORM();
+                            if (insert_rentalform != null) {
+                                Log.d("RentalFormViewModel Insert Response Debug", insert_rentalform.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -334,6 +340,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     });
                     if (rentalFormObservables != null) {
                         modelState.postValue(rentalFormObservables);
+                        notifySubscriptionObservers();
                     }
                 }
                 if (response.getErrors() != null) {

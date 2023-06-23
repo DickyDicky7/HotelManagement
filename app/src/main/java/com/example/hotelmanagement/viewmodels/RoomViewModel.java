@@ -42,7 +42,10 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            Log.d("RoomViewModel Insert Response Debug", response.getData().insert_ROOM().toString());
+                            RoomInsertMutation.Insert_ROOM insert_room = response.getData().insert_ROOM();
+                            if (insert_room != null) {
+                                Log.d("RoomViewModel Insert Response Debug", insert_room.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -146,6 +149,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     });
                     if (roomObservables != null) {
                         modelState.postValue(roomObservables);
+                        notifySubscriptionObservers();
                     }
                 }
                 if (response.getErrors() != null) {

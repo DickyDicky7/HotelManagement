@@ -25,6 +25,8 @@ import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
+import com.example.search.RoomKindSearchStrategy;
+import com.example.search.SearchProcessor;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
@@ -51,7 +53,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         EditText editText = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
         ImageView searchIcon = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
         ImageView closeButton = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(false);
+        editText.setCursorVisible(true);
         editText.setTextColor(Color.GRAY);
         editText.setHintTextColor(Color.GRAY);
         searchIcon.setColorFilter(Color.GRAY);
@@ -105,6 +107,11 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
             }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
+        });
+
+        SearchProcessor searchProcessor = new SearchProcessor(new RoomKindSearchStrategy(roomKindViewModel));
+        binding.roomKindsBtnHelp.setOnClickListener(_view_ -> {
+            searchProcessor.processSearch(binding.roomKindsSearchView.getQuery().toString());
         });
 
     }

@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.fragments.commons;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentHomeBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 
 import java.util.Map;
 
@@ -30,6 +32,7 @@ public class FragmentHome extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -48,7 +51,12 @@ public class FragmentHome extends Fragment {
         binding.roomKindButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRoomKinds));
         binding.rentalFormButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRentalForms));
 
-        binding.reportButton2.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentAccount));
+        binding.reportButton2.setOnClickListener(_view_ -> {
+            FailureDialogFragment successDialogFragment = new FailureDialogFragment("");
+            successDialogFragment.showNow(getParentFragmentManager(), "success");
+//            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentAccount);
+        });
+
     }
 
     @Override

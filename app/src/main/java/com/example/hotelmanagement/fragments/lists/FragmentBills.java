@@ -54,7 +54,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         EditText editText = binding.billsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
         ImageView searchIcon = binding.billsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
         ImageView closeButton = binding.billsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(false);
+        editText.setCursorVisible(true);
         editText.setTextColor(Color.GRAY);
         editText.setHintTextColor(Color.GRAY);
         searchIcon.setColorFilter(Color.GRAY);
