@@ -11,7 +11,7 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/linearAddbill"
+        android:id="@+id/linearAddBill"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btnBack"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_gravity="start"
@@ -34,7 +34,7 @@
             tools:ignore="ContentDescription" />
 
         <ScrollView
-            android:id="@+id/scollviewaddbill"
+            android:id="@+id/scrollViewAddBill"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/linearColumnid"
+                android:id="@+id/linearColumn"
                 style="@style/groupStyleindigo_901cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtIDNumber"
+                    android:id="@+id/txtIdNumber"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                     tools:text="@string/lbl_cccd" />
 
                 <EditText
-                    android:id="@+id/edt_idNumber"
+                    android:id="@+id/edtIdNumber"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtCustomersname"
+                    android:id="@+id/txtGuestName"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                     tools:text="@string/lbl_customer_s_name" />
 
                 <EditText
-                    android:id="@+id/edt_name"
+                    android:id="@+id/edtGuestName"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                     tools:text="@string/lbl_cost" />
 
                 <EditText
-                    android:id="@+id/edt_cost"
+                    android:id="@+id/edtCost"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                     tools:text="@string/lbl_paid_status" />
 
                 <RadioGroup
-                    android:id="@+id/raidio_grp"
+                    android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -186,7 +186,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radio_Paid"
+                        android:id="@+id/radioPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
@@ -197,7 +197,7 @@
                         android:textSize="15sp" />
 
                     <RadioButton
-                        android:id="@+id/radio_Not_paid"
+                        android:id="@+id/radioNotPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"

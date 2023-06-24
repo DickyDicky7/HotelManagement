@@ -62,13 +62,13 @@ public class FragmentAddRentalForm extends Fragment {
         });
         binding.radioResolved.setEnabled(false);
         rentalFormObservable.setIsResolved(false);
-        binding.edtIDnumber.setOnFocusChangeListener((_view_, b) -> {
+        binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
                 rentalFormViewModel.findGuestId(rentalFormObservable);
             }
         });
 
-        binding.etRentalDay.addTextChangedListener(new TextWatcher() {
+        binding.edtRentalDays.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -88,7 +88,7 @@ public class FragmentAddRentalForm extends Fragment {
             }
         });
 
-        binding.edtDate.setOnClickListener(_view_ -> {
+        binding.edtStartDate.setOnClickListener(_view_ -> {
             Calendar currentDate = Calendar.getInstance();
             int y = currentDate.get(Calendar.YEAR);
             int m = currentDate.get(Calendar.MONTH);
@@ -101,7 +101,7 @@ public class FragmentAddRentalForm extends Fragment {
             mDatePicker.setTitle("Select Date");
             mDatePicker.show();
         });
-        binding.etPricePerDay.addTextChangedListener(new TextWatcher() {
+        binding.edtPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -121,7 +121,7 @@ public class FragmentAddRentalForm extends Fragment {
             }
         });
 
-        binding.edtNumOfGuest.addTextChangedListener(new TextWatcher() {
+        binding.edtNumberOfGuests.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -163,7 +163,7 @@ public class FragmentAddRentalForm extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
-                if (binding.edtIDnumber.isFocused()) {
+                if (binding.edtIdNumber.isFocused()) {
                     Toast.makeText(requireActivity(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }

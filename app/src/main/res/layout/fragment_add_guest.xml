@@ -11,7 +11,7 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/linearEditaddcusto"
+        android:id="@+id/linearAddGuest"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btnBack"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_gravity="start"
@@ -34,7 +34,7 @@
             tools:ignore="ContentDescription" />
 
         <ScrollView
-            android:id="@+id/scollviewaddcuctomer"
+            android:id="@+id/scollViewAddGuest"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/linearColumncccd"
+                android:id="@+id/linearColumn"
                 style="@style/groupStyleindigo_901cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txt_IDnumber"
+                    android:id="@+id/txtIdNumber"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/edt_IDnumber"
+                    android:id="@+id/edtIdNumber"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txtFullname"
+                    android:id="@+id/txtFullName"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/edt_name"
+                    android:id="@+id/edtFullName"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txtPhonenumber"
+                    android:id="@+id/txtPhoneNumber"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/edt_phonenum"
+                    android:id="@+id/edtPhoneNumber"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                     android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/edt_address"
+                    android:id="@+id/edtAddress"
                     style="@style/etSolidRounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

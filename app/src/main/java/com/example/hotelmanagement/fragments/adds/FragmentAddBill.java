@@ -44,7 +44,7 @@ public class FragmentAddBill extends Fragment {
             }
         });
 
-        binding.edtName.addTextChangedListener(new TextWatcher() {
+        binding.edtGuestName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
