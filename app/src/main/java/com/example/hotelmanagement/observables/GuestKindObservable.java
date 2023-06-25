@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.observables;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
@@ -33,6 +34,16 @@ public class GuestKindObservable extends ExtendedObservable {
     public void setName(String name) {
         this.name = name;
         notifyPropertyChanged(BR.name);
+    }
+
+    @NonNull
+    public Boolean customizedEquals(@NonNull GuestKindObservable guestKindObservable) throws IllegalAccessException {
+        return ExtendedObservable.customizedEquals(this, guestKindObservable);
+    }
+
+    @NonNull
+    public GuestKindObservable customizedClone() {
+        return ExtendedObservable.customizedClone(this);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.observables;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
@@ -85,6 +86,16 @@ public class RoomObservable extends ExtendedObservable {
     public void setDescription(String description) {
         this.description = description;
         notifyPropertyChanged(BR.description);
+    }
+
+    @NonNull
+    public Boolean customizedEquals(@NonNull RoomObservable roomObservable) throws IllegalAccessException {
+        return ExtendedObservable.customizedEquals(this, roomObservable);
+    }
+
+    @NonNull
+    public RoomObservable customizedClone() {
+        return ExtendedObservable.customizedClone(this);
     }
 
 }

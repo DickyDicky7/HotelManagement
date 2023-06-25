@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.observables;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
@@ -29,6 +30,16 @@ public class UniqueObservable extends ExtendedObservable {
     public void setCoefficient(Double coefficient) {
         this.coefficient = coefficient;
         notifyPropertyChanged(BR.coefficient);
+    }
+
+    @NonNull
+    public Boolean customizedEquals(@NonNull UniqueObservable uniqueObservable) throws IllegalAccessException {
+        return ExtendedObservable.customizedEquals(this, uniqueObservable);
+    }
+
+    @NonNull
+    public UniqueObservable customizedClone() {
+        return ExtendedObservable.customizedClone(this);
     }
 
 }
