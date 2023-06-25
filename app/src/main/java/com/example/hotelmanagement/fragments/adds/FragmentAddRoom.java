@@ -1,9 +1,11 @@
 package com.example.hotelmanagement.fragments.adds;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -92,6 +94,11 @@ public class FragmentAddRoom extends Fragment {
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            }
+            View currentFocusView = requireActivity().getCurrentFocus();
+            if (currentFocusView != null) {
+                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
 
