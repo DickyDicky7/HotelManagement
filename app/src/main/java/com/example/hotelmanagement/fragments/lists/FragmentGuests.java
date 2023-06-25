@@ -114,6 +114,8 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
             return false;
         });
 
+        binding.guestsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
     }
 
     @Override

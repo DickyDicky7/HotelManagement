@@ -109,6 +109,8 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
             return false;
         });
 
+        binding.roomKindsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
         SearchProcessor searchProcessor = new SearchProcessor(new RoomKindSearchStrategy(roomKindViewModel));
         binding.roomKindsBtnHelp.setOnClickListener(_view_ -> {
             searchProcessor.processSearch(binding.roomKindsSearchView.getQuery().toString());

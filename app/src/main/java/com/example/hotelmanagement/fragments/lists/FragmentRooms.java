@@ -159,6 +159,8 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             }
         });
 
+        binding.roomsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
     }
 
     @Override

@@ -107,6 +107,8 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
             return false;
         });
 
+        binding.rentalFormsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
     }
 
     @Override

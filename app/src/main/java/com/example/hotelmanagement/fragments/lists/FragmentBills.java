@@ -114,6 +114,8 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
             return false;
         });
 
+        binding.billsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
     }
 
     @Override
