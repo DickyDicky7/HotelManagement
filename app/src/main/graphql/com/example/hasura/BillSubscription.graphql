@@ -10,3 +10,4 @@ subscription BillSubscription
         updated_at
     }
 }
+

@@ -10,21 +10,27 @@ query BillAll
         updated_at
     }
 }
- 
+
+
 query BillByIdQuery
-(   $id: Int    ) 
+(
+    $id: Int
+)
 {
-    BILL   (
-        where: {
-            id: {   _eq: $id    }
-            }
-        ) 
+    BILL
+    (
+        where:
         {
-            id
-            cost
-            is_paid
-            guest_id
-            created_at
-            updated_at
+            id: {   _eq: $id   }
+        }
+    )
+    {
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
     }
 }
+

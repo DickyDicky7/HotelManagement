@@ -16,3 +16,4 @@ subscription RentalFormSubscription
         number_of_guests
     }
 }
+

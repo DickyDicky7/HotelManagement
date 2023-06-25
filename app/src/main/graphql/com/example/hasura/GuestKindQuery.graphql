@@ -8,3 +8,4 @@ query GuestKindAll
         updated_at
     }
 }
+

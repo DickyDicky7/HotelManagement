@@ -608,6 +608,18 @@ unique or primary key constraints on table "CLOUDINARY"
 """
 enum CLOUDINARY_constraint {
     """
+    unique or primary key constraint on columns "api_key"
+    """
+    CLOUDINARY_api_key_key
+    """
+    unique or primary key constraint on columns "api_secret"
+    """
+    CLOUDINARY_api_secret_key
+    """
+    unique or primary key constraint on columns "cloud_name"
+    """
+    CLOUDINARY_cloud_name_key
+    """
     unique or primary key constraint on columns "id"
     """
     CLOUDINARY_pkey
@@ -978,10 +990,14 @@ input GUESTKIND_bool_exp {
 unique or primary key constraints on table "GUESTKIND"
 """
 enum GUESTKIND_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  GUESTKIND_pkey
+    """
+    unique or primary key constraint on columns "name"
+    """
+    GUESTKIND_name_key
+    """
+    unique or primary key constraint on columns "id"
+    """
+    GUESTKIND_pkey
 }
 
 """
@@ -1322,10 +1338,14 @@ input GUEST_bool_exp {
 unique or primary key constraints on table "GUEST"
 """
 enum GUEST_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  GUEST_pkey
+    """
+    unique or primary key constraint on columns "id_number"
+    """
+    GUEST_id_number_key
+    """
+    unique or primary key constraint on columns "id"
+    """
+    GUEST_pkey
 }
 
 """
@@ -2554,10 +2574,14 @@ input ROOMKIND_bool_exp {
 unique or primary key constraints on table "ROOMKIND"
 """
 enum ROOMKIND_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  ROOMKIND_pkey
+    """
+    unique or primary key constraint on columns "name"
+    """
+    ROOMKIND_name_key
+    """
+    unique or primary key constraint on columns "id"
+    """
+    ROOMKIND_pkey
 }
 
 """
@@ -3036,10 +3060,14 @@ input ROOM_bool_exp {
 unique or primary key constraints on table "ROOM"
 """
 enum ROOM_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  ROOM_pkey
+    """
+    unique or primary key constraint on columns "name"
+    """
+    ROOM_name_key
+    """
+    unique or primary key constraint on columns "id"
+    """
+    ROOM_pkey
 }
 
 """
@@ -3555,10 +3583,14 @@ input UNIQUE_bool_exp {
 unique or primary key constraints on table "UNIQUE"
 """
 enum UNIQUE_constraint {
-  """
-  unique or primary key constraint on columns "id"
-  """
-  UNIQUE_pkey
+    """
+    unique or primary key constraint on columns "coefficient"
+    """
+    UNIQUE_coefficient_key
+    """
+    unique or primary key constraint on columns "id"
+    """
+    UNIQUE_pkey
 }
 
 """
@@ -4007,16 +4039,16 @@ type mutation_root {
     update single row of the table: "RENTALFORM"
     """
     update_RENTALFORM_by_pk("""increments the numeric columns with given value of the filtered values""" _inc: RENTALFORM_inc_input, """sets the columns of the filtered rows to the given values""" _set: RENTALFORM_set_input, pk_columns: RENTALFORM_pk_columns_input!): RENTALFORM
-  """
-  update multiples rows of table: "RENTALFORM"
-  """
-  update_RENTALFORM_many("""updates to execute, in order""" updates: [RENTALFORM_updates!]!): [RENTALFORM_mutation_response]
-  """
-  update data of the table: "ROOM"
-  """
-  update_ROOM("""increments the numeric columns with given value of the filtered values""" _inc: ROOM_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOM_set_input, """filter the rows which have to be updated""" where: ROOM_bool_exp!): ROOM_mutation_response
-  """
-  update data of the table: "ROOMKIND"
+    """
+    update multiples rows of table: "RENTALFORM"
+    """
+    update_RENTALFORM_many("""updates to execute, in order""" updates: [RENTALFORM_updates!]!): [RENTALFORM_mutation_response]
+    """
+    update data of the table: "ROOM"
+    """
+    update_ROOM("""increments the numeric columns with given value of the filtered values""" _inc: ROOM_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOM_set_input, """filter the rows which have to be updated""" where: ROOM_bool_exp!): ROOM_mutation_response
+    """
+    update data of the table: "ROOMKIND"
   """
   update_ROOMKIND("""increments the numeric columns with given value of the filtered values""" _inc: ROOMKIND_inc_input, """sets the columns of the filtered rows to the given values""" _set: ROOMKIND_set_input, """filter the rows which have to be updated""" where: ROOMKIND_bool_exp!): ROOMKIND_mutation_response
   """
@@ -4136,16 +4168,16 @@ type query_root {
     fetch aggregated fields from the table: "RENTALFORM"
     """
     RENTALFORM_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
-  """
-  fetch data from the table: "RENTALFORM" using primary key columns
-  """
-  RENTALFORM_by_pk(id: Int!): RENTALFORM
-  """
-  fetch data from the table: "ROOM"
-  """
-  ROOM("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
-  """
-  fetch data from the table: "ROOMKIND"
+    """
+    fetch data from the table: "RENTALFORM" using primary key columns
+    """
+    RENTALFORM_by_pk(id: Int!): RENTALFORM
+    """
+    fetch data from the table: "ROOM"
+    """
+    ROOM("""distinct select on columns""" distinct_on: [ROOM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOM_order_by!], """filter the rows returned""" where: ROOM_bool_exp): [ROOM!]!
+    """
+    fetch data from the table: "ROOMKIND"
   """
   ROOMKIND("""distinct select on columns""" distinct_on: [ROOMKIND_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [ROOMKIND_order_by!], """filter the rows returned""" where: ROOMKIND_bool_exp): [ROOMKIND!]!
   """
@@ -4243,16 +4275,16 @@ type subscription_root {
     fetch data from the table in a streaming manner: "GUEST"
     """
     GUEST_stream("""maximum number of rows returned in a single batch""" batch_size: Int!, """cursor to stream the results returned by the query""" cursor: [GUEST_stream_cursor_input]!, """filter the rows returned""" where: GUEST_bool_exp): [GUEST!]!
-  """
-  fetch data from the table: "RENTALFORM"
-  """
-  RENTALFORM("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
-  """
-  fetch aggregated fields from the table: "RENTALFORM"
-  """
-  RENTALFORM_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
-  """
-  fetch data from the table: "RENTALFORM" using primary key columns
+    """
+    fetch data from the table: "RENTALFORM"
+    """
+    RENTALFORM("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): [RENTALFORM!]!
+    """
+    fetch aggregated fields from the table: "RENTALFORM"
+    """
+    RENTALFORM_aggregate("""distinct select on columns""" distinct_on: [RENTALFORM_select_column!], """limit the number of rows returned""" limit: Int, """skip the first n rows. Use only with order_by""" offset: Int, """sort the rows by one or more columns""" order_by: [RENTALFORM_order_by!], """filter the rows returned""" where: RENTALFORM_bool_exp): RENTALFORM_aggregate!
+    """
+    fetch data from the table: "RENTALFORM" using primary key columns
   """
   RENTALFORM_by_pk(id: Int!): RENTALFORM
   """

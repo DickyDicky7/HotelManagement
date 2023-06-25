@@ -15,14 +15,19 @@ query RoomKindAll
     }
 }
 
-query RoomkindByIdQuery ( $id: Int   ) 
+
+query RoomKindByIdQuery
+(
+    $id: Int
+)
 {
     ROOMKIND
-    (   where: 
+    (
+        where:
         {
-            id: {   _eq: $id    }
-            }
-        ) 
+            id: {   _eq: $id   }
+        }
+    )
     {
         id
         name
@@ -36,3 +41,4 @@ query RoomkindByIdQuery ( $id: Int   )
         surcharge_percentage
     }
 }
+

@@ -41,25 +41,27 @@ mutation RoomKindInsert
     }
 }
 
-mutation RoomkindUpdateByIdMutation
+
+mutation RoomKindUpdateByIdMutation
 (
-    $id                 : Int, 
-    $name               : String,
-    $area               : Float,
-    $price              : Float,
-    $imageUrl           : String,
-    $capacity           : Int,
-    $numberOfBeds       : Int,
-    $surchargePercentage: Float,
-    ) 
-    {
+    $id                 : Int
+    $name               : String
+    $area               : Float
+    $price              : Float
+    $imageUrl           : String
+    $capacity           : Int
+    $numberOfBeds       : Int
+    $surchargePercentage: Float
+)
+{
     update_ROOMKIND
-    (   
-        where:  
-        {      
-            id: {   _eq: $id    }
-        },
-         _set: {
+    (
+        where:
+        {
+            id: {   _eq: $id   }
+        }
+        _set:
+        {
             name                : $name
             area                : $area
             price               : $price
@@ -68,10 +70,11 @@ mutation RoomkindUpdateByIdMutation
             number_of_beds      : $numberOfBeds
             surcharge_percentage: $surchargePercentage
         }
-    ) 
+    )
     {
         affected_rows
-        returning {
+        returning
+        {
             id
             name
             area
@@ -85,3 +88,4 @@ mutation RoomkindUpdateByIdMutation
         }
     }
 }
+

@@ -13,6 +13,7 @@ query GuestAll
     }
 }
 
+
 query GuestByIdNumber
 (
     $idNumber: String
@@ -25,22 +26,28 @@ query GuestByIdNumber
     }
 }
 
+
 query GuestByIdQuery
-(   $id: Int    ) 
+(
+    $id: Int
+)
 {
-    GUEST   (
-        where: {
-            id: {   _eq: $id    }
-            }
-        ) 
+    GUEST
+    (
+        where:
         {
+            id: {   _eq: $id   }
+        }
+    )
+    {
         id
         name
         address
         id_number
-        guestkind_id
-        phone_number
         created_at
         updated_at
+        phone_number
+        guestkind_id
     }
 }
+

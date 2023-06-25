@@ -32,62 +32,68 @@ mutation BillInsert
 
 mutation BillUpdateByIdMutation
 (
-    $id             : Int,
-    $cost           : Float,
-    $isPaid         : Boolean,
-    $guestId        : Int,
-    ) 
-    {
+    $id     : Int
+    $cost   : Float
+    $isPaid : Boolean
+    $guestId: Int
+)
+{
     update_BILL
     (
-        where: 
+        where:
         {
-            id: {   _eq: $id    }
-            },
-         _set: {
+            id: {   _eq: $id   }
+        },
+        _set:
+        {
             cost    : $cost
             is_paid : $isPaid
             guest_id: $guestId
-         }
-    ) 
+        }
+    )
     {
         affected_rows
-        returning {
+        returning
+        {
+            id
             cost
             is_paid
             guest_id
             created_at
             updated_at
-            id
         }
     }
 }
 
+
 mutation BillUpdateCostByIdMutation
 (
-    $id             : Int,
-    $cost           : Float,
-    ) 
-    {
+    $id  : Int
+    $cost: Float
+)
+{
     update_BILL
     (
-        where: 
+        where:
         {
-            id: {   _eq: $id    }
-            },
-         _set: {
-            cost    : $cost
-         }
-    ) 
+            id: {   _eq: $id   }
+        },
+        _set:
+        {
+            cost: $cost
+        }
+    )
     {
         affected_rows
-        returning {
+        returning
+        {
+            id
             cost
             is_paid
             guest_id
             created_at
             updated_at
-            id
         }
     }
 }
+
