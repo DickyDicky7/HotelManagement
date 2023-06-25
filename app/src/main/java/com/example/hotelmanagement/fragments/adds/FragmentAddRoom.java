@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
@@ -101,6 +102,8 @@ public class FragmentAddRoom extends Fragment {
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
+
+        binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
     }
 

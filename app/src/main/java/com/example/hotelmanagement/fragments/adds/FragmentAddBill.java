@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
@@ -95,6 +96,8 @@ public class FragmentAddBill extends Fragment {
                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
+
+        binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
     }
 

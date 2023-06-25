@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelmanagement.R;
@@ -91,6 +92,8 @@ public class FragmentAddRoomKind extends Fragment {
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());
         });
+
+        binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
     }
 
