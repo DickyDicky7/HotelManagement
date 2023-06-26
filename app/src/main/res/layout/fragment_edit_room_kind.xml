@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
@@ -10,7 +11,7 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/linearEditroomkind"
+        android:id="@+id/linearEditRoomKind"
         style="@style/groupStylebluegray_900"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,7 +54,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/edt_area"
+                    android:id="@+id/edtArea"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -74,11 +75,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_area"
+                    app:layout_constraintTop_toBottomOf="@+id/txtArea"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_area"
+                    android:id="@+id/txtArea"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,11 +92,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_capacity"
+                    app:layout_constraintTop_toBottomOf="@+id/edtCapacity"
                     tools:text="@string/lbl_area" />
 
                 <EditText
-                    android:id="@+id/edt_numbed"
+                    android:id="@+id/edtNumberOfBeds"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -116,11 +117,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_numbed"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNumberOfBeds"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_numbed"
+                    android:id="@+id/txtNumberOfBeds"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,10 +134,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_area" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtArea" />
 
                 <EditText
-                    android:id="@+id/edt_capacity"
+                    android:id="@+id/edtCapacity"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -157,11 +158,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txt_capacity"
+                    app:layout_constraintTop_toBottomOf="@id/txtCapacity"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_capacity"
+                    android:id="@+id/txtCapacity"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,11 +175,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edt_price"
+                    app:layout_constraintTop_toBottomOf="@id/edtPrice"
                     tools:text="@string/lbl_capacity" />
 
                 <EditText
-                    android:id="@+id/edt_name"
+                    android:id="@+id/edtName"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -199,11 +200,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/txtName"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_name"
+                    android:id="@+id/txtName"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -219,7 +220,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/edt_price"
+                    android:id="@+id/edtPrice"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -240,11 +241,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_price"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPrice"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_price"
+                    android:id="@+id/txtPrice"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -257,11 +258,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/edtName"
                     tools:text="@string/lbl_price" />
 
                 <EditText
-                    android:id="@+id/edt_surchargePercentage"
+                    android:id="@+id/edtSurchargePercentage"
                     style="@style/etSolidRounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -282,11 +283,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_surchargePercentage"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSurchargePercentage"
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txt_surchargePercentage"
+                    android:id="@+id/txtSurchargePercentage"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -299,11 +300,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_numbed"
+                    app:layout_constraintTop_toBottomOf="@+id/edtNumberOfBeds"
                     tools:text="@string/lbl_surcharge_percentage" />
 
                 <ImageView
-                    android:id="@+id/edt_image"
+                    android:id="@+id/edtImage"
                     android:layout_width="300sp"
                     android:layout_height="300sp"
                     android:layout_marginStart="20dp"
@@ -315,13 +316,13 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txt_image"
+                    app:layout_constraintTop_toBottomOf="@id/txtImage"
                     app:srcCompat="@drawable/upload_image"
                     app:tint="@color/white"
                     tools:srcCompat="@drawable/upload_image" />
 
                 <TextView
-                    android:id="@+id/txt_image"
+                    android:id="@+id/txtImage"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -332,7 +333,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_surchargePercentage" />
+                    app:layout_constraintTop_toBottomOf="@+id/edtSurchargePercentage" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
@@ -352,3 +353,4 @@
 
     </LinearLayout>
 </layout>
+

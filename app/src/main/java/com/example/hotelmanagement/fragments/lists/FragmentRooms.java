@@ -35,7 +35,8 @@ import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener {
 
-    private int id = -1;
+    private static Integer id;
+    private Boolean isFstTime;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
@@ -52,6 +53,11 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        isFstTime = true;
+        if (id == null) {
+            id = -1;
+        }
+
         binding.roomsSearchView.setIconifiedByDefault(false);
         EditText editText = binding.roomsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
         ImageView searchIcon = binding.roomsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
@@ -64,10 +70,10 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         editText.setOnFocusChangeListener((_view_, isFocused) -> {
             if (isFocused) {
-                editText.setTextColor(getResources().getColor(R.color.bluegray_900));
-                editText.setHintTextColor(getResources().getColor(R.color.bluegray_900));
-                searchIcon.setColorFilter(getResources().getColor(R.color.bluegray_900));
-                closeButton.setColorFilter(getResources().getColor(R.color.bluegray_900));
+                editText.setTextColor(requireContext().getColor(R.color.bluegray_900));
+                editText.setHintTextColor(requireContext().getColor(R.color.bluegray_900));
+                searchIcon.setColorFilter(requireContext().getColor(R.color.bluegray_900));
+                closeButton.setColorFilter(requireContext().getColor(R.color.bluegray_900));
             } else {
                 editText.setTextColor(Color.GRAY);
                 editText.setHintTextColor(Color.GRAY);
@@ -149,6 +155,10 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             return false;
         });
 
+        binding.roomsBtnBack.setOnClickListener(_view_ -> {
+            NavHostFragment.findNavController(this).popBackStack();
+        });
+
         binding.roomsBtnEdit.setOnClickListener(_view_ -> {
             if (id == -1) {
                 Toast.makeText(requireContext(), "PLEASE SELECT A ROOM", Toast.LENGTH_LONG).show();
@@ -158,8 +168,6 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                 NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentEditRoom, bundle);
             }
         });
-
-        binding.roomsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
     }
 
@@ -174,7 +182,12 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
 
     @Override
     public void onRoomClick(RoomObservable roomObservable) {
-        id = roomObservable.getId();
+        if (isFstTime) {
+            isFstTime = false;
+            id = roomObservable.getId();
+        } else {
+            id = roomObservable.getId().equals(id) ? -1 : roomObservable.getId();
+        }
     }
 
 }

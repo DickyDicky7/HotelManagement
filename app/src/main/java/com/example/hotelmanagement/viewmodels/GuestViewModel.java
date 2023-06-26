@@ -6,10 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
-import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.GuestSubscription;
 import com.example.hasura.GuestUpdateByIdMutation;
@@ -68,17 +66,17 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 });
     }
 
-    public void update (GuestObservable guestObservable , int id){
-        GuestUpdateByIdMutation guest_update_by_id_mutation = GuestUpdateByIdMutation
+    public void update(GuestObservable usedGuestObservable, GuestObservable copyGuestObservable) {
+        GuestUpdateByIdMutation guestUpdateByIdMutation = GuestUpdateByIdMutation
                 .builder()
-                .id(id)
-                .name(guestObservable.getName())
-                .address(guestObservable.getAddress())
-                .idNumber(guestObservable.getIdNumber())
-                .guestKindId(guestObservable.getGuestKindId())
-                .phoneNumber(guestObservable.getPhoneNumber())
+                .id(usedGuestObservable.getId())
+                .name(usedGuestObservable.getName())
+                .address(usedGuestObservable.getAddress())
+                .idNumber(usedGuestObservable.getIdNumber())
+                .guestKindId(usedGuestObservable.getGuestKindId())
+                .phoneNumber(usedGuestObservable.getPhoneNumber())
                 .build();
-        Hasura.apolloClient.mutate(guest_update_by_id_mutation)
+        Hasura.apolloClient.mutate(guestUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<GuestUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestUpdateByIdMutation.Data> response) {
@@ -87,14 +85,10 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            List<GuestObservable> temp = modelState.getValue();
-
-                            for (int j = 0; j< temp.size(); j++) {
-                                if (id == temp.get(j).getId()) temp.set(j, guestObservable);
+                            GuestUpdateByIdMutation.Update_GUEST update_guest = response.getData().update_GUEST();
+                            if (update_guest != null) {
+                                Log.d("GuestViewModel Update Response Debug", update_guest.toString());
                             }
-                            modelState.postValue(temp);
-
-                            System.out.println(response.getData().update_GUEST());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -107,39 +101,11 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
-                    }
-                });
-    }
-
-    public void filldata(GuestObservable guestObservable,int id){
-        Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(id, true)))
-                .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            response.getData().GUEST().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                guestObservable.setId(item.id());
-                                guestObservable.setName(item.name());
-                                guestObservable.setAddress(item.address());
-                                guestObservable.setIdNumber(item.id_number());
-                                guestObservable.setPhoneNumber(item.phone_number());
-                                guestObservable.setGuestKindId(item.guestkind_id());
-                                guestObservable.setCreatedAt(item_created_at);
-                                guestObservable.setUpdatedAt(item_updated_at);
-                            });
-
+                        if (onFailureCallback != null) {
+                            onFailureCallback.run();
+                            onFailureCallback = null;
                         }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("GuestViewModel Query By Id Error", error.toString()));
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-
+                        e.printStackTrace();
                     }
                 });
     }

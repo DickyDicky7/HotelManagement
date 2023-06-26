@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
-import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.cloudinary.android.MediaManager;
@@ -17,8 +16,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.example.hasura.Hasura;
 import com.example.hasura.RoomKindInsertMutation;
 import com.example.hasura.RoomKindSubscription;
-import com.example.hasura.RoomkindByIdQuery;
-import com.example.hasura.RoomkindUpdateByIdMutation;
+import com.example.hasura.RoomKindUpdateByIdMutation;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 
 import java.time.LocalDateTime;
@@ -105,118 +103,125 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         }).dispatch();
     }
 
-    public void update(RoomKindObservable roomKindObservable, int id) {
-        if (MediaManager.get() == null) {
-            return;
-        }
-        MediaManager.get().upload(Uri.parse(roomKindObservable.getImageURL())).option("folder", "ParadisePalms_HMS").callback(new UploadCallback() {
-            @Override
-            public void onStart(String requestId) {
-                Log.i("RoomKindViewModel Upload Image Info", "Start");
-            }
-
-            @Override
-            public void onProgress(String requestId, long bytes, long totalBytes) {
-                Log.i("RoomKindViewModel Upload Image Info", "Progress");
-            }
-
-            @Override
-            public void onSuccess(String requestId, Map resultData) {
-                roomKindObservable.setImageURL(resultData.getOrDefault("secure_url", "").toString());
-                RoomkindUpdateByIdMutation roomkind_update_by_id_mutation = RoomkindUpdateByIdMutation
-                        .builder()
-                        .id(id)
-                        .name(roomKindObservable.getName())
-                        .price(roomKindObservable.getPrice())
-                        .area(roomKindObservable.getArea())
-                        .capacity(roomKindObservable.getCapacity())
-                        .numberOfBeds(roomKindObservable.getNumberOfBeds())
-                        .surchargePercentage(roomKindObservable.getSurchargePercentage())
-                        .imageUrl(roomKindObservable.getImageURL())
-                        .build();
-                Hasura.apolloClient.mutate(roomkind_update_by_id_mutation)
-                        .enqueue(new ApolloCall.Callback<RoomkindUpdateByIdMutation.Data>() {
-                            @Override
-                            public void onResponse(@NonNull Response<RoomkindUpdateByIdMutation.Data> response) {
-                                if (response.getData() != null) {
-                                    if (onSuccessCallback != null) {
-                                        onSuccessCallback.run();
-                                        onSuccessCallback = null;
-                                    }
-                                    List<RoomKindObservable> temp = modelState.getValue();
-
-                                    for (int j = 0; j < temp.size(); j++) {
-                                        if (id == temp.get(j).getId())
-                                            temp.set(j, roomKindObservable);
-                                    }
-                                    modelState.postValue(temp);
-                                    Log.d("RoomKindViewModel Update Response Debug", response.getData().update_ROOMKIND().toString());
+    public void update(RoomKindObservable usedRoomKindObservable, RoomKindObservable copyRoomKindObservable) {
+        if (usedRoomKindObservable.getImageURL().equals(copyRoomKindObservable.getImageURL())) {
+            RoomKindUpdateByIdMutation roomkindUpdateByIdMutation = RoomKindUpdateByIdMutation
+                    .builder()
+                    .id(usedRoomKindObservable.getId())
+                    .name(usedRoomKindObservable.getName())
+                    .area(usedRoomKindObservable.getArea())
+                    .price(usedRoomKindObservable.getPrice())
+                    .imageUrl(usedRoomKindObservable.getImageURL())
+                    .capacity(usedRoomKindObservable.getCapacity())
+                    .numberOfBeds(usedRoomKindObservable.getNumberOfBeds())
+                    .surchargePercentage(usedRoomKindObservable.getSurchargePercentage())
+                    .build();
+            Hasura.apolloClient.mutate(roomkindUpdateByIdMutation)
+                    .enqueue(new ApolloCall.Callback<RoomKindUpdateByIdMutation.Data>() {
+                        @Override
+                        public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
+                            if (response.getData() != null) {
+                                if (onSuccessCallback != null) {
+                                    onSuccessCallback.run();
+                                    onSuccessCallback = null;
                                 }
-                                if (response.getErrors() != null) {
-                                    if (onFailureCallback != null) {
-                                        onFailureCallback.run();
-                                        onFailureCallback = null;
-                                    }
-                                    response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
+                                RoomKindUpdateByIdMutation.Update_ROOMKIND update_roomkind = response.getData().update_ROOMKIND();
+                                if (update_roomkind != null) {
+                                    Log.d("RoomKindViewModel Update Response Debug", update_roomkind.toString());
                                 }
                             }
-
-                            @Override
-                            public void onFailure(@NonNull ApolloException e) {
+                            if (response.getErrors() != null) {
                                 if (onFailureCallback != null) {
                                     onFailureCallback.run();
                                     onFailureCallback = null;
                                 }
-                                e.printStackTrace();
+                                response.getErrors().forEach(error -> Log.e("RoomKindViewModel Update Error", error.toString()));
                             }
-                        });
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull ApolloException e) {
+                            if (onFailureCallback != null) {
+                                onFailureCallback.run();
+                                onFailureCallback = null;
+                            }
+                            e.printStackTrace();
+                        }
+                    });
+        } else {
+            if (MediaManager.get() == null) {
+                return;
             }
+            MediaManager.get().upload(Uri.parse(usedRoomKindObservable.getImageURL())).option("folder", "ParadisePalms_HMS").callback(new UploadCallback() {
+                @Override
+                public void onStart(String requestId) {
+                    Log.i("RoomKindViewModel Upload Image Info", "Start");
+                }
 
-            @Override
-            public void onError(String requestId, ErrorInfo error) {
-                Log.e("RoomKindViewModel Upload Image Error", error.toString());
-            }
+                @Override
+                public void onProgress(String requestId, long bytes, long totalBytes) {
+                    Log.i("RoomKindViewModel Upload Image Info", "Progress");
+                }
 
-            @Override
-            public void onReschedule(String requestId, ErrorInfo error) {
-                Log.e("RoomKindViewModel Upload Image Error", error.toString());
-            }
-        }).dispatch();
-    }
+                @Override
+                public void onSuccess(String requestId, Map resultData) {
+                    usedRoomKindObservable.setImageURL(resultData.getOrDefault("secure_url", "").toString());
+                    RoomKindUpdateByIdMutation roomkindUpdateByIdMutation = RoomKindUpdateByIdMutation
+                            .builder()
+                            .id(usedRoomKindObservable.getId())
+                            .name(usedRoomKindObservable.getName())
+                            .area(usedRoomKindObservable.getArea())
+                            .price(usedRoomKindObservable.getPrice())
+                            .imageUrl(usedRoomKindObservable.getImageURL())
+                            .capacity(usedRoomKindObservable.getCapacity())
+                            .numberOfBeds(usedRoomKindObservable.getNumberOfBeds())
+                            .surchargePercentage(usedRoomKindObservable.getSurchargePercentage())
+                            .build();
+                    Hasura.apolloClient.mutate(roomkindUpdateByIdMutation)
+                            .enqueue(new ApolloCall.Callback<RoomKindUpdateByIdMutation.Data>() {
+                                @Override
+                                public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
+                                    if (response.getData() != null) {
+                                        if (onSuccessCallback != null) {
+                                            onSuccessCallback.run();
+                                            onSuccessCallback = null;
+                                        }
+                                        RoomKindUpdateByIdMutation.Update_ROOMKIND update_roomkind = response.getData().update_ROOMKIND();
+                                        if (update_roomkind != null) {
+                                            Log.d("RoomKindViewModel Update Response Debug", update_roomkind.toString());
+                                        }
+                                    }
+                                    if (response.getErrors() != null) {
+                                        if (onFailureCallback != null) {
+                                            onFailureCallback.run();
+                                            onFailureCallback = null;
+                                        }
+                                        response.getErrors().forEach(error -> Log.e("RoomKindViewModel Update Error", error.toString()));
+                                    }
+                                }
 
-    public void filldata(RoomKindObservable roomKindObservable, int id) {
-        Hasura.apolloClient.query(new RoomkindByIdQuery(new Input<Integer>(id, true)))
-                .enqueue(new ApolloCall.Callback<RoomkindByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<RoomkindByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            response.getData().ROOMKIND().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                roomKindObservable.setId(id);
-                                roomKindObservable.setName(item.name());
-                                roomKindObservable.setArea(item.area());
-                                roomKindObservable.setPrice(item.price());
-                                roomKindObservable.setCapacity(item.capacity());
-                                roomKindObservable.setNumberOfBeds(item.number_of_beds());
-                                roomKindObservable.setCreatedAt(item_created_at);
-                                roomKindObservable.setUpdatedAt(item_updated_at);
-                                roomKindObservable.setImageURL(item.image_url());
-                                roomKindObservable.setSurchargePercentage(item.surcharge_percentage());
-
+                                @Override
+                                public void onFailure(@NonNull ApolloException e) {
+                                    if (onFailureCallback != null) {
+                                        onFailureCallback.run();
+                                        onFailureCallback = null;
+                                    }
+                                    e.printStackTrace();
+                                }
                             });
+                }
 
-                        }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Query By Id Error", error.toString()));
-                        }
-                    }
+                @Override
+                public void onError(String requestId, ErrorInfo error) {
+                    Log.e("RoomKindViewModel Upload Image Error", error.toString());
+                }
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-
-                    }
-                });
+                @Override
+                public void onReschedule(String requestId, ErrorInfo error) {
+                    Log.e("RoomKindViewModel Upload Image Error", error.toString());
+                }
+            }).dispatch();
+        }
     }
 
     @NonNull

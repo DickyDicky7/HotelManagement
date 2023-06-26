@@ -14,6 +14,7 @@ import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -68,7 +69,8 @@ public class FragmentAddRoomKind extends Fragment {
                             roomKindObservable = new RoomKindObservable();
                             binding.setRoomKindObservable(roomKindObservable);
                             binding.edtImage.setColorFilter(Color.WHITE);
-                            Glide.with(this).load(getResources().getDrawable(R.drawable.upload_image)).centerInside().into(binding.edtImage);
+                            Glide.with(this).load(AppCompatResources.getDrawable(requireContext(),
+                                    R.drawable.upload_image)).centerInside().into(binding.edtImage);
                         });
                     }
                 };

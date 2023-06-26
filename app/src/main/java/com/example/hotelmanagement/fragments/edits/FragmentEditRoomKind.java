@@ -1,11 +1,18 @@
 package com.example.hotelmanagement.fragments.edits;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
@@ -14,29 +21,89 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class FragmentEditRoomKind extends Fragment {
 
     private FragmentEditRoomKindBinding binding;
     private RoomKindViewModel roomKindViewModel;
-    private RoomKindObservable roomKindObservable;
+    private RoomKindObservable usedRoomKindObservable;
+    private RoomKindObservable copyRoomKindObservable;
     private ActivityResultLauncher<PickVisualMediaRequest> pickVisualMediaLauncher =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
                     System.out.println("uri : " + uri);
-                    roomKindObservable.setImageURL(uri.toString());
+                    usedRoomKindObservable.setImageURL(uri.toString());
                     binding.edtImage.setColorFilter(Color.TRANSPARENT);
                     Glide.with(this).load(uri).centerInside().into(binding.edtImage);
                     requireContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 }
             });
+
+    private Handler handler = new Handler(message -> {
+        if (getContext() == null) {
+            return false;
+        }
+        int gray = Color.GRAY;
+        int indigo = requireContext().getColor(R.color.indigo_400);
+        ValueAnimator grayToIndigoAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), gray, indigo);
+        ValueAnimator indigoToGrayAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), indigo, gray);
+        grayToIndigoAnimator.setDuration(500);
+        indigoToGrayAnimator.setDuration(500);
+        grayToIndigoAnimator.addUpdateListener(_grayToIndigoAnimator_
+                -> binding.btnDone.getBackground().setColorFilter((int) _grayToIndigoAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN));
+        indigoToGrayAnimator.addUpdateListener(_indigoToGrayAnimator_
+                -> binding.btnDone.getBackground().setColorFilter((int) _indigoToGrayAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN));
+
+        if (copyRoomKindObservable == null) {
+            if (binding.btnDone.isEnabled()) {
+                indigoToGrayAnimator.start();
+                binding.btnDone.setEnabled(false);
+            }
+        } else {
+            try {
+                if (!usedRoomKindObservable.customizedEquals(copyRoomKindObservable)) {
+                    if (!binding.btnDone.isEnabled()) {
+                        grayToIndigoAnimator.start();
+                        binding.btnDone.setEnabled(true);
+                    }
+                } else {
+                    if (binding.btnDone.isEnabled()) {
+                        indigoToGrayAnimator.start();
+                        binding.btnDone.setEnabled(false);
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                if (binding.btnDone.isEnabled()) {
+                    indigoToGrayAnimator.start();
+                    binding.btnDone.setEnabled(false);
+                }
+            }
+        }
+        return true;
+    });
+    private AtomicBoolean stopped = new AtomicBoolean(false);
+    private Thread watcher = new Thread(() -> {
+        Long lastTimeSendingMessage = System.currentTimeMillis();
+        while (!stopped.get()) {
+            Long now = System.currentTimeMillis();
+            if (now - lastTimeSendingMessage >= 500) {
+                handler.sendEmptyMessage(0);
+                lastTimeSendingMessage = now;
+            }
+        }
+        Log.i("FragmentEditRoomKind Watcher", "Has Done");
+    });
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,56 +114,71 @@ public class FragmentEditRoomKind extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
-        roomKindObservable = new RoomKindObservable();
-        int id = getArguments().getInt("id");
+        usedRoomKindObservable = roomKindViewModel.getObservable(requireArguments().getInt("id"));
+        if (usedRoomKindObservable != null) {
+            binding.setRoomKindObservable(usedRoomKindObservable);
+            copyRoomKindObservable = usedRoomKindObservable.customizedClone();
+        } else {
+            usedRoomKindObservable = new RoomKindObservable();
+            copyRoomKindObservable = null;
+        }
 
-        roomKindViewModel.filldata(roomKindObservable, id);
-        while (roomKindObservable.getImageURL() == null);
-        System.out.println(roomKindObservable.getImageURL());
-        Glide.with(this).load(roomKindObservable.getImageURL()).centerInside().into(binding.edtImage);
-
-        binding.setRoomKindObservable(roomKindObservable);
+        watcher.start();
+        binding.btnDone.setEnabled(false);
+        binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 roomKindViewModel.onSuccessCallback = () -> {
-                    requireActivity().runOnUiThread(() -> {
-                        // Những task buộc phải chạy trên main thread thì gọi ở đây (thường liên quan đến UI)
-                        // Ví dụ như navigation
-                        // Cách 1:
-                        // NavHostFragment.findNavController(this).popBackStack();
-                        // Cách 2:
-                        // requireActivity().onBackPressed();
-                        // Hoặc set observable mới
-                        roomKindObservable = new RoomKindObservable();
-                        binding.setRoomKindObservable(roomKindObservable);
-                        binding.edtImage.setColorFilter(Color.WHITE);
-                        Glide.with(this).load(getResources().getDrawable(R.drawable.upload_image)).centerInside().into(binding.edtImage);
-                    });
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                    }
                 };
                 roomKindViewModel.onFailureCallback = null;
-                if (roomKindViewModel.checkObservable(roomKindObservable, requireContext())) {
-                    roomKindViewModel.update(roomKindObservable,id);
+                if (roomKindViewModel.checkObservable(usedRoomKindObservable, requireContext())) {
+                    roomKindViewModel.update(usedRoomKindObservable, copyRoomKindObservable);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+            View currentFocusView = requireActivity().getCurrentFocus();
+            if (currentFocusView != null) {
+                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
         });
 
-//        binding.edtImage.setColorFilter(Color.WHITE);
+        binding.edtImage.setColorFilter(Color.WHITE);
         binding.edtImage.setOnClickListener(_view_ -> {
             pickVisualMediaLauncher.launch(new PickVisualMediaRequest.Builder()
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());
         });
+
+        binding.edtImage.setColorFilter(Color.TRANSPARENT);
+        Glide.with(this).load(usedRoomKindObservable.getImageURL()).centerInside().into(binding.edtImage);
+
+        binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        stopped.set(true);
+        while (watcher.isAlive()) {
+            Log.i("FragmentEditRoomKind Watcher", "Still Alive");
+        }
+
+        stopped = null;
+        watcher = null;
+        handler = null;
         binding = null;
         roomKindViewModel = null;
-        roomKindObservable = null;
+        usedRoomKindObservable = null;
+        copyRoomKindObservable = null;
         pickVisualMediaLauncher.unregister();
         pickVisualMediaLauncher = null;
     }

@@ -15,8 +15,8 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Objects;
+import java.util.Optional;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 

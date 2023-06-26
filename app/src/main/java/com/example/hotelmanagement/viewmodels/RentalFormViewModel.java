@@ -13,7 +13,6 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.Hasura;
-import com.example.hasura.RentalFormByIdQuery;
 import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
@@ -41,10 +40,10 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
-                            response.getData().GUEST().forEach(item -> {
-                                rentalFormObservable.setName(item.name());
-                                rentalFormObservable.setGuestId(item.id());
-                            });
+                            GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
+                            rentalFormObservable.setName(guest.name());
+                            rentalFormObservable.setGuestId(guest.id());
+                            Log.d("RentalFormViewModel Find GuestId Response Debug", guest.toString());
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find GuestId Error", error.toString()));
@@ -68,22 +67,25 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            response.getData().ROOM().forEach(item -> {
-                                if (item.ROOMKIND() != null) {
-                                    if (item.ROOMKIND().price() != null && item.ROOMKIND().capacity() != null && item.ROOMKIND().surcharge_percentage() != null && rentalFormObservable.getNumberOfGuests() != null) {
-                                        System.out.println(item.ROOMKIND().price());
-                                        System.out.println(item.ROOMKIND().capacity());
-                                        System.out.println(item.ROOMKIND().surcharge_percentage());
-                                        Integer sub = rentalFormObservable.getNumberOfGuests() - item.ROOMKIND().capacity();
-                                        if (sub < 0) {
-                                            sub = 0;
-                                        }
-                                        Double pricePerDay = item.ROOMKIND().price() + item.ROOMKIND().surcharge_percentage() / 100 * item.ROOMKIND().price() * sub;
-                                        rentalFormObservable.setPricePerDay(pricePerDay);
-                                        rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                            RoomPriceByIdQuery.ROOM room = response.getData().ROOM().get(0);
+                            RoomPriceByIdQuery.ROOMKIND roomkind = room.ROOMKIND();
+                            if (roomkind != null) {
+                                Double price = roomkind.price();
+                                Double surchargePercentage = roomkind.surcharge_percentage();
+                                Integer capacity = roomkind.capacity();
+                                Integer numberOfGuests = rentalFormObservable.getNumberOfGuests();
+                                if (price != null && surchargePercentage != null && capacity != null && numberOfGuests != null) {
+                                    Integer differences = numberOfGuests - capacity;
+                                    if (differences < 0) {
+                                        differences = 0;
                                     }
+                                    Double pricePerDay = price + surchargePercentage / 100 * price * differences;
+                                    rentalFormObservable.setPricePerDay(pricePerDay);
+                                    rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                                    Log.d("RoomKind Debug", "Price: " + price + ", Capacity: " + capacity + ", SurchargePercentage: " + surchargePercentage + ", NumberOfGuests: " + numberOfGuests);
                                 }
-                            });
+                            }
+                            Log.d("RentalFormViewModel Find Price Response Debug", room.toString());
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Price Error", error.toString()));
@@ -114,29 +116,36 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
-                        if (response.getData() != null && response.getData().insert_RENTALFORM() != null) {
-                            RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation =
-                                    RoomUpdateIsOccupiedByIdMutation.builder()
-                                            .id(response.getData().insert_RENTALFORM().returning().get(0).room_id())
-                                            .isOccupied(true)
-                                            .build();
-                            Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                @Override
-                                public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-
-                                }
-
-                                @Override
-                                public void onFailure(@NonNull ApolloException e) {
-
-                                }
-                            });
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                        if (response.getData() != null) {
                             RentalFormInsertMutation.Insert_RENTALFORM insert_rentalform = response.getData().insert_RENTALFORM();
                             if (insert_rentalform != null) {
+                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation = RoomUpdateIsOccupiedByIdMutation.builder()
+                                        .id(insert_rentalform.returning().get(0).room_id())
+                                        .isOccupied(true)
+                                        .build();
+                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                    @Override
+                                    public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
+                                        if (response.getData() != null) {
+                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
+                                            if (update_room != null) {
+                                                Log.d("RentalFormViewModel Room Update IsOccupied By Id Response Debug", update_room.toString());
+                                            }
+                                        }
+                                        if (response.getErrors() != null) {
+                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied By Id Error", error.toString()));
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(@NonNull ApolloException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
+                                if (onSuccessCallback != null) {
+                                    onSuccessCallback.run();
+                                    onSuccessCallback = null;
+                                }
                                 Log.d("RentalFormViewModel Insert Response Debug", insert_rentalform.toString());
                             }
                         }
@@ -160,19 +169,19 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void update(RentalFormObservable rentalFormObservable, RentalFormObservable rentalFormObservable1, int id) {
+    public void update(RentalFormObservable usedRentalFormObservable, RentalFormObservable copyRentalFormObservable) {
         RentalFormUpdateByIdMutation rentalFormUpdateByIdMutation = RentalFormUpdateByIdMutation
                 .builder()
-                .id(id)
-                .roomId(rentalFormObservable.getRoomId())
-                .billId(rentalFormObservable.getBillId())
-                .amount(rentalFormObservable.getAmount())
-                .guestId(rentalFormObservable.getGuestId())
-                .startDate(rentalFormObservable.getStartDate())
-                .rentalDays(rentalFormObservable.getRentalDays())
-                .isResolved(rentalFormObservable.getIsResolved())
-                .pricePerDay(rentalFormObservable.getPricePerDay())
-                .numberOfGuests(rentalFormObservable.getNumberOfGuests())
+                .id(usedRentalFormObservable.getId())
+                .roomId(usedRentalFormObservable.getRoomId())
+                .billId(usedRentalFormObservable.getBillId())
+                .amount(usedRentalFormObservable.getAmount())
+                .guestId(usedRentalFormObservable.getGuestId())
+                .startDate(usedRentalFormObservable.getStartDate())
+                .rentalDays(usedRentalFormObservable.getRentalDays())
+                .isResolved(usedRentalFormObservable.getIsResolved())
+                .pricePerDay(usedRentalFormObservable.getPricePerDay())
+                .numberOfGuests(usedRentalFormObservable.getNumberOfGuests())
                 .build();
         Hasura.apolloClient.mutate(rentalFormUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormUpdateByIdMutation.Data>() {
@@ -183,48 +192,60 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            List<RentalFormObservable> temp = modelState.getValue();
-
-                            for (int j = 0; j < temp.size(); j++) {
-                                if (id == temp.get(j).getId()) temp.set(j, rentalFormObservable);
+                            RentalFormUpdateByIdMutation.Update_RENTALFORM update_rentalform = response.getData().update_RENTALFORM();
+                            if (update_rentalform != null) {
+                                Log.d("RentalViewModel Update Response Debug", update_rentalform.toString());
                             }
-                            modelState.postValue(temp);
-                            Log.d("RentalViewModel Update Response Debug", response.getData().update_RENTALFORM().toString());
-                            if (rentalFormObservable.getRoomId() != rentalFormObservable1.getRoomId()) {
-                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation = RoomUpdateIsOccupiedByIdMutation
+                            if (!usedRentalFormObservable.getRoomId().equals(copyRentalFormObservable.getRoomId())) {
+                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedFByIdMutation = RoomUpdateIsOccupiedByIdMutation
                                         .builder()
-                                        .id(rentalFormObservable1.getRoomId())
+                                        .id(copyRentalFormObservable.getRoomId())
                                         .isOccupied(false)
                                         .build();
-                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedTByIdMutation = RoomUpdateIsOccupiedByIdMutation
+                                        .builder()
+                                        .id(usedRentalFormObservable.getRoomId())
+                                        .isOccupied(true)
+                                        .build();
+                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedFByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
                                     @Override
                                     public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                        RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation1 = RoomUpdateIsOccupiedByIdMutation
-                                                .builder()
-                                                .id(rentalFormObservable.getRoomId())
-                                                .isOccupied(true)
-                                                .build();
-                                        Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation1).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                            @Override
-                                            public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-
+                                        if (response.getData() != null) {
+                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
+                                            if (update_room != null) {
+                                                Log.d("RentalFormViewModel Room Update IsOccupied False By Id Response Debug", update_room.toString());
                                             }
-
-                                            @Override
-                                            public void onFailure(@NonNull ApolloException e) {
-
-                                            }
-                                        });
-
+                                        }
+                                        if (response.getErrors() != null) {
+                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied False By Id Error", error.toString()));
+                                        }
                                     }
 
                                     @Override
                                     public void onFailure(@NonNull ApolloException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
+                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedTByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                    @Override
+                                    public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
+                                        if (response.getData() != null) {
+                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
+                                            if (update_room != null) {
+                                                Log.d("RentalFormViewModel Room Update IsOccupied True By Id Response Debug", update_room.toString());
+                                            }
+                                        }
+                                        if (response.getErrors() != null) {
+                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied True By Id Error", error.toString()));
+                                        }
+                                    }
 
+                                    @Override
+                                    public void onFailure(@NonNull ApolloException e) {
+                                        e.printStackTrace();
                                     }
                                 });
                             }
-
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -237,71 +258,34 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
+                        if (onFailureCallback != null) {
+                            onFailureCallback.run();
+                            onFailureCallback = null;
+                        }
+                        e.printStackTrace();
                     }
                 });
     }
 
-    public void filldata(RentalFormObservable rentalFormObservable, RentalFormObservable rentalFormObservable1, int id) {
-        Hasura.apolloClient.query(new RentalFormByIdQuery(new Input<Integer>(id, true)))
-                .enqueue(new ApolloCall.Callback<RentalFormByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<RentalFormByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            response.getData().RENTALFORM().forEach(item -> {
-                                LocalDate item_start_date = item.start_date() != null ? LocalDate.parse(item.start_date().toString()) : null;
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                rentalFormObservable.setId(item.id());
-                                rentalFormObservable.setAmount(item.amount());
-                                rentalFormObservable1.setAmount(item.amount());
-                                rentalFormObservable.setRoomId(item.room_id());
-                                rentalFormObservable1.setRoomId(item.room_id());
-                                rentalFormObservable.setBillId(item.bill_id());
-                                rentalFormObservable.setGuestId(item.guest_id());
-                                rentalFormObservable.setRentalDays(item.rental_days());
-                                rentalFormObservable.setIsResolved(item.is_resolved());
-                                rentalFormObservable.setStartDate(item_start_date);
-                                rentalFormObservable.setPricePerDay(item.price_per_day());
-                                rentalFormObservable.setNumberOfGuests(item.number_of_guests());
-                                rentalFormObservable.setCreatedAt(item_created_at);
-                                rentalFormObservable.setUpdatedAt(item_updated_at);
-
-                            });
-
-                        }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Query By Id Error", error.toString()));
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-
-                    }
-                });
-    }
-
-    public void GuestQueryById(RentalFormObservable rentalFormObservable) {
+    public void findGuest(RentalFormObservable rentalFormObservable) {
         Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(rentalFormObservable.getGuestId(), true)))
                 .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            response.getData().GUEST().forEach(item -> {
-                                rentalFormObservable.setName(item.name());
-                                rentalFormObservable.setIdNumber(item.id_number());
-                            });
-
+                            GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
+                            rentalFormObservable.setName(guest.name());
+                            rentalFormObservable.setIdNumber(guest.id_number());
+                            Log.d("RentalFormViewModel Find Guest Response Debug", guest.toString());
                         }
                         if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("GuestViewModel Query By Id Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Guest Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
+                        e.printStackTrace();
                     }
                 });
     }

@@ -96,14 +96,14 @@ public class FragmentAddRentalForm extends Fragment {
             int y = currentDate.get(Calendar.YEAR);
             int m = currentDate.get(Calendar.MONTH);
             int d = currentDate.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog mDatePicker = new DatePickerDialog(requireActivity()
-                    , (datePicker, selectedYear, selectedMonth, selectedDay) -> {
-                LocalDate date = LocalDate.of(selectedYear, selectedMonth, selectedDay);
-                rentalFormObservable.setStartDateString(date.toString());
+            DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(), (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                LocalDate startDate = LocalDate.of(selectedYear, selectedMonth, selectedDay);
+                rentalFormObservable.setStartDateString(startDate.toString());
             }, y, m, d);
-            mDatePicker.setTitle("Select Date");
-            mDatePicker.show();
+            startDatePicker.setTitle("Select Start Date");
+            startDatePicker.show();
         });
+
         binding.edtPricePerDay.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -148,8 +148,9 @@ public class FragmentAddRentalForm extends Fragment {
         binding.spinnerChooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
+                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
                 if (roomObservables != null) {
+                    roomObservables = roomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
                     rentalFormObservable.setRoomId(roomObservables.get(i).getId());
                     if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
                         return;

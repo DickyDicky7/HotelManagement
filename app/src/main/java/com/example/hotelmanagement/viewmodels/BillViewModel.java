@@ -10,7 +10,6 @@ import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
-import com.example.hasura.BillByIdQuery;
 import com.example.hasura.BillInsertMutation;
 import com.example.hasura.BillSubscription;
 import com.example.hasura.BillUpdateByIdMutation;
@@ -22,7 +21,6 @@ import com.example.hasura.RentalFormAmountByGuestIdQuery;
 import com.example.hasura.RentalFormUpdateBillIdAndIsResolvedByIdMutation;
 import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
 import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.observables.GuestObservable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -44,10 +42,10 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
-                            response.getData().GUEST().forEach(item -> {
-                                billObservable.setName(item.name());
-                                billObservable.setGuestId(item.id());
-                            });
+                            GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
+                            billObservable.setName(guest.name());
+                            billObservable.setGuestId(guest.id());
+                            Log.d("BillViewModel Find GuestId Response Debug", guest.toString());
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("BillViewModel Find GuestId Error", error.toString()));
@@ -71,14 +69,16 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormAmountByGuestIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            AtomicReference<Double> sum = new AtomicReference<>(0.0);
+                            AtomicReference<Double> sum = new AtomicReference<Double>(0.0);
                             response.getData().RENTALFORM().forEach(item -> {
-                                if (item.amount() != null) {
-                                    sum.set(sum.get() + item.amount());
+                                Double amount = item.amount();
+                                if (amount != null) {
+                                    sum.set(sum.get() + amount);
                                 }
                             });
                             billObservable.setCost(sum.get());
                             billObservable.notifyPropertyChanged(BR.costString);
+                            Log.d("BillViewModel Calculate Cost Response Debug", response.getData().RENTALFORM().toString());
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("BillViewModel Calculate Cost Error", error.toString()));
@@ -103,58 +103,68 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 .enqueue(new ApolloCall.Callback<BillInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
-                        if (response.getData() != null && response.getData().insert_BILL() != null) {
-                            RentalFormUpdateBillIdAndIsResolvedByIdMutation rentalFormUpdateBillIdAndIsResolvedByIdMutation =
-                                    RentalFormUpdateBillIdAndIsResolvedByIdMutation
-                                            .builder()
-                                            .guestId(response.getData().insert_BILL().returning().get(0).guest_id())
-                                            .billId(response.getData().insert_BILL().returning().get(0).id())
-                                            .isResolved(true)
-                                            .build();
-                            Hasura.apolloClient.mutate(rentalFormUpdateBillIdAndIsResolvedByIdMutation)
-                                    .enqueue(new ApolloCall.Callback<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data>() {
-                                        @Override
-                                        public void onResponse(@NonNull Response<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data> response) {
-                                            if (response.getData() != null && response.getData().update_RENTALFORM() != null) {
-                                                response.getData().update_RENTALFORM().returning().forEach(item -> {
-                                                    RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation
-                                                            = RoomUpdateIsOccupiedByIdMutation
-                                                            .builder()
-                                                            .id(item.room_id())
-                                                            .isOccupied(false)
-                                                            .build();
-                                                    Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation)
-                                                            .enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                                                @Override
-                                                                public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                                                    if (response.getErrors() != null) {
-                                                                        response.getErrors().forEach(error -> Log.e("Room Update isOccupied Error", error.toString()));
-                                                                    }
-                                                                }
-
-                                                                @Override
-                                                                public void onFailure(@NonNull ApolloException e) {
-                                                                    e.printStackTrace();
-                                                                }
-                                                            });
-                                                });
-                                            }
-                                            if (response.getErrors() != null) {
-                                                response.getErrors().forEach(error -> Log.e("Rental Form Update billId And isResolved Error", error.toString()));
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(@NonNull ApolloException e) {
-                                            e.printStackTrace();
-                                        }
-                                    });
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                        if (response.getData() != null) {
                             BillInsertMutation.Insert_BILL insert_bill = response.getData().insert_BILL();
                             if (insert_bill != null) {
+                                RentalFormUpdateBillIdAndIsResolvedByIdMutation rentalFormUpdateBillIdAndIsResolvedByIdMutation =
+                                        RentalFormUpdateBillIdAndIsResolvedByIdMutation
+                                                .builder()
+                                                .isResolved(true)
+                                                .billId(insert_bill.returning().get(0).id())
+                                                .guestId(insert_bill.returning().get(0).guest_id())
+                                                .build();
+                                Hasura.apolloClient.mutate(rentalFormUpdateBillIdAndIsResolvedByIdMutation)
+                                        .enqueue(new ApolloCall.Callback<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data>() {
+                                            @Override
+                                            public void onResponse(@NonNull Response<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data> response) {
+                                                if (response.getData() != null) {
+                                                    RentalFormUpdateBillIdAndIsResolvedByIdMutation.Update_RENTALFORM update_rentalform = response.getData().update_RENTALFORM();
+                                                    if (update_rentalform != null) {
+                                                        update_rentalform.returning().forEach(item -> {
+                                                            RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation
+                                                                    = RoomUpdateIsOccupiedByIdMutation
+                                                                    .builder()
+                                                                    .isOccupied(false)
+                                                                    .id(item.room_id())
+                                                                    .build();
+                                                            Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation)
+                                                                    .enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
+                                                                        @Override
+                                                                        public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
+                                                                            if (response.getData() != null) {
+                                                                                RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
+                                                                                if (update_room != null) {
+                                                                                    Log.d("BillViewModel Room Update IsOccupied By Id Response Debug", update_room.toString());
+                                                                                }
+                                                                            }
+                                                                            if (response.getErrors() != null) {
+                                                                                response.getErrors().forEach(error -> Log.e("BillViewModel Room Update IsOccupied By Id Error", error.toString()));
+                                                                            }
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onFailure(@NonNull ApolloException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                    });
+                                                        });
+                                                        Log.d("BillViewModel RentalForm Update BillId And IsResolved By Id Response Debug", update_rentalform.toString());
+                                                    }
+                                                }
+                                                if (response.getErrors() != null) {
+                                                    response.getErrors().forEach(error -> Log.e("BillViewModel RentalForm Update BillId And IsResolved By Id Error", error.toString()));
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(@NonNull ApolloException e) {
+                                                e.printStackTrace();
+                                            }
+                                        });
+                                if (onSuccessCallback != null) {
+                                    onSuccessCallback.run();
+                                    onSuccessCallback = null;
+                                }
                                 Log.d("BillViewModel Insert Response Debug", insert_bill.toString());
                             }
                         }
@@ -177,13 +187,14 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     }
                 });
     }
-    public void update(BillObservable billObservable, int id){
+
+    public void update(BillObservable usedBillObservable, BillObservable copyBillObservable) {
         BillUpdateByIdMutation billUpdateByIdMutation = BillUpdateByIdMutation
                 .builder()
-                .id(id)
-                .isPaid(billObservable.getIsPaid())
-                .cost(billObservable.getCost())
-                .guestId(billObservable.getGuestId())
+                .id(usedBillObservable.getId())
+                .cost(usedBillObservable.getCost())
+                .isPaid(usedBillObservable.getIsPaid())
+                .guestId(usedBillObservable.getGuestId())
                 .build();
         Hasura.apolloClient.mutate(billUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<BillUpdateByIdMutation.Data>() {
@@ -194,14 +205,10 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            List<BillObservable> temp = modelState.getValue();
-
-                            for (int j = 0; j< temp.size(); j++) {
-                                if (id == temp.get(j).getId()) temp.set(j, billObservable);
+                            BillUpdateByIdMutation.Update_BILL update_bill = response.getData().update_BILL();
+                            if (update_bill != null) {
+                                Log.d("BillViewModel Update Response Debug", update_bill.toString());
                             }
-                            modelState.postValue(temp);
-
-                            System.out.println(response.getData().update_BILL());
                         }
                         if (response.getErrors() != null) {
                             if (onFailureCallback != null) {
@@ -214,84 +221,66 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
+                        if (onFailureCallback != null) {
+                            onFailureCallback.run();
+                            onFailureCallback = null;
+                        }
+                        e.printStackTrace();
                     }
                 });
     }
 
-    public void filldata(BillObservable billObservable, int id){
-        Hasura.apolloClient.query(new BillByIdQuery(new Input<Integer>(id, true)))
-                .enqueue(new ApolloCall.Callback<BillByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<BillByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            response.getData().BILL().forEach(item -> {
-                                LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                                LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
-                                billObservable.setId(item.id());
-                                billObservable.setGuestId(item.guest_id());
-                                billObservable.setCost(item.cost());
-                                billObservable.setIsPaid(item.is_paid());
-                                billObservable.setCreatedAt(item_created_at);
-                                billObservable.setUpdatedAt(item_updated_at);
-                            });
-
-                        }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("BillViewModel Query By Id Error", error.toString()));
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-
-                    }
-                });
-    }
-
-    public void GuestQueryById(BillObservable billObservable){
+    public void findGuest(BillObservable billObservable) {
         Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(billObservable.getGuestId(), true)))
                 .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            response.getData().GUEST().forEach(item -> {
-                                billObservable.setName(item.name());
-                                billObservable.setIdNumber(item.id_number());
-                            });
-
+                            GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
+                            billObservable.setName(guest.name());
+                            billObservable.setIdNumber(guest.id_number());
+                            Log.d("BillViewModel Find Guest Response Debug", guest.toString());
                         }
                         if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Query By Id Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Find Guest Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
+                        e.printStackTrace();
                     }
                 });
     }
 
-    public void updateAmount(BillObservable billObservable, double amount){
+    public void updateCost(BillObservable billObservable, Double cost) {
         BillUpdateCostByIdMutation billUpdateCostByIdMutation = BillUpdateCostByIdMutation
                 .builder()
+                .cost(cost)
                 .id(billObservable.getId())
-                .cost(amount)
                 .build();
         Hasura.apolloClient.mutate(billUpdateCostByIdMutation)
                 .enqueue(new ApolloCall.Callback<BillUpdateCostByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillUpdateCostByIdMutation.Data> response) {
-
+                        if (response.getData() != null) {
+                            BillUpdateCostByIdMutation.Update_BILL update_bill = response.getData().update_BILL();
+                            if (update_bill != null) {
+                                Log.d("BillViewModel Update Cost Response Debug", update_bill.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Update Cost Error", error.toString()));
+                        }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-
+                        e.printStackTrace();
                     }
                 });
     }
+
     @Override
     public void startSubscription() {
         Hasura.apolloClient.subscribe(new BillSubscription()).execute(new ApolloSubscriptionCall.Callback<BillSubscription.Data>() {

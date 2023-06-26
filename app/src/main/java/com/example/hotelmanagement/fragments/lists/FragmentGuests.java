@@ -62,10 +62,10 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         editText.setOnFocusChangeListener((_view_, isFocused) -> {
             if (isFocused) {
-                editText.setTextColor(getResources().getColor(R.color.bluegray_900));
-                editText.setHintTextColor(getResources().getColor(R.color.bluegray_900));
-                searchIcon.setColorFilter(getResources().getColor(R.color.bluegray_900));
-                closeButton.setColorFilter(getResources().getColor(R.color.bluegray_900));
+                editText.setTextColor(requireContext().getColor(R.color.bluegray_900));
+                editText.setHintTextColor(requireContext().getColor(R.color.bluegray_900));
+                searchIcon.setColorFilter(requireContext().getColor(R.color.bluegray_900));
+                closeButton.setColorFilter(requireContext().getColor(R.color.bluegray_900));
             } else {
                 editText.setTextColor(Color.GRAY);
                 editText.setHintTextColor(Color.GRAY);
@@ -114,7 +114,9 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
             return false;
         });
 
-        binding.guestsBtnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
+        binding.guestsBtnBack.setOnClickListener(_view_ -> {
+            NavHostFragment.findNavController(this).popBackStack();
+        });
 
     }
 

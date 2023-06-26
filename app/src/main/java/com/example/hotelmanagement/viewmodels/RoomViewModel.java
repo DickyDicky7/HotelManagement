@@ -67,15 +67,15 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void update(RoomObservable roomObservable) {
+    public void update(RoomObservable usedRoomObservable, RoomObservable copyRoomObservable) {
         RoomUpdateByIdMutation roomUpdateByIdMutation = RoomUpdateByIdMutation
                 .builder()
-                .id(roomObservable.getId())
-                .name(roomObservable.getName())
-                .note(roomObservable.getNote())
-                .isOccupied(roomObservable.getIsOccupied())
-                .roomkind_id(roomObservable.getRoomKindId())
-                .description(roomObservable.getDescription())
+                .id(usedRoomObservable.getId())
+                .name(usedRoomObservable.getName())
+                .note(usedRoomObservable.getNote())
+                .isOccupied(usedRoomObservable.getIsOccupied())
+                .roomkind_id(usedRoomObservable.getRoomKindId())
+                .description(usedRoomObservable.getDescription())
                 .build();
         Hasura.apolloClient.mutate(roomUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<RoomUpdateByIdMutation.Data>() {
@@ -96,7 +96,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                                 onFailureCallback.run();
                                 onFailureCallback = null;
                             }
-                            response.getErrors().forEach(error -> Log.e("RoomViewModel update Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("RoomViewModel Update Error", error.toString()));
                         }
                     }
 

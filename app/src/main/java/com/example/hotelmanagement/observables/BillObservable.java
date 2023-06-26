@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.observables;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
@@ -127,6 +128,16 @@ public class BillObservable extends ExtendedObservable {
             setCost(null);
             e.printStackTrace();
         }
+    }
+
+    @NonNull
+    public Boolean customizedEquals(@NonNull BillObservable billObservable) throws IllegalAccessException {
+        return ExtendedObservable.customizedEquals(this, billObservable);
+    }
+
+    @NonNull
+    public BillObservable customizedClone() {
+        return ExtendedObservable.customizedClone(this);
     }
 
 }

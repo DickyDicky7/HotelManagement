@@ -1,5 +1,6 @@
 package com.example.hotelmanagement.observables;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
@@ -226,6 +227,16 @@ public class RoomKindObservable extends ExtendedObservable {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
         notifyPropertyChanged(BR.imageURL);
+    }
+
+    @NonNull
+    public Boolean customizedEquals(@NonNull RoomKindObservable roomKindObservable) throws IllegalAccessException {
+        return ExtendedObservable.customizedEquals(this, roomKindObservable);
+    }
+
+    @NonNull
+    public RoomKindObservable customizedClone() {
+        return ExtendedObservable.customizedClone(this);
     }
 
 }

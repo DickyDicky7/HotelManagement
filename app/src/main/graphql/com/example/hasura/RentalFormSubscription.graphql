@@ -1,6 +1,6 @@
 subscription RentalFormSubscription
 {
-    RENTALFORM
+    RENTALFORM( order_by: [ { id: asc_nulls_last } ] )
     {
         id
         amount
