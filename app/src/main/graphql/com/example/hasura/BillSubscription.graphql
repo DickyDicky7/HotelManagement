@@ -1,6 +1,6 @@
 subscription BillSubscription
 {
-    BILL
+    BILL ( order_by: [ { id: asc_nulls_last } ] )
     {
         id
         cost

@@ -1,6 +1,6 @@
 subscription RoomSubscription
 {
-    ROOM
+    ROOM( order_by: [ { name: asc_nulls_last } ] )
     {
         id
         name

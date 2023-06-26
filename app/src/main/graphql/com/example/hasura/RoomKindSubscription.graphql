@@ -1,6 +1,6 @@
 subscription RoomKindSubscription
 {
-    ROOMKIND
+    ROOMKIND( order_by: [ { name: asc_nulls_last } ] )
     {
         id
         name

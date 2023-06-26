@@ -1,6 +1,6 @@
 subscription GuestSubscription
 {
-    GUEST
+    GUEST( order_by: [ { name: asc_nulls_last } ] )
     {
         id
         name
