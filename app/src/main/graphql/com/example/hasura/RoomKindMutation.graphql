@@ -1,4 +1,4 @@
-mutation RoomKindInsert
+mutation RoomKindInsertMutation
 (
     $name               : String
     $area               : Float

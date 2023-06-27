@@ -1,4 +1,4 @@
-query RentalFormAll
+query RentalFormAllQuery
 {
     RENTALFORM
     {
@@ -18,12 +18,19 @@ query RentalFormAll
 }
 
 
-query RentalFormAmountByGuestId
+query RentalFormAmountByGuestIdQuery
 (
     $guestId: Int
 )
 {
-    RENTALFORM(where: { guest_id: { _eq: $guestId }, is_resolved: { _eq: false } })
+    RENTALFORM
+    (
+        where:
+        {
+            guest_id   : {   _eq: $guestId   }
+            is_resolved: {   _eq: false      }
+        }
+    )
     {
         amount
     }

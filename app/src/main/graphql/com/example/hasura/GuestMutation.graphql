@@ -1,4 +1,4 @@
-mutation GuestInsert
+mutation GuestInsertMutation
 (
     $name       : String
     $address    : String

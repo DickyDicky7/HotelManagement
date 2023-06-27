@@ -1,4 +1,4 @@
-mutation RoomInsert
+mutation RoomInsertMutation
 (
     $name       : String
     $note       : String
@@ -36,13 +36,23 @@ mutation RoomInsert
 }
 
 
-mutation RoomUpdateIsOccupiedById
+mutation RoomUpdateIsOccupiedByIdMutation
 (
     $id        : Int
     $isOccupied: Boolean
 )
 {
-    update_ROOM(where: { id: { _eq: $id } }, _set: { is_occupied: $isOccupied })
+    update_ROOM
+    (
+        where:
+        {
+            id: {   _eq: $id   }
+        }
+        _set:
+        {
+            is_occupied: $isOccupied
+        }
+    )
     {
         returning
         {

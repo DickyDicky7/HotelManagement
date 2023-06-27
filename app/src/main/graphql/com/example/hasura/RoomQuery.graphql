@@ -1,4 +1,4 @@
-query RoomAll
+query RoomAllQuery
 {
     ROOM
     {
@@ -14,12 +14,18 @@ query RoomAll
 }
 
 
-query RoomPriceById
+query RoomPriceByIdQuery
 (
     $id: Int
 )
 {
-    ROOM(where: { id: { _eq: $id } })
+    ROOM
+    (
+        where:
+        {
+            id: {   _eq: $id   }
+        }
+    )
     {
         ROOMKIND
         {

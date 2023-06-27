@@ -1,4 +1,4 @@
-query GuestAll
+query GuestAllQuery
 {
     GUEST
     {
@@ -14,12 +14,18 @@ query GuestAll
 }
 
 
-query GuestByIdNumber
+query GuestByIdNumberQuery
 (
     $idNumber: String
 )
 {
-    GUEST(where: { id_number: { _eq: $idNumber } })
+    GUEST
+    (
+        where:
+        {
+            id_number: {   _eq: $idNumber   }
+        }
+    )
     {
         id
         name

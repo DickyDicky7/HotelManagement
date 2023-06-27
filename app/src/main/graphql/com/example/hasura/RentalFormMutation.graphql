@@ -1,4 +1,4 @@
-mutation RentalFormInsert
+mutation RentalFormInsertMutation
 (
     $roomId        : Int
     $billId        : Int
@@ -48,14 +48,26 @@ mutation RentalFormInsert
 }
 
 
-mutation RentalFormUpdateBillIdAndIsResolvedById
+mutation RentalFormUpdateBillIdAndIsResolvedByIdMutation
 (
     $billId    : Int
     $guestId   : Int
     $isResolved: Boolean
 )
 {
-    update_RENTALFORM(where: { guest_id: { _eq: $guestId }, is_resolved: { _eq: false } }, _set: { bill_id: $billId, is_resolved: $isResolved })
+    update_RENTALFORM
+    (
+        where:
+        {
+            guest_id   : {   _eq: $guestId   }
+            is_resolved: {   _eq: false      }
+        }
+        _set:
+        {
+            bill_id    : $billId
+            is_resolved: $isResolved
+        }
+    )
     {
         returning
         {

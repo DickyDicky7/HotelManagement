@@ -1,4 +1,4 @@
-mutation BillInsert
+mutation BillInsertMutation
 (
     $cost   : Float
     $isPaid : Boolean
