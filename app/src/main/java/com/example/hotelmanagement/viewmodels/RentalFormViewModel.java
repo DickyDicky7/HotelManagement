@@ -17,7 +17,6 @@ import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
 import com.example.hasura.RoomPriceByIdQuery;
-import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 
 import java.time.LocalDate;
@@ -117,36 +116,13 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            RentalFormInsertMutation.Insert_RENTALFORM insert_rentalform = response.getData().insert_RENTALFORM();
-                            if (insert_rentalform != null) {
-                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation = RoomUpdateIsOccupiedByIdMutation.builder()
-                                        .id(insert_rentalform.returning().get(0).room_id())
-                                        .isOccupied(true)
-                                        .build();
-                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                    @Override
-                                    public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                        if (response.getData() != null) {
-                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
-                                            if (update_room != null) {
-                                                Log.d("RentalFormViewModel Room Update IsOccupied By Id Response Debug", update_room.toString());
-                                            }
-                                        }
-                                        if (response.getErrors() != null) {
-                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied By Id Error", error.toString()));
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(@NonNull ApolloException e) {
-                                        e.printStackTrace();
-                                    }
-                                });
-                                if (onSuccessCallback != null) {
-                                    onSuccessCallback.run();
-                                    onSuccessCallback = null;
-                                }
-                                Log.d("RentalFormViewModel Insert Response Debug", insert_rentalform.toString());
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.run();
+                                onSuccessCallback = null;
+                            }
+                            RentalFormInsertMutation.Insert_RENTALFORM insert_rental_form = response.getData().insert_RENTALFORM();
+                            if (insert_rental_form != null) {
+                                Log.d("RentalFormViewModel Insert Response Debug", insert_rental_form.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -192,59 +168,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 onSuccessCallback.run();
                                 onSuccessCallback = null;
                             }
-                            RentalFormUpdateByIdMutation.Update_RENTALFORM update_rentalform = response.getData().update_RENTALFORM();
-                            if (update_rentalform != null) {
-                                Log.d("RentalViewModel Update Response Debug", update_rentalform.toString());
-                            }
-                            if (!usedRentalFormObservable.getRoomId().equals(copyRentalFormObservable.getRoomId())) {
-                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedFByIdMutation = RoomUpdateIsOccupiedByIdMutation
-                                        .builder()
-                                        .id(copyRentalFormObservable.getRoomId())
-                                        .isOccupied(false)
-                                        .build();
-                                RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedTByIdMutation = RoomUpdateIsOccupiedByIdMutation
-                                        .builder()
-                                        .id(usedRentalFormObservable.getRoomId())
-                                        .isOccupied(true)
-                                        .build();
-                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedFByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                    @Override
-                                    public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                        if (response.getData() != null) {
-                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
-                                            if (update_room != null) {
-                                                Log.d("RentalFormViewModel Room Update IsOccupied False By Id Response Debug", update_room.toString());
-                                            }
-                                        }
-                                        if (response.getErrors() != null) {
-                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied False By Id Error", error.toString()));
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(@NonNull ApolloException e) {
-                                        e.printStackTrace();
-                                    }
-                                });
-                                Hasura.apolloClient.mutate(roomUpdateIsOccupiedTByIdMutation).enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                    @Override
-                                    public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                        if (response.getData() != null) {
-                                            RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
-                                            if (update_room != null) {
-                                                Log.d("RentalFormViewModel Room Update IsOccupied True By Id Response Debug", update_room.toString());
-                                            }
-                                        }
-                                        if (response.getErrors() != null) {
-                                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Room Update IsOccupied True By Id Error", error.toString()));
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(@NonNull ApolloException e) {
-                                        e.printStackTrace();
-                                    }
-                                });
+                            RentalFormUpdateByIdMutation.Update_RENTALFORM update_rental_form = response.getData().update_RENTALFORM();
+                            if (update_rental_form != null) {
+                                Log.d("RentalViewModel Update Response Debug", update_rental_form.toString());
                             }
                         }
                         if (response.getErrors() != null) {

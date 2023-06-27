@@ -66,9 +66,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                         onSuccessCallback.run();
                                         onSuccessCallback = null;
                                     }
-                                    RoomKindInsertMutation.Insert_ROOMKIND insert_roomkind = response.getData().insert_ROOMKIND();
-                                    if (insert_roomkind != null) {
-                                        Log.d("RoomKindViewModel Insert Response Debug", insert_roomkind.toString());
+                                    RoomKindInsertMutation.Insert_ROOMKIND insert_room_kind = response.getData().insert_ROOMKIND();
+                                    if (insert_room_kind != null) {
+                                        Log.d("RoomKindViewModel Insert Response Debug", insert_room_kind.toString());
                                     }
                                 }
                                 if (response.getErrors() != null) {
@@ -125,9 +125,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                     onSuccessCallback.run();
                                     onSuccessCallback = null;
                                 }
-                                RoomKindUpdateByIdMutation.Update_ROOMKIND update_roomkind = response.getData().update_ROOMKIND();
-                                if (update_roomkind != null) {
-                                    Log.d("RoomKindViewModel Update Response Debug", update_roomkind.toString());
+                                RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
+                                if (update_room_kind != null) {
+                                    Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
                                 }
                             }
                             if (response.getErrors() != null) {
@@ -186,9 +186,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                             onSuccessCallback.run();
                                             onSuccessCallback = null;
                                         }
-                                        RoomKindUpdateByIdMutation.Update_ROOMKIND update_roomkind = response.getData().update_ROOMKIND();
-                                        if (update_roomkind != null) {
-                                            Log.d("RoomKindViewModel Update Response Debug", update_roomkind.toString());
+                                        RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
+                                        if (update_room_kind != null) {
+                                            Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
                                         }
                                     }
                                     if (response.getErrors() != null) {

@@ -18,8 +18,6 @@ import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormAmountByGuestIdQuery;
-import com.example.hasura.RentalFormUpdateBillIdAndIsResolvedByIdMutation;
-import com.example.hasura.RoomUpdateIsOccupiedByIdMutation;
 import com.example.hotelmanagement.observables.BillObservable;
 
 import java.time.LocalDateTime;
@@ -104,67 +102,12 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
+                            if (onSuccessCallback != null) {
+                                onSuccessCallback.run();
+                                onSuccessCallback = null;
+                            }
                             BillInsertMutation.Insert_BILL insert_bill = response.getData().insert_BILL();
                             if (insert_bill != null) {
-                                RentalFormUpdateBillIdAndIsResolvedByIdMutation rentalFormUpdateBillIdAndIsResolvedByIdMutation =
-                                        RentalFormUpdateBillIdAndIsResolvedByIdMutation
-                                                .builder()
-                                                .isResolved(true)
-                                                .billId(insert_bill.returning().get(0).id())
-                                                .guestId(insert_bill.returning().get(0).guest_id())
-                                                .build();
-                                Hasura.apolloClient.mutate(rentalFormUpdateBillIdAndIsResolvedByIdMutation)
-                                        .enqueue(new ApolloCall.Callback<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data>() {
-                                            @Override
-                                            public void onResponse(@NonNull Response<RentalFormUpdateBillIdAndIsResolvedByIdMutation.Data> response) {
-                                                if (response.getData() != null) {
-                                                    RentalFormUpdateBillIdAndIsResolvedByIdMutation.Update_RENTALFORM update_rentalform = response.getData().update_RENTALFORM();
-                                                    if (update_rentalform != null) {
-                                                        update_rentalform.returning().forEach(item -> {
-                                                            RoomUpdateIsOccupiedByIdMutation roomUpdateIsOccupiedByIdMutation
-                                                                    = RoomUpdateIsOccupiedByIdMutation
-                                                                    .builder()
-                                                                    .isOccupied(false)
-                                                                    .id(item.room_id())
-                                                                    .build();
-                                                            Hasura.apolloClient.mutate(roomUpdateIsOccupiedByIdMutation)
-                                                                    .enqueue(new ApolloCall.Callback<RoomUpdateIsOccupiedByIdMutation.Data>() {
-                                                                        @Override
-                                                                        public void onResponse(@NonNull Response<RoomUpdateIsOccupiedByIdMutation.Data> response) {
-                                                                            if (response.getData() != null) {
-                                                                                RoomUpdateIsOccupiedByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
-                                                                                if (update_room != null) {
-                                                                                    Log.d("BillViewModel Room Update IsOccupied By Id Response Debug", update_room.toString());
-                                                                                }
-                                                                            }
-                                                                            if (response.getErrors() != null) {
-                                                                                response.getErrors().forEach(error -> Log.e("BillViewModel Room Update IsOccupied By Id Error", error.toString()));
-                                                                            }
-                                                                        }
-
-                                                                        @Override
-                                                                        public void onFailure(@NonNull ApolloException e) {
-                                                                            e.printStackTrace();
-                                                                        }
-                                                                    });
-                                                        });
-                                                        Log.d("BillViewModel RentalForm Update BillId And IsResolved By Id Response Debug", update_rentalform.toString());
-                                                    }
-                                                }
-                                                if (response.getErrors() != null) {
-                                                    response.getErrors().forEach(error -> Log.e("BillViewModel RentalForm Update BillId And IsResolved By Id Error", error.toString()));
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onFailure(@NonNull ApolloException e) {
-                                                e.printStackTrace();
-                                            }
-                                        });
-                                if (onSuccessCallback != null) {
-                                    onSuccessCallback.run();
-                                    onSuccessCallback = null;
-                                }
                                 Log.d("BillViewModel Insert Response Debug", insert_bill.toString());
                             }
                         }
