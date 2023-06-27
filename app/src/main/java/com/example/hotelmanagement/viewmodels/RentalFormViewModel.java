@@ -39,10 +39,12 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
-                            GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
-                            rentalFormObservable.setName(guest.name());
-                            rentalFormObservable.setGuestId(guest.id());
-                            Log.d("RentalFormViewModel Find GuestId Response Debug", guest.toString());
+                            if (!response.getData().GUEST().isEmpty()) {
+                                GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
+                                rentalFormObservable.setName(guest.name());
+                                rentalFormObservable.setGuestId(guest.id());
+                                Log.d("RentalFormViewModel Find GuestId Response Debug", guest.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find GuestId Error", error.toString()));
@@ -66,25 +68,27 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            RoomPriceByIdQuery.ROOM room = response.getData().ROOM().get(0);
-                            RoomPriceByIdQuery.ROOMKIND roomkind = room.ROOMKIND();
-                            if (roomkind != null) {
-                                Double price = roomkind.price();
-                                Double surchargePercentage = roomkind.surcharge_percentage();
-                                Integer capacity = roomkind.capacity();
-                                Integer numberOfGuests = rentalFormObservable.getNumberOfGuests();
-                                if (price != null && surchargePercentage != null && capacity != null && numberOfGuests != null) {
-                                    Integer differences = numberOfGuests - capacity;
-                                    if (differences < 0) {
-                                        differences = 0;
+                            if (!response.getData().ROOM().isEmpty()) {
+                                RoomPriceByIdQuery.ROOM room = response.getData().ROOM().get(0);
+                                RoomPriceByIdQuery.ROOMKIND room_kind = room.ROOMKIND();
+                                if (room_kind != null) {
+                                    Double price = room_kind.price();
+                                    Double surchargePercentage = room_kind.surcharge_percentage();
+                                    Integer capacity = room_kind.capacity();
+                                    Integer numberOfGuests = rentalFormObservable.getNumberOfGuests();
+                                    if (price != null && surchargePercentage != null && capacity != null && numberOfGuests != null) {
+                                        Integer differences = numberOfGuests - capacity;
+                                        if (differences < 0) {
+                                            differences = 0;
+                                        }
+                                        Double pricePerDay = price + surchargePercentage / 100 * price * differences;
+                                        rentalFormObservable.setPricePerDay(pricePerDay);
+                                        rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                                        Log.d("RoomKind Debug", "Price: " + price + ", Capacity: " + capacity + ", SurchargePercentage: " + surchargePercentage + ", NumberOfGuests: " + numberOfGuests);
                                     }
-                                    Double pricePerDay = price + surchargePercentage / 100 * price * differences;
-                                    rentalFormObservable.setPricePerDay(pricePerDay);
-                                    rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
-                                    Log.d("RoomKind Debug", "Price: " + price + ", Capacity: " + capacity + ", SurchargePercentage: " + surchargePercentage + ", NumberOfGuests: " + numberOfGuests);
                                 }
+                                Log.d("RentalFormViewModel Find Price Response Debug", room.toString());
                             }
-                            Log.d("RentalFormViewModel Find Price Response Debug", room.toString());
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Price Error", error.toString()));
@@ -199,10 +203,12 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
-                            rentalFormObservable.setName(guest.name());
-                            rentalFormObservable.setIdNumber(guest.id_number());
-                            Log.d("RentalFormViewModel Find Guest Response Debug", guest.toString());
+                            if (!response.getData().GUEST().isEmpty()) {
+                                GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
+                                rentalFormObservable.setName(guest.name());
+                                rentalFormObservable.setIdNumber(guest.id_number());
+                                Log.d("RentalFormViewModel Find Guest Response Debug", guest.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Guest Error", error.toString()));

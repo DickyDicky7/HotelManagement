@@ -40,10 +40,12 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                         if (response.getData() != null) {
-                            GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
-                            billObservable.setName(guest.name());
-                            billObservable.setGuestId(guest.id());
-                            Log.d("BillViewModel Find GuestId Response Debug", guest.toString());
+                            if (!response.getData().GUEST().isEmpty()) {
+                                GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
+                                billObservable.setName(guest.name());
+                                billObservable.setGuestId(guest.id());
+                                Log.d("BillViewModel Find GuestId Response Debug", guest.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("BillViewModel Find GuestId Error", error.toString()));
@@ -179,10 +181,12 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
-                            billObservable.setName(guest.name());
-                            billObservable.setIdNumber(guest.id_number());
-                            Log.d("BillViewModel Find Guest Response Debug", guest.toString());
+                            if (!response.getData().GUEST().isEmpty()) {
+                                GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
+                                billObservable.setName(guest.name());
+                                billObservable.setIdNumber(guest.id_number());
+                                Log.d("BillViewModel Find Guest Response Debug", guest.toString());
+                            }
                         }
                         if (response.getErrors() != null) {
                             response.getErrors().forEach(error -> Log.e("BillViewModel Find Guest Error", error.toString()));
