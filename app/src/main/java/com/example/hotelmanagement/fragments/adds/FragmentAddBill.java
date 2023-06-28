@@ -76,8 +76,8 @@ public class FragmentAddBill extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddBill Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentAddBill Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -88,8 +88,8 @@ public class FragmentAddBill extends Fragment {
                             billObservable = new BillObservable();
                             binding.setBillObservable(billObservable);
                             billObservable.setIsPaid(false);
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddBill Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentAddBill Success", "Added successfully");
                         });
                     }
                 };

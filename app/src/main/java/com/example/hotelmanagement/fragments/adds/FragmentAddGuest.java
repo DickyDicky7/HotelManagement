@@ -79,8 +79,8 @@ public class FragmentAddGuest extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddGuest Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentAddGuest Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -91,8 +91,8 @@ public class FragmentAddGuest extends Fragment {
                             guestObservable = new GuestObservable();
                             binding.setGuestObservable(guestObservable);
                             guestObservable.setGuestKindId(guestKindObservables.get(binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddGuest Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentAddGuest Success", "Added successfully");
                         });
                     }
                 };

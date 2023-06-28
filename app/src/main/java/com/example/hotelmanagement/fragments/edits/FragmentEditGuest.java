@@ -153,8 +153,8 @@ public class FragmentEditGuest extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditGuest Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentEditGuest Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -162,8 +162,8 @@ public class FragmentEditGuest extends Fragment {
                 guestViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditGuest Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentEditGuest Success", "Updated successfully");
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }

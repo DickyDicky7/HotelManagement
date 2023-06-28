@@ -178,13 +178,13 @@ public class FragmentEditRentalForm extends Fragment {
 
         binding.edtStartDate.setOnClickListener(_view_ -> {
             Calendar currentDate = Calendar.getInstance();
-            int y = currentDate.get(Calendar.YEAR);
-            int m = currentDate.get(Calendar.MONTH);
-            int d = currentDate.get(Calendar.DAY_OF_MONTH);
+            int year = currentDate.get(Calendar.YEAR);
+            int month = currentDate.get(Calendar.MONTH);
+            int dayOfMonth = currentDate.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(), (datePicker, selectedYear, selectedMonth, selectedDay) -> {
-                LocalDate startDate = LocalDate.of(selectedYear, selectedMonth, selectedDay);
+                LocalDate startDate = LocalDate.of(selectedYear, selectedMonth + 1, selectedDay);
                 usedRentalFormObservable.setStartDateString(startDate.toString());
-            }, y, m, d);
+            }, year, month, dayOfMonth);
             startDatePicker.setTitle("Select Start Date");
             startDatePicker.show();
         });
@@ -270,8 +270,8 @@ public class FragmentEditRentalForm extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRentalForm Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentEditRentalForm Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -279,8 +279,8 @@ public class FragmentEditRentalForm extends Fragment {
                 rentalFormViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRentalForm Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentEditRentalForm Success", "Updated successfully");
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }

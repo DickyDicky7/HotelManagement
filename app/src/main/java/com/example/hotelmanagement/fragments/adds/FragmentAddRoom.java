@@ -79,8 +79,8 @@ public class FragmentAddRoom extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoom Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentAddRoom Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -92,8 +92,8 @@ public class FragmentAddRoom extends Fragment {
                             binding.setRoomObservable(roomObservable);
                             roomObservable.setRoomKindId(roomKindObservables.get(binding.spinner.getSelectedItemPosition()).getId());
                             roomObservable.setIsOccupied(false);
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoom Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentAddRoom Success", "Added successfully");
                         });
                     }
                 };

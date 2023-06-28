@@ -124,8 +124,8 @@ public class FragmentEditBill extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditBill Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentEditBill Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -133,8 +133,8 @@ public class FragmentEditBill extends Fragment {
                 billViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditBill Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentEditBill Success", "Updated successfully");
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }

@@ -62,8 +62,8 @@ public class FragmentAddRoomKind extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoomKind Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentAddRoomKind Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -83,8 +83,8 @@ public class FragmentAddRoomKind extends Fragment {
                             binding.edtImage.setColorFilter(Color.WHITE);
                             Glide.with(this).load(AppCompatResources.getDrawable(requireContext(),
                                     R.drawable.upload_image)).centerInside().into(binding.edtImage);
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoomKind Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentAddRoomKind Success", "Added successfully");
                         });
                     }
                 };

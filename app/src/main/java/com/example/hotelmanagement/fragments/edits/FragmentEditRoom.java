@@ -154,8 +154,8 @@ public class FragmentEditRoom extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
-                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRoom Failure");
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentEditRoom Failure", apolloErrors.get(0).getMessage());
                             }
                         });
                     }
@@ -163,8 +163,8 @@ public class FragmentEditRoom extends Fragment {
                 roomViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
-                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRoom Success");
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentEditRoom Success", "Updated successfully");
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }
