@@ -157,9 +157,11 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
-                    usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
-                    usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
+                if (!usedRentalFormObservable.getIsResolved()) {
+                    if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
+                        usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
+                        usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
+                    }
                 }
             }
         });
@@ -190,9 +192,11 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
-                    usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
-                    usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
+                if (!usedRentalFormObservable.getIsResolved()) {
+                    if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
+                        usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
+                        usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
+                    }
                 }
             }
         });
@@ -210,26 +214,30 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (usedRentalFormObservable.getNumberOfGuestsString() == null ||
-                        usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
-                    return;
+                if (!usedRentalFormObservable.getIsResolved()) {
+                    if (usedRentalFormObservable.getNumberOfGuestsString() == null ||
+                            usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
+                        return;
+                    }
+                    rentalFormViewModel.findPrice(usedRentalFormObservable);
                 }
-                rentalFormViewModel.findPrice(usedRentalFormObservable);
             }
         });
 
         binding.spinnerChooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
-                if (roomObservables != null) {
-                    roomObservables = roomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
-                    roomObservables.add(roomViewModel.getObservable(usedRentalFormObservable.getRoomId()));
-                    usedRentalFormObservable.setRoomId(roomObservables.get(i).getId());
-                    if (usedRentalFormObservable.getNumberOfGuestsString() == null || usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
-                        return;
+                if (!usedRentalFormObservable.getIsResolved()) {
+                    List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
+                    if (roomObservables != null) {
+                        roomObservables = roomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
+                        roomObservables.add(roomViewModel.getObservable(usedRentalFormObservable.getRoomId()));
+                        usedRentalFormObservable.setRoomId(roomObservables.get(i).getId());
+                        if (usedRentalFormObservable.getNumberOfGuestsString() == null || usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
+                            return;
+                        }
+                        rentalFormViewModel.findPrice(usedRentalFormObservable);
                     }
-                    rentalFormViewModel.findPrice(usedRentalFormObservable);
                 }
             }
 
