@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -23,6 +24,11 @@ public class SuccessDialogFragment extends DialogFragment {
         this.message = message;
     }
 
+    public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message) {
+        SuccessDialogFragment successDialogFragment = new SuccessDialogFragment(message);
+        successDialogFragment.showNow(fragmentManager, tag);
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -32,7 +38,7 @@ public class SuccessDialogFragment extends DialogFragment {
         AlertDialog alertDialog = builder.create();
         binding.notiSuccessMsg.setText(message);
         binding.notiSuccessOK.setOnClickListener(view -> alertDialog.cancel());
-        binding.notiSuccessBtnclose.setOnClickListener(view -> alertDialog.cancel());
+        binding.notiSuccessBtnClose.setOnClickListener(view -> alertDialog.cancel());
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         YoYo.with(Techniques.Bounce).duration(1000).playOn(alertDialog.getWindow().getDecorView());
         return alertDialog;

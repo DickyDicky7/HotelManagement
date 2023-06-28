@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/noti_fail_OK"
+            android:id="@+id/noti_failure_OK"
             style="@style/txtSolidRounded"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
@@ -36,11 +36,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_fail_msgbox"
+            app:layout_constraintTop_toBottomOf="@+id/noti_failure_msg_box"
             tools:text="@string/lbl_ok" />
 
         <ImageView
-            android:id="@+id/noti_fail_symbol"
+            android:id="@+id/noti_failure_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -50,7 +50,7 @@
             app:srcCompat="@drawable/img_close_pink_500" />
 
         <ImageView
-            android:id="@+id/noti_fail_btnclose"
+            android:id="@+id/noti_failure_btn_close"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_marginTop="20dp"
@@ -65,16 +65,16 @@
             app:srcCompat="@drawable/img_close" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/noti_fail_msgbox"
+            android:id="@+id/noti_failure_msg_box"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_fail_symbol">
+            app:layout_constraintTop_toBottomOf="@+id/noti_failure_icon">
 
             <TextView
-                android:id="@+id/noti_fail_msg"
+                android:id="@+id/noti_failure_msg"
                 style="@style/txtIntermedium16_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -91,12 +91,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noti_fail_title"
+                app:layout_constraintTop_toBottomOf="@+id/noti_failure_title"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="@string/noti_fail_msg" />
 
             <TextView
-                android:id="@+id/noti_fail_title"
+                android:id="@+id/noti_failure_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/outfit"

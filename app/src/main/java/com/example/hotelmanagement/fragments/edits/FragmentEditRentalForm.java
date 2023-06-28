@@ -146,6 +146,14 @@ public class FragmentEditRentalForm extends Fragment {
             binding.spinnerChooseRoom.setSelection(arrayAdapter.getPosition(roomViewModel.getRoomName(usedRentalFormObservable.getRoomId())));
         });
 
+        binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
+            if (!b) {
+                if (!copyRentalFormObservable.getIsResolved()) {
+                    rentalFormViewModel.findGuestId(usedRentalFormObservable);
+                }
+            }
+        });
+
         binding.edtRentalDays.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

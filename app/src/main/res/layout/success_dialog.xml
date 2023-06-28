@@ -37,11 +37,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_success_msgbox"
+            app:layout_constraintTop_toBottomOf="@+id/noti_success_msg_box"
             tools:text="@string/lbl_ok" />
 
         <ImageView
-            android:id="@+id/noti_success_symbol"
+            android:id="@+id/noti_success_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -54,13 +54,13 @@
             tools:src="@drawable/img_checkmark_green_600" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/noti_success_msgbox"
+            android:id="@+id/noti_success_msg_box"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_success_symbol">
+            app:layout_constraintTop_toBottomOf="@+id/noti_success_icon">
 
             <TextView
                 android:id="@+id/noti_success_msg"
@@ -101,7 +101,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/noti_success_btnclose"
+            android:id="@+id/noti_success_btn_close"
             android:layout_width="30sp"
             android:layout_height="30sp"
             android:layout_marginTop="20dp"
