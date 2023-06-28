@@ -38,30 +38,22 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     @Override
                     public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             RoomInsertMutation.Insert_ROOM insert_room = response.getData().insert_ROOM();
                             if (insert_room != null) {
                                 Log.d("RoomViewModel Insert Response Debug", insert_room.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RoomViewModel Insert Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });
@@ -82,30 +74,22 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     @Override
                     public void onResponse(@NonNull Response<RoomUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             RoomUpdateByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
                             if (update_room != null) {
                                 Log.d("RoomViewModel Update Response Debug", update_room.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RoomViewModel Update Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });

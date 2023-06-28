@@ -21,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 
@@ -118,6 +119,16 @@ public class FragmentEditBill extends Fragment {
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
+                billViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
+                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditBill Failure");
+                            }
+                        });
+                    }
+                };
                 billViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());

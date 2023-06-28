@@ -22,6 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.bumptech.glide.Glide;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
@@ -56,6 +57,16 @@ public class FragmentAddRoomKind extends Fragment {
         binding.setRoomKindObservable(roomKindObservable);
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
+                roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
+                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoomKind Failure");
+                            }
+                        });
+                    }
+                };
                 roomKindViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {

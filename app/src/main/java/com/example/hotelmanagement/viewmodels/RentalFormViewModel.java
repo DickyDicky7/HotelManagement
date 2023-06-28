@@ -120,30 +120,22 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             RentalFormInsertMutation.Insert_RENTALFORM insert_rental_form = response.getData().insert_RENTALFORM();
                             if (insert_rental_form != null) {
                                 Log.d("RentalFormViewModel Insert Response Debug", insert_rental_form.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Insert Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });
@@ -168,30 +160,22 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RentalFormUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             RentalFormUpdateByIdMutation.Update_RENTALFORM update_rental_form = response.getData().update_RENTALFORM();
                             if (update_rental_form != null) {
                                 Log.d("RentalViewModel Update Response Debug", update_rental_form.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Update Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });

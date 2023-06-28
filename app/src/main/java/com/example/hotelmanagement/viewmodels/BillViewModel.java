@@ -104,30 +104,22 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             BillInsertMutation.Insert_BILL insert_bill = response.getData().insert_BILL();
                             if (insert_bill != null) {
                                 Log.d("BillViewModel Insert Response Debug", insert_bill.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("BillViewModel Insert Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });
@@ -146,30 +138,22 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                     @Override
                     public void onResponse(@NonNull Response<BillUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             BillUpdateByIdMutation.Update_BILL update_bill = response.getData().update_BILL();
                             if (update_bill != null) {
                                 Log.d("BillViewModel Update Response Debug", update_bill.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("BillViewModel Update Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });

@@ -29,6 +29,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
@@ -256,6 +257,16 @@ public class FragmentEditRentalForm extends Fragment {
                     Toast.makeText(requireActivity(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                rentalFormViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
+                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRentalForm Failure");
+                            }
+                        });
+                    }
+                };
                 rentalFormViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());

@@ -62,30 +62,22 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             @Override
                             public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
                                 if (response.getData() != null) {
-                                    if (onSuccessCallback != null) {
-                                        onSuccessCallback.run();
-                                        onSuccessCallback = null;
-                                    }
+                                    onSuccessHandler();
                                     RoomKindInsertMutation.Insert_ROOMKIND insert_room_kind = response.getData().insert_ROOMKIND();
                                     if (insert_room_kind != null) {
                                         Log.d("RoomKindViewModel Insert Response Debug", insert_room_kind.toString());
                                     }
                                 }
                                 if (response.getErrors() != null) {
-                                    if (onFailureCallback != null) {
-                                        onFailureCallback.run();
-                                        onFailureCallback = null;
-                                    }
+                                    on3ErrorsHandler(response.getErrors(), null, null);
+                                    onFailureHandler();
                                     response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
                                 }
                             }
 
                             @Override
                             public void onFailure(@NonNull ApolloException e) {
-                                if (onFailureCallback != null) {
-                                    onFailureCallback.run();
-                                    onFailureCallback = null;
-                                }
+                                onFailureHandler();
                                 e.printStackTrace();
                             }
                         });
@@ -121,30 +113,22 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         @Override
                         public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
                             if (response.getData() != null) {
-                                if (onSuccessCallback != null) {
-                                    onSuccessCallback.run();
-                                    onSuccessCallback = null;
-                                }
+                                onSuccessHandler();
                                 RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
                                 if (update_room_kind != null) {
                                     Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
                                 }
                             }
                             if (response.getErrors() != null) {
-                                if (onFailureCallback != null) {
-                                    onFailureCallback.run();
-                                    onFailureCallback = null;
-                                }
+                                on3ErrorsHandler(response.getErrors(), null, null);
+                                onFailureHandler();
                                 response.getErrors().forEach(error -> Log.e("RoomKindViewModel Update Error", error.toString()));
                             }
                         }
 
                         @Override
                         public void onFailure(@NonNull ApolloException e) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            onFailureHandler();
                             e.printStackTrace();
                         }
                     });
@@ -182,30 +166,22 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                 @Override
                                 public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
                                     if (response.getData() != null) {
-                                        if (onSuccessCallback != null) {
-                                            onSuccessCallback.run();
-                                            onSuccessCallback = null;
-                                        }
+                                        onSuccessHandler();
                                         RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
                                         if (update_room_kind != null) {
                                             Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
                                         }
                                     }
                                     if (response.getErrors() != null) {
-                                        if (onFailureCallback != null) {
-                                            onFailureCallback.run();
-                                            onFailureCallback = null;
-                                        }
+                                        on3ErrorsHandler(response.getErrors(), null, null);
+                                        onFailureHandler();
                                         response.getErrors().forEach(error -> Log.e("RoomKindViewModel Update Error", error.toString()));
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(@NonNull ApolloException e) {
-                                    if (onFailureCallback != null) {
-                                        onFailureCallback.run();
-                                        onFailureCallback = null;
-                                    }
+                                    onFailureHandler();
                                     e.printStackTrace();
                                 }
                             });

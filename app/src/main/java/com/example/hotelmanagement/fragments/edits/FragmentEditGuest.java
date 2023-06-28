@@ -23,6 +23,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditGuestBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
@@ -147,6 +148,16 @@ public class FragmentEditGuest extends Fragment {
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
+                guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
+                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentEditGuest Failure");
+                            }
+                        });
+                    }
+                };
                 guestViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());

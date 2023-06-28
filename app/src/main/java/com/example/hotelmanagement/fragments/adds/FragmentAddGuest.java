@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddGuestBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
@@ -73,6 +74,16 @@ public class FragmentAddGuest extends Fragment {
 
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
+                guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment failureDialogFragment = new FailureDialogFragment(apolloErrors.get(0).getMessage());
+                                failureDialogFragment.showNow(getParentFragmentManager(), "FragmentAddGuest Failure");
+                            }
+                        });
+                    }
+                };
                 guestViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {

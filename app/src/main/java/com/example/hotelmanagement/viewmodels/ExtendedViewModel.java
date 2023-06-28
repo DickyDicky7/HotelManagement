@@ -9,6 +9,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.apollographql.apollo.api.Error;
+import com.apollographql.apollo.exception.ApolloException;
+import com.cloudinary.android.callback.ErrorInfo;
 import com.example.hotelmanagement.observables.ExtendedObservable;
 
 import java.lang.reflect.Field;
@@ -17,6 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
@@ -24,6 +29,7 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
     protected final List<Runnable> subscriptionObservers;
     public Runnable onSuccessCallback;
     public Runnable onFailureCallback;
+    public Function<List<Error>, Function<ApolloException, Consumer<ErrorInfo>>> on3ErrorsCallback;
 
     public ExtendedViewModel() {
         super();
@@ -64,6 +70,27 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
 
     public void resetModelState() {
         modelState.setValue(modelState.getValue());
+    }
+
+    public void onSuccessHandler() {
+        if (onSuccessCallback != null) {
+            onSuccessCallback.run();
+            onSuccessCallback = null;
+        }
+    }
+
+    public void onFailureHandler() {
+        if (onFailureCallback != null) {
+            onFailureCallback.run();
+            onFailureCallback = null;
+        }
+    }
+
+    public void on3ErrorsHandler(@Nullable List<Error> apolloErrors, @Nullable ApolloException apolloException, @Nullable ErrorInfo cloudinaryErrorInfo) {
+        if (on3ErrorsCallback != null) {
+            on3ErrorsCallback.apply(apolloErrors).apply(apolloException).accept(cloudinaryErrorInfo);
+            on3ErrorsCallback = null;
+        }
     }
 
     @Nullable

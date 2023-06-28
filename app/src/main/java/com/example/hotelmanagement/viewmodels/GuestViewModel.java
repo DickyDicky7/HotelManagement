@@ -37,30 +37,22 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             GuestInsertMutation.Insert_GUEST insert_guest = response.getData().insert_GUEST();
                             if (insert_guest != null) {
                                 Log.d("GuestViewModel Insert Response Debug", insert_guest.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("GuestViewModel Insert Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });
@@ -81,30 +73,22 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     @Override
                     public void onResponse(@NonNull Response<GuestUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
-                            if (onSuccessCallback != null) {
-                                onSuccessCallback.run();
-                                onSuccessCallback = null;
-                            }
+                            onSuccessHandler();
                             GuestUpdateByIdMutation.Update_GUEST update_guest = response.getData().update_GUEST();
                             if (update_guest != null) {
                                 Log.d("GuestViewModel Update Response Debug", update_guest.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            if (onFailureCallback != null) {
-                                onFailureCallback.run();
-                                onFailureCallback = null;
-                            }
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("GuestViewModel Update Error", error.toString()));
                         }
                     }
 
                     @Override
                     public void onFailure(@NonNull ApolloException e) {
-                        if (onFailureCallback != null) {
-                            onFailureCallback.run();
-                            onFailureCallback = null;
-                        }
+                        onFailureHandler();
                         e.printStackTrace();
                     }
                 });
