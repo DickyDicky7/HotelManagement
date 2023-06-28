@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
@@ -144,7 +145,11 @@ public class FragmentEditRoomKind extends Fragment {
                 };
                 roomKindViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                        requireActivity().runOnUiThread(() -> {
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRoomKind Success");
+                            NavHostFragment.findNavController(this).popBackStack();
+                        });
                     }
                 };
                 roomKindViewModel.onFailureCallback = null;

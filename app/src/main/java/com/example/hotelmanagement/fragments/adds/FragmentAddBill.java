@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 
@@ -87,6 +88,8 @@ public class FragmentAddBill extends Fragment {
                             billObservable = new BillObservable();
                             binding.setBillObservable(billObservable);
                             billObservable.setIsPaid(false);
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddBill Success");
                         });
                     }
                 };

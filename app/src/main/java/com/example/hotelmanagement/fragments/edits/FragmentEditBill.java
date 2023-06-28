@@ -22,6 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 
@@ -131,7 +132,11 @@ public class FragmentEditBill extends Fragment {
                 };
                 billViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                        requireActivity().runOnUiThread(() -> {
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditBill Success");
+                            NavHostFragment.findNavController(this).popBackStack();
+                        });
                     }
                 };
                 billViewModel.onFailureCallback = null;

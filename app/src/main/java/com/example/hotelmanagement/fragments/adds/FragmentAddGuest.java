@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddGuestBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
@@ -90,6 +91,8 @@ public class FragmentAddGuest extends Fragment {
                             guestObservable = new GuestObservable();
                             binding.setGuestObservable(guestObservable);
                             guestObservable.setGuestKindId(guestKindObservables.get(binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddGuest Success");
                         });
                     }
                 };

@@ -30,6 +30,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
@@ -269,7 +270,11 @@ public class FragmentEditRentalForm extends Fragment {
                 };
                 rentalFormViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                        requireActivity().runOnUiThread(() -> {
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRentalForm Success");
+                            NavHostFragment.findNavController(this).popBackStack();
+                        });
                     }
                 };
                 rentalFormViewModel.onFailureCallback = null;

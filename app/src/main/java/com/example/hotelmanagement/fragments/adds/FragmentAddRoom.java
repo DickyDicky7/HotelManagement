@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
@@ -91,6 +92,8 @@ public class FragmentAddRoom extends Fragment {
                             binding.setRoomObservable(roomObservable);
                             roomObservable.setRoomKindId(roomKindObservables.get(binding.spinner.getSelectedItemPosition()).getId());
                             roomObservable.setIsOccupied(false);
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoom Success");
                         });
                     }
                 };

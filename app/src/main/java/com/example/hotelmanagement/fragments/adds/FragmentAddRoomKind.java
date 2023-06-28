@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
@@ -82,6 +83,8 @@ public class FragmentAddRoomKind extends Fragment {
                             binding.edtImage.setColorFilter(Color.WHITE);
                             Glide.with(this).load(AppCompatResources.getDrawable(requireContext(),
                                     R.drawable.upload_image)).centerInside().into(binding.edtImage);
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Added successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentAddRoomKind Success");
                         });
                     }
                 };

@@ -24,6 +24,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
@@ -161,7 +162,11 @@ public class FragmentEditRoom extends Fragment {
                 };
                 roomViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> NavHostFragment.findNavController(this).popBackStack());
+                        requireActivity().runOnUiThread(() -> {
+                            SuccessDialogFragment successDialogFragment = new SuccessDialogFragment("Updated successfully");
+                            successDialogFragment.showNow(getParentFragmentManager(), "FragmentEditRoom Success");
+                            NavHostFragment.findNavController(this).popBackStack();
+                        });
                     }
                 };
                 roomViewModel.onFailureCallback = null;
