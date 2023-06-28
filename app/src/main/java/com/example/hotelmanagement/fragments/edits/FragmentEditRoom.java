@@ -110,11 +110,12 @@ public class FragmentEditRoom extends Fragment {
         roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         usedRoomObservable = roomViewModel.getObservable(requireArguments().getInt("id"));
         if (usedRoomObservable != null) {
+            usedRoomObservable = usedRoomObservable.customizedClone();
             copyRoomObservable = usedRoomObservable.customizedClone();
             binding.setRoomObservable(usedRoomObservable);
         } else {
+            usedRoomObservable = new RoomObservable();
             copyRoomObservable = null;
-            copyRoomObservable = new RoomObservable();
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
@@ -153,7 +154,7 @@ public class FragmentEditRoom extends Fragment {
                     }
                 };
                 roomViewModel.onFailureCallback = null;
-                if (roomViewModel.checkObservable(usedRoomObservable, requireContext())) {
+                if (roomViewModel.checkObservable(usedRoomObservable, requireContext(), "note", "description")) {
                     if (usedRoomObservable.getNote() != null && usedRoomObservable.getNote().equals("")) {
                         usedRoomObservable.setNote(null);
                     }

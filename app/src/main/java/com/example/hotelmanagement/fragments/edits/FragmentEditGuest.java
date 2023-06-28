@@ -109,11 +109,12 @@ public class FragmentEditGuest extends Fragment {
         guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
         usedGuestObservable = guestViewModel.getObservable(requireArguments().getInt("id"));
         if (usedGuestObservable != null) {
+            usedGuestObservable = usedGuestObservable.customizedClone();
             copyGuestObservable = usedGuestObservable.customizedClone();
             binding.setGuestObservable(usedGuestObservable);
         } else {
-            copyGuestObservable = null;
             usedGuestObservable = new GuestObservable();
+            copyGuestObservable = null;
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());

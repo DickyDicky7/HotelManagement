@@ -62,9 +62,20 @@ public class FragmentAddRentalForm extends Fragment {
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
+
+            binding.spinnerChooseRoom.setSelection(0, true);
+            List<RoomObservable> isOccupiedFalseRoomObservables = updatedRoomObservables.stream().filter
+                    (roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
+            if (!isOccupiedFalseRoomObservables.isEmpty()) {
+                RoomObservable selectedRoomObservable = isOccupiedFalseRoomObservables.get(binding.spinnerChooseRoom.getSelectedItemPosition());
+                rentalFormObservable.setRoomId(selectedRoomObservable.getId());
+            }
+
         });
+
         binding.radioResolved.setEnabled(false);
         rentalFormObservable.setIsResolved(false);
+
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
                 rentalFormViewModel.findGuestId(rentalFormObservable);
@@ -175,17 +186,16 @@ public class FragmentAddRentalForm extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             rentalFormObservable = new RentalFormObservable();
-                            binding.setRentalFormObservable(rentalFormObservable);
-                            List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue().stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
-                            rentalFormObservable.setRoomId(roomObservables.get(binding.spinnerChooseRoom.getSelectedItemPosition()).getId());
                             rentalFormObservable.setIsResolved(false);
+                            binding.radioResolved.setEnabled(false);
+                            binding.setRentalFormObservable(rentalFormObservable);
                         });
                     }
                 };
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(rentalFormObservable, requireContext(), "billId")) {
                     rentalFormObservable.setBillId(null);
-                    //rentalFormObservable.setIsResolved(false);
+                    rentalFormObservable.setIsResolved(false);
                     rentalFormViewModel.insert(rentalFormObservable);
                 }
             } catch (IllegalAccessException e) {

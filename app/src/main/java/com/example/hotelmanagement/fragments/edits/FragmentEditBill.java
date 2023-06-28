@@ -103,13 +103,14 @@ public class FragmentEditBill extends Fragment {
         billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
         usedBillObservable = billViewModel.getObservable(requireArguments().getInt("id"));
         if (usedBillObservable != null) {
+            usedBillObservable = usedBillObservable.customizedClone();
             copyBillObservable = usedBillObservable.customizedClone();
             binding.setBillObservable(usedBillObservable);
             billViewModel.findGuest(usedBillObservable);
             billViewModel.findGuest(copyBillObservable);
         } else {
-            copyBillObservable = null;
             usedBillObservable = new BillObservable();
+            copyBillObservable = null;
         }
 
         watcher.start();

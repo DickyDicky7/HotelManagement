@@ -123,13 +123,14 @@ public class FragmentEditRentalForm extends Fragment {
         rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
         usedRentalFormObservable = rentalFormViewModel.getObservable(requireArguments().getInt("id"));
         if (usedRentalFormObservable != null) {
-            binding.setRentalFormObservable(usedRentalFormObservable);
+            usedRentalFormObservable = usedRentalFormObservable.customizedClone();
             copyRentalFormObservable = usedRentalFormObservable.customizedClone();
+            binding.setRentalFormObservable(usedRentalFormObservable);
             rentalFormViewModel.findGuest(usedRentalFormObservable);
             rentalFormViewModel.findGuest(copyRentalFormObservable);
         } else {
-            copyRentalFormObservable = null;
             usedRentalFormObservable = new RentalFormObservable();
+            copyRentalFormObservable = null;
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());

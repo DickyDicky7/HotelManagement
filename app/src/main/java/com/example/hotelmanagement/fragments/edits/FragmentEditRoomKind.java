@@ -118,8 +118,9 @@ public class FragmentEditRoomKind extends Fragment {
         roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         usedRoomKindObservable = roomKindViewModel.getObservable(requireArguments().getInt("id"));
         if (usedRoomKindObservable != null) {
-            binding.setRoomKindObservable(usedRoomKindObservable);
+            usedRoomKindObservable = usedRoomKindObservable.customizedClone();
             copyRoomKindObservable = usedRoomKindObservable.customizedClone();
+            binding.setRoomKindObservable(usedRoomKindObservable);
         } else {
             usedRoomKindObservable = new RoomKindObservable();
             copyRoomKindObservable = null;
