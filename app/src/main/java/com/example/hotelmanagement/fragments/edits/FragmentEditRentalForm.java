@@ -159,7 +159,7 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!usedRentalFormObservable.getIsResolved()) {
+                if (!copyRentalFormObservable.getIsResolved()) {
                     if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
                         usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
                         usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
@@ -194,7 +194,7 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!usedRentalFormObservable.getIsResolved()) {
+                if (!copyRentalFormObservable.getIsResolved()) {
                     if (usedRentalFormObservable.getPricePerDay() != null && usedRentalFormObservable.getRentalDays() != null) {
                         usedRentalFormObservable.setAmount(usedRentalFormObservable.getPricePerDay() * usedRentalFormObservable.getRentalDays());
                         usedRentalFormObservable.notifyPropertyChanged(BR.amountString);
@@ -216,7 +216,7 @@ public class FragmentEditRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!usedRentalFormObservable.getIsResolved()) {
+                if (!copyRentalFormObservable.getIsResolved()) {
                     if (usedRentalFormObservable.getNumberOfGuestsString() == null ||
                             usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
                         return;
@@ -229,7 +229,7 @@ public class FragmentEditRentalForm extends Fragment {
         binding.spinnerChooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (!usedRentalFormObservable.getIsResolved()) {
+                if (!copyRentalFormObservable.getIsResolved()) {
                     List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
                     if (roomObservables != null) {
                         roomObservables = roomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).collect(Collectors.toList());
@@ -299,7 +299,7 @@ public class FragmentEditRentalForm extends Fragment {
             }
         });
 
-        if (usedRentalFormObservable.getIsResolved() != null && usedRentalFormObservable.getIsResolved()) {
+        if (copyRentalFormObservable.getIsResolved() != null && copyRentalFormObservable.getIsResolved()) {
             try {
                 binding.radioResolved.setEnabled(false);
                 binding.radioNotResolved.setEnabled(false);
