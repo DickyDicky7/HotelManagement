@@ -23,14 +23,20 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RentalFormAdapter;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialog.WarningDialogFragment;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
+
+import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRentalForms extends Fragment implements RentalFormAdapter.RentalFormListener {
 
+    private RentalFormViewModel rentalFormViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRentalFormsBinding binding;
@@ -80,7 +86,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
         RentalFormAdapter rentalFormAdapter = new RentalFormAdapter(requireActivity(), this);
         binding.rentalFormsRecyclerView.setAdapter(new ScaleInAnimationAdapter(rentalFormAdapter));
         binding.rentalFormsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
+        rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
         rentalFormViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRentalFormObservables -> {
             rentalFormAdapter.Clear();
             rentalFormAdapter.Fill(updatedRentalFormObservables);
@@ -116,6 +122,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        rentalFormViewModel = null;
         binding = null;
         handler.removeCallbacks(timeoutCallback);
         handler = null;
@@ -123,10 +130,46 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     }
 
     @Override
-    public void onRentalFormClick(RentalFormObservable rentalFormObservable) {
+    public void onJustRentalFormClick(RentalFormObservable rentalFormObservable) {
+
+    }
+
+    @Override
+    public void onEditRentalFormClick(RentalFormObservable rentalFormObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", rentalFormObservable.getId());
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentEditRentalForm, bundle);
+    }
+
+    @Override
+    public void onDeleRentalFormClick(RentalFormObservable rentalFormObservable) {
+        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
+            if (answer == WarningDialogFragment.Answer.YES) {
+                rentalFormViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentRentalForms Failure", apolloErrors.get(0).getMessage());
+                            }
+                        });
+                    }
+                };
+                rentalFormViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            String message = "Success: Your item has been deleted successfully.";
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentRentalForms Success", message);
+                        });
+                    }
+                };
+                rentalFormViewModel.onFailureCallback = null;
+                rentalFormViewModel.delete(rentalFormObservable);
+            }
+        };
+        String message = "Caution: Deleting this item will result in permanent removal from the system.";
+        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentRentalForms Warning", message, onCancelHandler);
     }
 
 }

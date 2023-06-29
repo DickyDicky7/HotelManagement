@@ -23,12 +23,19 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialog.WarningDialogFragment;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
@@ -37,6 +44,8 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
 
     private static Integer id;
     private Boolean isFstTime;
+
+    private RoomViewModel roomViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
@@ -95,7 +104,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
         flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
         binding.roomsRecyclerView.setLayoutManager(flexboxLayoutManager);
-        RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
+        roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             roomAdapter.Clear();
             roomAdapter.Fill(updatedRoomObservables);
@@ -169,11 +178,51 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             }
         });
 
+        binding.roomsBtnDelete.setOnClickListener(_view_ -> {
+            if (id != null && id != -1) {
+                List<RoomObservable> roomObservables = roomViewModel.getModelState().getValue();
+                if (roomObservables != null) {
+                    Optional<RoomObservable> optionalRoomObservable = roomObservables.stream().filter
+                            (roomObservable -> roomObservable.getId().equals(id)).findFirst();
+                    if (optionalRoomObservable.isPresent()) {
+                        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
+                            if (answer == WarningDialogFragment.Answer.YES) {
+                                roomViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                                    if (getActivity() != null) {
+                                        requireActivity().runOnUiThread(() -> {
+                                            if (apolloErrors != null) {
+                                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                                        , "FragmentRooms Failure", apolloErrors.get(0).getMessage());
+                                            }
+                                        });
+                                    }
+                                };
+                                roomViewModel.onSuccessCallback = () -> {
+                                    if (getActivity() != null) {
+                                        requireActivity().runOnUiThread(() -> {
+                                            String message = "Success: Your item has been deleted successfully.";
+                                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                                    , "FragmentRooms Success", message);
+                                        });
+                                    }
+                                };
+                                roomViewModel.onFailureCallback = null;
+                                roomViewModel.delete(optionalRoomObservable.get());
+                            }
+                        };
+                        String message = "Caution: Deleting this item will result in permanent removal from the system.";
+                        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentRooms Warning", message, onCancelHandler);
+                    }
+                }
+            }
+        });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        roomViewModel = null;
         binding = null;
         handler.removeCallbacks(timeoutCallback);
         handler = null;

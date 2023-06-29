@@ -23,16 +23,22 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialog.WarningDialogFragment;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 import com.example.search.RoomKindSearchStrategy;
 import com.example.search.SearchProcessor;
+
+import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomKindListener {
 
+    private RoomKindViewModel roomKindViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomKindsBinding binding;
@@ -82,7 +88,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         RoomKindAdapter roomKindAdapter = new RoomKindAdapter(requireActivity(), this);
         binding.roomKindsRecyclerView.setAdapter(new ScaleInAnimationAdapter(roomKindAdapter));
         binding.roomKindsRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+        roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
             roomKindAdapter.Clear();
             roomKindAdapter.Fill(updatedRoomKindObservables);
@@ -123,6 +129,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        roomKindViewModel = null;
         binding = null;
         handler.removeCallbacks(timeoutCallback);
         handler = null;
@@ -130,10 +137,46 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     }
 
     @Override
-    public void onRoomKindClick(RoomKindObservable roomKindObservable) {
+    public void onJustRoomKindClick(RoomKindObservable roomKindObservable) {
+
+    }
+
+    @Override
+    public void onEditRoomKindClick(RoomKindObservable roomKindObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", roomKindObservable.getId());
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentEditRoomKind, bundle);
+    }
+
+    @Override
+    public void onDeleRoomKindClick(RoomKindObservable roomKindObservable) {
+        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
+            if (answer == WarningDialogFragment.Answer.YES) {
+                roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentRoomKinds Failure", apolloErrors.get(0).getMessage());
+                            }
+                        });
+                    }
+                };
+                roomKindViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            String message = "Success: Your item has been deleted successfully.";
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentRoomKinds Success", message);
+                        });
+                    }
+                };
+                roomKindViewModel.onFailureCallback = null;
+                roomKindViewModel.delete(roomKindObservable);
+            }
+        };
+        String message = "Caution: Deleting this item will result in permanent removal from the system.";
+        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentRoomKinds Warning", message, onCancelHandler);
     }
 
 }

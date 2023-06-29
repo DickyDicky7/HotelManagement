@@ -22,6 +22,9 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.GuestAdapter;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
+import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialog.WarningDialogFragment;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestViewModel;
 import com.google.android.flexbox.AlignItems;
@@ -29,11 +32,14 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
+import java.util.function.Consumer;
+
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentGuests extends Fragment implements GuestAdapter.GuestListener {
 
+    private GuestViewModel guestViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentGuestsBinding binding;
@@ -87,7 +93,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
         flexboxLayoutManager.setFlexDirection(FlexDirection.ROW);
         flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
         binding.guestsRecyclerView.setLayoutManager(flexboxLayoutManager);
-        GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
+        guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
         guestViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestObservables -> {
             guestAdapter.Clear();
             guestAdapter.Fill(updatedGuestObservables);
@@ -123,6 +129,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        guestViewModel = null;
         binding = null;
         handler.removeCallbacks(timeoutCallback);
         handler = null;
@@ -130,10 +137,46 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     }
 
     @Override
-    public void onGuestClick(GuestObservable guestObservable) {
+    public void onJustGuestClick(GuestObservable guestObservable) {
+
+    }
+
+    @Override
+    public void onEditGuestClick(GuestObservable guestObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", guestObservable.getId());
         NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentEditGuest, bundle);
+    }
+
+    @Override
+    public void onDeleGuestClick(GuestObservable guestObservable) {
+        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
+            if (answer == WarningDialogFragment.Answer.YES) {
+                guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                        , "FragmentGuests Failure", apolloErrors.get(0).getMessage());
+                            }
+                        });
+                    }
+                };
+                guestViewModel.onSuccessCallback = () -> {
+                    if (getActivity() != null) {
+                        requireActivity().runOnUiThread(() -> {
+                            String message = "Success: Your item has been deleted successfully.";
+                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                    , "FragmentGuests Success", message);
+                        });
+                    }
+                };
+                guestViewModel.onFailureCallback = null;
+                guestViewModel.delete(guestObservable);
+            }
+        };
+        String message = "Caution: Deleting this item will result in permanent removal from the system.";
+        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentGuests Warning", message, onCancelHandler);
     }
 
 }
