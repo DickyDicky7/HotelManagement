@@ -3,6 +3,7 @@ package com.example.hotelmanagement.viewmodels;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.BaseObservable;
 import androidx.lifecycle.LiveData;
@@ -11,17 +12,21 @@ import androidx.lifecycle.ViewModel;
 
 import com.apollographql.apollo.api.Error;
 import com.apollographql.apollo.exception.ApolloException;
+import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.example.hotelmanagement.observables.ExtendedObservable;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewModel {
 
@@ -90,6 +95,19 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
         if (on3ErrorsCallback != null) {
             on3ErrorsCallback.apply(apolloErrors).apply(apolloException).accept(cloudinaryErrorInfo);
             on3ErrorsCallback = null;
+        }
+    }
+
+    public void cloudinaryRemoveImage(@NonNull String imageURL) {
+        String regex = "ParadisePalms_HMS/[^/]+(?=\\.[^/]+$)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(imageURL);
+        if (matcher.find()) {
+            try {
+                MediaManager.get().getCloudinary().uploader().destroy(matcher.group(), Collections.singletonMap("invalidate", true));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
