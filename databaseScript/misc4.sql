@@ -1,0 +1,19 @@
+DELETE FROM "public"."ROOMKIND";
+DELETE FROM "public"."ROOM";
+DELETE FROM "public"."GUESTKIND";
+DELETE FROM "public"."GUEST";
+DELETE FROM "public"."BILL";
+DELETE FROM "public"."RENTALFORM";
+DELETE FROM "public"."UNIQUE";
+DELETE FROM "public"."CLOUDINARY";
+
+
+
+
+
+
+
+
+
+
+
