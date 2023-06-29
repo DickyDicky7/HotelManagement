@@ -51,19 +51,27 @@ public class FragmentEditRoomKind extends Fragment {
             });
 
     private Handler handler = new Handler(message -> {
+
         if (getContext() == null) {
             return false;
         }
+
         int gray = Color.GRAY;
         int indigo = requireContext().getColor(R.color.indigo_400);
         ValueAnimator grayToIndigoAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), gray, indigo);
         ValueAnimator indigoToGrayAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), indigo, gray);
         grayToIndigoAnimator.setDuration(500);
         indigoToGrayAnimator.setDuration(500);
-        grayToIndigoAnimator.addUpdateListener(_grayToIndigoAnimator_
-                -> binding.btnDone.getBackground().setColorFilter((int) _grayToIndigoAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN));
-        indigoToGrayAnimator.addUpdateListener(_indigoToGrayAnimator_
-                -> binding.btnDone.getBackground().setColorFilter((int) _indigoToGrayAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN));
+        grayToIndigoAnimator.addUpdateListener(_grayToIndigoAnimator_ -> {
+            if (getContext() != null) {
+                binding.btnDone.getBackground().setColorFilter((int) _grayToIndigoAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+            }
+        });
+        indigoToGrayAnimator.addUpdateListener(_indigoToGrayAnimator_ -> {
+            if (getContext() != null) {
+                binding.btnDone.getBackground().setColorFilter((int) _indigoToGrayAnimator_.getAnimatedValue(), PorterDuff.Mode.SRC_IN);
+            }
+        });
 
         if (copyRoomKindObservable == null) {
             if (binding.btnDone.isEnabled()) {
@@ -91,7 +99,9 @@ public class FragmentEditRoomKind extends Fragment {
                 }
             }
         }
+
         return true;
+
     });
     private AtomicBoolean stopped = new AtomicBoolean(false);
     private Thread watcher = new Thread(() -> {
@@ -146,8 +156,9 @@ public class FragmentEditRoomKind extends Fragment {
                 roomKindViewModel.onSuccessCallback = () -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
+                            String message = "Success: Your item has been updated successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentEditRoomKind Success", "Updated successfully");
+                                    , "FragmentEditRoomKind Success", message);
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }
