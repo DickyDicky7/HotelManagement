@@ -88,8 +88,9 @@ public class FragmentAddBill extends Fragment {
                             billObservable = new BillObservable();
                             binding.setBillObservable(billObservable);
                             billObservable.setIsPaid(false);
+                            String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentAddBill Success", "Added successfully");
+                                    , "FragmentAddBill Success", message);
                         });
                     }
                 };

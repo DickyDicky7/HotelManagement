@@ -83,8 +83,9 @@ public class FragmentAddRoomKind extends Fragment {
                             binding.edtImage.setColorFilter(Color.WHITE);
                             Glide.with(this).load(AppCompatResources.getDrawable(requireContext(),
                                     R.drawable.upload_image)).centerInside().into(binding.edtImage);
+                            String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentAddRoomKind Success", "Added successfully");
+                                    , "FragmentAddRoomKind Success", message);
                         });
                     }
                 };

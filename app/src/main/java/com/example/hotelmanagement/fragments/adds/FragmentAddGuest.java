@@ -91,8 +91,9 @@ public class FragmentAddGuest extends Fragment {
                             guestObservable = new GuestObservable();
                             binding.setGuestObservable(guestObservable);
                             guestObservable.setGuestKindId(guestKindObservables.get(binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
+                            String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentAddGuest Success", "Added successfully");
+                                    , "FragmentAddGuest Success", message);
                         });
                     }
                 };

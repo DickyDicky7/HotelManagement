@@ -201,8 +201,9 @@ public class FragmentAddRentalForm extends Fragment {
                             rentalFormObservable.setIsResolved(false);
                             binding.radioResolved.setEnabled(false);
                             binding.setRentalFormObservable(rentalFormObservable);
+                            String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentAddRentalForm Success", "Added successfully");
+                                    , "FragmentAddRentalForm Success", message);
                         });
                     }
                 };

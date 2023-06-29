@@ -92,8 +92,9 @@ public class FragmentAddRoom extends Fragment {
                             binding.setRoomObservable(roomObservable);
                             roomObservable.setRoomKindId(roomKindObservables.get(binding.spinner.getSelectedItemPosition()).getId());
                             roomObservable.setIsOccupied(false);
+                            String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
-                                    , "FragmentAddRoom Success", "Added successfully");
+                                    , "FragmentAddRoom Success", message);
                         });
                     }
                 };
