@@ -8,7 +8,7 @@
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/itemRoom"
+        android:id="@+id/item_room"
         android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -21,8 +21,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/item_room_user_image_view"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:paddingVertical="2sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_user_indigo_900"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_room_room_kind_text_view"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_user_indigo_900" />
+
         <TextView
-            android:id="@+id/itemRoomKind"
+            android:id="@+id/item_room_room_kind_text_view"
             style="@style/txtInterregular14_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,11 +53,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemRoomName"
+            app:layout_constraintTop_toBottomOf="@+id/item_room_room_name_text_view"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/itemRoomName"
+            android:id="@+id/item_room_room_name_text_view"
             style="@style/txtIntersemibold18_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,22 +74,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/imageUser"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
-            android:paddingVertical="2sp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_user_indigo_900"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemRoomKind"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_user_indigo_900" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

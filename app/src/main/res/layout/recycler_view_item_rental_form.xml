@@ -7,7 +7,7 @@
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_rentForm"
+        android:id="@+id/item_rental_form"
         android:layout_width="0dp"
         android:layout_height="110sp"
         android:layout_marginStart="5dp"
@@ -22,20 +22,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_rf_name"
+            android:id="@+id/item_rental_form_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_rf_btns"
+            app:layout_constraintEnd_toStartOf="@+id/item_rental_form_buttons"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/item_rentFormCode2"
+                android:id="@+id/item_rental_form_code_text_view"
                 style="@style/txtIntermedium14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,12 +47,12 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_rentFormName2"
+                app:layout_constraintStart_toEndOf="@+id/item_rental_form_name_text_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/item_rentFormName2"
+                android:id="@+id/item_rental_form_name_text_view"
                 style="@style/txtOutfitsemibold28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_rf_info"
+            android:id="@+id/item_rental_form_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -77,11 +77,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_rf_name"
+            app:layout_constraintTop_toBottomOf="@+id/item_rental_form_name"
             app:layout_constraintVertical_bias="1.0">
 
             <ImageView
-                android:id="@+id/imageUser"
+                android:id="@+id/item_rental_form_user_image_view"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_marginTop="2dp"
@@ -98,7 +98,7 @@
                 tools:src="@drawable/img_user_white_a700_16x13" />
 
             <TextView
-                android:id="@+id/customerName"
+                android:id="@+id/item_rental_form_guest_name_text_view"
                 style="@style/txtInterregular14_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,12 +110,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageUser"
+                app:layout_constraintStart_toEndOf="@+id/item_rental_form_user_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
-                android:id="@+id/imageCalendar"
+                android:id="@+id/item_rental_form_calendar_image_view"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_marginTop="10dp"
@@ -123,16 +123,16 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/img_calendar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/beginEndDate"
+                app:layout_constraintEnd_toStartOf="@+id/item_rental_form_begin_end_date_text_view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageUser"
+                app:layout_constraintTop_toBottomOf="@+id/item_rental_form_user_image_view"
                 app:layout_constraintVertical_bias="1.0"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/img_calendar" />
 
             <TextView
-                android:id="@+id/beginEndDate"
+                android:id="@+id/item_rental_form_begin_end_date_text_view"
                 style="@style/txtInterregular14_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,25 +144,25 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageCalendar"
-                app:layout_constraintTop_toBottomOf="@+id/customerName"
+                app:layout_constraintStart_toEndOf="@+id/item_rental_form_calendar_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/item_rental_form_guest_name_text_view"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_rf_btns"
+            android:id="@+id/item_rental_form_buttons"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/item_rf_info"
+            app:layout_constraintStart_toEndOf="@+id/item_rental_form_info"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/btnEdit"
+                android:id="@+id/item_rental_form_edit_button"
                 style="@style/groupStyleindigo_1"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
@@ -182,7 +182,7 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/btnDel"
+                android:id="@+id/item_rental_form_dele_button"
                 style="@style/groupStyleindigo_1"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
@@ -197,7 +197,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnEdit"
+                app:layout_constraintTop_toBottomOf="@+id/item_rental_form_edit_button"
                 app:layout_constraintVertical_bias="1.0"
                 tools:ignore="ContentDescription" />
 
