@@ -49,33 +49,41 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
             RecyclerViewItemRentalFormBinding binding = RecyclerViewItemRentalFormBinding.bind(holder.itemView);
             RentalFormObservable rentalFormObservable = baseObservables.get(position);
 
-            binding.itemRentFormCode2.setText("#" + rentalFormObservable.getId());
-            binding.itemRentFormName2.setText("Rental Form " + rentalFormObservable.getId());
+            binding.itemRentalFormCodeTextView.setText("#" + rentalFormObservable.getId());
+            binding.itemRentalFormNameTextView.setText("Rental Form " + rentalFormObservable.getId());
             LocalDate startDate = rentalFormObservable.getStartDate();
             LocalDate endDate = startDate.plusDays(rentalFormObservable.getRentalDays());
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            binding.beginEndDate.setText(startDate.format(dateTimeFormatter) + " - " + endDate.format(dateTimeFormatter));
+            binding.itemRentalFormBeginEndDateTextView.setText(startDate.format(dateTimeFormatter) + " \u279E " + endDate.format(dateTimeFormatter));
 
             GuestViewModel guestViewModel = new ViewModelProvider(fragmentActivity).get(GuestViewModel.class);
             List<GuestObservable> guestObservables = guestViewModel.getModelState().getValue();
             Optional<GuestObservable> optionalGuestObservable = Optional.empty();
             if (guestObservables != null) {
-                optionalGuestObservable = guestObservables.stream().filter(guestObservable -> guestObservable.getId().equals(rentalFormObservable.getGuestId())).findFirst();
+                optionalGuestObservable = guestObservables.stream().filter
+                        (guestObservable -> guestObservable.getId().equals(rentalFormObservable.getGuestId())).findFirst();
             }
             if (optionalGuestObservable.isPresent()) {
                 GuestObservable guestObservable = optionalGuestObservable.get();
-                binding.customerName.setText(guestObservable.getName());
+                binding.itemRentalFormGuestNameTextView.setText(guestObservable.getName());
             } else {
-                binding.customerName.setText("");
+                binding.itemRentalFormGuestNameTextView.setText("");
             }
 
-            binding.btnEdit.setOnClickListener(view -> rentalFormListener.onRentalFormClick(rentalFormObservable));
+            binding.itemRentalFormEditButton.setOnClickListener(view -> rentalFormListener.onEditRentalFormClick(rentalFormObservable));
+            binding.itemRentalFormDeleButton.setOnClickListener(view -> rentalFormListener.onDeleRentalFormClick(rentalFormObservable));
 
         }
     }
 
     public interface RentalFormListener {
-        void onRentalFormClick(RentalFormObservable rentalFormObservable);
+
+        void onJustRentalFormClick(RentalFormObservable rentalFormObservable);
+
+        void onEditRentalFormClick(RentalFormObservable rentalFormObservable);
+
+        void onDeleRentalFormClick(RentalFormObservable rentalFormObservable);
+
     }
 
 }

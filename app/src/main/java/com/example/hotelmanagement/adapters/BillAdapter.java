@@ -45,33 +45,44 @@ public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder>
             RecyclerViewItemBillBinding binding = RecyclerViewItemBillBinding.bind(holder.itemView);
             BillObservable billObservable = baseObservables.get(position);
 
-            binding.costTextView.setText(String.valueOf(billObservable.getCost()));
-            binding.billIdTextView.setText(String.valueOf(billObservable.getId()));
-            binding.statusTextView.setText(billObservable.getIsPaid() ? "paid" : "unpaid");
-            binding.createdAtTextView.setText(billObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            binding.itemBillIdTextView.setText(String.valueOf(billObservable.getId()));
+            binding.itemBillCostTextView.setText(String.valueOf(billObservable.getCost()));
+            binding.itemBillStatusTextView.setText(billObservable.getIsPaid() ? "paid" : "unpaid");
+            binding.itemBillCreatedAtTextView.setText(billObservable.getCreatedAt().format(DateTimeFormatter
+                    .ofPattern("dd-MM-yyyy")));
 
             GuestViewModel guestViewModel = new ViewModelProvider(fragmentActivity).get(GuestViewModel.class);
             List<GuestObservable> guestObservables = guestViewModel.getModelState().getValue();
             Optional<GuestObservable> optionalGuestObservable = Optional.empty();
             if (guestObservables != null) {
-                optionalGuestObservable = guestObservables.stream().filter(guestObservable -> guestObservable.getId().equals(billObservable.getGuestId())).findFirst();
+                optionalGuestObservable = guestObservables.stream().filter
+                        (guestObservable -> guestObservable.getId().equals(billObservable.getGuestId())).findFirst();
             }
             if (optionalGuestObservable.isPresent()) {
                 GuestObservable guestObservable = optionalGuestObservable.get();
-                binding.idNumberTextView.setText(guestObservable.getIdNumber());
-                binding.guestNameTextView.setText(guestObservable.getName());
+                binding.itemBillGuestNameTextView.setText
+                        (guestObservable.getName());
+                binding.itemBillIdNumberTextView.setText
+                        (guestObservable.getIdNumber());
             } else {
-                binding.idNumberTextView.setText("");
-                binding.guestNameTextView.setText("");
+                binding.itemBillIdNumberTextView.setText("");
+                binding.itemBillGuestNameTextView.setText("");
             }
 
-            binding.editButton.setOnClickListener(view -> billListener.onBillClick(billObservable));
+            binding.itemBillEditButton.setOnClickListener(view -> billListener.onEditBillClick(billObservable));
+            binding.itemBillDeleButton.setOnClickListener(view -> billListener.onDeleBillClick(billObservable));
 
         }
     }
 
     public interface BillListener {
-        void onBillClick(BillObservable billObservable);
+
+        void onJustBillClick(BillObservable billObservable);
+
+        void onEditBillClick(BillObservable billObservable);
+
+        void onDeleBillClick(BillObservable billObservable);
+
     }
 
 }

@@ -81,17 +81,18 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
             List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
             Optional<RoomKindObservable> optionalRoomKindObservable = Optional.empty();
             if (roomKindObservables != null) {
-                optionalRoomKindObservable = roomKindObservables.stream().filter(roomKindObservable -> roomKindObservable.getId().equals(roomObservable.getRoomKindId())).findFirst();
+                optionalRoomKindObservable = roomKindObservables.stream().filter
+                        (roomKindObservable -> roomKindObservable.getId().equals(roomObservable.getRoomKindId())).findFirst();
             }
 
             if (holder.getItemViewType() == 0) {
                 RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
-                binding.itemRoomName.setText(roomObservable.getName());
+                binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
                 if (optionalRoomKindObservable.isPresent()) {
                     RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
-                    binding.itemRoomKind.setText(roomKindObservable.getName());
+                    binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
                 } else {
-                    binding.itemRoomKind.setText("");
+                    binding.itemRoomRoomKindTextView.setText("");
                 }
 
                 binding.itemRoom.setOnClickListener(view -> {
@@ -104,12 +105,12 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
 
             } else {
                 RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
-                binding.itemRoomName.setText(roomObservable.getName());
+                binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
                 if (optionalRoomKindObservable.isPresent()) {
                     RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
-                    binding.itemRoomKind.setText(roomKindObservable.getName());
+                    binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
                 } else {
-                    binding.itemRoomKind.setText("");
+                    binding.itemRoomRoomKindTextView.setText("");
                 }
 
                 binding.itemRoom.setOnClickListener(view -> {
@@ -182,16 +183,16 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
             RecyclerViewItemRoomBinding _binding_ = (RecyclerViewItemRoomBinding) binding;
             clickedItem = _binding_.itemRoom;
             clickedItemMarkImageView = null;
-            clickedItemUserImageView = _binding_.imageUser;
-            clickedItemRoomNameTextView = _binding_.itemRoomName;
-            clickedItemRoomKindTextView = _binding_.itemRoomKind;
+            clickedItemUserImageView = _binding_.itemRoomUserImageView;
+            clickedItemRoomNameTextView = _binding_.itemRoomRoomNameTextView;
+            clickedItemRoomKindTextView = _binding_.itemRoomRoomKindTextView;
         } else {
             RecyclerViewItemRoomOccupiedBinding _binding_ = (RecyclerViewItemRoomOccupiedBinding) binding;
             clickedItem = _binding_.itemRoom;
-            clickedItemMarkImageView = _binding_.imageMark;
-            clickedItemUserImageView = _binding_.imageUser;
-            clickedItemRoomNameTextView = _binding_.itemRoomName;
-            clickedItemRoomKindTextView = _binding_.itemRoomKind;
+            clickedItemMarkImageView = _binding_.itemRoomMarkImageView;
+            clickedItemUserImageView = _binding_.itemRoomUserImageView;
+            clickedItemRoomNameTextView = _binding_.itemRoomRoomNameTextView;
+            clickedItemRoomKindTextView = _binding_.itemRoomRoomKindTextView;
         }
 
         if (clickedItem != null) {

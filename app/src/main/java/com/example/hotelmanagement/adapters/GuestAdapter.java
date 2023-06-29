@@ -41,19 +41,27 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
             RecyclerViewItemGuestBinding binding = RecyclerViewItemGuestBinding.bind(holder.itemView);
             GuestObservable guestObservable = baseObservables.get(position);
 
-            binding.guestNameTextView.setText(guestObservable.getName());
-            binding.addressTextView.setText(guestObservable.getAddress());
-            binding.idNumberTextView.setText(guestObservable.getIdNumber());
-            binding.phoneNumberTextView.setText(guestObservable.getPhoneNumber());
-            binding.createdAtTextView.setText(guestObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            binding.itemGuestNameTextView.setText(guestObservable.getName());
+            binding.itemGuestAddressTextView.setText(guestObservable.getAddress());
+            binding.itemGuestIdNumberTextView.setText(guestObservable.getIdNumber());
+            binding.itemGuestCreatedAtTextView.setText(guestObservable.getCreatedAt()
+                    .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            binding.itemGuestPhoneNumberTextView.setText(guestObservable.getPhoneNumber());
 
-            binding.editButton.setOnClickListener(view -> guestListener.onGuestClick(guestObservable));
+            binding.itemGuestEditButton.setOnClickListener(view -> guestListener.onEditGuestClick(guestObservable));
+            binding.itemGuestDeleButton.setOnClickListener(view -> guestListener.onDeleGuestClick(guestObservable));
 
         }
     }
 
     public interface GuestListener {
-        void onGuestClick(GuestObservable guestObservable);
+
+        void onJustGuestClick(GuestObservable guestObservable);
+
+        void onEditGuestClick(GuestObservable guestObservable);
+
+        void onDeleGuestClick(GuestObservable guestObservable);
+
     }
 
 }

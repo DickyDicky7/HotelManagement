@@ -44,19 +44,27 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
             RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.bind(holder.itemView);
             RoomKindObservable roomKindObservable = baseObservables.get(position);
 
-            binding.roomkindName.setText(roomKindObservable.getName());
-            binding.roomArea.setText(roomKindObservable.getArea() + " m\u00B2");
-            binding.roomBed.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
-            binding.roomMaxGuest.setText(String.valueOf(roomKindObservable.getCapacity()));
-            Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners(30)).into(binding.itemRkImage);
+            binding.itemRoomKindNameTextView.setText(roomKindObservable.getName());
+            binding.itemRoomKindAreaTextView.setText(roomKindObservable.getArea() + " m\u00B2");
+            binding.itemRoomKindCapacityTextView.setText(String.valueOf(roomKindObservable.getCapacity()));
+            binding.itemRoomKindNumberOfBedsTextView.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
+            Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners
+                    (30)).into(binding.itemRoomKindMainImageView);
 
-            binding.itemRkBtnEdit.setOnClickListener(view -> roomKindListener.onRoomKindClick(roomKindObservable));
+            binding.itemRoomKindEditButton.setOnClickListener(view -> roomKindListener.onEditRoomKindClick(roomKindObservable));
+            binding.itemRoomKindDeleButton.setOnClickListener(view -> roomKindListener.onDeleRoomKindClick(roomKindObservable));
 
         }
     }
 
     public interface RoomKindListener {
-        void onRoomKindClick(RoomKindObservable roomKindObservable);
+
+        void onJustRoomKindClick(RoomKindObservable roomKindObservable);
+
+        void onEditRoomKindClick(RoomKindObservable roomKindObservable);
+
+        void onDeleRoomKindClick(RoomKindObservable roomKindObservable);
+
     }
 
 }
