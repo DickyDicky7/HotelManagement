@@ -46,12 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_checkmark_green_600"
+            android:src="@drawable/img_success_dialog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/img_checkmark_green_600" />
+            tools:src="@drawable/img_success_dialog" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/noti_success_msg_box"

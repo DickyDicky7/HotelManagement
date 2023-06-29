@@ -56,4 +56,5 @@
     <color name="bluegray_100_d1">#d1d6dbdf</color>
     <color name="indigo_900">#19376d</color>
     <color name="indigo_901">#194076</color>
+    <color name="yellow">#FFB81C</color>
 </resources>
