@@ -10,6 +10,7 @@ import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.hasura.BillDeleteByIdMutation;
 import com.example.hasura.BillInsertMutation;
 import com.example.hasura.BillSubscription;
 import com.example.hasura.BillUpdateByIdMutation;
@@ -148,6 +149,37 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                             on3ErrorsHandler(response.getErrors(), null, null);
                             onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("BillViewModel Update Error", error.toString()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        onFailureHandler();
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    public void delete(BillObservable billObservable) {
+        BillDeleteByIdMutation billDeleteByIdMutation = BillDeleteByIdMutation
+                .builder()
+                .id(billObservable.getId())
+                .build();
+        Hasura.apolloClient.mutate(billDeleteByIdMutation)
+                .enqueue(new ApolloCall.Callback<BillDeleteByIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<BillDeleteByIdMutation.Data> response) {
+                        if (response.getData() != null) {
+                            onSuccessHandler();
+                            BillDeleteByIdMutation.Delete_BILL_by_pk delete_bill_by_pk = response.getData().delete_BILL_by_pk();
+                            if (delete_bill_by_pk != null) {
+                                Log.d("BillViewModel Delete Response Debug", delete_bill_by_pk.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
+                            response.getErrors().forEach(error -> Log.e("BillViewModel Delete Error", error.toString()));
                         }
                     }
 

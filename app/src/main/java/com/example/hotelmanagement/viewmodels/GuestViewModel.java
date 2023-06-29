@@ -8,6 +8,7 @@ import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.hasura.GuestDeleteByIdMutation;
 import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.GuestSubscription;
 import com.example.hasura.GuestUpdateByIdMutation;
@@ -83,6 +84,37 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                             on3ErrorsHandler(response.getErrors(), null, null);
                             onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("GuestViewModel Update Error", error.toString()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        onFailureHandler();
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    public void delete(GuestObservable guestObservable) {
+        GuestDeleteByIdMutation guestDeleteByIdMutation = GuestDeleteByIdMutation
+                .builder()
+                .id(guestObservable.getId())
+                .build();
+        Hasura.apolloClient.mutate(guestDeleteByIdMutation)
+                .enqueue(new ApolloCall.Callback<GuestDeleteByIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<GuestDeleteByIdMutation.Data> response) {
+                        if (response.getData() != null) {
+                            onSuccessHandler();
+                            GuestDeleteByIdMutation.Delete_GUEST_by_pk delete_guest_by_pk = response.getData().delete_GUEST_by_pk();
+                            if (delete_guest_by_pk != null) {
+                                Log.d("GuestViewModel Delete Response Debug", delete_guest_by_pk.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
+                            response.getErrors().forEach(error -> Log.e("GuestViewModel Delete Error", error.toString()));
                         }
                     }
 

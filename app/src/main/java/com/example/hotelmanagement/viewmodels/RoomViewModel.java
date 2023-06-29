@@ -10,6 +10,7 @@ import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.Hasura;
+import com.example.hasura.RoomDeleteByIdMutation;
 import com.example.hasura.RoomInsertMutation;
 import com.example.hasura.RoomSubscription;
 import com.example.hasura.RoomUpdateByIdMutation;
@@ -84,6 +85,37 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                             on3ErrorsHandler(response.getErrors(), null, null);
                             onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RoomViewModel Update Error", error.toString()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        onFailureHandler();
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    public void delete(RoomObservable roomObservable) {
+        RoomDeleteByIdMutation roomDeleteByIdMutation = RoomDeleteByIdMutation
+                .builder()
+                .id(roomObservable.getId())
+                .build();
+        Hasura.apolloClient.mutate(roomDeleteByIdMutation)
+                .enqueue(new ApolloCall.Callback<RoomDeleteByIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<RoomDeleteByIdMutation.Data> response) {
+                        if (response.getData() != null) {
+                            onSuccessHandler();
+                            RoomDeleteByIdMutation.Delete_ROOM_by_pk delete_room_by_pk = response.getData().delete_ROOM_by_pk();
+                            if (delete_room_by_pk != null) {
+                                Log.d("RoomViewModel Delete Response Debug", delete_room_by_pk.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
+                            response.getErrors().forEach(error -> Log.e("RoomViewModel Delete Error", error.toString()));
                         }
                     }
 

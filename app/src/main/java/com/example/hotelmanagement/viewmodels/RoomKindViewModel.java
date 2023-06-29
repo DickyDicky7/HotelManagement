@@ -14,6 +14,7 @@ import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.example.hasura.Hasura;
+import com.example.hasura.RoomKindDeleteByIdMutation;
 import com.example.hasura.RoomKindInsertMutation;
 import com.example.hasura.RoomKindSubscription;
 import com.example.hasura.RoomKindUpdateByIdMutation;
@@ -71,6 +72,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                 if (response.getErrors() != null) {
                                     on3ErrorsHandler(response.getErrors(), null, null);
                                     onFailureHandler();
+                                    cloudinaryRemoveImage(roomKindObservable.getImageURL());
                                     response.getErrors().forEach(error -> Log.e("RoomKindViewModel Insert Error", error.toString()));
                                 }
                             }
@@ -79,6 +81,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             public void onFailure(@NonNull ApolloException e) {
                                 onFailureHandler();
                                 e.printStackTrace();
+                                cloudinaryRemoveImage(roomKindObservable.getImageURL());
                             }
                         });
             }
@@ -167,6 +170,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                 public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
                                     if (response.getData() != null) {
                                         onSuccessHandler();
+                                        cloudinaryRemoveImage(copyRoomKindObservable.getImageURL());
                                         RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
                                         if (update_room_kind != null) {
                                             Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
@@ -175,6 +179,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                     if (response.getErrors() != null) {
                                         on3ErrorsHandler(response.getErrors(), null, null);
                                         onFailureHandler();
+                                        cloudinaryRemoveImage(usedRoomKindObservable.getImageURL());
                                         response.getErrors().forEach(error -> Log.e("RoomKindViewModel Update Error", error.toString()));
                                     }
                                 }
@@ -183,6 +188,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                 public void onFailure(@NonNull ApolloException e) {
                                     onFailureHandler();
                                     e.printStackTrace();
+                                    cloudinaryRemoveImage(usedRoomKindObservable.getImageURL());
                                 }
                             });
                 }
@@ -198,6 +204,38 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                 }
             }).dispatch();
         }
+    }
+
+    public void delete(RoomKindObservable roomKindObservable) {
+        RoomKindDeleteByIdMutation roomKindDeleteByIdMutation = RoomKindDeleteByIdMutation
+                .builder()
+                .id(roomKindObservable.getId())
+                .build();
+        Hasura.apolloClient.mutate(roomKindDeleteByIdMutation)
+                .enqueue(new ApolloCall.Callback<RoomKindDeleteByIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<RoomKindDeleteByIdMutation.Data> response) {
+                        if (response.getData() != null) {
+                            onSuccessHandler();
+                            cloudinaryRemoveImage(roomKindObservable.getImageURL());
+                            RoomKindDeleteByIdMutation.Delete_ROOMKIND_by_pk delete_room_kind_by_pk = response.getData().delete_ROOMKIND_by_pk();
+                            if (delete_room_kind_by_pk != null) {
+                                Log.d("RoomKindViewModel Delete Response Debug", delete_room_kind_by_pk.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
+                            response.getErrors().forEach(error -> Log.e("RoomKindViewModel Delete Error", error.toString()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        onFailureHandler();
+                        e.printStackTrace();
+                    }
+                });
     }
 
     @NonNull

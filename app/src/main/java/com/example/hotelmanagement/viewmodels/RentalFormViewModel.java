@@ -13,6 +13,7 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.Hasura;
+import com.example.hasura.RentalFormDeleteByIdMutation;
 import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
@@ -170,6 +171,37 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                             on3ErrorsHandler(response.getErrors(), null, null);
                             onFailureHandler();
                             response.getErrors().forEach(error -> Log.e("RentalFormViewModel Update Error", error.toString()));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull ApolloException e) {
+                        onFailureHandler();
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    public void delete(RentalFormObservable rentalFormObservable) {
+        RentalFormDeleteByIdMutation rentalFormDeleteByIdMutation = RentalFormDeleteByIdMutation
+                .builder()
+                .id(rentalFormObservable.getId())
+                .build();
+        Hasura.apolloClient.mutate(rentalFormDeleteByIdMutation)
+                .enqueue(new ApolloCall.Callback<RentalFormDeleteByIdMutation.Data>() {
+                    @Override
+                    public void onResponse(@NonNull Response<RentalFormDeleteByIdMutation.Data> response) {
+                        if (response.getData() != null) {
+                            onSuccessHandler();
+                            RentalFormDeleteByIdMutation.Delete_RENTALFORM_by_pk delete_rental_form_by_pk = response.getData().delete_RENTALFORM_by_pk();
+                            if (delete_rental_form_by_pk != null) {
+                                Log.d("RentalViewModel Delete Response Debug", delete_rental_form_by_pk.toString());
+                            }
+                        }
+                        if (response.getErrors() != null) {
+                            on3ErrorsHandler(response.getErrors(), null, null);
+                            onFailureHandler();
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Delete Error", error.toString()));
                         }
                     }
 
