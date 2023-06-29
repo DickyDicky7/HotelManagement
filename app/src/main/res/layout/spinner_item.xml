@@ -7,8 +7,8 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="10sp"
         android:paddingVertical="10sp"
-        android:textColor="@color/bluegray_900"
-        android:textColorHint="@color/gray_600"
-        android:textColorLink="@color/indigo_400"
+        android:textColor="@color/indigo_400"
+        android:textColorHint="@color/gray_500"
+        android:textColorLink="@color/indigo_100"
         android:textSize="15sp" />
 </layout>

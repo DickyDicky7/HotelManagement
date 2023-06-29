@@ -65,10 +65,10 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
         editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
         editText.setOnFocusChangeListener((_view_, isFocused) -> {
             if (isFocused) {
-                editText.setTextColor(requireContext().getColor(R.color.bluegray_900));
-                editText.setHintTextColor(requireContext().getColor(R.color.bluegray_900));
-                searchIcon.setColorFilter(requireContext().getColor(R.color.bluegray_900));
-                closeButton.setColorFilter(requireContext().getColor(R.color.bluegray_900));
+                editText.setTextColor(requireContext().getColor(R.color.indigo_400));
+                editText.setHintTextColor(requireContext().getColor(R.color.indigo_400));
+                searchIcon.setColorFilter(requireContext().getColor(R.color.indigo_400));
+                closeButton.setColorFilter(requireContext().getColor(R.color.indigo_400));
             } else {
                 editText.setTextColor(Color.GRAY);
                 editText.setHintTextColor(Color.GRAY);

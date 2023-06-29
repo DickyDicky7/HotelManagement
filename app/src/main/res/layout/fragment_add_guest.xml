@@ -82,9 +82,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={guestObservable.idNumber}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -116,9 +116,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={guestObservable.name}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -150,9 +150,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={guestObservable.phoneNumber}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -184,9 +184,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={guestObservable.address}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -212,7 +212,7 @@
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
                     android:gravity="center_horizontal"
-                    android:popupBackground="@color/bluegray_100"
+                    android:popupBackground="@color/blue_gray_100"
                     tools:listitem="@layout/spinner_item" />
             </LinearLayout>
         </ScrollView>

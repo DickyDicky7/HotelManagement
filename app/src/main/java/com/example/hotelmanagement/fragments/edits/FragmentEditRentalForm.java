@@ -62,7 +62,7 @@ public class FragmentEditRentalForm extends Fragment {
         }
 
         int gray = Color.GRAY;
-        int indigo = requireContext().getColor(R.color.indigo_400);
+        int indigo = requireContext().getColor(R.color.indigo_100);
         ValueAnimator grayToIndigoAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), gray, indigo);
         ValueAnimator indigoToGrayAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), indigo, gray);
         grayToIndigoAnimator.setDuration(500);
@@ -323,15 +323,15 @@ public class FragmentEditRentalForm extends Fragment {
                 binding.radioResolved.setEnabled(false);
                 binding.radioNotResolved.setEnabled(false);
                 binding.spinnerChooseRoom.setEnabled(false);
-                binding.spinnerChooseRoom.getBackground().setColorFilter(requireContext().getColor(R.color.gray_400), PorterDuff.Mode.MULTIPLY);
+                binding.spinnerChooseRoom.getBackground().setColorFilter(requireContext().getColor(R.color.gray_100), PorterDuff.Mode.MULTIPLY);
                 for (Field field : binding.getClass().getFields()) {
                     field.setAccessible(true);
                     if (field.getName().startsWith("edt")) {
                         EditText editText = (EditText) field.get(binding);
                         if (editText != null) {
                             editText.setEnabled(false);
-                            editText.setHintTextColor(requireContext().getColor(R.color.white_A700_cc));
-                            editText.getBackground().setColorFilter(requireContext().getColor(R.color.gray_400), PorterDuff.Mode.MULTIPLY);
+                            editText.setHintTextColor(requireContext().getColor(R.color.white_600));
+                            editText.getBackground().setColorFilter(requireContext().getColor(R.color.gray_100), PorterDuff.Mode.MULTIPLY);
                         }
                     }
                 }

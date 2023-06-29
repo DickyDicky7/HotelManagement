@@ -320,7 +320,7 @@
                 android:layout_marginStart="@dimen/_12pxh"
                 android:layout_marginTop="@dimen/_5pxv"
                 android:layout_marginEnd="@dimen/_12pxh"
-                android:background="@color/white_A700" />
+                android:background="@color/white_200" />
 
             <LinearLayout
                 android:id="@+id/linearRowtotal"

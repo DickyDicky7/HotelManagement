@@ -48,7 +48,7 @@ public class FragmentEditGuest extends Fragment {
         }
 
         int gray = Color.GRAY;
-        int indigo = requireContext().getColor(R.color.indigo_400);
+        int indigo = requireContext().getColor(R.color.indigo_100);
         ValueAnimator grayToIndigoAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), gray, indigo);
         ValueAnimator indigoToGrayAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), indigo, gray);
         grayToIndigoAnimator.setDuration(500);

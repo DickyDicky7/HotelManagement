@@ -678,16 +678,22 @@
                             android:layout_width="0dp"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:text="@string/lbl2" tools:text="@string/lbl2"/>
+                            android:text="@string/lbl2"
+                            tools:text="@string/lbl2" />
                     </LinearLayout>
-                    <View android:id="@+id/lineLineOne"
+
+                    <View
+                        android:id="@+id/lineLineOne"
                         android:layout_width="@dimen/_304pxh"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="@dimen/_2pxv"
                         android:layout_marginTop="@dimen/_5pxv"
                         android:layout_marginStart="@dimen/_12pxh"
-                        android:layout_marginEnd="@dimen/_12pxh" android:background="@color/white_A700"/>
-                    <LinearLayout android:id="@+id/linearRowtotal"
+                        android:layout_marginEnd="@dimen/_12pxh"
+                        android:background="@color/white_200" />
+
+                    <LinearLayout
+                        android:id="@+id/linearRowtotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12pxh"

@@ -169,19 +169,25 @@
                     android:id="@+id/viewRectangle4186"
                     android:layout_height="@dimen/_109pxh"
                     android:layout_marginStart="@dimen/_27pxh"
-                    android:layout_marginTop="@dimen/_61pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_61pxv"
+                    android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4" />
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4187"
                     android:layout_height="@dimen/_94pxh"
                     android:layout_marginStart="@dimen/_8pxh"
-                    android:layout_marginTop="@dimen/_76pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_76pxv"
+                    android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4" />
             </LinearLayout>
-            <View android:id="@+id/lineLineTwo"
+
+            <View
+                android:id="@+id/lineLineTwo"
                 android:layout_width="@dimen/_312pxh"
                 android:layout_gravity="start"
                 android:layout_height="@dimen/_1pxv"
-                android:layout_marginTop="@dimen/_1pxv" android:background="@color/bluegray_101"/>
+                android:layout_marginTop="@dimen/_1pxv"
+                android:background="@color/blue_gray_200" />
 
             <LinearLayout
                 android:id="@+id/months_label"

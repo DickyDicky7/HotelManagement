@@ -83,9 +83,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.idNumber}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -111,7 +111,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                    android:backgroundTint="@color/gray_400"
+                    android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
                     android:ellipsize="end"
                     android:focusable="false"
@@ -121,9 +121,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.name}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/white_A700_cc"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/white_600"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -156,9 +156,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.numberOfGuestsString}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -190,9 +190,9 @@
                     android:paddingHorizontal="10sp"
                     android:paddingVertical="10sp"
                     android:text="@={rentalFormObservable.startDateString}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp" />
 
                 <TextView
@@ -224,9 +224,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.rentalDaysString}"
-                    android:textColor="@color/indigo_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_200"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -252,7 +252,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                    android:backgroundTint="@color/gray_400"
+                    android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
                     android:ellipsize="end"
                     android:focusable="false"
@@ -262,9 +262,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.pricePerDayString}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/white_A700_cc"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/white_600"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -290,7 +290,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
-                    android:backgroundTint="@color/gray_400"
+                    android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
                     android:ellipsize="end"
                     android:focusable="false"
@@ -300,9 +300,9 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={rentalFormObservable.amountString}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/white_A700_cc"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/white_600"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
@@ -330,7 +330,7 @@
 
                     android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
                     android:gravity="center_horizontal"
-                    android:popupBackground="@color/bluegray_100"
+                    android:popupBackground="@color/blue_gray_100"
                     tools:listitem="@layout/spinner_item" />
 
                 <TextView

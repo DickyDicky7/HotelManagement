@@ -169,13 +169,13 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
                         itemViewType == 1 ? R.drawable.img_user_green_700 : 0);
 
         normalForegroundColor = fragmentActivity.getColor
-                (itemViewType == 0 ? R.color.indigo_900 :
-                        itemViewType == 1 ? R.color.green_700 : 0);
+                (itemViewType == 0 ? R.color.indigo_200 :
+                        itemViewType == 1 ? R.color.green_300 : 0);
         normalBackgroundColor = fragmentActivity.getColor
-                (itemViewType == 0 ? R.color.bluegray_102 :
-                        itemViewType == 1 ? R.color.bluegray_100 : 0);
+                (itemViewType == 0 ? R.color.blue_gray_300 :
+                        itemViewType == 1 ? R.color.blue_gray_100 : 0);
 
-        clickedBackgroundColor = fragmentActivity.getColor(R.color.indigo_400);
+        clickedBackgroundColor = fragmentActivity.getColor(R.color.indigo_100);
         clickedForegroundColor = normalBackgroundColor;
         clickedUserImage = AppCompatResources.getDrawable(fragmentActivity, R.drawable.img_user_white_a700_16x20);
 
