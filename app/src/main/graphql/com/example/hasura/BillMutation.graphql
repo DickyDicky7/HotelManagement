@@ -97,3 +97,23 @@ mutation BillUpdateCostByIdMutation
     }
 }
 
+
+mutation BillDeleteByIdMutation
+(
+    $id: Int!
+)
+{
+    delete_BILL_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
+    }
+}
+

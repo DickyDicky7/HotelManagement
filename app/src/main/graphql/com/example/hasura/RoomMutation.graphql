@@ -110,3 +110,25 @@ mutation RoomUpdateByIdMutation
     }
 }
 
+
+mutation RoomDeleteByIdMutation
+(
+    $id: Int!
+)
+{
+    delete_ROOM_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        name
+        note
+        created_at
+        updated_at
+        description
+        roomkind_id
+        is_occupied
+    }
+}
+
