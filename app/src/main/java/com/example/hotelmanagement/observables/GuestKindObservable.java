@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class GuestKindObservable extends ExtendedObservable {
 
     protected String name;
+    protected Double discountCoefficient;
 
     public GuestKindObservable() {
         super();
@@ -17,12 +18,14 @@ public class GuestKindObservable extends ExtendedObservable {
 
     public GuestKindObservable(Integer id,
                                String name,
+                               Double discount_coefficient,
                                LocalDateTime created_at,
                                LocalDateTime updated_at) {
 
         super(id, created_at, updated_at);
 
         this.name = name;
+        this.discountCoefficient = discount_coefficient;
 
     }
 

@@ -24,7 +24,7 @@ public class GuestObservable extends ExtendedObservable {
                            String address,
                            String id_number,
                            String phone_number,
-                           Integer guestkind_id,
+                           Integer guest_kind_id,
                            LocalDateTime created_at,
                            LocalDateTime updated_at) {
 
@@ -33,8 +33,8 @@ public class GuestObservable extends ExtendedObservable {
         this.name = name;
         this.address = address;
         this.idNumber = id_number;
-        this.guestKindId = guestkind_id;
         this.phoneNumber = phone_number;
+        this.guestKindId = guest_kind_id;
 
     }
 

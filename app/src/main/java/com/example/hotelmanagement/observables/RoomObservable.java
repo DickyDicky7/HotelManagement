@@ -24,7 +24,7 @@ public class RoomObservable extends ExtendedObservable {
                           String note,
                           String description,
                           Boolean is_occupied,
-                          Integer roomkind_id,
+                          Integer room_kind_id,
                           LocalDateTime created_at,
                           LocalDateTime updated_at) {
 
@@ -33,7 +33,7 @@ public class RoomObservable extends ExtendedObservable {
         this.name = name;
         this.note = note;
         this.isOccupied = is_occupied;
-        this.roomKindId = roomkind_id;
+        this.roomKindId = room_kind_id;
         this.description = description;
 
     }

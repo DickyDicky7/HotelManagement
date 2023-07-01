@@ -86,7 +86,7 @@
                     tools:ignore="Autofill" />
 
                 <TextView
-                    android:id="@+id/txtKindOfRoom"
+                    android:id="@+id/txtRoomKind"
                     style="@style/txtIntersemibold24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                     tools:text="@string/lbl_kind_of_room" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/spinnerChooseRoomKind"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -46,7 +46,7 @@ public class FragmentLogin extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (Hasura.loginSuccessfully == null || !Hasura.loginSuccessfully) {
+        if (Hasura.currentLogState == null || Hasura.currentLogState == Hasura.LogState.OUT) {
             binding.btnSignIn.setVisibility(View.INVISIBLE);
             Handler handler = new Handler();
             handler.postDelayed(() -> YoYo.with(Techniques.FadeIn).duration(300).onStart
@@ -75,28 +75,31 @@ public class FragmentLogin extends Fragment {
                 guestKindViewModel.startSubscription();
                 rentalFormViewModel.startSubscription();
                 Context capturedRequiredContext = requireContext();
-                Hasura.apolloClient.query(new CloudinaryAllQuery()).enqueue(new ApolloCall.Callback<CloudinaryAllQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<CloudinaryAllQuery.Data> response) {
-                        if (response.getData() != null) {
-                            CloudinaryAllQuery.CLOUDINARY cloudinary = response.getData().CLOUDINARY().get(0);
-                            Configuration configuration = new Configuration();
-                            configuration.secure = true;
-                            configuration.apiKey = cloudinary.api_key();
-                            configuration.apiSecret = cloudinary.api_secret();
-                            configuration.cloudName = cloudinary.cloud_name();
-                            MediaManager.init(capturedRequiredContext, configuration);
+                if (Hasura.mediaManagerNotInitialized) {
+                    Hasura.mediaManagerNotInitialized = false;
+                    Hasura.apolloClient.query(new CloudinaryAllQuery()).enqueue(new ApolloCall.Callback<CloudinaryAllQuery.Data>() {
+                        @Override
+                        public void onResponse(@NonNull Response<CloudinaryAllQuery.Data> response) {
+                            if (response.getData() != null) {
+                                CloudinaryAllQuery.CLOUDINARY cloudinary = response.getData().CLOUDINARY().get(0);
+                                Configuration configuration = new Configuration();
+                                configuration.secure = true;
+                                configuration.apiKey = cloudinary.api_key();
+                                configuration.apiSecret = cloudinary.api_secret();
+                                configuration.cloudName = cloudinary.cloud_name();
+                                MediaManager.init(capturedRequiredContext, configuration);
+                            }
+                            if (response.getErrors() != null) {
+                                System.out.println(response.getErrors());
+                            }
                         }
-                        if (response.getErrors() != null) {
-                            System.out.println(response.getErrors());
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+                        @Override
+                        public void onFailure(@NonNull ApolloException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
                 NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
             };
             Runnable onFailureCallback = null;
@@ -120,21 +123,25 @@ public class FragmentLogin extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (Hasura.loginSuccessfully != null && Hasura.loginSuccessfully) {
-            BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
-            RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
-            GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
-            RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
-            GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
-            RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
-            billViewModel.startSubscription();
-            roomViewModel.startSubscription();
-            guestViewModel.startSubscription();
-            roomKindViewModel.startSubscription();
-            guestKindViewModel.startSubscription();
-            rentalFormViewModel.startSubscription();
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
+
+        if (Hasura.currentLogState != null) {
+            if (Hasura.currentLogState == Hasura.LogState.IN) {
+                BillViewModel billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
+                RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
+                GuestViewModel guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
+                RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
+                GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
+                RentalFormViewModel rentalFormViewModel = new ViewModelProvider(requireActivity()).get(RentalFormViewModel.class);
+                billViewModel.startSubscription();
+                roomViewModel.startSubscription();
+                guestViewModel.startSubscription();
+                roomKindViewModel.startSubscription();
+                guestKindViewModel.startSubscription();
+                rentalFormViewModel.startSubscription();
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
+            }
         }
+
     }
 
     @Override

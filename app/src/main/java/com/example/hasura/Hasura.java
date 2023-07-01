@@ -19,26 +19,26 @@ import okhttp3.Request;
 
 public class Hasura {
 
-    public static Credentials credentials;
-    public static ApolloClient apolloClient;
-    public static Boolean loginSuccessfully;
-    public static Boolean logoutSuccessfully;
-
-    protected static Auth0 auth0;
-    protected static String scheme;
-    protected static Interceptor interceptor;
-    protected static OkHttpClient okHttpClient;
+    public static Boolean mediaManagerNotInitialized = true;
+    public static LogState currentLogState;
 
     public static void configAuth0(@NonNull String clientId, @NonNull String domain, @NonNull String scheme) {
         try {
             Hasura.scheme = scheme;
-            loginSuccessfully = false;
-            logoutSuccessfully = false;
+            currentLogState = LogState.OUT;
             auth0 = new Auth0(clientId, domain);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public static Credentials credentials;
+    public static ApolloClient apolloClient;
+
+    protected static Auth0 auth0;
+    protected static String scheme;
+    protected static Interceptor interceptor;
+    protected static OkHttpClient okHttpClient;
 
     public static void login(@NonNull Context context, @Nullable Runnable onSuccessCallback, @Nullable Runnable onFailureCallback) {
         try {
@@ -49,17 +49,19 @@ public class Hasura {
                     createInterceptor(credentials.getIdToken());
                     createApolloClient(null, null);
                     Hasura.credentials = credentials;
-                    loginSuccessfully = true;
-                    if (onSuccessCallback != null)
+                    currentLogState = LogState.IN;
+                    if (onSuccessCallback != null) {
                         onSuccessCallback.run();
+                    }
                 }
 
                 @Override
                 public void onFailure(@NonNull AuthenticationException e) {
                     System.out.println(e.getDescription());
-                    loginSuccessfully = false;
-                    if (onFailureCallback != null)
+                    currentLogState = LogState.OUT;
+                    if (onFailureCallback != null) {
                         onFailureCallback.run();
+                    }
                 }
 
             });
@@ -74,20 +76,43 @@ public class Hasura {
 
                 @Override
                 public void onSuccess(Void unused) {
-                    logoutSuccessfully = true;
-                    if (onSuccessCallback != null)
+                    currentLogState = LogState.OUT;
+                    if (onSuccessCallback != null) {
                         onSuccessCallback.run();
+                    }
                 }
 
                 @Override
                 public void onFailure(@NonNull AuthenticationException e) {
                     System.out.println(e.getDescription());
-                    logoutSuccessfully = false;
-                    if (onFailureCallback != null)
+                    currentLogState = LogState.IN;
+                    if (onFailureCallback != null) {
                         onFailureCallback.run();
+                    }
                 }
 
             });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected static void createApolloClient(@Nullable String serverURL, @Nullable String webSocketURL) {
+        try {
+
+            if (serverURL == null) {
+                serverURL = "https://open-primate-91.hasura.app/v1/graphql";
+            }
+            if (webSocketURL == null) {
+                webSocketURL = "wss://open-primate-91.hasura.app/v1/graphql";
+            }
+
+            okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+            WebSocketSubscriptionTransport.Factory webSocketSubscriptionTransportFactory =
+                    new WebSocketSubscriptionTransport.Factory(webSocketURL, okHttpClient);
+            apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(okHttpClient)
+                    .subscriptionTransportFactory(webSocketSubscriptionTransportFactory).build();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,21 +140,8 @@ public class Hasura {
         }
     }
 
-    protected static void createApolloClient(@Nullable String serverURL, @Nullable String webSocketURL) {
-        try {
-
-            if (serverURL == null)
-                serverURL = "https://open-primate-91.hasura.app/v1/graphql";
-            if (webSocketURL == null)
-                webSocketURL = "wss://open-primate-91.hasura.app/v1/graphql";
-
-            okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-            WebSocketSubscriptionTransport.Factory webSocketSubscriptionTransportFactory = new WebSocketSubscriptionTransport.Factory(webSocketURL, okHttpClient);
-            apolloClient = ApolloClient.builder().serverUrl(serverURL).okHttpClient(okHttpClient).subscriptionTransportFactory(webSocketSubscriptionTransportFactory).build();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public enum LogState {
+        IN, OUT,
     }
 
 }
