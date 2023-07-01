@@ -48,33 +48,6 @@ mutation BillUpdateByIdMutation
 }
 
 
-mutation BillUpdateCostByIdMutation
-(
-    $id: Int!, $cost: Float
-)
-{
-    update_BILL_by_pk
-    (
-        pk_columns:
-        {
-            id: $id
-        }
-        _set:
-        {
-            cost: $cost
-        }
-    )
-    {
-        id
-        cost
-        is_paid
-        guest_id
-        created_at
-        updated_at
-    }
-}
-
-
 mutation BillDeleteByIdMutation
 (
     $id: Int!

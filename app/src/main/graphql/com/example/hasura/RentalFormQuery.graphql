@@ -18,7 +18,7 @@ query RentalFormAllQuery
 }
 
 
-query RentalFormAmountByGuestIdQuery
+query RentalFormAmountByGuestIdAndIsResolvedFalseQuery
 (
     $guestId: Int
 )
@@ -31,7 +31,18 @@ query RentalFormAmountByGuestIdQuery
         }
     )
     {
+        id
         amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
     }
 }
 
