@@ -1,79 +1,53 @@
 mutation GuestInsertMutation
 (
-    $name       : String
-    $address    : String
-    $idNumber   : String
-    $guestKindId: Int
-    $phoneNumber: String
+    $name: String, $address: String, $idNumber: String, $phoneNumber: String, $guestKindId: Int
 )
 {
-    insert_GUEST
+    insert_GUEST_one
     (
-        objects:
-        [
-            {
-                name        : $name
-                address     : $address
-                id_number   : $idNumber
-                guestkind_id: $guestKindId
-                phone_number: $phoneNumber
-            }
-        ]
+        object:
+        {
+            name: $name, address: $address, id_number: $idNumber, phone_number: $phoneNumber, guest_kind_id: $guestKindId
+        }
     )
     {
-        returning
-        {
-            id
-            name
-            address
-            id_number
-            created_at
-            updated_at
-            phone_number
-            guestkind_id
-        }
+        id
+        name
+        address
+        id_number
+        created_at
+        updated_at
+        phone_number
+        guest_kind_id
     }
 }
 
 
 mutation GuestUpdateByIdMutation
 (
-    $id         : Int
-    $name       : String
-    $address    : String
-    $idNumber   : String
-    $guestKindId: Int
-    $phoneNumber: String
+    $id: Int!, $name: String, $address: String, $idNumber: String, $phoneNumber: String, $guestKindId: Int
 )
 {
-    update_GUEST
+    update_GUEST_by_pk
     (
-        where:
+        pk_columns:
         {
-            id: {   _eq: $id   }
+            id: $id
         }
         _set:
         {
-            name        : $name
-            address     : $address
-            id_number   : $idNumber
-            guestkind_id: $guestKindId
-            phone_number: $phoneNumber
+            name: $name, address: $address, id_number: $idNumber, phone_number: $phoneNumber, guest_kind_id: $guestKindId
         }
     )
     {
-        affected_rows
-        returning
-        {
-            id
-            name
-            address
-            id_number
-            created_at
-            updated_at
-            phone_number
-            guestkind_id
-        }
+        id
+        name
+        address
+        id_number
+        created_at
+        updated_at
+        phone_number
+        guest_kind_id
     }
 }
 
@@ -95,7 +69,7 @@ mutation GuestDeleteByIdMutation
         created_at
         updated_at
         phone_number
-        guestkind_id
+        guest_kind_id
     }
 }
 

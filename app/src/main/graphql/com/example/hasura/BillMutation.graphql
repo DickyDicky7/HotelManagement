@@ -1,99 +1,76 @@
 mutation BillInsertMutation
 (
-    $cost   : Float
-    $isPaid : Boolean
-    $guestId: Int
+    $cost: Float, $isPaid: Boolean, $guestId: Int
 )
 {
-    insert_BILL
+    insert_BILL_one
     (
-        objects:
-        [
-            {
-                cost    : $cost
-                is_paid : $isPaid
-                guest_id: $guestId
-            }
-        ]
+        object:
+        {
+            cost: $cost, is_paid: $isPaid, guest_id: $guestId
+        }
     )
     {
-        returning
-        {
-            id
-            cost
-            is_paid
-            guest_id
-            created_at
-            updated_at
-        }
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
     }
 }
 
 
 mutation BillUpdateByIdMutation
 (
-    $id     : Int
-    $cost   : Float
-    $isPaid : Boolean
-    $guestId: Int
+    $id: Int!, $cost: Float, $isPaid: Boolean, $guestId: Int
 )
 {
-    update_BILL
+    update_BILL_by_pk
     (
-        where:
+        pk_columns:
         {
-            id: {   _eq: $id   }
+            id: $id
         },
         _set:
         {
-            cost    : $cost
-            is_paid : $isPaid
-            guest_id: $guestId
+            cost: $cost, is_paid: $isPaid, guest_id: $guestId
         }
     )
     {
-        affected_rows
-        returning
-        {
-            id
-            cost
-            is_paid
-            guest_id
-            created_at
-            updated_at
-        }
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
     }
 }
 
 
 mutation BillUpdateCostByIdMutation
 (
-    $id  : Int
-    $cost: Float
+    $id: Int!, $cost: Float
 )
 {
-    update_BILL
+    update_BILL_by_pk
     (
-        where:
+        pk_columns:
         {
-            id: {   _eq: $id   }
-        },
+            id: $id
+        }
         _set:
         {
             cost: $cost
         }
     )
     {
-        affected_rows
-        returning
-        {
-            id
-            cost
-            is_paid
-            guest_id
-            created_at
-            updated_at
-        }
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
     }
 }
 

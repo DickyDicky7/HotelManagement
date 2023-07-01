@@ -9,42 +9,37 @@ mutation RoomKindInsertMutation
     $surchargePercentage: Float
 )
 {
-    insert_ROOMKIND
+    insert_ROOMKIND_one
     (
-        objects:
-        [
-            {
-                name                : $name
-                area                : $area
-                price               : $price
-                capacity            : $capacity
-                image_url           : $imageUrl
-                number_of_beds      : $numberOfBeds
-                surcharge_percentage: $surchargePercentage
-            }
-        ]
+        object:
+        {
+            name                : $name
+            area                : $area
+            price               : $price
+            capacity            : $capacity
+            image_url           : $imageUrl
+            number_of_beds      : $numberOfBeds
+            surcharge_percentage: $surchargePercentage
+        }
     )
     {
-        returning
-        {
-            id
-            name
-            area
-            price
-            capacity
-            image_url
-            created_at
-            updated_at
-            number_of_beds
-            surcharge_percentage
-        }
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
     }
 }
 
 
 mutation RoomKindUpdateByIdMutation
 (
-    $id                 : Int
+    $id                 : Int!
     $name               : String
     $area               : Float
     $price              : Float
@@ -54,11 +49,11 @@ mutation RoomKindUpdateByIdMutation
     $surchargePercentage: Float
 )
 {
-    update_ROOMKIND
+    update_ROOMKIND_by_pk
     (
-        where:
+        pk_columns:
         {
-            id: {   _eq: $id   }
+            id: $id
         }
         _set:
         {
@@ -72,20 +67,16 @@ mutation RoomKindUpdateByIdMutation
         }
     )
     {
-        affected_rows
-        returning
-        {
-            id
-            name
-            area
-            price
-            capacity
-            image_url
-            created_at
-            updated_at
-            number_of_beds
-            surcharge_percentage
-        }
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
     }
 }
 

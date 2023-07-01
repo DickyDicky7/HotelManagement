@@ -9,7 +9,7 @@ query GuestAllQuery
         created_at
         updated_at
         phone_number
-        guestkind_id
+        guest_kind_id
     }
 }
 
@@ -29,21 +29,24 @@ query GuestByIdNumberQuery
     {
         id
         name
+        address
+        id_number
+        created_at
+        updated_at
+        phone_number
+        guest_kind_id
     }
 }
 
 
 query GuestByIdQuery
 (
-    $id: Int
+    $id: Int!
 )
 {
-    GUEST
+    GUEST_by_pk
     (
-        where:
-        {
-            id: {   _eq: $id   }
-        }
+        id: $id
     )
     {
         id
@@ -53,7 +56,7 @@ query GuestByIdQuery
         created_at
         updated_at
         phone_number
-        guestkind_id
+        guest_kind_id
     }
 }
 

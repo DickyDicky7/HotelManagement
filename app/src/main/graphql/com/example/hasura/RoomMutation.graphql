@@ -7,106 +7,64 @@ mutation RoomInsertMutation
     $description: String
 )
 {
-    insert_ROOM
+    insert_ROOM_one
     (
-        objects:
-        [
-            {
-                name       : $name
-                note       : $note
-                roomkind_id: $roomKindId
-                is_occupied: $isOccupied
-                description: $description
-            }
-        ]
-    )
-    {
-        returning
+        object:
         {
-            id
-            name
-            note
-            created_at
-            updated_at
-            description
-            roomkind_id
-            is_occupied
-        }
-    }
-}
-
-
-mutation RoomUpdateIsOccupiedByIdMutation
-(
-    $id        : Int
-    $isOccupied: Boolean
-)
-{
-    update_ROOM
-    (
-        where:
-        {
-            id: {   _eq: $id   }
-        }
-        _set:
-        {
-            is_occupied: $isOccupied
+            name        : $name
+            note        : $note
+            is_occupied : $isOccupied
+            description : $description
+            room_kind_id: $roomKindId
         }
     )
     {
-        returning
-        {
-            id
-            name
-            note
-            created_at
-            updated_at
-            description
-            roomkind_id
-            is_occupied
-        }
+        id
+        name
+        note
+        created_at
+        updated_at
+        description
+        is_occupied
+        room_kind_id
     }
 }
 
 
 mutation RoomUpdateByIdMutation
 (
-    $id             : Int
-    $name           : String
-    $note           : String
-    $isOccupied     : Boolean
-    $description    : String
-    $roomkind_id    : Int
+    $id         : Int!
+    $name       : String
+    $note       : String
+    $roomKindId : Int
+    $isOccupied : Boolean
+    $description: String
 )
 {
-    update_ROOM
+    update_ROOM_by_pk
     (
-        where:
+        pk_columns:
         {
-            id: {   _eq: $id   }
+            id: $id
         }
         _set:
         {
-            name       : $name
-            note       : $note
-            is_occupied: $isOccupied
-            description: $description
-            roomkind_id: $roomkind_id
+            name        : $name
+            note        : $note
+            is_occupied : $isOccupied
+            description : $description
+            room_kind_id: $roomKindId
         }
     )
     {
-        affected_rows
-        returning
-        {
-            id
-            name
-            note
-            created_at
-            updated_at
-            description
-            roomkind_id
-            is_occupied
-        }
+        id
+        name
+        note
+        created_at
+        updated_at
+        description
+        is_occupied
+        room_kind_id
     }
 }
 
@@ -127,8 +85,8 @@ mutation RoomDeleteByIdMutation
         created_at
         updated_at
         description
-        roomkind_id
         is_occupied
+        room_kind_id
     }
 }
 

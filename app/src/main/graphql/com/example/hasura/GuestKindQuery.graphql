@@ -6,6 +6,7 @@ query GuestKindAllQuery
         name
         created_at
         updated_at
+        discount_coefficient
     }
 }
 

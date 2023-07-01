@@ -9,7 +9,7 @@ subscription RoomSubscription
         updated_at
         description
         is_occupied
-        roomkind_id
+        room_kind_id
     }
 }
 
