@@ -56,14 +56,15 @@ public class FragmentAddRentalForm extends Fragment {
         rentalFormObservable = new RentalFormObservable();
         binding.setRentalFormObservable(rentalFormObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseRoom.setAdapter(arrayAdapter);
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             arrayAdapter.clear();
-            arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
+            arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()
+            ).map(RoomObservable::getName).toArray(String[]::new));
 
             binding.spinnerChooseRoom.setSelection(0, true);
             List<RoomObservable> isOccupiedFalseRoomObservables = updatedRoomObservables.stream().filter
@@ -80,7 +81,7 @@ public class FragmentAddRentalForm extends Fragment {
 
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
-                rentalFormViewModel.findGuestId(rentalFormObservable);
+                rentalFormViewModel.findGuestByGuestIdNumber(rentalFormObservable);
             }
         });
 
@@ -150,11 +151,10 @@ public class FragmentAddRentalForm extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (rentalFormObservable.getNumberOfGuestsString() == null ||
-                        rentalFormObservable.getNumberOfGuestsString().equals("")) {
+                if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
                     return;
                 }
-                rentalFormViewModel.findPrice(rentalFormObservable);
+                rentalFormViewModel.findRentalFormPricePerDayByRoomId(rentalFormObservable);
             }
         });
 
@@ -168,13 +168,15 @@ public class FragmentAddRentalForm extends Fragment {
                     if (rentalFormObservable.getNumberOfGuestsString() == null || rentalFormObservable.getNumberOfGuestsString().equals("")) {
                         return;
                     }
-                    rentalFormViewModel.findPrice(rentalFormObservable);
+                    rentalFormViewModel.findRentalFormPricePerDayByRoomId(rentalFormObservable);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                rentalFormObservable.setRoomId(null);
+                rentalFormObservable.setPricePerDay(null);
+                rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
             }
         });
 
@@ -198,8 +200,8 @@ public class FragmentAddRentalForm extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             rentalFormObservable = new RentalFormObservable();
-                            rentalFormObservable.setIsResolved(false);
                             binding.radioResolved.setEnabled(false);
+                            rentalFormObservable.setIsResolved(false);
                             binding.setRentalFormObservable(rentalFormObservable);
                             String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()

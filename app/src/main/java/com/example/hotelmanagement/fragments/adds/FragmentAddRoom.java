@@ -48,20 +48,22 @@ public class FragmentAddRoom extends Fragment {
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        binding.spinner.setAdapter(arrayAdapter);
+        binding.spinnerChooseRoomKind.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
-        List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
             arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
+            binding.spinnerChooseRoomKind.setSelection(arrayAdapter.getPosition
+                    (roomKindViewModel.getRoomKindName(roomObservable.getRoomKindId())), true);
         });
 
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerChooseRoomKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
                 if (roomKindObservables != null) {
                     roomObservable.setRoomKindId(roomKindObservables.get(i).getId());
                 }
@@ -90,7 +92,11 @@ public class FragmentAddRoom extends Fragment {
                         requireActivity().runOnUiThread(() -> {
                             roomObservable = new RoomObservable();
                             binding.setRoomObservable(roomObservable);
-                            roomObservable.setRoomKindId(roomKindObservables.get(binding.spinner.getSelectedItemPosition()).getId());
+                            List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
+                            if (roomKindObservables != null) {
+                                roomObservable.setRoomKindId(roomKindObservables.get(
+                                        binding.spinnerChooseRoomKind.getSelectedItemPosition()).getId());
+                            }
                             roomObservable.setIsOccupied(false);
                             String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()

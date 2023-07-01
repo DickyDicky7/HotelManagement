@@ -48,20 +48,22 @@ public class FragmentAddGuest extends Fragment {
         guestObservable = new GuestObservable();
         binding.setGuestObservable(guestObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseGuestKind.setAdapter(arrayAdapter);
 
         GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
-        List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
         guestKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestKindObservables -> {
             arrayAdapter.clear();
             arrayAdapter.addAll(updatedGuestKindObservables.stream().map(GuestKindObservable::getName).toArray(String[]::new));
+            binding.spinnerChooseGuestKind.setSelection(arrayAdapter.getPosition(
+                    guestKindViewModel.getGuestKindName(guestObservable.getGuestKindId())), true);
         });
 
         binding.spinnerChooseGuestKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
                 if (guestKindObservables != null) {
                     guestObservable.setGuestKindId(guestKindObservables.get(i).getId());
                 }
@@ -90,7 +92,11 @@ public class FragmentAddGuest extends Fragment {
                         requireActivity().runOnUiThread(() -> {
                             guestObservable = new GuestObservable();
                             binding.setGuestObservable(guestObservable);
-                            guestObservable.setGuestKindId(guestKindObservables.get(binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
+                            List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
+                            if (guestKindObservables != null) {
+                                guestObservable.setGuestKindId(guestKindObservables.get(
+                                        binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
+                            }
                             String message = "Success: Your item has been added successfully.";
                             SuccessDialogFragment.newOne(getParentFragmentManager()
                                     , "FragmentAddGuest Success", message);

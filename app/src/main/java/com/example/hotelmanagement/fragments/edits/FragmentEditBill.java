@@ -118,8 +118,8 @@ public class FragmentEditBill extends Fragment {
             usedBillObservable = usedBillObservable.customizedClone();
             copyBillObservable = usedBillObservable.customizedClone();
             binding.setBillObservable(usedBillObservable);
-            billViewModel.findGuest(usedBillObservable);
-            billViewModel.findGuest(copyBillObservable);
+            billViewModel.findGuestByGuestId(usedBillObservable);
+            billViewModel.findGuestByGuestId(copyBillObservable);
         } else {
             usedBillObservable = new BillObservable();
             copyBillObservable = null;

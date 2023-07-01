@@ -31,10 +31,8 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
 import com.example.hotelmanagement.dialog.FailureDialogFragment;
 import com.example.hotelmanagement.dialog.SuccessDialogFragment;
-import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.BillViewModel;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
 
@@ -49,8 +47,6 @@ import java.util.stream.Collectors;
 public class FragmentEditRentalForm extends Fragment {
 
     private FragmentEditRentalFormBinding binding;
-    private BillViewModel billViewModel;
-    private BillObservable billObservable;
     private RentalFormViewModel rentalFormViewModel;
     private RentalFormObservable usedRentalFormObservable;
     private RentalFormObservable copyRentalFormObservable;
@@ -138,28 +134,31 @@ public class FragmentEditRentalForm extends Fragment {
             usedRentalFormObservable = usedRentalFormObservable.customizedClone();
             copyRentalFormObservable = usedRentalFormObservable.customizedClone();
             binding.setRentalFormObservable(usedRentalFormObservable);
-            rentalFormViewModel.findGuest(usedRentalFormObservable);
-            rentalFormViewModel.findGuest(copyRentalFormObservable);
+            rentalFormViewModel.findGuestByGuestId(usedRentalFormObservable);
+            rentalFormViewModel.findGuestByGuestId(copyRentalFormObservable);
         } else {
             usedRentalFormObservable = new RentalFormObservable();
             copyRentalFormObservable = null;
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseRoom.setAdapter(arrayAdapter);
+
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
         roomViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomObservables -> {
             arrayAdapter.clear();
-            arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()).map(RoomObservable::getName).toArray(String[]::new));
+            arrayAdapter.addAll(updatedRoomObservables.stream().filter(roomObservable -> !roomObservable.getIsOccupied()
+            ).map(RoomObservable::getName).toArray(String[]::new));
             arrayAdapter.add(roomViewModel.getRoomName(usedRentalFormObservable.getRoomId()));
-            binding.spinnerChooseRoom.setSelection(arrayAdapter.getPosition(roomViewModel.getRoomName(usedRentalFormObservable.getRoomId())));
+            binding.spinnerChooseRoom.setSelection(arrayAdapter.getPosition(
+                    roomViewModel.getRoomName(usedRentalFormObservable.getRoomId())), true);
         });
 
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
                 if (!copyRentalFormObservable.getIsResolved()) {
-                    rentalFormViewModel.findGuestId(usedRentalFormObservable);
+                    rentalFormViewModel.findGuestByGuestIdNumber(usedRentalFormObservable);
                 }
             }
         });
@@ -235,11 +234,10 @@ public class FragmentEditRentalForm extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (!copyRentalFormObservable.getIsResolved()) {
-                    if (usedRentalFormObservable.getNumberOfGuestsString() == null ||
-                            usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
+                    if (usedRentalFormObservable.getNumberOfGuestsString() == null || usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
                         return;
                     }
-                    rentalFormViewModel.findPrice(usedRentalFormObservable);
+                    rentalFormViewModel.findRentalFormPricePerDayByRoomId(usedRentalFormObservable);
                 }
             }
         });
@@ -256,14 +254,18 @@ public class FragmentEditRentalForm extends Fragment {
                         if (usedRentalFormObservable.getNumberOfGuestsString() == null || usedRentalFormObservable.getNumberOfGuestsString().equals("")) {
                             return;
                         }
-                        rentalFormViewModel.findPrice(usedRentalFormObservable);
+                        rentalFormViewModel.findRentalFormPricePerDayByRoomId(usedRentalFormObservable);
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                if (!copyRentalFormObservable.getIsResolved()) {
+                    usedRentalFormObservable.setRoomId(null);
+                    usedRentalFormObservable.setPricePerDay(null);
+                    usedRentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                }
             }
         });
 
@@ -299,14 +301,6 @@ public class FragmentEditRentalForm extends Fragment {
                 rentalFormViewModel.onFailureCallback = null;
                 if (rentalFormViewModel.checkObservable(usedRentalFormObservable, requireContext(), "billId")) {
                     rentalFormViewModel.update(usedRentalFormObservable, copyRentalFormObservable);
-//                    if ((Math.abs(rentalFormObservable1.getAmount()) != Math.abs(rentalFormObservable.getAmount())) && rentalFormObservable.getBillId() != null) {
-//                        Double amount;
-//                        if (Math.abs(billObservable.getCost()) == Math.abs(rentalFormObservable1.getAmount()))
-//                            amount = rentalFormObservable.getAmount();
-//                        else
-//                            amount = billObservable.getCost() + rentalFormObservable.getAmount() - rentalFormObservable1.getAmount();
-//                        billViewModel.updateAmount(billObservable, amount);
-//                    }
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -357,8 +351,6 @@ public class FragmentEditRentalForm extends Fragment {
         watcher = null;
         handler = null;
         binding = null;
-        billViewModel = null;
-        billObservable = null;
         rentalFormViewModel = null;
         usedRentalFormObservable = null;
         copyRentalFormObservable = null;

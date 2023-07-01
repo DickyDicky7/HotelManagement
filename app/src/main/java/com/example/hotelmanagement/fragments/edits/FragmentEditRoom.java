@@ -129,14 +129,16 @@ public class FragmentEditRoom extends Fragment {
             copyRoomObservable = null;
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, new ArrayList<String>());
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         binding.spinnerChooseRoomKind.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
         roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
+            arrayAdapter.clear();
             arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
-            binding.spinnerChooseRoomKind.setSelection(arrayAdapter.getPosition(roomKindViewModel.getRoomKindName(usedRoomObservable.getRoomKindId())));
+            binding.spinnerChooseRoomKind.setSelection(arrayAdapter.getPosition
+                    (roomKindViewModel.getRoomKindName(usedRoomObservable.getRoomKindId())), true);
         });
 
         binding.spinnerChooseRoomKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

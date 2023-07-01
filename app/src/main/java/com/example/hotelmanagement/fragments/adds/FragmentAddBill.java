@@ -45,7 +45,7 @@ public class FragmentAddBill extends Fragment {
 
         binding.edtIdNumber.setOnFocusChangeListener((_view_, b) -> {
             if (!b) {
-                billViewModel.findGuestId(billObservable);
+                billViewModel.findGuestByGuestIdNumber(billObservable);
             }
         });
 
@@ -66,7 +66,7 @@ public class FragmentAddBill extends Fragment {
                     Toast.makeText(requireContext(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                billViewModel.calculateCost(billObservable);
+                billViewModel.findBillCostByGuestIdAndRentalFormIsResolvedFalse(billObservable);
             }
         });
 
