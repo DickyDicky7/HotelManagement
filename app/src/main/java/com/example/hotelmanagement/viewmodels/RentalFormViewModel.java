@@ -7,7 +7,6 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.ApolloSubscriptionCall;
-import com.apollographql.apollo.api.Input;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestByIdNumberQuery;
@@ -23,6 +22,7 @@ import com.example.hotelmanagement.observables.RentalFormObservable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable> {
 
@@ -30,36 +30,22 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
         super();
     }
 
-    public void findGuestId(RentalFormObservable rentalFormObservable) {
-        GuestByIdNumberQuery guestByIdNumberQuery = GuestByIdNumberQuery
-                .builder()
-                .idNumber(rentalFormObservable.getIdNumber())
-                .build();
-        Hasura.apolloClient.query(guestByIdNumberQuery)
-                .enqueue(new ApolloCall.Callback<GuestByIdNumberQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
-                        if (response.getData() != null) {
-                            if (!response.getData().GUEST().isEmpty()) {
-                                GuestByIdNumberQuery.GUEST guest = response.getData().GUEST().get(0);
-                                rentalFormObservable.setName(guest.name());
-                                rentalFormObservable.setGuestId(guest.id());
-                                Log.d("RentalFormViewModel Find GuestId Response Debug", guest.toString());
-                            }
-                        }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find GuestId Error", error.toString()));
-                        }
-                    }
+    public void findGuestByGuestIdNumber(@NonNull RentalFormObservable rentalFormObservable) {
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Runnable onFailureCallback = () -> {
+            rentalFormObservable.setName(null);
+            rentalFormObservable.setGuestId(null);
+        };
+        Consumer<GuestByIdNumberQuery.GUEST> onSuccessCallback = guest -> {
+            rentalFormObservable.setName(guest.name());
+            rentalFormObservable.setGuestId(guest.id());
+        };
+
+        this.findGuestByGuestIdNumber(rentalFormObservable.getIdNumber(), onSuccessCallback, onFailureCallback);
+
     }
 
-    public void findPrice(RentalFormObservable rentalFormObservable) {
+    public void findRentalFormPricePerDayByRoomId(RentalFormObservable rentalFormObservable) {
         RoomPriceByIdQuery roomPriceByIdQuery = RoomPriceByIdQuery
                 .builder()
                 .id(rentalFormObservable.getRoomId())
@@ -69,30 +55,30 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     @Override
                     public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
                         if (response.getData() != null) {
-                            if (!response.getData().ROOM().isEmpty()) {
-                                RoomPriceByIdQuery.ROOM room = response.getData().ROOM().get(0);
-                                RoomPriceByIdQuery.ROOMKIND room_kind = room.ROOMKIND();
-                                if (room_kind != null) {
-                                    Double price = room_kind.price();
-                                    Double surchargePercentage = room_kind.surcharge_percentage();
-                                    Integer capacity = room_kind.capacity();
-                                    Integer numberOfGuests = rentalFormObservable.getNumberOfGuests();
-                                    if (price != null && surchargePercentage != null && capacity != null && numberOfGuests != null) {
-                                        Integer differences = numberOfGuests - capacity;
-                                        if (differences < 0) {
-                                            differences = 0;
-                                        }
-                                        Double pricePerDay = price + surchargePercentage / 100 * price * differences;
-                                        rentalFormObservable.setPricePerDay(pricePerDay);
-                                        rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
-                                        Log.d("RoomKind Debug", "Price: " + price + ", Capacity: " + capacity + ", SurchargePercentage: " + surchargePercentage + ", NumberOfGuests: " + numberOfGuests);
+                            RoomPriceByIdQuery.ROOM_by_pk room_by_pk = response.getData().ROOM_by_pk();
+                            if (room_by_pk != null) {
+                                RoomPriceByIdQuery.ROOMKIND room_kind = room_by_pk.ROOMKIND();
+                                double price = room_kind.price();
+                                double surchargePercentage = room_kind.surcharge_percentage();
+                                Integer capacity = room_kind.capacity();
+                                Integer numberOfGuests = rentalFormObservable.getNumberOfGuests();
+                                if (numberOfGuests != null) {
+                                    int differences = numberOfGuests - capacity;
+                                    if (differences < 0) {
+                                        differences = 0;
                                     }
+                                    double pricePerDay = price + surchargePercentage / 100 * price * differences;
+                                    rentalFormObservable.setPricePerDay(pricePerDay);
+                                    rentalFormObservable.notifyPropertyChanged(BR.pricePerDayString);
+                                    Log.d("RentalFormViewModel PricePerDay Calculated Elements Debug"
+                                            , "Price: " + price + ", Capacity: " + capacity
+                                                    + ", SurchargePercentage: " + surchargePercentage + ", NumberOfGuests: " + numberOfGuests);
                                 }
-                                Log.d("RentalFormViewModel Find Price Response Debug", room.toString());
+                                Log.d("RentalFormViewModel Find RentalForm PricePerDay By RoomId Response Debug", room_by_pk.toString());
                             }
                         }
                         if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Price Error", error.toString()));
+                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find RentalForm PricePerDay By RoomId Error", error.toString()));
                         }
                     }
 
@@ -122,9 +108,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            RentalFormInsertMutation.Insert_RENTALFORM insert_rental_form = response.getData().insert_RENTALFORM();
-                            if (insert_rental_form != null) {
-                                Log.d("RentalFormViewModel Insert Response Debug", insert_rental_form.toString());
+                            RentalFormInsertMutation.Insert_RENTALFORM_one insert_rental_form_one = response.getData().insert_RENTALFORM_one();
+                            if (insert_rental_form_one != null) {
+                                Log.d("RentalFormViewModel Insert Response Debug", insert_rental_form_one.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -162,9 +148,9 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                     public void onResponse(@NonNull Response<RentalFormUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            RentalFormUpdateByIdMutation.Update_RENTALFORM update_rental_form = response.getData().update_RENTALFORM();
-                            if (update_rental_form != null) {
-                                Log.d("RentalViewModel Update Response Debug", update_rental_form.toString());
+                            RentalFormUpdateByIdMutation.Update_RENTALFORM_by_pk update_rental_form_by_pk = response.getData().update_RENTALFORM_by_pk();
+                            if (update_rental_form_by_pk != null) {
+                                Log.d("RentalFormViewModel Update Response Debug", update_rental_form_by_pk.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -213,29 +199,19 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void findGuest(RentalFormObservable rentalFormObservable) {
-        Hasura.apolloClient.query(new GuestByIdQuery(new Input<Integer>(rentalFormObservable.getGuestId(), true)))
-                .enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
-                    @Override
-                    public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
-                        if (response.getData() != null) {
-                            if (!response.getData().GUEST().isEmpty()) {
-                                GuestByIdQuery.GUEST guest = response.getData().GUEST().get(0);
-                                rentalFormObservable.setName(guest.name());
-                                rentalFormObservable.setIdNumber(guest.id_number());
-                                Log.d("RentalFormViewModel Find Guest Response Debug", guest.toString());
-                            }
-                        }
-                        if (response.getErrors() != null) {
-                            response.getErrors().forEach(error -> Log.e("RentalFormViewModel Find Guest Error", error.toString()));
-                        }
-                    }
+    public void findGuestByGuestId(@NonNull RentalFormObservable rentalFormObservable) {
 
-                    @Override
-                    public void onFailure(@NonNull ApolloException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Runnable onFailureCallback = () -> {
+            rentalFormObservable.setName("");
+            rentalFormObservable.setIdNumber("");
+        };
+        Consumer<GuestByIdQuery.GUEST_by_pk> onSuccessCallback = guest_by_pk -> {
+            rentalFormObservable.setName(guest_by_pk.name());
+            rentalFormObservable.setIdNumber(guest_by_pk.id_number());
+        };
+
+        this.findGuestByGuestId(rentalFormObservable.getGuestId(), onSuccessCallback, onFailureCallback);
+
     }
 
     @Override
@@ -249,9 +225,6 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                         rentalFormObservables.clear();
                     }
                     response.getData().RENTALFORM().forEach(item -> {
-                        LocalDate item_start_date = item.start_date() != null ? LocalDate.parse(item.start_date().toString()) : null;
-                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                         RentalFormObservable rentalFormObservable = new RentalFormObservable(
                                 item.id(),
                                 item.amount(),
@@ -261,10 +234,10 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                                 item.rental_days(),
                                 item.is_resolved(),
                                 item.price_per_day(),
-                                item_start_date,
+                                LocalDate.parse(item.start_date().toString()),
                                 item.number_of_guests(),
-                                item_created_at,
-                                item_updated_at
+                                LocalDateTime.parse(item.created_at().toString()),
+                                LocalDateTime.parse(item.updated_at().toString())
                         );
                         if (rentalFormObservables != null) {
                             rentalFormObservables.add(rentalFormObservable);

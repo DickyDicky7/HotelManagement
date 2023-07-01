@@ -41,13 +41,12 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
                         guestKindObservables.clear();
                     }
                     response.getData().GUESTKIND().forEach(item -> {
-                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                         GuestKindObservable guestKindObservable = new GuestKindObservable(
                                 item.id(),
                                 item.name(),
-                                item_created_at,
-                                item_updated_at
+                                item.discount_coefficient(),
+                                LocalDateTime.parse(item.created_at().toString()),
+                                LocalDateTime.parse(item.updated_at().toString())
                         );
                         if (guestKindObservables != null) {
                             guestKindObservables.add(guestKindObservable);

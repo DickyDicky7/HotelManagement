@@ -40,9 +40,9 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            RoomInsertMutation.Insert_ROOM insert_room = response.getData().insert_ROOM();
-                            if (insert_room != null) {
-                                Log.d("RoomViewModel Insert Response Debug", insert_room.toString());
+                            RoomInsertMutation.Insert_ROOM_one insert_room_one = response.getData().insert_ROOM_one();
+                            if (insert_room_one != null) {
+                                Log.d("RoomViewModel Insert Response Debug", insert_room_one.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -66,8 +66,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 .id(usedRoomObservable.getId())
                 .name(usedRoomObservable.getName())
                 .note(usedRoomObservable.getNote())
+                .roomKindId(usedRoomObservable.getRoomKindId())
                 .isOccupied(usedRoomObservable.getIsOccupied())
-                .roomkind_id(usedRoomObservable.getRoomKindId())
                 .description(usedRoomObservable.getDescription())
                 .build();
         Hasura.apolloClient.mutate(roomUpdateByIdMutation)
@@ -76,9 +76,9 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                     public void onResponse(@NonNull Response<RoomUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            RoomUpdateByIdMutation.Update_ROOM update_room = response.getData().update_ROOM();
-                            if (update_room != null) {
-                                Log.d("RoomViewModel Update Response Debug", update_room.toString());
+                            RoomUpdateByIdMutation.Update_ROOM_by_pk update_room_by_pk = response.getData().update_ROOM_by_pk();
+                            if (update_room_by_pk != null) {
+                                Log.d("RoomViewModel Update Response Debug", update_room_by_pk.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -147,17 +147,15 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                         roomObservables.clear();
                     }
                     response.getData().ROOM().forEach(item -> {
-                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                         RoomObservable roomObservable = new RoomObservable(
                                 item.id(),
                                 item.name(),
                                 item.note(),
                                 item.description(),
                                 item.is_occupied(),
-                                item.roomkind_id(),
-                                item_created_at,
-                                item_updated_at
+                                item.room_kind_id(),
+                                LocalDateTime.parse(item.created_at().toString()),
+                                LocalDateTime.parse(item.updated_at().toString())
                         );
                         if (roomObservables != null) {
                             roomObservables.add(roomObservable);

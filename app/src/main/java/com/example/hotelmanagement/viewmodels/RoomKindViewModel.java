@@ -64,9 +64,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
                                 if (response.getData() != null) {
                                     onSuccessHandler();
-                                    RoomKindInsertMutation.Insert_ROOMKIND insert_room_kind = response.getData().insert_ROOMKIND();
-                                    if (insert_room_kind != null) {
-                                        Log.d("RoomKindViewModel Insert Response Debug", insert_room_kind.toString());
+                                    RoomKindInsertMutation.Insert_ROOMKIND_one insert_room_kind_one = response.getData().insert_ROOMKIND_one();
+                                    if (insert_room_kind_one != null) {
+                                        Log.d("RoomKindViewModel Insert Response Debug", insert_room_kind_one.toString());
                                     }
                                 }
                                 if (response.getErrors() != null) {
@@ -117,9 +117,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
                             if (response.getData() != null) {
                                 onSuccessHandler();
-                                RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
-                                if (update_room_kind != null) {
-                                    Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
+                                RoomKindUpdateByIdMutation.Update_ROOMKIND_by_pk update_room_kind_by_pk = response.getData().update_ROOMKIND_by_pk();
+                                if (update_room_kind_by_pk != null) {
+                                    Log.d("RoomKindViewModel Update Response Debug", update_room_kind_by_pk.toString());
                                 }
                             }
                             if (response.getErrors() != null) {
@@ -171,9 +171,9 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                     if (response.getData() != null) {
                                         onSuccessHandler();
                                         cloudinaryRemoveImage(copyRoomKindObservable.getImageURL());
-                                        RoomKindUpdateByIdMutation.Update_ROOMKIND update_room_kind = response.getData().update_ROOMKIND();
-                                        if (update_room_kind != null) {
-                                            Log.d("RoomKindViewModel Update Response Debug", update_room_kind.toString());
+                                        RoomKindUpdateByIdMutation.Update_ROOMKIND_by_pk update_room_kind_by_pk = response.getData().update_ROOMKIND_by_pk();
+                                        if (update_room_kind_by_pk != null) {
+                                            Log.d("RoomKindViewModel Update Response Debug", update_room_kind_by_pk.toString());
                                         }
                                     }
                                     if (response.getErrors() != null) {
@@ -258,8 +258,6 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         roomKindObservables.clear();
                     }
                     response.getData().ROOMKIND().forEach(item -> {
-                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                         RoomKindObservable roomKindObservable = new RoomKindObservable(
                                 item.id(),
                                 item.name(),
@@ -267,8 +265,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                                 item.price(),
                                 item.image_url(), item.capacity(),
                                 item.number_of_beds(),
-                                item_created_at,
-                                item_updated_at,
+                                LocalDateTime.parse(item.created_at().toString()),
+                                LocalDateTime.parse(item.updated_at().toString()),
                                 item.surcharge_percentage()
                         );
                         if (roomKindObservables != null) {

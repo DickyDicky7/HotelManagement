@@ -39,9 +39,9 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            GuestInsertMutation.Insert_GUEST insert_guest = response.getData().insert_GUEST();
-                            if (insert_guest != null) {
-                                Log.d("GuestViewModel Insert Response Debug", insert_guest.toString());
+                            GuestInsertMutation.Insert_GUEST_one insert_guest_one = response.getData().insert_GUEST_one();
+                            if (insert_guest_one != null) {
+                                Log.d("GuestViewModel Insert Response Debug", insert_guest_one.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -75,9 +75,9 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                     public void onResponse(@NonNull Response<GuestUpdateByIdMutation.Data> response) {
                         if (response.getData() != null) {
                             onSuccessHandler();
-                            GuestUpdateByIdMutation.Update_GUEST update_guest = response.getData().update_GUEST();
-                            if (update_guest != null) {
-                                Log.d("GuestViewModel Update Response Debug", update_guest.toString());
+                            GuestUpdateByIdMutation.Update_GUEST_by_pk update_guest_by_pk = response.getData().update_GUEST_by_pk();
+                            if (update_guest_by_pk != null) {
+                                Log.d("GuestViewModel Update Response Debug", update_guest_by_pk.toString());
                             }
                         }
                         if (response.getErrors() != null) {
@@ -137,17 +137,15 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                         guestObservables.clear();
                     }
                     response.getData().GUEST().forEach(item -> {
-                        LocalDateTime item_created_at = item.created_at() != null ? LocalDateTime.parse(item.created_at().toString()) : null;
-                        LocalDateTime item_updated_at = item.updated_at() != null ? LocalDateTime.parse(item.updated_at().toString()) : null;
                         GuestObservable guestObservable = new GuestObservable(
                                 item.id(),
                                 item.name(),
                                 item.address(),
                                 item.id_number(),
                                 item.phone_number(),
-                                item.guestkind_id(),
-                                item_created_at,
-                                item_updated_at
+                                item.guest_kind_id(),
+                                LocalDateTime.parse(item.created_at().toString()),
+                                LocalDateTime.parse(item.updated_at().toString())
                         );
                         if (guestObservables != null) {
                             guestObservables.add(guestObservable);
