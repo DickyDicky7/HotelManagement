@@ -26,11 +26,11 @@ import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder> {
 
-    private static Integer clickedId;
-    private final RoomListener roomListener;
     private Boolean isFstTime;
+    private static Integer clickedId;
     private Drawable normalUserImage;
     private Drawable normalMarkImage;
     private int normalBackgroundColor;
@@ -38,6 +38,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
     private Drawable clickedUserImage;
     private int clickedBackgroundColor;
     private int clickedForegroundColor;
+    private final RoomListener roomListener;
 
     private View clickedItem = null;
     private ImageView clickedItemUserImageView = null;
@@ -69,68 +70,68 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
     }
 
     @Override
+    @SuppressWarnings({"UnusedAssignment", "IfStatementWithIdenticalBranches"})
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
-        if (baseObservables != null) {
 
-            RoomObservable roomObservable = baseObservables.get(position);
+        RoomObservable roomObservable = items.get(position);
 
-            Integer clickedItemViewType = null;
-            ViewBinding clickedItemBinding = null;
+        Integer clickedItemViewType = null;
+        ViewBinding clickedItemBinding = null;
 
-            RoomKindViewModel roomKindViewModel = new ViewModelProvider(fragmentActivity).get(RoomKindViewModel.class);
-            List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
-            Optional<RoomKindObservable> optionalRoomKindObservable = Optional.empty();
-            if (roomKindObservables != null) {
-                optionalRoomKindObservable = roomKindObservables.stream().filter
-                        (roomKindObservable -> roomKindObservable.getId().equals(roomObservable.getRoomKindId())).findFirst();
-            }
+        RoomKindViewModel roomKindViewModel = new ViewModelProvider(fragmentActivity).get(RoomKindViewModel.class);
+        List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
+        Optional<RoomKindObservable> optionalRoomKindObservable = Optional.empty();
+        if (roomKindObservables != null) {
+            optionalRoomKindObservable = roomKindObservables.stream().filter
+                    (roomKindObservable -> roomKindObservable.getId().equals(roomObservable.getRoomKindId())).findFirst();
+        }
 
-            if (holder.getItemViewType() == 0) {
-                RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
-                binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
-                if (optionalRoomKindObservable.isPresent()) {
-                    RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
-                    binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
-                } else {
-                    binding.itemRoomRoomKindTextView.setText("");
-                }
-
-                binding.itemRoom.setOnClickListener(view -> {
-                    roomListener.onRoomClick(roomObservable);
-                    setOnClickedUI(roomObservable.getId(), holder.getItemViewType(), binding);
-                });
-
-                clickedItemBinding = binding;
-                clickedItemViewType = holder.getItemViewType();
-
+        if (holder.getItemViewType() == 0) {
+            RecyclerViewItemRoomBinding binding = RecyclerViewItemRoomBinding.bind(holder.itemView);
+            binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
+            if (optionalRoomKindObservable.isPresent()) {
+                RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
+                binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
             } else {
-                RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
-                binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
-                if (optionalRoomKindObservable.isPresent()) {
-                    RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
-                    binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
-                } else {
-                    binding.itemRoomRoomKindTextView.setText("");
-                }
-
-                binding.itemRoom.setOnClickListener(view -> {
-                    roomListener.onRoomClick(roomObservable);
-                    setOnClickedUI(roomObservable.getId(), holder.getItemViewType(), binding);
-                });
-
-                clickedItemBinding = binding;
-                clickedItemViewType = holder.getItemViewType();
-
+                binding.itemRoomRoomKindTextView.setText("");
             }
 
-            if (roomObservable.getId().equals(clickedId)) {
+            binding.itemRoom.setOnClickListener(view -> {
                 roomListener.onRoomClick(roomObservable);
-                setOnClickedUI(roomObservable.getId(), clickedItemViewType, clickedItemBinding);
+                setOnClickedUI(roomObservable.getId(), holder.getItemViewType(), binding);
+            });
+
+            clickedItemBinding = binding;
+            clickedItemViewType = holder.getItemViewType();
+
+        } else {
+            RecyclerViewItemRoomOccupiedBinding binding = RecyclerViewItemRoomOccupiedBinding.bind(holder.itemView);
+            binding.itemRoomRoomNameTextView.setText(roomObservable.getName());
+            if (optionalRoomKindObservable.isPresent()) {
+                RoomKindObservable roomKindObservable = optionalRoomKindObservable.get();
+                binding.itemRoomRoomKindTextView.setText(roomKindObservable.getName());
+            } else {
+                binding.itemRoomRoomKindTextView.setText("");
             }
+
+            binding.itemRoom.setOnClickListener(view -> {
+                roomListener.onRoomClick(roomObservable);
+                setOnClickedUI(roomObservable.getId(), holder.getItemViewType(), binding);
+            });
+
+            clickedItemBinding = binding;
+            clickedItemViewType = holder.getItemViewType();
 
         }
+
+        if (roomObservable.getId().equals(clickedId)) {
+            roomListener.onRoomClick(roomObservable);
+            setOnClickedUI(roomObservable.getId(), clickedItemViewType, clickedItemBinding);
+        }
+
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void setOnClickedUI(@NonNull Integer itemId, @NonNull Integer itemViewType, @NonNull ViewBinding binding) {
 
         if (clickedItem != null) {
@@ -215,7 +216,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        return baseObservables != null ? (baseObservables.get(position).getIsOccupied() ? 1 : 0) : 0;
+        return items.get(position).getIsOccupied() ? 1 : 0;
     }
 
     public interface RoomListener {

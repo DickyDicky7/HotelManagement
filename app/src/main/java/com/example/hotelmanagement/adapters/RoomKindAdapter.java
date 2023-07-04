@@ -39,22 +39,20 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RoomKindViewHolder holder, int position) {
-        if (baseObservables != null) {
 
-            RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.bind(holder.itemView);
-            RoomKindObservable roomKindObservable = baseObservables.get(position);
+        RecyclerViewItemRoomKindBinding binding = RecyclerViewItemRoomKindBinding.bind(holder.itemView);
+        RoomKindObservable roomKindObservable = items.get(position);
 
-            binding.itemRoomKindNameTextView.setText(roomKindObservable.getName());
-            binding.itemRoomKindAreaTextView.setText(roomKindObservable.getArea() + " m\u00B2");
-            binding.itemRoomKindCapacityTextView.setText(String.valueOf(roomKindObservable.getCapacity()));
-            binding.itemRoomKindNumberOfBedsTextView.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
-            Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new RoundedCorners
-                    (30)).into(binding.itemRoomKindMainImageView);
+        binding.itemRoomKindNameTextView.setText(roomKindObservable.getName());
+        binding.itemRoomKindAreaTextView.setText(roomKindObservable.getArea() + " m\u00B2");
+        binding.itemRoomKindCapacityTextView.setText(String.valueOf(roomKindObservable.getCapacity()));
+        binding.itemRoomKindNumberOfBedsTextView.setText(String.valueOf(roomKindObservable.getNumberOfBeds()));
+        Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new
+                RoundedCorners(30)).into(binding.itemRoomKindMainImageView);
 
-            binding.itemRoomKindEditButton.setOnClickListener(view -> roomKindListener.onEditRoomKindClick(roomKindObservable));
-            binding.itemRoomKindDeleButton.setOnClickListener(view -> roomKindListener.onDeleRoomKindClick(roomKindObservable));
+        binding.itemRoomKindEditButton.setOnClickListener(view -> roomKindListener.onEditRoomKindClick(roomKindObservable));
+        binding.itemRoomKindDeleButton.setOnClickListener(view -> roomKindListener.onDeleRoomKindClick(roomKindObservable));
 
-        }
     }
 
     public interface RoomKindListener {

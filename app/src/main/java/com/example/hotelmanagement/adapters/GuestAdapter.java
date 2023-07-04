@@ -36,22 +36,19 @@ public class GuestAdapter extends ExtendedAdapter<GuestObservable, GuestViewHold
 
     @Override
     public void onBindViewHolder(@NonNull GuestViewHolder holder, int position) {
-        if (baseObservables != null) {
 
-            RecyclerViewItemGuestBinding binding = RecyclerViewItemGuestBinding.bind(holder.itemView);
-            GuestObservable guestObservable = baseObservables.get(position);
+        RecyclerViewItemGuestBinding binding = RecyclerViewItemGuestBinding.bind(holder.itemView);
+        GuestObservable guestObservable = items.get(position);
 
-            binding.itemGuestNameTextView.setText(guestObservable.getName());
-            binding.itemGuestAddressTextView.setText(guestObservable.getAddress());
-            binding.itemGuestIdNumberTextView.setText(guestObservable.getIdNumber());
-            binding.itemGuestCreatedAtTextView.setText(guestObservable.getCreatedAt()
-                    .format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            binding.itemGuestPhoneNumberTextView.setText(guestObservable.getPhoneNumber());
+        binding.itemGuestNameTextView.setText(guestObservable.getName());
+        binding.itemGuestAddressTextView.setText(guestObservable.getAddress());
+        binding.itemGuestIdNumberTextView.setText(guestObservable.getIdNumber());
+        binding.itemGuestCreatedAtTextView.setText(guestObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        binding.itemGuestPhoneNumberTextView.setText(guestObservable.getPhoneNumber());
 
-            binding.itemGuestEditButton.setOnClickListener(view -> guestListener.onEditGuestClick(guestObservable));
-            binding.itemGuestDeleButton.setOnClickListener(view -> guestListener.onDeleGuestClick(guestObservable));
+        binding.itemGuestEditButton.setOnClickListener(view -> guestListener.onEditGuestClick(guestObservable));
+        binding.itemGuestDeleButton.setOnClickListener(view -> guestListener.onDeleGuestClick(guestObservable));
 
-        }
     }
 
     public interface GuestListener {
