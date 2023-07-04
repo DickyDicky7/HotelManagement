@@ -25,6 +25,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+            android:elevation="10sp"
             android:importantForAccessibility="no"
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
@@ -47,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:elevation="10sp"
                 android:gravity="start"
                 android:orientation="vertical">
 
@@ -72,6 +74,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:hint="@string/msg_enter_room_numb"
                     android:inputType="number"
@@ -107,8 +110,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
+                    android:elevation="10sp"
                     android:gravity="center_horizontal"
                     android:popupBackground="@color/blue_gray_100"
+                    android:popupElevation="20sp"
                     tools:listitem="@layout/spinner_item" />
 
                 <TextView
@@ -178,6 +183,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:gravity="start"
                     android:hint="@string/msg_enter_descripti"
@@ -217,6 +223,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:gravity="start"
                     android:hint="@string/lbl_note2"
@@ -242,6 +249,7 @@
             android:layout_height="40sp"
             android:layout_gravity="top|center"
             android:layout_marginBottom="20dp"
+            android:elevation="10sp"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"

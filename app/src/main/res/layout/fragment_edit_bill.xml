@@ -26,6 +26,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+            android:elevation="10sp"
             android:importantForAccessibility="no"
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
@@ -52,6 +53,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:elevation="10sp"
                 android:orientation="vertical">
 
                 <TextView
@@ -78,6 +80,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                     android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:focusable="false"
                     android:hint="@string/lbl_enter_cccd"
@@ -117,6 +120,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                     android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:focusable="false"
                     android:hint="@string/lbl_auto_name"
@@ -155,6 +159,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
                     android:backgroundTint="@color/gray_100"
                     android:backgroundTintMode="multiply"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:focusable="false"
                     android:hint="@string/lbl_auto_cost"
@@ -225,6 +230,7 @@
             android:layout_height="40sp"
             android:layout_gravity="top|center"
             android:layout_marginBottom="20dp"
+            android:elevation="10sp"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
