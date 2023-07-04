@@ -14,11 +14,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.hotelmanagement.databinding.WarningDialogBinding;
+import com.example.hotelmanagement.databinding.DialogWarningBinding;
 
 import java.util.function.Consumer;
 
-public class WarningDialogFragment extends DialogFragment {
+public class DialogFragmentWarning extends DialogFragment {
 
     @NonNull
     protected String message;
@@ -27,21 +27,21 @@ public class WarningDialogFragment extends DialogFragment {
     @NonNull
     protected Consumer<Answer> onCancelHandler;
 
-    public WarningDialogFragment(@NonNull String message, @NonNull Consumer<Answer> onCancelHandler) {
+    public DialogFragmentWarning(@NonNull String message, @NonNull Consumer<Answer> onCancelHandler) {
         this.message = message;
         this.answers = Answer.HUH;
         this.onCancelHandler = onCancelHandler;
     }
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message, @NonNull Consumer<Answer> onCancelHandler) {
-        WarningDialogFragment warningDialogFragment = new WarningDialogFragment(message, onCancelHandler);
-        warningDialogFragment.showNow(fragmentManager, tag);
+        DialogFragmentWarning dialogFragmentWarning = new DialogFragmentWarning(message, onCancelHandler);
+        dialogFragmentWarning.showNow(fragmentManager, tag);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        WarningDialogBinding binding = WarningDialogBinding.inflate(getLayoutInflater());
+        DialogWarningBinding binding = DialogWarningBinding.inflate(getLayoutInflater());
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setView(binding.getRoot());
         AlertDialog alertDialog = builder.create();

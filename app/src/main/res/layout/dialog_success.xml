@@ -9,20 +9,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
+        android:elevation="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/noti_failure_OK"
+            android:id="@+id/noti_success_OK"
             style="@style/txtSolidRounded"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/red_300"
+            android:backgroundTint="#33c141"
+            android:backgroundTintMode="src_in"
             android:elevation="10sp"
             android:ellipsize="end"
             android:paddingStart="30sp"
@@ -36,45 +38,33 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_failure_msg_box"
+            app:layout_constraintTop_toBottomOf="@+id/noti_success_msg_box"
             tools:text="@string/lbl_ok" />
 
         <ImageView
-            android:id="@+id/noti_failure_icon"
+            android:id="@+id/noti_success_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_success_dialog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_failure_dialog" />
-
-        <ImageView
-            android:id="@+id/noti_failure_btn_close"
-            android:layout_width="30sp"
-            android:layout_height="30sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:elevation="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/img_close" />
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_success_dialog" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/noti_failure_msg_box"
+            android:id="@+id/noti_success_msg_box"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noti_failure_icon">
+            app:layout_constraintTop_toBottomOf="@+id/noti_success_icon">
 
             <TextView
-                android:id="@+id/noti_failure_msg"
+                android:id="@+id/noti_success_msg"
                 style="@style/txtIntermedium16_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -84,29 +74,48 @@
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="20sp"
                 android:singleLine="false"
-                android:text="@string/noti_fail_msg"
+                android:text="Information changed successfully"
                 android:textAlignment="center"
-                android:textColor="@color/red_300"
+                android:textColor="#33c141"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noti_failure_title"
-                app:layout_constraintVertical_bias="0.0"
-                tools:text="@string/noti_fail_msg" />
+                app:layout_constraintTop_toBottomOf="@+id/noti_success_title"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/noti_failure_title"
+                android:id="@+id/noti_success_title"
+                style="@style/txtOutfitbold32_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/outfit"
-                android:text="Failure"
-                android:textColor="@color/red_300"
+                android:layout_gravity="top|center"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="Success"
+                android:textAlignment="center"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/noti_success_btn_close"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:elevation="10sp"
+            android:src="@drawable/img_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

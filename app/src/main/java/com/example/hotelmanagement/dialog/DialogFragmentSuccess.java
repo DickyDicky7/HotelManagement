@@ -13,26 +13,26 @@ import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.hotelmanagement.databinding.SuccessDialogBinding;
+import com.example.hotelmanagement.databinding.DialogSuccessBinding;
 
-public class SuccessDialogFragment extends DialogFragment {
+public class DialogFragmentSuccess extends DialogFragment {
 
     @NonNull
     protected String message;
 
-    public SuccessDialogFragment(@NonNull String message) {
+    public DialogFragmentSuccess(@NonNull String message) {
         this.message = message;
     }
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message) {
-        SuccessDialogFragment successDialogFragment = new SuccessDialogFragment(message);
-        successDialogFragment.showNow(fragmentManager, tag);
+        DialogFragmentSuccess dialogFragmentSuccess = new DialogFragmentSuccess(message);
+        dialogFragmentSuccess.showNow(fragmentManager, tag);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        SuccessDialogBinding binding = SuccessDialogBinding.inflate(getLayoutInflater());
+        DialogSuccessBinding binding = DialogSuccessBinding.inflate(getLayoutInflater());
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setView(binding.getRoot());
         AlertDialog alertDialog = builder.create();
