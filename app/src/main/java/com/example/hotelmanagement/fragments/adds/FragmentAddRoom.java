@@ -1,11 +1,9 @@
 package com.example.hotelmanagement.fragments.adds;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -15,10 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
@@ -48,8 +47,8 @@ public class FragmentAddRoom extends Fragment {
         roomObservable = new RoomObservable();
         binding.setRoomObservable(roomObservable);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
-        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_spinner, new ArrayList<>());
+        arrayAdapter.setDropDownViewResource(R.layout.item_spinner);
         binding.spinnerChooseRoomKind.setAdapter(arrayAdapter);
 
         RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
@@ -81,7 +80,7 @@ public class FragmentAddRoom extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentAddRoom Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -99,13 +98,13 @@ public class FragmentAddRoom extends Fragment {
                             }
                             roomObservable.setIsOccupied(false);
                             String message = "Success: Your item has been added successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentAddRoom Success", message);
                         });
                     }
                 };
                 roomViewModel.onFailureCallback = null;
-                if (roomViewModel.checkObservable(roomObservable, requireContext(), "note", "description")) {
+                if (roomViewModel.checkObservable(roomObservable, requireContext(), binding.getRoot(), "note", "description")) {
                     if (roomObservable.getNote() != null && roomObservable.getNote().equals("")) {
                         roomObservable.setNote(null);
                     }
@@ -117,11 +116,7 @@ public class FragmentAddRoom extends Fragment {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            View currentFocusView = requireActivity().getCurrentFocus();
-            if (currentFocusView != null) {
-                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
+            Common.hideKeyboard(requireActivity());
         });
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,11 +26,12 @@ import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.observables.ExtendedObservable;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -50,8 +50,8 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
 
     public ExtendedViewModel() {
         super();
-        subscriptionObservers = new LinkedList<Runnable>();
-        modelState = new MutableLiveData<List<BO>>(new LinkedList<BO>());
+        subscriptionObservers = new ArrayList<>();
+        modelState = new MutableLiveData<>(new ArrayList<>());
     }
 
     public abstract void startSubscription();
@@ -209,7 +209,8 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
     }
 
     @NonNull
-    public Boolean checkObservable(@NonNull BO baseObservable, @NonNull Context context, @NonNull String... excludedFields) throws IllegalAccessException {
+    public Boolean checkObservable(@NonNull BO baseObservable, @NonNull Context context, @NonNull View snackBarAttachView, @NonNull String... excludedFields)
+            throws IllegalAccessException {
         for (Field field : baseObservable.getClass().getDeclaredFields()) {
             if (Arrays.stream(excludedFields).noneMatch(excludedField -> excludedField.equals(field.getName()))) {
                 field.setAccessible(true);
@@ -217,14 +218,14 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
                 if (value == null || value.toString().equals("")) {
                     String message = ("missing " + Arrays.stream(field.getName().split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"))
                             .reduce("", (sentence, word) -> sentence + " " + word)).toUpperCase();
-                    Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-                    TextView textView = toast.getView().findViewById(android.R.id.message);
+                    Snackbar snackbar = Snackbar.make(snackBarAttachView, message, Snackbar.LENGTH_SHORT);
+                    TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
                     textView.setTypeface(ResourcesCompat.getFont(context, R.font.outfit));
                     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
                     textView.setTextColor(context.getColor(R.color.white_100));
                     textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    toast.getView().getBackground().setColorFilter(context.getColor(R.color.red_300), PorterDuff.Mode.SRC_IN);
-                    toast.show();
+                    snackbar.getView().getBackground().setColorFilter(context.getColor(R.color.red_300), PorterDuff.Mode.SRC_IN);
+                    snackbar.show();
                     return false;
                 }
             }

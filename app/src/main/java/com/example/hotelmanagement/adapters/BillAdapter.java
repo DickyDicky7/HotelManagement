@@ -4,9 +4,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.RecyclerViewItemBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
@@ -48,6 +50,10 @@ public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder>
         binding.itemBillCostTextView.setText(String.valueOf(billObservable.getCost()));
         binding.itemBillStatusTextView.setText(billObservable.getIsPaid() ? "paid" : "unpaid");
         binding.itemBillCreatedAtTextView.setText(billObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        if (billObservable.getIsPaid()) {
+            binding.itemBill.setBackground(AppCompatResources.getDrawable(
+                    fragmentActivity, R.drawable.rectangle_bg_indigo_500_border_indigo_100_radius_20));
+        }
 
         GuestViewModel guestViewModel = new ViewModelProvider(fragmentActivity).get(GuestViewModel.class);
         List<GuestObservable> guestObservables = guestViewModel.getModelState().getValue();

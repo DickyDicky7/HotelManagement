@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRentalFormBinding;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
@@ -54,6 +56,10 @@ public class RentalFormAdapter extends ExtendedAdapter<RentalFormObservable, Ren
         LocalDate endDate = startDate.plusDays(rentalFormObservable.getRentalDays());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         binding.itemRentalFormBeginEndDateTextView.setText(startDate.format(dateTimeFormatter) + " \u279E " + endDate.format(dateTimeFormatter));
+        if (rentalFormObservable.getIsResolved()) {
+            binding.itemRentalForm.setBackground(AppCompatResources.getDrawable(
+                    fragmentActivity, R.drawable.rectangle_bg_indigo_500_border_indigo_100_radius_20));
+        }
 
         GuestViewModel guestViewModel = new ViewModelProvider(fragmentActivity).get(GuestViewModel.class);
         List<GuestObservable> guestObservables = guestViewModel.getModelState().getValue();

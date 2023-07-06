@@ -3,7 +3,6 @@ package com.example.hotelmanagement.fragments.edits;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -27,10 +25,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
@@ -141,8 +140,8 @@ public class FragmentEditRentalForm extends Fragment {
             copyRentalFormObservable = null;
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.spinner_item, new ArrayList<>());
-        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_spinner, new ArrayList<>());
+        arrayAdapter.setDropDownViewResource(R.layout.item_spinner);
         binding.spinnerChooseRoom.setAdapter(arrayAdapter);
 
         RoomViewModel roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
@@ -282,7 +281,7 @@ public class FragmentEditRentalForm extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentEditRentalForm Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -292,24 +291,20 @@ public class FragmentEditRentalForm extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             String message = "Success: Your item has been updated successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentEditRentalForm Success", message);
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }
                 };
                 rentalFormViewModel.onFailureCallback = null;
-                if (rentalFormViewModel.checkObservable(usedRentalFormObservable, requireContext(), "billId")) {
+                if (rentalFormViewModel.checkObservable(usedRentalFormObservable, requireContext(), binding.getRoot(), "billId")) {
                     rentalFormViewModel.update(usedRentalFormObservable, copyRentalFormObservable);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            View currentFocusView = requireActivity().getCurrentFocus();
-            if (currentFocusView != null) {
-                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
+            Common.hideKeyboard(requireActivity());
         });
 
         if (copyRentalFormObservable.getIsResolved() != null && copyRentalFormObservable.getIsResolved()) {

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.dialog;
+package com.example.hotelmanagement.dialogs;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -13,32 +13,32 @@ import androidx.fragment.app.FragmentManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.hotelmanagement.databinding.DialogSuccessBinding;
+import com.example.hotelmanagement.databinding.DialogFailureBinding;
 
-public class DialogFragmentSuccess extends DialogFragment {
+public class DialogFragmentFailure extends DialogFragment {
 
     @NonNull
     protected String message;
 
-    public DialogFragmentSuccess(@NonNull String message) {
+    public DialogFragmentFailure(@NonNull String message) {
         this.message = message;
     }
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message) {
-        DialogFragmentSuccess dialogFragmentSuccess = new DialogFragmentSuccess(message);
-        dialogFragmentSuccess.showNow(fragmentManager, tag);
+        DialogFragmentFailure dialogFragmentFailure = new DialogFragmentFailure(message);
+        dialogFragmentFailure.showNow(fragmentManager, tag);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        DialogSuccessBinding binding = DialogSuccessBinding.inflate(getLayoutInflater());
+        DialogFailureBinding binding = DialogFailureBinding.inflate(getLayoutInflater());
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setView(binding.getRoot());
         AlertDialog alertDialog = builder.create();
-        binding.notiSuccessMsg.setText(message);
-        binding.notiSuccessOK.setOnClickListener(view -> alertDialog.cancel());
-        binding.notiSuccessBtnClose.setOnClickListener(view -> alertDialog.cancel());
+        binding.notiFailureMsg.setText(message);
+        binding.notiFailureOK.setOnClickListener(view -> alertDialog.cancel());
+        binding.notiFailureBtnClose.setOnClickListener(view -> alertDialog.cancel());
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         YoYo.with(Techniques.Bounce).duration(1000).playOn(alertDialog.getWindow().getDecorView());
         return alertDialog;

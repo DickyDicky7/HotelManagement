@@ -2,7 +2,6 @@ package com.example.hotelmanagement.fragments.edits;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 
@@ -134,7 +133,7 @@ public class FragmentEditBill extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentEditBill Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -144,24 +143,23 @@ public class FragmentEditBill extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             String message = "Success: Your item has been updated successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentEditBill Success", message);
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }
                 };
                 billViewModel.onFailureCallback = null;
-                if (billViewModel.checkObservable(usedBillObservable, requireContext())) {
+                if (billViewModel.checkObservable(
+                        usedBillObservable,
+                        requireContext(),
+                        binding.getRoot())) {
                     billViewModel.update(usedBillObservable, copyBillObservable);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            View currentFocusView = requireActivity().getCurrentFocus();
-            if (currentFocusView != null) {
-                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
+            Common.hideKeyboard(requireActivity());
         });
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ExtendedAdapter<Item, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class ExtendedAdapter<Item, ViewHolder extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<ViewHolder> {
 
     @NonNull
     protected final List<Item> items;
@@ -70,10 +70,10 @@ public abstract class ExtendedAdapter<Item, VH extends RecyclerView.ViewHolder> 
 
     @NonNull
     @Override
-    public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
+    public abstract ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     @Override
-    public abstract void onBindViewHolder(@NonNull VH holder, int position);
+    public abstract void onBindViewHolder(@NonNull ViewHolder holder, int position);
 
     @Override
     public int getItemCount() {

@@ -2,7 +2,6 @@ package com.example.hotelmanagement.fragments.edits;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
@@ -24,10 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
@@ -147,7 +146,7 @@ public class FragmentEditRoomKind extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentEditRoomKind Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -157,24 +156,23 @@ public class FragmentEditRoomKind extends Fragment {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             String message = "Success: Your item has been updated successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentEditRoomKind Success", message);
                             NavHostFragment.findNavController(this).popBackStack();
                         });
                     }
                 };
                 roomKindViewModel.onFailureCallback = null;
-                if (roomKindViewModel.checkObservable(usedRoomKindObservable, requireContext())) {
+                if (roomKindViewModel.checkObservable(
+                        usedRoomKindObservable,
+                        requireContext(),
+                        binding.getRoot())) {
                     roomKindViewModel.update(usedRoomKindObservable, copyRoomKindObservable);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            View currentFocusView = requireActivity().getCurrentFocus();
-            if (currentFocusView != null) {
-                InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
+            Common.hideKeyboard(requireActivity());
         });
 
         binding.edtImage.setColorFilter(Color.WHITE);

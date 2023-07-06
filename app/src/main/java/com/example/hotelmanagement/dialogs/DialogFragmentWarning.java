@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.dialog;
+package com.example.hotelmanagement.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
