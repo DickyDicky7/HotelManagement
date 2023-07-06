@@ -196,10 +196,10 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
 
                 } else if (searchPhrase.startsWith("DR ")) {
 
-                    Matcher matcher = Pattern.compile("DR\\s(.+)\\s*-\\s*(.+)").matcher(searchPhrase);
+                    Matcher matcher = Pattern.compile("DR\\s(\\d\\d\\s*-\\s*\\d\\d\\s*-\\s*\\d\\d\\d\\d)\\s*-\\s*(\\d\\d\\s*-\\s*\\d\\d\\s*-\\s*\\d\\d\\d\\d)").matcher(searchPhrase);
                     if (matcher.find()) {
                         String matchedSearchText1 = matcher.group(1);
-                        String matchedSearchText2 = matcher.group(3);
+                        String matchedSearchText2 = matcher.group(2);
                         if (null != matchedSearchText1 && null != matchedSearchText2) {
                             String regex = "\\s";
                             String replacement = "";
