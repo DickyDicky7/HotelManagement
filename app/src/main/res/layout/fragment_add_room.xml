@@ -114,7 +114,7 @@
                     android:gravity="center_horizontal"
                     android:popupBackground="@color/blue_gray_100"
                     android:popupElevation="20sp"
-                    tools:listitem="@layout/spinner_item" />
+                    tools:listitem="@layout/item_spinner" />
 
                 <TextView
                     android:id="@+id/txtStatus"

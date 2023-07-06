@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/rentalFormsBtnBack"
         app:layout_constraintVertical_bias="0.0"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="DD/MM/YYYY"
+        app:queryHint="Search"
         app:searchIcon="@drawable/img_search_gray_601" />
 
     <androidx.recyclerview.widget.RecyclerView
