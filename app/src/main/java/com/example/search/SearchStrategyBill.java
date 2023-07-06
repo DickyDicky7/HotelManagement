@@ -104,7 +104,8 @@ public class SearchStrategyBill extends SearchStrategy<BillObservable> {
                                 int searchValueIdNumber = Integer.parseInt(matchedSearchText);
                                 billObservables = billObservables
                                         .stream()
-                                        .filter(billObservable -> billObservable.getId().equals(searchValueIdNumber)).collect(Collectors.toList());
+                                        .filter(billObservable -> billObservable
+                                                .getId().equals(searchValueIdNumber)).collect(Collectors.toList());
                                 continue;
                             } catch (NumberFormatException ignored) {
                             }

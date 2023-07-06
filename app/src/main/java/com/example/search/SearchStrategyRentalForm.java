@@ -189,26 +189,30 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                             rentalFormObservables = rentalFormObservables
                                     .stream()
                                     .filter(rentalFormObservable -> rentalFormObservable.
-                                            getCreatedAt().plusDays(rentalFormObservable.getRentalDays()).format(dateTimeFormatter).toUpperCase().replaceAll(regex, replacement).contains(searchValueEndDate)).collect(Collectors.toList());
+                                            getStartDate().plusDays(rentalFormObservable.getRentalDays()).format(dateTimeFormatter).toUpperCase().replaceAll(regex, replacement).contains(searchValueEndDate)).collect(Collectors.toList());
                             continue;
                         }
                     }
 
                 } else if (searchPhrase.startsWith("DR ")) {
 
-                    Matcher matcher = Pattern.compile("DR\\s(.+)").matcher(searchPhrase);
+                    Matcher matcher = Pattern.compile("DR\\s(.+)\\s*-\\s*(.+)").matcher(searchPhrase);
                     if (matcher.find()) {
-                        String matchedSearchText = matcher.group(1);
-                        if (null != matchedSearchText) {
+                        String matchedSearchText1 = matcher.group(1);
+                        String matchedSearchText2 = matcher.group(3);
+                        if (null != matchedSearchText1 && null != matchedSearchText2) {
                             String regex = "\\s";
                             String replacement = "";
+                            String searchValueStartDate =
+                                    matchedSearchText1.replaceAll(regex, replacement);
                             String searchValueEndDate =
-                                    matchedSearchText.replaceAll(regex, replacement);
+                                    matchedSearchText2.replaceAll(regex, replacement);
                             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                             rentalFormObservables = rentalFormObservables
                                     .stream()
-                                    .filter(rentalFormObservable -> rentalFormObservable.
-                                            getCreatedAt().plusDays(rentalFormObservable.getRentalDays()).format(dateTimeFormatter).toUpperCase().replaceAll(regex, replacement).contains(searchValueEndDate)).collect(Collectors.toList());
+                                    .filter(rentalFormObservable ->
+                                            rentalFormObservable.getStartDate().format(dateTimeFormatter).toUpperCase().replaceAll(regex, replacement).contains(searchValueStartDate) &&
+                                                    rentalFormObservable.getStartDate().plusDays(rentalFormObservable.getRentalDays()).format(dateTimeFormatter).toUpperCase().replaceAll(regex, replacement).contains(searchValueEndDate)).collect(Collectors.toList());
                             continue;
                         }
                     }
@@ -298,13 +302,13 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueName =
+                            String searchValueGuestName =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             List<GuestObservable> _guestObservables_ = guestObservables
                                     .stream()
                                     .filter(guestObservable -> guestObservable
-                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueName)).collect(Collectors.toList());
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueGuestName)).collect(Collectors.toList());
 
                             rentalFormObservables = rentalFormObservables
                                     .stream()
