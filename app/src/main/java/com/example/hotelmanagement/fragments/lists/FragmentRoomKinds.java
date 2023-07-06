@@ -1,15 +1,11 @@
 package com.example.hotelmanagement.fragments.lists;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,17 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
-import com.example.hotelmanagement.dialog.WarningDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
-import com.example.search.RoomKindSearchStrategy;
 import com.example.search.SearchProcessor;
+import com.example.search.SearchStrategyRoomKind;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
@@ -42,6 +40,9 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentRoomKindsBinding binding;
+
+    private SearchProcessor searchProcessor;
+    private Consumer<List<RoomKindObservable>> onSearchRoomKindObservablesConsumer;
 
     @Nullable
     @Override
@@ -55,29 +56,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.roomKindsSearchView.setIconifiedByDefault(false);
-        EditText editText = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        ImageView searchIcon = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
-        ImageView closeButton = binding.roomKindsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(true);
-        editText.setTextColor(Color.GRAY);
-        editText.setHintTextColor(Color.GRAY);
-        searchIcon.setColorFilter(Color.GRAY);
-        closeButton.setColorFilter(Color.GRAY);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        editText.setOnFocusChangeListener((_view_, isFocused) -> {
-            if (isFocused) {
-                editText.setTextColor(requireContext().getColor(R.color.indigo_400));
-                editText.setHintTextColor(requireContext().getColor(R.color.indigo_400));
-                searchIcon.setColorFilter(requireContext().getColor(R.color.indigo_400));
-                closeButton.setColorFilter(requireContext().getColor(R.color.indigo_400));
-            } else {
-                editText.setTextColor(Color.GRAY);
-                editText.setHintTextColor(Color.GRAY);
-                searchIcon.setColorFilter(Color.GRAY);
-                closeButton.setColorFilter(Color.GRAY);
-            }
-        });
+        Common.beautifySearchView(binding.roomKindsSearchView, requireContext());
 
         binding.roomKindsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentAddRoomKind);
@@ -119,10 +98,10 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
             NavHostFragment.findNavController(this).popBackStack();
         });
 
-        SearchProcessor searchProcessor = new SearchProcessor(new RoomKindSearchStrategy(roomKindViewModel));
-        binding.roomKindsBtnHelp.setOnClickListener(_view_ -> {
-            searchProcessor.processSearch(binding.roomKindsSearchView.getQuery().toString());
-        });
+        Common.setupSearchFeatureInListLikeFragment(searchProcessor
+                , binding.roomKindsSearchView
+                , new SearchStrategyRoomKind(requireActivity())
+                , onSearchRoomKindObservablesConsumer, roomKindAdapter);
 
     }
 
@@ -134,6 +113,9 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         handler.removeCallbacks(timeoutCallback);
         handler = null;
         timeoutCallback = null;
+        searchProcessor = null;
+        onSearchRoomKindObservablesConsumer = null;
+        Common.searchViewOnFocusChangeForwardingHandler = null;
     }
 
     @Override
@@ -150,13 +132,13 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
 
     @Override
     public void onDeleRoomKindClick(RoomKindObservable roomKindObservable) {
-        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
-            if (answer == WarningDialogFragment.Answer.YES) {
+        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
+            if (answer == DialogFragmentWarning.Answer.YES) {
                 roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentRoomKinds Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -166,7 +148,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             String message = "Success: Your item has been deleted successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentRoomKinds Success", message);
                         });
                     }
@@ -176,7 +158,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
             }
         };
         String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentRoomKinds Warning", message, onCancelHandler);
+        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentRoomKinds Warning", message, onCancelHandler);
     }
 
 }

@@ -1,17 +1,47 @@
 package com.example.search;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
+import android.app.SearchManager;
+import android.content.Context;
 
-public abstract class SearchStrategy<VM extends ViewModel> {
+import androidx.annotation.NonNull;
+import androidx.cursoradapter.widget.CursorAdapter;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
+
+import com.example.hotelmanagement.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class SearchStrategy<SearchResult> {
 
     @NonNull
-    protected VM viewModel;
+    protected CursorAdapter cursorAdapter;
 
-    public SearchStrategy(@NonNull VM viewModel) {
-        this.viewModel = viewModel;
+    @NonNull
+    protected List<String> suggestionKs;
+    @NonNull
+    protected List<String> suggestionVs;
+
+    public SearchStrategy(@NonNull Context context) {
+        this.suggestionKs = new ArrayList<>();
+        this.suggestionVs = new ArrayList<>();
+        this.cursorAdapter = new SimpleCursorAdapter(context, R.layout.item_search, null, new String[
+                ]{SearchManager.SUGGEST_COLUMN_TEXT_1}, new int[]{R.id.item_search_text_view}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
     }
 
-    public abstract void processSearch(@NonNull String searchText);
+    @NonNull
+    public abstract List<SearchResult> processSearch(@NonNull String searchText);
+
+    @NonNull
+    public String getSuggestion(@NonNull Integer position) {
+        try {
+            return suggestionVs.get(position);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    @NonNull
+    public abstract CursorAdapter getSuggestionsAdapter(@NonNull String searchText);
 
 }

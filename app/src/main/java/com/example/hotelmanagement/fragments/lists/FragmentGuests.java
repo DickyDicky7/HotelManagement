@@ -1,15 +1,11 @@
 package com.example.hotelmanagement.fragments.lists;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +15,23 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.GuestAdapter;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
-import com.example.hotelmanagement.dialog.WarningDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestViewModel;
+import com.example.search.SearchProcessor;
+import com.example.search.SearchStrategyGuest;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
@@ -43,6 +43,9 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     private Handler handler;
     private Runnable timeoutCallback;
     private FragmentGuestsBinding binding;
+
+    private SearchProcessor searchProcessor;
+    private Consumer<List<GuestObservable>> onSearchGuestObservablesConsumer;
 
     @Nullable
     @Override
@@ -56,29 +59,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.guestsSearchView.setIconifiedByDefault(false);
-        EditText editText = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        ImageView searchIcon = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
-        ImageView closeButton = binding.guestsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(true);
-        editText.setTextColor(Color.GRAY);
-        editText.setHintTextColor(Color.GRAY);
-        searchIcon.setColorFilter(Color.GRAY);
-        closeButton.setColorFilter(Color.GRAY);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        editText.setOnFocusChangeListener((_view_, isFocused) -> {
-            if (isFocused) {
-                editText.setTextColor(requireContext().getColor(R.color.indigo_400));
-                editText.setHintTextColor(requireContext().getColor(R.color.indigo_400));
-                searchIcon.setColorFilter(requireContext().getColor(R.color.indigo_400));
-                closeButton.setColorFilter(requireContext().getColor(R.color.indigo_400));
-            } else {
-                editText.setTextColor(Color.GRAY);
-                editText.setHintTextColor(Color.GRAY);
-                searchIcon.setColorFilter(Color.GRAY);
-                closeButton.setColorFilter(Color.GRAY);
-            }
-        });
+        Common.beautifySearchView(binding.guestsSearchView, requireContext());
 
         binding.guestsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentAddGuest);
@@ -124,6 +105,11 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
             NavHostFragment.findNavController(this).popBackStack();
         });
 
+        Common.setupSearchFeatureInListLikeFragment(searchProcessor
+                , binding.guestsSearchView
+                , new SearchStrategyGuest(requireActivity())
+                , onSearchGuestObservablesConsumer, guestAdapter);
+
     }
 
     @Override
@@ -134,6 +120,9 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
         handler.removeCallbacks(timeoutCallback);
         handler = null;
         timeoutCallback = null;
+        searchProcessor = null;
+        onSearchGuestObservablesConsumer = null;
+        Common.searchViewOnFocusChangeForwardingHandler = null;
     }
 
     @Override
@@ -150,13 +139,13 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
 
     @Override
     public void onDeleGuestClick(GuestObservable guestObservable) {
-        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
-            if (answer == WarningDialogFragment.Answer.YES) {
+        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
+            if (answer == DialogFragmentWarning.Answer.YES) {
                 guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             if (apolloErrors != null) {
-                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                         , "FragmentGuests Failure", apolloErrors.get(0).getMessage());
                             }
                         });
@@ -166,7 +155,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             String message = "Success: Your item has been deleted successfully.";
-                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                     , "FragmentGuests Success", message);
                         });
                     }
@@ -176,7 +165,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
             }
         };
         String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentGuests Warning", message, onCancelHandler);
+        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentGuests Warning", message, onCancelHandler);
     }
 
 }

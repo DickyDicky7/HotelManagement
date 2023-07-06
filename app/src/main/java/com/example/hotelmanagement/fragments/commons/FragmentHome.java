@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.hasura.Hasura;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentHomeBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
 
 import java.util.Map;
 
@@ -52,7 +52,7 @@ public class FragmentHome extends Fragment {
         binding.rentalFormButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRentalForms));
 
         binding.reportButton2.setOnClickListener(_view_ -> {
-            FailureDialogFragment successDialogFragment = new FailureDialogFragment("");
+            DialogFragmentFailure successDialogFragment = new DialogFragmentFailure("");
             successDialogFragment.showNow(getParentFragmentManager(), "success");
 //            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentAccount);
         });

@@ -1,15 +1,11 @@
 package com.example.hotelmanagement.fragments.lists;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,14 +16,18 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
-import com.example.hotelmanagement.dialog.FailureDialogFragment;
-import com.example.hotelmanagement.dialog.SuccessDialogFragment;
-import com.example.hotelmanagement.dialog.WarningDialogFragment;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.RoomObservable;
+import com.example.hotelmanagement.popupwindows.PopupWindowFilterRoom;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.search.SearchProcessor;
+import com.example.search.SearchStrategyRoom;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -50,6 +50,9 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
     private Runnable timeoutCallback;
     private FragmentRoomsBinding binding;
 
+    private SearchProcessor searchProcessor;
+    private Consumer<List<RoomObservable>> onSearchRoomObservablesConsumer;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,29 +70,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             id = -1;
         }
 
-        binding.roomsSearchView.setIconifiedByDefault(false);
-        EditText editText = binding.roomsSearchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        ImageView searchIcon = binding.roomsSearchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
-        ImageView closeButton = binding.roomsSearchView.findViewById(androidx.appcompat.R.id.search_close_btn);
-        editText.setCursorVisible(true);
-        editText.setTextColor(Color.GRAY);
-        editText.setHintTextColor(Color.GRAY);
-        searchIcon.setColorFilter(Color.GRAY);
-        closeButton.setColorFilter(Color.GRAY);
-        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        editText.setOnFocusChangeListener((_view_, isFocused) -> {
-            if (isFocused) {
-                editText.setTextColor(requireContext().getColor(R.color.indigo_400));
-                editText.setHintTextColor(requireContext().getColor(R.color.indigo_400));
-                searchIcon.setColorFilter(requireContext().getColor(R.color.indigo_400));
-                closeButton.setColorFilter(requireContext().getColor(R.color.indigo_400));
-            } else {
-                editText.setTextColor(Color.GRAY);
-                editText.setHintTextColor(Color.GRAY);
-                searchIcon.setColorFilter(Color.GRAY);
-                closeButton.setColorFilter(Color.GRAY);
-            }
-        });
+        Common.beautifySearchView(binding.roomsSearchView, requireContext());
 
         binding.roomsBtnAdd.setOnClickListener(_view_ -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentAddRoom);
@@ -185,13 +166,13 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                     Optional<RoomObservable> optionalRoomObservable = roomObservables.stream().filter
                             (roomObservable -> roomObservable.getId().equals(id)).findFirst();
                     if (optionalRoomObservable.isPresent()) {
-                        Consumer<WarningDialogFragment.Answer> onCancelHandler = answer -> {
-                            if (answer == WarningDialogFragment.Answer.YES) {
+                        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
+                            if (answer == DialogFragmentWarning.Answer.YES) {
                                 roomViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
                                     if (getActivity() != null) {
                                         requireActivity().runOnUiThread(() -> {
                                             if (apolloErrors != null) {
-                                                FailureDialogFragment.newOne(getParentFragmentManager()
+                                                DialogFragmentFailure.newOne(getParentFragmentManager()
                                                         , "FragmentRooms Failure", apolloErrors.get(0).getMessage());
                                             }
                                         });
@@ -201,7 +182,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                                     if (getActivity() != null) {
                                         requireActivity().runOnUiThread(() -> {
                                             String message = "Success: Your item has been deleted successfully.";
-                                            SuccessDialogFragment.newOne(getParentFragmentManager()
+                                            DialogFragmentSuccess.newOne(getParentFragmentManager()
                                                     , "FragmentRooms Success", message);
                                         });
                                     }
@@ -211,11 +192,25 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                             }
                         };
                         String message = "Caution: Deleting this item will result in permanent removal from the system.";
-                        WarningDialogFragment.newOne(getParentFragmentManager(), "FragmentRooms Warning", message, onCancelHandler);
+                        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentRooms Warning", message, onCancelHandler);
                     }
                 }
             }
         });
+
+        binding.roomsFilter.setOnClickListener(_view_ -> {
+            Common.hideKeyboard(requireActivity());
+            PopupWindowFilterRoom popupWindowFilterRoom = PopupWindowFilterRoom.newOne(getLayoutInflater(), binding.getRoot(), binding.roomsSearchView);
+            int offsetX = 0;
+            int offsetY = 10;
+            popupWindowFilterRoom.showAsDropDown(binding.roomsFilter, offsetX, offsetY);
+            binding.roomsSearchView.clearFocus();
+        });
+
+        Common.setupSearchFeatureInListLikeFragment(searchProcessor
+                , binding.roomsSearchView
+                , new SearchStrategyRoom(requireActivity())
+                , onSearchRoomObservablesConsumer, roomAdapter);
 
     }
 
@@ -227,6 +222,9 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         handler.removeCallbacks(timeoutCallback);
         handler = null;
         timeoutCallback = null;
+        searchProcessor = null;
+        onSearchRoomObservablesConsumer = null;
+        Common.searchViewOnFocusChangeForwardingHandler = null;
     }
 
     @Override
