@@ -198,7 +198,8 @@ public class SearchStrategyBill extends SearchStrategy<BillObservable> {
                                 GuestObservable guestObservable = optionalGuestObservable.get();
                                 billObservables = billObservables
                                         .stream()
-                                        .filter(billObservable -> billObservable.getGuestId().equals(guestObservable.getId())).collect(Collectors.toList());
+                                        .filter(billObservable -> billObservable
+                                                .getGuestId().equals(guestObservable.getId())).collect(Collectors.toList());
                                 continue;
                             }
                         }
@@ -215,13 +216,15 @@ public class SearchStrategyBill extends SearchStrategy<BillObservable> {
 
                                 Optional<RentalFormObservable> optionalRentalFormObservable = rentalFormObservables
                                         .stream()
-                                        .filter(rentalFormObservable -> rentalFormObservable.getId().equals(searchValueRentalFormIdNumber)).findFirst();
+                                        .filter(rentalFormObservable -> rentalFormObservable
+                                                .getId().equals(searchValueRentalFormIdNumber)).findFirst();
 
                                 if (optionalRentalFormObservable.isPresent()) {
                                     RentalFormObservable rentalFormObservable = optionalRentalFormObservable.get();
                                     billObservables = billObservables
                                             .stream()
-                                            .filter(billObservable -> billObservable.getId().equals(rentalFormObservable.getBillId())).collect(Collectors.toList());
+                                            .filter(billObservable -> billObservable
+                                                    .getId().equals(rentalFormObservable.getBillId())).collect(Collectors.toList());
                                     continue;
                                 }
                             } catch (NumberFormatException ignored) {

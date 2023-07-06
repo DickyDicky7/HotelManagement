@@ -129,7 +129,8 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                                 int searchValueIdNumber = Integer.parseInt(matchedSearchText);
                                 rentalFormObservables = rentalFormObservables
                                         .stream()
-                                        .filter(rentalFormObservable -> rentalFormObservable.getId().equals(searchValueIdNumber)).collect(Collectors.toList());
+                                        .filter(rentalFormObservable -> rentalFormObservable
+                                                .getId().equals(searchValueIdNumber)).collect(Collectors.toList());
                                 continue;
                             } catch (NumberFormatException ignored) {
                             }
@@ -222,7 +223,8 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                                 int searchValueRentalDays = Integer.parseInt(matchedSearchText);
                                 rentalFormObservables = rentalFormObservables
                                         .stream()
-                                        .filter(rentalFormObservable -> rentalFormObservable.getRentalDays().equals(searchValueRentalDays)).collect(Collectors.toList());
+                                        .filter(rentalFormObservable -> rentalFormObservable
+                                                .getRentalDays().equals(searchValueRentalDays)).collect(Collectors.toList());
                                 continue;
                             } catch (NumberFormatException ignored) {
                             }
@@ -237,13 +239,13 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueName =
+                            String searchValueRoomKind =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             List<RoomKindObservable> _roomKindObservables_ = roomKindObservables
                                     .stream()
                                     .filter(roomKindObservable -> roomKindObservable
-                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueName)).collect(Collectors.toList());
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueRoomKind)).collect(Collectors.toList());
 
                             List<RoomObservable> _roomObservables_ = roomObservables
                                     .stream()
@@ -270,12 +272,13 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueName =
+                            String searchValueRoomName =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             List<RoomObservable> _roomObservables_ = roomObservables
                                     .stream()
-                                    .filter(roomObservable -> roomObservable.getName().toUpperCase().equals(searchValueName)).collect(Collectors.toList());
+                                    .filter(roomObservable -> roomObservable
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueRoomName)).collect(Collectors.toList());
 
                             rentalFormObservables = rentalFormObservables
                                     .stream()
@@ -300,7 +303,8 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
 
                             List<GuestObservable> _guestObservables_ = guestObservables
                                     .stream()
-                                    .filter(guestObservable -> guestObservable.getName().toUpperCase().equals(searchValueName)).collect(Collectors.toList());
+                                    .filter(guestObservable -> guestObservable
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueName)).collect(Collectors.toList());
 
                             rentalFormObservables = rentalFormObservables
                                     .stream()
@@ -314,7 +318,7 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
 
                 } else if (searchPhrase.startsWith("GID ")) {
 
-                    Matcher matcher = Pattern.compile("GN\\s(.+)").matcher(searchPhrase);
+                    Matcher matcher = Pattern.compile("GID\\s(.+)").matcher(searchPhrase);
                     if (matcher.find()) {
                         String matchedSearchText = matcher.group(1);
                         if (null != matchedSearchText) {
@@ -325,7 +329,8 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
 
                             List<GuestObservable> _guestObservables_ = guestObservables
                                     .stream()
-                                    .filter(guestObservable -> guestObservable.getIdNumber().toUpperCase().equals(searchValueGuestIdNumber)).collect(Collectors.toList());
+                                    .filter(guestObservable -> guestObservable
+                                            .getIdNumber().toUpperCase().replaceAll(regex, replacement).contains(searchValueGuestIdNumber)).collect(Collectors.toList());
 
                             rentalFormObservables = rentalFormObservables
                                     .stream()
@@ -347,7 +352,8 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
                                 int searchValueBillIdNumber = Integer.parseInt(matchedSearchText);
                                 rentalFormObservables = rentalFormObservables
                                         .stream()
-                                        .filter(rentalFormObservable -> rentalFormObservable.getBillId().equals(searchValueBillIdNumber)).collect(Collectors.toList());
+                                        .filter(rentalFormObservable -> rentalFormObservable
+                                                .getBillId().equals(searchValueBillIdNumber)).collect(Collectors.toList());
                                 continue;
                             } catch (NumberFormatException ignored) {
                             }
@@ -362,7 +368,6 @@ public class SearchStrategyRentalForm extends SearchStrategy<RentalFormObservabl
             }
             return rentalFormObservables;
         }
-
         return new ArrayList<>();
     }
 
