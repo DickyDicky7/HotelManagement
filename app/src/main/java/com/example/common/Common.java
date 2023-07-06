@@ -2,15 +2,18 @@ package com.example.common;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.hotelmanagement.R;
@@ -18,6 +21,7 @@ import com.example.hotelmanagement.adapters.ExtendedAdapter;
 import com.example.hotelmanagement.observables.ExtendedObservable;
 import com.example.search.SearchProcessor;
 import com.example.search.SearchStrategy;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -109,6 +113,17 @@ public class Common {
             int flags = 0;
             inputMethodManager.hideSoftInputFromWindow(currentFocusView.getWindowToken(), flags);
         }
+    }
+
+    public static void showCustomSnackBar(@NonNull String message, @NonNull Context context, @NonNull View snackBarAttachView) {
+        Snackbar snackbar = Snackbar.make(snackBarAttachView, message, Snackbar.LENGTH_SHORT);
+        TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+        textView.setTypeface(ResourcesCompat.getFont(context, R.font.outfit));
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        textView.setTextColor(context.getColor(R.color.white_100));
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        snackbar.getView().getBackground().setColorFilter(context.getColor(R.color.red_300), PorterDuff.Mode.SRC_IN);
+        snackbar.show();
     }
 
 }

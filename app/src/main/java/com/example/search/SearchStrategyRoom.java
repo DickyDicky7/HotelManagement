@@ -71,13 +71,13 @@ public class SearchStrategyRoom extends SearchStrategy<RoomObservable> {
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueName =
+                            String searchValueKind =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             List<RoomKindObservable> _roomKindObservables_ = roomKindObservables
                                     .stream()
                                     .filter(roomKindObservable -> roomKindObservable
-                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueName)).collect(Collectors.toList());
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueKind)).collect(Collectors.toList());
 
                             roomObservables = roomObservables
                                     .stream()
@@ -114,12 +114,12 @@ public class SearchStrategyRoom extends SearchStrategy<RoomObservable> {
                         String matchedSearchText = matcher.group(1);
                         if (null != matchedSearchText) {
                             try {
-                                int searchValueCapacity = Integer.parseInt(matchedSearchText);
+                                int searchValueQuantity = Integer.parseInt(matchedSearchText);
 
                                 List<RoomKindObservable> _roomKindObservables_ = roomKindObservables
                                         .stream()
                                         .filter(roomKindObservable -> roomKindObservable
-                                                .getCapacity().equals(searchValueCapacity)).collect(Collectors.toList());
+                                                .getCapacity().equals(searchValueQuantity)).collect(Collectors.toList());
 
                                 roomObservables = roomObservables
                                         .stream()

@@ -160,13 +160,13 @@ public class SearchStrategyBill extends SearchStrategy<BillObservable> {
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueName =
+                            String searchValueGuestName =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             List<GuestObservable> _guestObservables_ = guestObservables
                                     .stream()
                                     .filter(guestObservable -> guestObservable
-                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueName)).collect(Collectors.toList());
+                                            .getName().toUpperCase().replaceAll(regex, replacement).contains(searchValueGuestName)).collect(Collectors.toList());
 
                             billObservables = billObservables
                                     .stream()
@@ -186,13 +186,13 @@ public class SearchStrategyBill extends SearchStrategy<BillObservable> {
                         if (null != matchedSearchText) {
                             String regex = "\\s";
                             String replacement = "";
-                            String searchValueIdNumber =
+                            String searchValueGuestIdNumber =
                                     matchedSearchText.replaceAll(regex, replacement);
 
                             Optional<GuestObservable> optionalGuestObservable = guestObservables
                                     .stream()
                                     .filter(guestObservable -> guestObservable
-                                            .getIdNumber().toUpperCase().replaceAll(regex, replacement).contains(searchValueIdNumber)).findFirst();
+                                            .getIdNumber().toUpperCase().replaceAll(regex, replacement).contains(searchValueGuestIdNumber)).findFirst();
 
                             if (optionalGuestObservable.isPresent()) {
                                 GuestObservable guestObservable = optionalGuestObservable.get();

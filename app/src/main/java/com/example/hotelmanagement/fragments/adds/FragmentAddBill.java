@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,7 +61,7 @@ public class FragmentAddBill extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (binding.edtIdNumber.isFocused()) {
-                    Toast.makeText(requireContext(), "Finish Entering Id Number To Continue", Toast.LENGTH_SHORT).show();
+                    Common.showCustomSnackBar("Finish Entering Id Number To Continue".toUpperCase(), requireContext(), binding.getRoot());
                     return;
                 }
                 billViewModel.findBillCostByGuestIdAndRentalFormIsResolvedFalse(billObservable);
@@ -96,7 +95,7 @@ public class FragmentAddBill extends Fragment {
                 billViewModel.onFailureCallback = null;
                 if (billViewModel.checkObservable(billObservable, requireContext(), binding.getRoot())) {
                     if (billObservable.getCost() == 0) {
-                        Toast.makeText(requireActivity(), "This guest does not have any rental form", Toast.LENGTH_SHORT).show();
+                        Common.showCustomSnackBar("This guest does not have any rental form".toUpperCase(), requireContext(), binding.getRoot());
                     } else {
                         billViewModel.insert(billObservable);
                     }

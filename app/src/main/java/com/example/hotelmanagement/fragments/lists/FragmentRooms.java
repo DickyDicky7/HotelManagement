@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -151,7 +150,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
 
         binding.roomsBtnEdit.setOnClickListener(_view_ -> {
             if (id == -1) {
-                Toast.makeText(requireContext(), "PLEASE SELECT A ROOM", Toast.LENGTH_LONG).show();
+                Common.showCustomSnackBar("PLEASE SELECT A ROOM", requireContext(), binding.getRoot());
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", id);
