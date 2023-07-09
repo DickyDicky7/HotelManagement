@@ -19,9 +19,6 @@ import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.GuestAdapter;
 import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestViewModel;
 import com.example.search.SearchProcessor;
@@ -139,33 +136,14 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
 
     @Override
     public void onDeleGuestClick(GuestObservable guestObservable) {
-        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
-            if (answer == DialogFragmentWarning.Answer.YES) {
-                guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentGuests Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                guestViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been deleted successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentGuests Success", message);
-                        });
-                    }
-                };
-                guestViewModel.onFailureCallback = null;
-                guestViewModel.delete(guestObservable);
-            }
-        };
-        String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentGuests Warning", message, onCancelHandler);
+        String warningTag = "FragmentGuests Warning";
+        String successTag = "FragmentGuests Success";
+        String failureTag = "FragmentGuests Failure";
+        Common.onDeleteRecyclerViewItemClickHandler(guestViewModel, guestObservable, getParentFragmentManager()
+                , warningTag
+                , successTag
+                , failureTag
+                , requireActivity());
     }
 
 }

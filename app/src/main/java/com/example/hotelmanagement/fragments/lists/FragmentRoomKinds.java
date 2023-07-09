@@ -20,9 +20,6 @@ import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomKindAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 import com.example.search.SearchProcessor;
@@ -132,33 +129,14 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
 
     @Override
     public void onDeleRoomKindClick(RoomKindObservable roomKindObservable) {
-        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
-            if (answer == DialogFragmentWarning.Answer.YES) {
-                roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentRoomKinds Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                roomKindViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been deleted successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentRoomKinds Success", message);
-                        });
-                    }
-                };
-                roomKindViewModel.onFailureCallback = null;
-                roomKindViewModel.delete(roomKindObservable);
-            }
-        };
-        String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentRoomKinds Warning", message, onCancelHandler);
+        String warningTag = "FragmentRoomKinds Warning";
+        String successTag = "FragmentRoomKinds Success";
+        String failureTag = "FragmentRoomKinds Failure";
+        Common.onDeleteRecyclerViewItemClickHandler(roomKindViewModel, roomKindObservable, getParentFragmentManager()
+                , warningTag
+                , successTag
+                , failureTag
+                , requireActivity());
     }
 
 }

@@ -20,9 +20,6 @@ import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RentalFormAdapter;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
 import com.example.search.SearchProcessor;
@@ -132,33 +129,14 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
 
     @Override
     public void onDeleRentalFormClick(RentalFormObservable rentalFormObservable) {
-        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
-            if (answer == DialogFragmentWarning.Answer.YES) {
-                rentalFormViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentRentalForms Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                rentalFormViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been deleted successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentRentalForms Success", message);
-                        });
-                    }
-                };
-                rentalFormViewModel.onFailureCallback = null;
-                rentalFormViewModel.delete(rentalFormObservable);
-            }
-        };
-        String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentRentalForms Warning", message, onCancelHandler);
+        String warningTag = "FragmentRentalForms Warning";
+        String successTag = "FragmentRentalForms Success";
+        String failureTag = "FragmentRentalForms Failure";
+        Common.onDeleteRecyclerViewItemClickHandler(rentalFormViewModel, rentalFormObservable, getParentFragmentManager()
+                , warningTag
+                , successTag
+                , failureTag
+                , requireActivity());
     }
 
 }

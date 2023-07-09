@@ -19,9 +19,6 @@ import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.BillAdapter;
 import com.example.hotelmanagement.databinding.FragmentBillsBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 import com.example.search.SearchProcessor;
@@ -139,33 +136,14 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
 
     @Override
     public void onDeleBillClick(BillObservable billObservable) {
-        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
-            if (answer == DialogFragmentWarning.Answer.YES) {
-                billViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentBills Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                billViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been deleted successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentBills Success", message);
-                        });
-                    }
-                };
-                billViewModel.onFailureCallback = null;
-                billViewModel.delete(billObservable);
-            }
-        };
-        String message = "Caution: Deleting this item will result in permanent removal from the system.";
-        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentBills Warning", message, onCancelHandler);
+        String warningTag = "FragmentBills Warning";
+        String successTag = "FragmentBills Success";
+        String failureTag = "FragmentBills Failure";
+        Common.onDeleteRecyclerViewItemClickHandler(billViewModel, billObservable, getParentFragmentManager()
+                , warningTag
+                , successTag
+                , failureTag
+                , requireActivity());
     }
 
 }

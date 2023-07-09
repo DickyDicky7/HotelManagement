@@ -19,9 +19,6 @@ import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.RoomAdapter;
 import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.popupwindows.PopupWindowFilterRoom;
 import com.example.hotelmanagement.viewmodels.RoomViewModel;
@@ -165,33 +162,14 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                     Optional<RoomObservable> optionalRoomObservable = roomObservables.stream().filter
                             (roomObservable -> roomObservable.getId().equals(id)).findFirst();
                     if (optionalRoomObservable.isPresent()) {
-                        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
-                            if (answer == DialogFragmentWarning.Answer.YES) {
-                                roomViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                                    if (getActivity() != null) {
-                                        requireActivity().runOnUiThread(() -> {
-                                            if (apolloErrors != null) {
-                                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                                        , "FragmentRooms Failure", apolloErrors.get(0).getMessage());
-                                            }
-                                        });
-                                    }
-                                };
-                                roomViewModel.onSuccessCallback = () -> {
-                                    if (getActivity() != null) {
-                                        requireActivity().runOnUiThread(() -> {
-                                            String message = "Success: Your item has been deleted successfully.";
-                                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                                    , "FragmentRooms Success", message);
-                                        });
-                                    }
-                                };
-                                roomViewModel.onFailureCallback = null;
-                                roomViewModel.delete(optionalRoomObservable.get());
-                            }
-                        };
-                        String message = "Caution: Deleting this item will result in permanent removal from the system.";
-                        DialogFragmentWarning.newOne(getParentFragmentManager(), "FragmentRooms Warning", message, onCancelHandler);
+                        String warningTag = "FragmentRooms Warning";
+                        String successTag = "FragmentRooms Success";
+                        String failureTag = "FragmentRooms Failure";
+                        Common.onDeleteRecyclerViewItemClickHandler(roomViewModel, optionalRoomObservable.get(), getParentFragmentManager()
+                                , warningTag
+                                , successTag
+                                , failureTag
+                                , requireActivity());
                     }
                 }
             }
