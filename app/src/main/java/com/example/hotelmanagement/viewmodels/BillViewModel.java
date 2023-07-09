@@ -50,7 +50,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 .builder()
                 .guestId(billObservable.getGuestId())
                 .build();
-        Hasura.apolloClient.query(rentalFormAmountByGuestIdAndIsResolvedFalseQuery)
+        Hasura.requireInstance().requireApolloClient().query(rentalFormAmountByGuestIdAndIsResolvedFalseQuery)
                 .enqueue(new ApolloCall.Callback<RentalFormAmountByGuestIdAndIsResolvedFalseQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormAmountByGuestIdAndIsResolvedFalseQuery.Data> response) {
@@ -73,14 +73,15 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 });
     }
 
-    public void insert(BillObservable billObservable) {
+    @Override
+    public void insert(@NonNull BillObservable billObservable) {
         BillInsertMutation billInsertMutation = BillInsertMutation
                 .builder()
                 .cost(billObservable.getCost())
                 .isPaid(billObservable.getIsPaid())
                 .guestId(billObservable.getGuestId())
                 .build();
-        Hasura.apolloClient.mutate(billInsertMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(billInsertMutation)
                 .enqueue(new ApolloCall.Callback<BillInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillInsertMutation.Data> response) {
@@ -106,7 +107,8 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 });
     }
 
-    public void update(BillObservable usedBillObservable, BillObservable copyBillObservable) {
+    @Override
+    public void update(@NonNull BillObservable usedBillObservable, @NonNull BillObservable copyBillObservable) {
         BillUpdateByIdMutation billUpdateByIdMutation = BillUpdateByIdMutation
                 .builder()
                 .id(usedBillObservable.getId())
@@ -114,7 +116,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 .isPaid(usedBillObservable.getIsPaid())
                 .guestId(usedBillObservable.getGuestId())
                 .build();
-        Hasura.apolloClient.mutate(billUpdateByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(billUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<BillUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillUpdateByIdMutation.Data> response) {
@@ -140,12 +142,13 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
                 });
     }
 
-    public void delete(BillObservable billObservable) {
+    @Override
+    public void delete(@NonNull BillObservable billObservable) {
         BillDeleteByIdMutation billDeleteByIdMutation = BillDeleteByIdMutation
                 .builder()
                 .id(billObservable.getId())
                 .build();
-        Hasura.apolloClient.mutate(billDeleteByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(billDeleteByIdMutation)
                 .enqueue(new ApolloCall.Callback<BillDeleteByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<BillDeleteByIdMutation.Data> response) {
@@ -188,7 +191,7 @@ public class BillViewModel extends ExtendedViewModel<BillObservable> {
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new BillSubscription()).execute(new ApolloSubscriptionCall.Callback<BillSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new BillSubscription()).execute(new ApolloSubscriptionCall.Callback<BillSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<BillSubscription.Data> response) {
                 if (response.getData() != null) {
