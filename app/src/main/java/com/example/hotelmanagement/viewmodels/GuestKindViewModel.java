@@ -21,6 +21,21 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
         super();
     }
 
+    @Override
+    public void insert(@NonNull GuestKindObservable guestKindObservable) {
+
+    }
+
+    @Override
+    public void update(@NonNull GuestKindObservable usedGuestKindObservable, @NonNull GuestKindObservable copyGuestKindObservable) {
+
+    }
+
+    @Override
+    public void delete(@NonNull GuestKindObservable guestKindObservable) {
+
+    }
+
     @NonNull
     public String getGuestKindName(@Nullable Integer id) {
         GuestKindObservable guestKindObservable = getObservable(id);
@@ -32,7 +47,7 @@ public class GuestKindViewModel extends ExtendedViewModel<GuestKindObservable> {
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new GuestKindSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestKindSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new GuestKindSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestKindSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<GuestKindSubscription.Data> response) {
                 if (response.getData() != null) {

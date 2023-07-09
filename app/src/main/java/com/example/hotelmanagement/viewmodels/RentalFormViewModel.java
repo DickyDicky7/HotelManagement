@@ -50,7 +50,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .builder()
                 .id(rentalFormObservable.getRoomId())
                 .build();
-        Hasura.apolloClient.query(roomPriceByIdQuery)
+        Hasura.requireInstance().requireApolloClient().query(roomPriceByIdQuery)
                 .enqueue(new ApolloCall.Callback<RoomPriceByIdQuery.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomPriceByIdQuery.Data> response) {
@@ -89,7 +89,8 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void insert(RentalFormObservable rentalFormObservable) {
+    @Override
+    public void insert(@NonNull RentalFormObservable rentalFormObservable) {
         RentalFormInsertMutation rentalFormInsertMutation = RentalFormInsertMutation
                 .builder()
                 .roomId(rentalFormObservable.getRoomId())
@@ -102,7 +103,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .pricePerDay(rentalFormObservable.getPricePerDay())
                 .numberOfGuests(rentalFormObservable.getNumberOfGuests())
                 .build();
-        Hasura.apolloClient.mutate(rentalFormInsertMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(rentalFormInsertMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormInsertMutation.Data> response) {
@@ -128,7 +129,8 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void update(RentalFormObservable usedRentalFormObservable, RentalFormObservable copyRentalFormObservable) {
+    @Override
+    public void update(@NonNull RentalFormObservable usedRentalFormObservable, @NonNull RentalFormObservable copyRentalFormObservable) {
         RentalFormUpdateByIdMutation rentalFormUpdateByIdMutation = RentalFormUpdateByIdMutation
                 .builder()
                 .id(usedRentalFormObservable.getId())
@@ -142,7 +144,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 .pricePerDay(usedRentalFormObservable.getPricePerDay())
                 .numberOfGuests(usedRentalFormObservable.getNumberOfGuests())
                 .build();
-        Hasura.apolloClient.mutate(rentalFormUpdateByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(rentalFormUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormUpdateByIdMutation.Data> response) {
@@ -168,12 +170,13 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
                 });
     }
 
-    public void delete(RentalFormObservable rentalFormObservable) {
+    @Override
+    public void delete(@NonNull RentalFormObservable rentalFormObservable) {
         RentalFormDeleteByIdMutation rentalFormDeleteByIdMutation = RentalFormDeleteByIdMutation
                 .builder()
                 .id(rentalFormObservable.getId())
                 .build();
-        Hasura.apolloClient.mutate(rentalFormDeleteByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(rentalFormDeleteByIdMutation)
                 .enqueue(new ApolloCall.Callback<RentalFormDeleteByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RentalFormDeleteByIdMutation.Data> response) {
@@ -216,7 +219,7 @@ public class RentalFormViewModel extends ExtendedViewModel<RentalFormObservable>
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new RentalFormSubscription()).execute(new ApolloSubscriptionCall.Callback<RentalFormSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new RentalFormSubscription()).execute(new ApolloSubscriptionCall.Callback<RentalFormSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<RentalFormSubscription.Data> response) {
                 if (response.getData() != null) {

@@ -30,7 +30,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         super();
     }
 
-    public void insert(RoomKindObservable roomKindObservable) {
+    @Override
+    public void insert(@NonNull RoomKindObservable roomKindObservable) {
         if (MediaManager.get() == null) {
             return;
         }
@@ -58,7 +59,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                         .numberOfBeds(roomKindObservable.getNumberOfBeds())
                         .surchargePercentage(roomKindObservable.getSurchargePercentage())
                         .build();
-                Hasura.apolloClient.mutate(roomKindInsertMutation)
+                Hasura.requireInstance().requireApolloClient().mutate(roomKindInsertMutation)
                         .enqueue(new ApolloCall.Callback<RoomKindInsertMutation.Data>() {
                             @Override
                             public void onResponse(@NonNull Response<RoomKindInsertMutation.Data> response) {
@@ -98,7 +99,8 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         }).dispatch();
     }
 
-    public void update(RoomKindObservable usedRoomKindObservable, RoomKindObservable copyRoomKindObservable) {
+    @Override
+    public void update(@NonNull RoomKindObservable usedRoomKindObservable, @NonNull RoomKindObservable copyRoomKindObservable) {
         if (usedRoomKindObservable.getImageURL().equals(copyRoomKindObservable.getImageURL())) {
             RoomKindUpdateByIdMutation roomkindUpdateByIdMutation = RoomKindUpdateByIdMutation
                     .builder()
@@ -111,7 +113,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                     .numberOfBeds(usedRoomKindObservable.getNumberOfBeds())
                     .surchargePercentage(usedRoomKindObservable.getSurchargePercentage())
                     .build();
-            Hasura.apolloClient.mutate(roomkindUpdateByIdMutation)
+            Hasura.requireInstance().requireApolloClient().mutate(roomkindUpdateByIdMutation)
                     .enqueue(new ApolloCall.Callback<RoomKindUpdateByIdMutation.Data>() {
                         @Override
                         public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
@@ -164,7 +166,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
                             .numberOfBeds(usedRoomKindObservable.getNumberOfBeds())
                             .surchargePercentage(usedRoomKindObservable.getSurchargePercentage())
                             .build();
-                    Hasura.apolloClient.mutate(roomkindUpdateByIdMutation)
+                    Hasura.requireInstance().requireApolloClient().mutate(roomkindUpdateByIdMutation)
                             .enqueue(new ApolloCall.Callback<RoomKindUpdateByIdMutation.Data>() {
                                 @Override
                                 public void onResponse(@NonNull Response<RoomKindUpdateByIdMutation.Data> response) {
@@ -206,12 +208,13 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
         }
     }
 
-    public void delete(RoomKindObservable roomKindObservable) {
+    @Override
+    public void delete(@NonNull RoomKindObservable roomKindObservable) {
         RoomKindDeleteByIdMutation roomKindDeleteByIdMutation = RoomKindDeleteByIdMutation
                 .builder()
                 .id(roomKindObservable.getId())
                 .build();
-        Hasura.apolloClient.mutate(roomKindDeleteByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(roomKindDeleteByIdMutation)
                 .enqueue(new ApolloCall.Callback<RoomKindDeleteByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomKindDeleteByIdMutation.Data> response) {
@@ -249,7 +252,7 @@ public class RoomKindViewModel extends ExtendedViewModel<RoomKindObservable> {
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new RoomKindSubscription()).execute(new ApolloSubscriptionCall.Callback<RoomKindSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new RoomKindSubscription()).execute(new ApolloSubscriptionCall.Callback<RoomKindSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<RoomKindSubscription.Data> response) {
                 if (response.getData() != null) {

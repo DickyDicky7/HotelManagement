@@ -25,7 +25,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
         super();
     }
 
-    public void insert(RoomObservable roomObservable) {
+    @Override
+    public void insert(@NonNull RoomObservable roomObservable) {
         RoomInsertMutation roomInsertMutation = RoomInsertMutation
                 .builder()
                 .name(roomObservable.getName())
@@ -34,7 +35,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 .isOccupied(roomObservable.getIsOccupied())
                 .description(roomObservable.getDescription())
                 .build();
-        Hasura.apolloClient.mutate(roomInsertMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(roomInsertMutation)
                 .enqueue(new ApolloCall.Callback<RoomInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomInsertMutation.Data> response) {
@@ -60,7 +61,8 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void update(RoomObservable usedRoomObservable, RoomObservable copyRoomObservable) {
+    @Override
+    public void update(@NonNull RoomObservable usedRoomObservable, @NonNull RoomObservable copyRoomObservable) {
         RoomUpdateByIdMutation roomUpdateByIdMutation = RoomUpdateByIdMutation
                 .builder()
                 .id(usedRoomObservable.getId())
@@ -70,7 +72,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 .isOccupied(usedRoomObservable.getIsOccupied())
                 .description(usedRoomObservable.getDescription())
                 .build();
-        Hasura.apolloClient.mutate(roomUpdateByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(roomUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<RoomUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomUpdateByIdMutation.Data> response) {
@@ -96,12 +98,13 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
                 });
     }
 
-    public void delete(RoomObservable roomObservable) {
+    @Override
+    public void delete(@NonNull RoomObservable roomObservable) {
         RoomDeleteByIdMutation roomDeleteByIdMutation = RoomDeleteByIdMutation
                 .builder()
                 .id(roomObservable.getId())
                 .build();
-        Hasura.apolloClient.mutate(roomDeleteByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(roomDeleteByIdMutation)
                 .enqueue(new ApolloCall.Callback<RoomDeleteByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<RoomDeleteByIdMutation.Data> response) {
@@ -138,7 +141,7 @@ public class RoomViewModel extends ExtendedViewModel<RoomObservable> {
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new RoomSubscription()).execute(new ApolloSubscriptionCall.Callback<RoomSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new RoomSubscription()).execute(new ApolloSubscriptionCall.Callback<RoomSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<RoomSubscription.Data> response) {
                 if (response.getData() != null) {

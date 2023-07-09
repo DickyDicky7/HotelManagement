@@ -1,15 +1,11 @@
 package com.example.hotelmanagement.viewmodels;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.BaseObservable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,12 +17,11 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
+import com.example.common.Common;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.Hasura;
-import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.observables.ExtendedObservable;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -53,6 +48,12 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
         subscriptionObservers = new ArrayList<>();
         modelState = new MutableLiveData<>(new ArrayList<>());
     }
+
+    public abstract void insert(@NonNull BO baseObservable);
+
+    public abstract void update(@NonNull BO usedBaseObservable, @NonNull BO copyBaseObservable);
+
+    public abstract void delete(@NonNull BO baseObservable);
 
     public abstract void startSubscription();
 
@@ -129,7 +130,7 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
             Log.e("ExtendedViewModel Find Guest By GuestId Error", "GuestId Is NULL");
         } else {
             GuestByIdQuery guestByIdQuery = GuestByIdQuery.builder().id(guestId).build();
-            Hasura.apolloClient.query(guestByIdQuery).enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
+            Hasura.requireInstance().requireApolloClient().query(guestByIdQuery).enqueue(new ApolloCall.Callback<GuestByIdQuery.Data>() {
                 @Override
                 public void onResponse(@NonNull Response<GuestByIdQuery.Data> response) {
                     if (response.getData() != null) {
@@ -163,7 +164,7 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
             Log.e("ExtendedViewModel Find Guest By GuestIdNumber Error", "GuestIdNumber Is NULL");
         } else {
             GuestByIdNumberQuery guestByIdNumberQuery = GuestByIdNumberQuery.builder().idNumber(guestIdNumber).build();
-            Hasura.apolloClient.query(guestByIdNumberQuery).enqueue(new ApolloCall.Callback<GuestByIdNumberQuery.Data>() {
+            Hasura.requireInstance().requireApolloClient().query(guestByIdNumberQuery).enqueue(new ApolloCall.Callback<GuestByIdNumberQuery.Data>() {
                 @Override
                 public void onResponse(@NonNull Response<GuestByIdNumberQuery.Data> response) {
                     if (response.getData() != null) {
@@ -216,16 +217,10 @@ public abstract class ExtendedViewModel<BO extends BaseObservable> extends ViewM
                 field.setAccessible(true);
                 Object value = field.get(baseObservable);
                 if (value == null || value.toString().equals("")) {
-                    String message = ("missing " + Arrays.stream(field.getName().split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])"))
-                            .reduce("", (sentence, word) -> sentence + " " + word)).toUpperCase();
-                    Snackbar snackbar = Snackbar.make(snackBarAttachView, message, Snackbar.LENGTH_SHORT);
-                    TextView textView = snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-                    textView.setTypeface(ResourcesCompat.getFont(context, R.font.outfit));
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-                    textView.setTextColor(context.getColor(R.color.white_100));
-                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    snackbar.getView().getBackground().setColorFilter(context.getColor(R.color.red_300), PorterDuff.Mode.SRC_IN);
-                    snackbar.show();
+                    String begin = "";
+                    String regex = "(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])";
+                    String message = ("missing " + Arrays.stream(field.getName().split(regex)).reduce(begin, (sentence, word) -> sentence + " " + word)).toUpperCase();
+                    Common.showCustomSnackBar(message, context, snackBarAttachView);
                     return false;
                 }
             }

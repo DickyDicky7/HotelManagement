@@ -24,7 +24,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
         super();
     }
 
-    public void insert(GuestObservable guestObservable) {
+    @Override
+    public void insert(@NonNull GuestObservable guestObservable) {
         GuestInsertMutation guestInsertMutation = GuestInsertMutation
                 .builder()
                 .name(guestObservable.getName())
@@ -33,7 +34,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 .guestKindId(guestObservable.getGuestKindId())
                 .phoneNumber(guestObservable.getPhoneNumber())
                 .build();
-        Hasura.apolloClient.mutate(guestInsertMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(guestInsertMutation)
                 .enqueue(new ApolloCall.Callback<GuestInsertMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestInsertMutation.Data> response) {
@@ -59,7 +60,8 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 });
     }
 
-    public void update(GuestObservable usedGuestObservable, GuestObservable copyGuestObservable) {
+    @Override
+    public void update(@NonNull GuestObservable usedGuestObservable, @NonNull GuestObservable copyGuestObservable) {
         GuestUpdateByIdMutation guestUpdateByIdMutation = GuestUpdateByIdMutation
                 .builder()
                 .id(usedGuestObservable.getId())
@@ -69,7 +71,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 .guestKindId(usedGuestObservable.getGuestKindId())
                 .phoneNumber(usedGuestObservable.getPhoneNumber())
                 .build();
-        Hasura.apolloClient.mutate(guestUpdateByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(guestUpdateByIdMutation)
                 .enqueue(new ApolloCall.Callback<GuestUpdateByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestUpdateByIdMutation.Data> response) {
@@ -95,12 +97,13 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
                 });
     }
 
-    public void delete(GuestObservable guestObservable) {
+    @Override
+    public void delete(@NonNull GuestObservable guestObservable) {
         GuestDeleteByIdMutation guestDeleteByIdMutation = GuestDeleteByIdMutation
                 .builder()
                 .id(guestObservable.getId())
                 .build();
-        Hasura.apolloClient.mutate(guestDeleteByIdMutation)
+        Hasura.requireInstance().requireApolloClient().mutate(guestDeleteByIdMutation)
                 .enqueue(new ApolloCall.Callback<GuestDeleteByIdMutation.Data>() {
                     @Override
                     public void onResponse(@NonNull Response<GuestDeleteByIdMutation.Data> response) {
@@ -128,7 +131,7 @@ public class GuestViewModel extends ExtendedViewModel<GuestObservable> {
 
     @Override
     public void startSubscription() {
-        Hasura.apolloClient.subscribe(new GuestSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestSubscription.Data>() {
+        Hasura.requireInstance().requireApolloClient().subscribe(new GuestSubscription()).execute(new ApolloSubscriptionCall.Callback<GuestSubscription.Data>() {
             @Override
             public void onResponse(@NonNull Response<GuestSubscription.Data> response) {
                 if (response.getData() != null) {
