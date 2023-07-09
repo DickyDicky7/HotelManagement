@@ -133,44 +133,50 @@
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4180"
                     android:layout_height="@dimen/_142pxh"
-                    android:layout_marginTop="@dimen/_28pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_28pxv"
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4181"
                     android:layout_height="@dimen/_114pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_56pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4182"
                     android:layout_height="@dimen/_156pxh"
                     android:layout_marginStart="@dimen/_22pxh"
-                    android:layout_marginTop="@dimen/_14pxv" android:background="@drawable/rectangle_bg_teal_a700_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:background="@drawable/rectangle_bg_teal_500_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4183"
                     android:layout_height="@dimen/_128pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_42pxv" android:background="@drawable/rectangle_bg_blue_a700_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4184"
                     android:layout_height="@dimen/_97pxh"
                     android:layout_marginStart="@dimen/_26pxh"
-                    android:layout_marginTop="@dimen/_73pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_73pxv"
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4185"
                     android:layout_height="@dimen/_114pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_56pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4186"
                     android:layout_height="@dimen/_109pxh"
                     android:layout_marginStart="@dimen/_27pxh"
                     android:layout_marginTop="@dimen/_61pxv"
-                    android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4" />
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
 
                 <View
                     android:layout_width="@dimen/_14pxh"
@@ -261,13 +267,15 @@
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_width="0dp"
                     android:layout_weight="0.44" android:orientation="horizontal">
+
                     <View
                         android:layout_width="0dp"
                         android:id="@+id/lineRectangle4188"
                         android:layout_height="@dimen/_18pxv"
                         android:layout_marginBottom="@dimen/_1pxv"
                         android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.07" android:background="@drawable/rectangle_bg_teal_a700_radius_2"/>
+                        android:layout_weight="0.07"
+                        android:background="@drawable/rectangle_bg_teal_500_radius_2" />
                     <TextView android:id="@+id/txtIncome"
                         style="@style/txtIntersemibold16_1"
                         android:layout_height="wrap_content"

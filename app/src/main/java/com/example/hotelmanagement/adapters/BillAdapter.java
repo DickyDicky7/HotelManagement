@@ -52,7 +52,7 @@ public class BillAdapter extends ExtendedAdapter<BillObservable, BillViewHolder>
         binding.itemBillCreatedAtTextView.setText(billObservable.getCreatedAt().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         if (billObservable.getIsPaid()) {
             binding.itemBill.setBackground(AppCompatResources.getDrawable(
-                    fragmentActivity, R.drawable.rectangle_bg_indigo_500_border_indigo_100_radius_20));
+                    fragmentActivity, R.drawable.rectangle_bg_indigo_500_border_indigo_100_radius_20_v1));
         }
 
         GuestViewModel guestViewModel = new ViewModelProvider(fragmentActivity).get(GuestViewModel.class);

@@ -19,7 +19,9 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="groupStyleindigo_900_99cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_indigo_900_99_border_indigo_400_radius_20</item>
+        <item name="android:background">
+            @drawable/rectangle_bg_indigo_500_border_indigo_100_radius_20_v2
+        </item>
     </style>
     <style name="txtInterregular12">
         <item name="android:textSize">@dimen/_12pxh</item>
@@ -38,21 +40,21 @@
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/outfit</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_20</item>
     </style>
     <style name="btnSolidRounded_3">
         <item name="android:textSize">@dimen/_28pxh</item>
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/outfit</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_20</item>
     </style>
     <style name="btnSolidRounded_2">
         <item name="android:textSize">@dimen/_14pxh</item>
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_15</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_15</item>
     </style>
     <style name="txtOutfitsemibold38">
         <item name="android:textSize">@dimen/_38pxh</item>
@@ -65,17 +67,17 @@
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_13</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_13</item>
     </style>
     <style name="etSolidRounded_1">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/gray_500</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
-        <item name="android:background">@drawable/rectangle_bg_bluegray_100_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_100_radius_10</item>
     </style>
     <style name="groupStylebluegray_100_cccornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_bluegray_100_cc_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_500_radius_20</item>
     </style>
     <style name="txtIntersemibold24">
         <item name="android:textSize">@dimen/_24pxh</item>
@@ -84,7 +86,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStylegray_700_99cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_gray_700_99_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_gray_700_radius_10</item>
     </style>
     <style name="txtInterregular10">
         <item name="android:textSize">@dimen/_10pxh</item>
@@ -93,24 +95,24 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="groupStylebluegray_900">
-        <item name="android:background">@drawable/rectangle_bg_bluegray_900</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_400</item>
     </style>
     <style name="btnSolidRoundedOutline">
         <item name="android:textSize">@dimen/_20pxh</item>
         <item name="android:textColor">@color/black_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_bluegray_100_d1_radius_28</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_600_radius_28</item>
     </style>
     <style name="groupStylewhite_A700">
-        <item name="android:background">@drawable/rectangle_bg_white_a700</item>
+        <item name="android:background">@drawable/rectangle_bg_white_200</item>
     </style>
     <style name="etSolidRounded">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/black_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
-        <item name="android:background">@drawable/rectangle_bg_bluegray_200_cc_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_700_radius_10</item>
     </style>
     <style name="txtIntersemibold18_2">
         <item name="android:textSize">@dimen/_18pxh</item>
@@ -135,7 +137,7 @@
         <item name="android:textColor">@color/gray_500</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
-        <item name="android:background">@drawable/rectangle_bg_gray_402_radius_13</item>
+        <item name="android:background">@drawable/rectangle_bg_gray_300_radius_13</item>
     </style>
     <style name="txtIntersemibold18_4">
         <item name="android:textSize">@dimen/_18pxh</item>
@@ -144,7 +146,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStyleindigo_900_1">
-        <item name="android:background">@drawable/rectangle_bg_indigo_900_99_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_500_radius_20</item>
     </style>
     <style name="txtIntersemibold18_3">
         <item name="android:textSize">@dimen/_18pxh</item>
@@ -177,14 +179,16 @@
         <item name="android:textFontWeight" tools:targetApi="p">700</item>
     </style>
     <style name="groupStylebluegray_102cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_bluegray_102_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_300_radius_20</item>
     </style>
     <style name="etSolidRoundedOutline">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20</item>
+        <item name="android:background">
+            @drawable/rectangle_bg_indigo_300_border_indigo_100_radius_20
+        </item>
     </style>
     <style name="txtOutfitsemibold28">
         <item name="android:textSize">@dimen/_28pxh</item>
@@ -199,7 +203,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStyleindigo_2">
-        <item name="android:background">@drawable/rectangle_bg_indigo_900_radius_tl_30_tr_30</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_200_radius_tl_30_tr_30</item>
     </style>
     <style name="txtIntersemibold16_1">
         <item name="android:textSize">@dimen/_16pxh</item>
@@ -208,7 +212,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStyleindigo_1">
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_10</item>
     </style>
     <style name="txtIntermedium14">
         <item name="android:textSize">@dimen/_14pxh</item>
@@ -223,7 +227,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
     <style name="groupStyleteal_100cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_teal_100_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_teal_100_radius_15</item>
     </style>
     <style name="txtIntermedium16_5">
         <item name="android:textSize">@dimen/_16pxh</item>
@@ -244,10 +248,10 @@
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
     <style name="groupStyle">
-        <item name="android:background">@drawable/rectangle_gradient_s_bluegray_900_e_gray_900_99</item>
+        <item name="android:background">@drawable/rectangle_gradient_s_indigo_400_e_gray_900</item>
     </style>
     <style name="groupStylegray_300_e5cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_gray_300_e5_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_gray_600_radius_20</item>
     </style>
     <style name="txtIntermedium16_1">
         <item name="android:textSize">@dimen/_16pxh</item>
@@ -274,14 +278,14 @@
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
     </style>
     <style name="groupStylebluegray_1">
-        <item name="android:background">@drawable/rectangle_bg_bluegray_100_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_100_radius_10</item>
     </style>
     <style name="txtSolidRounded">
         <item name="android:textSize">@dimen/_20pxh</item>
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/outfit</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_green_500_radius_16</item>
+        <item name="android:background">@drawable/rectangle_bg_green_200_radius_16</item>
     </style>
     <style name="txtOutfitsemibold14">
         <item name="android:textSize">@dimen/_14pxh</item>
@@ -314,7 +318,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStylebluegray_100cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_bluegray_100_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_gray_100_radius_20</item>
     </style>
     <style name="txtIntersemibold20_1">
         <item name="android:textSize">@dimen/_20pxh</item>
@@ -327,7 +331,8 @@
         <item name="android:textColor">@color/black_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
-        <item name="android:background">@drawable/rectangle_bg_red_300_cc_border_red_a700_radius_10</item>
+        <item name="android:background">@drawable/rectangle_bg_red_700_border_red_400_radius_10
+        </item>
     </style>
     <style name="txtOutfitsemibold24_1">
         <item name="android:textSize">@dimen/_24pxh</item>
@@ -346,21 +351,21 @@
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/outfit</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
-        <item name="android:background">@drawable/rectangle_bg_red_600_radius_16</item>
+        <item name="android:background">@drawable/rectangle_bg_red_100_radius_16</item>
     </style>
     <style name="txtSolidRounded_2">
         <item name="android:textSize">@dimen/_12pxh</item>
         <item name="android:textColor">@color/white_200</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_13</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_13</item>
     </style>
     <style name="txtSolidRounded_3">
         <item name="android:textSize">@dimen/_12pxh</item>
         <item name="android:textColor">@color/gray_500</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
-        <item name="android:background">@drawable/rectangle_bg_gray_402_radius_13</item>
+        <item name="android:background">@drawable/rectangle_bg_gray_300_radius_13</item>
     </style>
     <style name="txtInterregular12_1">
         <item name="android:textSize">@dimen/_12pxh</item>
@@ -369,10 +374,10 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="groupStyleindigo_400cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_indigo_400_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_100_radius_20</item>
     </style>
     <style name="groupStylegray_300_1">
-        <item name="android:background">@drawable/rectangle_bg_gray_300_e5_radius_20</item>
+        <item name="android:background">@drawable/rectangle_bg_gray_600_radius_20</item>
     </style>
     <style name="txtInterregular14_3">
         <item name="android:textSize">@dimen/_14pxh</item>
@@ -405,7 +410,9 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="groupStyleindigo_901cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20</item>
+        <item name="android:background">
+            @drawable/rectangle_bg_indigo_300_border_indigo_100_radius_20
+        </item>
     </style>
     <style name="txtIntersemibold15_1">
         <item name="android:textSize">@dimen/_15pxh</item>
@@ -420,7 +427,7 @@
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
     <style name="groupStyleindigo_900cornerRadius">
-        <item name="android:background">@drawable/rectangle_bg_indigo_900_radius_tl_20_tr_20</item>
+        <item name="android:background">@drawable/rectangle_bg_indigo_300_radius_tl_20_tr_20</item>
     </style>
     <style name="txtIntersemibold15">
         <item name="android:textSize">@dimen/_15pxh</item>

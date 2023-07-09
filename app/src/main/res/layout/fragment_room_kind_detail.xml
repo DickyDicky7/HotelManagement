@@ -50,7 +50,7 @@
                     android:layout_height="@dimen/_40pxh"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_marginTop="@dimen/_16pxv"
-                    android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+                    android:background="@drawable/rectangle_bg_indigo_100_radius_10"
                     android:paddingHorizontal="@dimen/_10pxh"
                     android:paddingVertical="@dimen/_10pxv"
                     android:scaleType="fitCenter"

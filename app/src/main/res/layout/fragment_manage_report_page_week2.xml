@@ -246,7 +246,7 @@
                             android:id="@+id/income1"
                             android:layout_width="@dimen/_14pxh"
                             android:layout_height="@dimen/_142pxh"
-                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -270,7 +270,7 @@
                             android:id="@+id/income2"
                             android:layout_width="@dimen/_14pxh"
                             android:layout_height="@dimen/_156pxh"
-                            android:background="@drawable/rectangle_bg_teal_a700_radius_tl_4_tr_4"
+                            android:background="@drawable/rectangle_bg_teal_500_radius_tl_4_tr_4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -294,7 +294,7 @@
                             android:id="@+id/income3"
                             android:layout_width="@dimen/_14pxh"
                             android:layout_height="@dimen/_97pxh"
-                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -318,7 +318,7 @@
                             android:id="@+id/income4"
                             android:layout_width="@dimen/_14pxh"
                             android:layout_height="@dimen/_109pxh"
-                            android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"
+                            android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
