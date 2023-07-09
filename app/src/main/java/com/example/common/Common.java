@@ -15,10 +15,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapters.ExtendedAdapter;
+import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
+import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
 import com.example.hotelmanagement.observables.ExtendedObservable;
+import com.example.hotelmanagement.viewmodels.ExtendedViewModel;
 import com.example.search.SearchProcessor;
 import com.example.search.SearchStrategy;
 import com.google.android.material.snackbar.Snackbar;
@@ -124,6 +129,46 @@ public class Common {
         textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         snackbar.getView().getBackground().setColorFilter(context.getColor(R.color.red_300), PorterDuff.Mode.SRC_IN);
         snackbar.show();
+    }
+
+    public static <EO extends ExtendedObservable> void onDeleteRecyclerViewItemClickHandler(
+            @NonNull ExtendedViewModel<EO> extendedViewModel,
+            @NonNull EO extendedObservable,
+            @NonNull FragmentManager fragmentManager,
+            @NonNull String warningTag,
+            @NonNull String successTag,
+            @NonNull String failureTag,
+            @Nullable FragmentActivity fragmentActivity) {
+
+        if (fragmentActivity != null) {
+            Common.hideKeyboard(fragmentActivity);
+        }
+        Consumer<DialogFragmentWarning.Answer> onCancelHandler = answer -> {
+            if (answer == DialogFragmentWarning.Answer.YES) {
+                extendedViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    if (fragmentActivity != null) {
+                        fragmentActivity.runOnUiThread(() -> {
+                            if (apolloErrors != null) {
+                                DialogFragmentFailure.newOne(fragmentManager, failureTag, apolloErrors.get(0).getMessage());
+                            }
+                        });
+                    }
+                };
+                extendedViewModel.onSuccessCallback = () -> {
+                    if (fragmentActivity != null) {
+                        fragmentActivity.runOnUiThread(() -> {
+                            String message = "Success: Your item has been deleted successfully.";
+                            DialogFragmentSuccess.newOne(fragmentManager, successTag, message);
+                        });
+                    }
+                };
+                extendedViewModel.onFailureCallback = null;
+                extendedViewModel.delete(extendedObservable);
+            }
+        };
+        String message = "Caution: Deleting this item will result in permanent removal from the system.";
+        DialogFragmentWarning.newOne(fragmentManager, warningTag, message, onCancelHandler);
+
     }
 
 }
