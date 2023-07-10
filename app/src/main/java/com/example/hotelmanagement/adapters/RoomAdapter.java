@@ -166,8 +166,8 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
 
         normalMarkImage = AppCompatResources.getDrawable(fragmentActivity, R.drawable.img_checkmark);
         normalUserImage = AppCompatResources.getDrawable(fragmentActivity,
-                itemViewType == 0 ? R.drawable.img_user_indigo_900 :
-                        itemViewType == 1 ? R.drawable.img_user_green_700 : 0);
+                itemViewType == 0 ? R.drawable.img_double_users_i :
+                        itemViewType == 1 ? R.drawable.img_double_users_g : 0);
 
         normalForegroundColor = fragmentActivity.getColor
                 (itemViewType == 0 ? R.color.indigo_200 :
@@ -178,7 +178,7 @@ public class RoomAdapter extends ExtendedAdapter<RoomObservable, RoomViewHolder>
 
         clickedBackgroundColor = fragmentActivity.getColor(R.color.indigo_100);
         clickedForegroundColor = normalBackgroundColor;
-        clickedUserImage = AppCompatResources.getDrawable(fragmentActivity, R.drawable.img_user_white_a700_16x20);
+        clickedUserImage = AppCompatResources.getDrawable(fragmentActivity, R.drawable.img_double_users_w);
 
         if (itemViewType == 0) {
             RecyclerViewItemRoomBinding _binding_ = (RecyclerViewItemRoomBinding) binding;
