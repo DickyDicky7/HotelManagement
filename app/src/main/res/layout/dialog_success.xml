@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/noti_success_OK"
-            style="@style/txtSolidRounded"
+            style="@style/text_solid_rounded_0"
             android:layout_width="100sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -65,7 +65,7 @@
 
             <TextView
                 android:id="@+id/noti_success_msg"
-                style="@style/txtIntermedium16_3"
+                style="@style/text_inter_medium_16_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|start"
@@ -86,7 +86,7 @@
 
             <TextView
                 android:id="@+id/noti_success_title"
-                style="@style/txtOutfitbold32_1"
+                style="@style/text_outfit_bold_32_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center"

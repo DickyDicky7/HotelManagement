@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:id="@+id/linearEditBill"
-        style="@style/groupStylebluegray_900"
+        style="@style/group_style_bg_indigo_400"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="end"
@@ -31,7 +31,7 @@
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft"
+            android:src="@drawable/img_arrow_left"
             tools:ignore="ContentDescription" />
 
         <ScrollView
@@ -47,7 +47,7 @@
 
             <LinearLayout
                 android:id="@+id/linearColumn"
-                style="@style/groupStyleindigo_901cornerRadius"
+                style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/txtIdNumber"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -71,7 +71,7 @@
 
                 <EditText
                     android:id="@+id/edtIdNumber"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/txtGuestName"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -111,7 +111,7 @@
 
                 <EditText
                     android:id="@+id/edtGuestName"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -137,7 +137,7 @@
 
                 <TextView
                     android:id="@+id/txtCost"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -150,7 +150,7 @@
 
                 <EditText
                     android:id="@+id/edtCost"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -176,7 +176,7 @@
 
                 <TextView
                     android:id="@+id/txtStatus"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -225,7 +225,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDone"
-            style="@style/btnSolidRounded_3"
+            style="@style/button_solid_rounded_3"
             android:layout_width="150sp"
             android:layout_height="40sp"
             android:layout_gravity="top|center"

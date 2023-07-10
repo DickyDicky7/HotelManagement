@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:id="@+id/linearEditGuest"
-        style="@style/groupStylebluegray_900"
+        style="@style/group_style_bg_indigo_400"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="end"
@@ -31,7 +31,7 @@
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft"
+            android:src="@drawable/img_arrow_left"
             tools:ignore="ContentDescription" />
 
         <ScrollView
@@ -47,7 +47,7 @@
 
             <LinearLayout
                 android:id="@+id/linearColumn"
-                style="@style/groupStyleindigo_901cornerRadius"
+                style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/txtIdNumber"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -70,7 +70,7 @@
 
                 <EditText
                     android:id="@+id/edtIdNumber"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -93,7 +93,7 @@
 
                 <TextView
                     android:id="@+id/txtFullName"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -105,7 +105,7 @@
 
                 <EditText
                     android:id="@+id/edtFullName"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -128,7 +128,7 @@
 
                 <TextView
                     android:id="@+id/txtPhoneNumber"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -140,7 +140,7 @@
 
                 <EditText
                     android:id="@+id/edtPhoneNumber"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -163,7 +163,7 @@
 
                 <TextView
                     android:id="@+id/txtAddress"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -175,7 +175,7 @@
 
                 <EditText
                     android:id="@+id/edtAddress"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -198,7 +198,7 @@
 
                 <TextView
                     android:id="@+id/txtGuestKind"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -216,7 +216,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="40dp"
-                    android:background="@drawable/layer_list_bg_bluegray_100_radius_10"
+                    android:background="@drawable/layer_list_bg_blue_gray_100_radius_10"
                     android:elevation="10sp"
                     android:gravity="center_horizontal"
                     android:popupBackground="@color/blue_gray_100"
@@ -227,7 +227,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDone"
-            style="@style/btnSolidRounded_3"
+            style="@style/button_solid_rounded_3"
             android:layout_width="150sp"
             android:layout_height="40sp"
             android:layout_gravity="top|center"

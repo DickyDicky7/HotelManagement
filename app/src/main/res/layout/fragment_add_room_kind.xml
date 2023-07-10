@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:id="@+id/linearAddRoomKind"
-        style="@style/groupStylebluegray_900"
+        style="@style/group_style_bg_indigo_400"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="end"
@@ -32,7 +32,7 @@
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft"
+            android:src="@drawable/img_arrow_left"
             tools:ignore="ContentDescription" />
 
         <ScrollView
@@ -44,7 +44,7 @@
             android:layout_weight="0.7">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/groupStyleindigo_901cornerRadius"
+                style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -57,7 +57,7 @@
 
                 <EditText
                     android:id="@+id/edtArea"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -83,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/txtArea"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -100,7 +100,7 @@
 
                 <EditText
                     android:id="@+id/edtNumberOfBeds"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -126,7 +126,7 @@
 
                 <TextView
                     android:id="@+id/txtNumberOfBeds"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -142,7 +142,7 @@
 
                 <EditText
                     android:id="@+id/edtCapacity"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -168,7 +168,7 @@
 
                 <TextView
                     android:id="@+id/txtCapacity"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -185,7 +185,7 @@
 
                 <EditText
                     android:id="@+id/edtName"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -211,7 +211,7 @@
 
                 <TextView
                     android:id="@+id/txtName"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -227,7 +227,7 @@
 
                 <EditText
                     android:id="@+id/edtPrice"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -253,7 +253,7 @@
 
                 <TextView
                     android:id="@+id/txtPrice"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -270,7 +270,7 @@
 
                 <EditText
                     android:id="@+id/edtSurchargePercentage"
-                    style="@style/etSolidRounded_1"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -296,7 +296,7 @@
 
                 <TextView
                     android:id="@+id/txtSurchargePercentage"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -331,7 +331,7 @@
 
                 <TextView
                     android:id="@+id/txtImage"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -347,7 +347,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDone"
-            style="@style/btnSolidRounded_3"
+            style="@style/button_solid_rounded_3"
             android:layout_width="150sp"
             android:layout_height="40sp"
             android:layout_gravity="top|center"
