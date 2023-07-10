@@ -31,7 +31,7 @@
             android:layout_marginBottom="5dp"
             android:paddingVertical="2sp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_user_green_700"
+            android:src="@drawable/img_double_users_g"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_room_room_kind_text_view"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/img_user_green_700" />
+            tools:src="@drawable/img_double_users_g" />
 
         <ImageView
             android:id="@+id/item_room_mark_image_view"
@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/item_room_room_kind_text_view"
-            style="@style/txtInterregular14"
+            style="@style/text_inter_regular_14_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -76,7 +76,7 @@
 
         <TextView
             android:id="@+id/item_room_room_name_text_view"
-            style="@style/txtIntersemibold18"
+            style="@style/text_inter_semi_bold_18_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

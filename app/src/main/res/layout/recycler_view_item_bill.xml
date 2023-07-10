@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/item_bill_status_text_view"
-            style="@style/txtIntermedium16_1"
+            style="@style/text_inter_medium_16_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/item_bill_cost_text_view"
-            style="@style/txtIntersemibold20"
+            style="@style/text_inter_semi_bold_20_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/item_bill_id_text_view"
-            style="@style/txtOutfitsemibold28"
+            style="@style/text_outfit_semi_bold_28_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -89,7 +89,7 @@
 
             <TextView
                 android:id="@+id/item_bill_created_at_text_view"
-                style="@style/txtInterregular14_3"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -109,7 +109,7 @@
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_calendar_white_a700"
+                android:src="@drawable/img_calendar_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_bill_created_at_text_view"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -117,7 +117,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_calendar_white_a700" />
+                tools:src="@drawable/img_calendar_white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -136,7 +136,7 @@
 
             <TextView
                 android:id="@+id/item_bill_guest_name_text_view"
-                style="@style/txtInterregular14_3"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -157,7 +157,7 @@
                 android:layout_height="20sp"
                 android:paddingHorizontal="2sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_user_white_a700_16x13"
+                android:src="@drawable/img_user_white_v2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_bill_guest_name_text_view"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -165,7 +165,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_user_white_a700_16x13" />
+                tools:src="@drawable/img_user_white_v2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -184,7 +184,7 @@
 
             <TextView
                 android:id="@+id/item_bill_id_number_text_view"
-                style="@style/txtInterregular14_3"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -204,7 +204,7 @@
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_save"
+                android:src="@drawable/img_card"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_bill_id_number_text_view"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -212,7 +212,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_save" />
+                tools:src="@drawable/img_card" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -228,7 +228,7 @@
 
             <ImageButton
                 android:id="@+id/item_bill_edit_button"
-                style="@style/groupStyleindigo_1"
+                style="@style/group_style_bg_indigo_100_corner_radius_10"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_marginTop="10dp"
@@ -238,7 +238,7 @@
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="10sp"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_ticket"
+                android:src="@drawable/img_pen_white_v2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_bill_dele_button"
                 app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +247,7 @@
 
             <ImageButton
                 android:id="@+id/item_bill_dele_button"
-                style="@style/groupStyleindigo_1"
+                style="@style/group_style_bg_indigo_100_corner_radius_10"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_marginTop="10dp"
@@ -257,7 +257,7 @@
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="10sp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_file"
+                android:src="@drawable/img_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_bill_view_button"
                 app:layout_constraintStart_toEndOf="@+id/item_bill_edit_button"
@@ -266,7 +266,7 @@
 
             <ImageButton
                 android:id="@+id/item_bill_view_button"
-                style="@style/groupStyleindigo_1"
+                style="@style/group_style_bg_indigo_100_corner_radius_10"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:layout_marginTop="10dp"
@@ -276,7 +276,7 @@
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="10sp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_camera_white_a700"
+                android:src="@drawable/img_camera"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_bill_dele_button"

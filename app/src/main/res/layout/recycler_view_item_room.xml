@@ -30,7 +30,7 @@
             android:layout_marginBottom="5dp"
             android:paddingVertical="2sp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_user_indigo_900"
+            android:src="@drawable/img_double_users_i"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,11 +38,11 @@
             app:layout_constraintTop_toBottomOf="@+id/item_room_room_kind_text_view"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/img_user_indigo_900" />
+            tools:src="@drawable/img_double_users_i" />
 
         <TextView
             android:id="@+id/item_room_room_kind_text_view"
-            style="@style/txtInterregular14_1"
+            style="@style/text_inter_regular_14_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/item_room_room_name_text_view"
-            style="@style/txtIntersemibold18_1"
+            style="@style/text_inter_semi_bold_18_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

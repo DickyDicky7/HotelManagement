@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/item_room_kind_name_text_view"
-                    style="@style/txtOutfitsemibold28"
+                    style="@style/text_outfit_semi_bold_28_0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -89,7 +89,7 @@
 
                 <TextView
                     android:id="@+id/item_room_kind_area_text_view"
-                    style="@style/txtInterregular16"
+                    style="@style/text_inter_regular_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -110,16 +110,16 @@
                     android:layout_height="16sp"
                     android:layout_marginStart="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_home_white_a700"
+                    android:src="@drawable/img_home_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/item_room_kind_number_of_beds_text_view"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_home_white_a700" />
+                    tools:src="@drawable/img_home_white" />
 
                 <TextView
                     android:id="@+id/item_room_kind_number_of_beds_text_view"
-                    style="@style/txtInterregular16"
+                    style="@style/text_inter_regular_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -138,16 +138,16 @@
                     android:layout_height="15sp"
                     android:layout_marginStart="10dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_camera"
+                    android:src="@drawable/img_bed"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/item_room_kind_capacity_text_view"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_camera" />
+                    tools:src="@drawable/img_bed" />
 
                 <TextView
                     android:id="@+id/item_room_kind_capacity_text_view"
-                    style="@style/txtInterregular16"
+                    style="@style/text_inter_regular_16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -165,12 +165,12 @@
                     android:layout_width="22sp"
                     android:layout_height="14sp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_user_white_a700_14x22"
+                    android:src="@drawable/img_double_users_white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_user_white_a700_14x22" />
+                    tools:src="@drawable/img_double_users_white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -184,7 +184,7 @@
 
                 <ImageButton
                     android:id="@+id/item_room_kind_edit_button"
-                    style="@style/groupStyleindigo_1"
+                    style="@style/group_style_bg_indigo_100_corner_radius_10"
                     android:layout_width="40dp"
                     android:layout_height="40sp"
                     android:layout_marginStart="10dp"
@@ -195,7 +195,7 @@
                     android:paddingHorizontal="10sp"
                     android:paddingVertical="10sp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_vector"
+                    android:src="@drawable/img_pen_white_v1"
                     app:layout_constraintBottom_toTopOf="@+id/item_room_kind_dele_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +204,7 @@
 
                 <ImageButton
                     android:id="@+id/item_room_kind_dele_button"
-                    style="@style/groupStyleindigo_1"
+                    style="@style/group_style_bg_indigo_100_corner_radius_10"
                     android:layout_width="40sp"
                     android:layout_height="40sp"
                     android:layout_marginStart="10dp"
@@ -215,7 +215,7 @@
                     android:paddingHorizontal="10sp"
                     android:paddingVertical="10sp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/img_file"
+                    android:src="@drawable/img_trash"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
