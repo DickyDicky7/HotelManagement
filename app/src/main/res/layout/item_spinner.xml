@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="10sp"
+    android:fontFamily="@font/interregular"
     android:paddingHorizontal="10sp"
     android:paddingVertical="10sp"
     android:textColor="@color/indigo_400"

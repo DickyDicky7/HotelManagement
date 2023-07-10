@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/linearColumnhome"
-        style="@style/groupStylebluegray_900"
+        style="@style/group_style_bg_indigo_400"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -18,15 +18,18 @@
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/_11pxh"
             android:layout_weight="1.0" android:orientation="vertical">
-            <ImageView android:id="@+id/imageMail"
+
+            <ImageView
+                android:id="@+id/imageMail"
                 android:layout_gravity="end"
                 android:layout_width="@dimen/_50pxh"
                 android:layout_height="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_11pxh"
                 android:layout_marginEnd="@dimen/_11pxh"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_mail"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_mail"/>
+                android:src="@drawable/img_mail_network_wifi_battery_white"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_mail_network_wifi_battery_white" />
             <LinearLayout android:id="@+id/linearColumnarrowleft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:gravity="start" android:orientation="horizontal">
+
                     <ImageButton
                         android:layout_width="@dimen/_40pxh"
                         android:id="@+id/btn_back"
@@ -47,9 +51,11 @@
                         android:paddingHorizontal="@dimen/_10pxh"
                         android:paddingVertical="@dimen/_10pxv"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/img_arrowleft" tools:ignore="ContentDescription"/>
-                    <TextView android:id="@+id/txtRentformlist"
-                        style="@style/txtOutfitsemibold36"
+                        android:src="@drawable/img_arrow_left"
+                        tools:ignore="ContentDescription" />
+                    <TextView
+                        android:id="@+id/txtRentformlist"
+                        style="@style/text_outfit_semi_bold_36"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_16pxh"
                         android:layout_weight="0.74"
@@ -58,8 +64,9 @@
                         android:ellipsize="end"
                         android:text="@string/lbl_report" tools:text="@string/lbl_report"/>
                 </LinearLayout>
-                <LinearLayout android:id="@+id/linearColumnweek"
-                    style="@style/groupStyleindigo_901cornerRadius"
+                <LinearLayout
+                    android:id="@+id/linearColumnweek"
+                    style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_4pxh"
                     android:layout_marginTop="@dimen/_19pxv"
@@ -90,8 +97,9 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-        <FrameLayout android:id="@+id/frameBottombar"
-            style="@style/groupStyleindigo_900cornerRadius"
+        <FrameLayout
+            android:id="@+id/frameBottombar"
+            style="@style/group_style_bg_indigo_300_corner_radius_tl_20_tr_20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:gravity="start">
             <LinearLayout android:id="@+id/linearNavigateBar"
@@ -99,7 +107,9 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/_20pxv"
                 android:layout_marginBottom="@dimen/_20pxv" android:orientation="horizontal">
-                <ImageView android:id="@+id/imageHome"
+
+                <ImageView
+                    android:id="@+id/imageHome"
                     android:layout_width="@dimen/_22pxh"
                     android:layout_height="@dimen/_26pxh"
                     android:layout_gravity="center"
@@ -107,9 +117,12 @@
                     android:layout_marginTop="@dimen/_8pxv"
                     android:layout_marginBottom="@dimen/_5pxv"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_home"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_home"/>
-                <ImageView android:id="@+id/imageSearch"
+                    android:src="@drawable/img_home_trans"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_home_trans" />
+
+                <ImageView
+                    android:id="@+id/imageSearch"
                     android:layout_width="@dimen/_26pxh"
                     android:layout_height="@dimen/_26pxh"
                     android:layout_gravity="center"
@@ -117,9 +130,12 @@
                     android:layout_marginTop="@dimen/_6pxv"
                     android:layout_marginBottom="@dimen/_6pxv"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_search"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_search"/>
-                <ImageView android:id="@+id/imageChartalt"
+                    android:src="@drawable/img_search_v1"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_search_v1" />
+
+                <ImageView
+                    android:id="@+id/imageChartalt"
                     android:layout_gravity="center"
                     android:layout_width="@dimen/_29pxh"
                     android:layout_height="@dimen/_30pxh"
@@ -127,9 +143,12 @@
                     android:layout_marginTop="@dimen/_5pxv"
                     android:layout_marginBottom="@dimen/_5pxv"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_chartalt"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_chartalt"/>
-                <ImageView android:id="@+id/imageUser"
+                    android:src="@drawable/img_chart"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_chart" />
+
+                <ImageView
+                    android:id="@+id/imageUser"
                     android:layout_width="@dimen/_26pxh"
                     android:layout_height="@dimen/_40pxh"
                     android:layout_gravity="center"
@@ -137,8 +156,9 @@
                     android:layout_marginTop="@dimen/_6pxv"
                     android:layout_marginEnd="@dimen/_43pxh"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_user_white_a700"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_user_white_a700"/>
+                    android:src="@drawable/img_user_white_v1"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user_white_v1" />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

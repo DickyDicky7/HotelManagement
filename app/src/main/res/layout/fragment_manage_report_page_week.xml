@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/txt5000000"
-                style="@style/txtInterbold32"
+                style="@style/text_inter_bold_32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_65pxh"
@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/txtNetProfit"
-                style="@style/txtIntersemibold14"
+                style="@style/text_inter_semi_bold_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
 
                     <TextView
                         android:id="@+id/txt30M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
 
                     <TextView
                         android:id="@+id/txt25M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -84,7 +84,7 @@
 
                     <TextView
                         android:id="@+id/txt20M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -96,7 +96,7 @@
 
                     <TextView
                         android:id="@+id/txt10M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -108,7 +108,7 @@
 
                     <TextView
                         android:id="@+id/txt5M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -120,7 +120,7 @@
 
                     <TextView
                         android:id="@+id/txt0M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_15pxv"
@@ -211,7 +211,7 @@
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.22"
                     android:layout_width="0dp"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:text="@string/lbl_dec_1_dec_7"
                     tools:text="@string/lbl_dec_1_dec_7" />
 
@@ -221,7 +221,7 @@
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_weight="0.26"
                     android:layout_width="0dp"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:text="@string/lbl_dec_8_dec_14"
                     tools:text="@string/lbl_dec_8_dec_14" />
 
@@ -232,7 +232,7 @@
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.26"
                     android:layout_width="0dp"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:text="@string/lbl_dec_15_dec_21"
                     tools:text="@string/lbl_dec_15_dec_21" />
 
@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_24pxh"
                     android:layout_weight="0.27"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:layout_width="0dp"
                     android:text="@string/lbl_dec_22_dec_28"
                     tools:text="@string/lbl_dec_22_dec_28" />
@@ -264,8 +264,9 @@
                         android:layout_marginTop="@dimen/_1pxv"
                         android:layout_weight="0.07"
                         android:background="@drawable/rectangle_bg_teal_500_radius_2" />
-                    <TextView android:id="@+id/txtIncome"
-                        style="@style/txtIntersemibold16_1"
+                    <TextView
+                        android:id="@+id/txtIncome"
+                        style="@style/text_inter_semi_bold_16_1"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4pxh"
                         android:layout_weight="0.93"
@@ -280,8 +281,9 @@
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="0dp"
                     android:layout_weight="0.56" android:orientation="horizontal">
-                    <TextView android:id="@+id/txtExpenses"
-                        style="@style/txtIntersemibold16_2"
+                    <TextView
+                        android:id="@+id/txtExpenses"
+                        style="@style/text_inter_semi_bold_16_2"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1pxv"
                         android:layout_weight="0.95"
@@ -302,15 +304,17 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/_6pxv" android:orientation="horizontal">
-                <TextView android:id="@+id/txt28000000"
-                    style="@style/txtIntersemibold20_1"
+                <TextView
+                    android:id="@+id/txt28000000"
+                    style="@style/text_inter_semi_bold_20_1"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="0.5" android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_28_000_000" tools:text="@string/lbl_28_000_000"/>
-                <TextView android:id="@+id/txt23000000"
-                    style="@style/txtIntersemibold20_2"
+                <TextView
+                    android:id="@+id/txt23000000"
+                    style="@style/text_inter_semi_bold_20_2"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_82pxh"
                     android:layout_width="0dp"

@@ -9,7 +9,7 @@
 
         <LinearLayout
             android:id="@+id/linearColumnonehundredtwentythreeOne"
-            style="@style/groupStyleindigo_901cornerRadius"
+            style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top|start"
@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/txtOneHundredTwentyThreeOne"
-                style="@style/txtOutfitsemibold28_1"
+                style="@style/text_outfit_semi_bold_28_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -44,7 +44,7 @@
 
                 <TextView
                     android:id="@+id/txtLanguageTwo"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -56,7 +56,7 @@
 
                 <TextView
                     android:id="@+id/txtDavidTwo"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_180pxh"
@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/txtLanguageThree"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
@@ -91,7 +91,7 @@
 
                 <TextView
                     android:id="@+id/txt048203008744Two"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_82pxh"
@@ -113,7 +113,7 @@
 
                 <TextView
                     android:id="@+id/txtLanguageFour"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -125,7 +125,7 @@
 
                 <TextView
                     android:id="@+id/txt1052021"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_66pxh"
@@ -148,7 +148,7 @@
 
                 <TextView
                     android:id="@+id/txtLanguageFive"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -160,7 +160,7 @@
 
                 <TextView
                     android:id="@+id/txt1252021"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_53pxh"
@@ -183,7 +183,7 @@
 
                 <TextView
                     android:id="@+id/txtRoomnumber"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -195,7 +195,7 @@
 
                 <TextView
                     android:id="@+id/item_br_roomName"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_111pxh"
@@ -218,7 +218,7 @@
 
                 <TextView
                     android:id="@+id/txtRoomkind"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2pxv"
@@ -230,7 +230,7 @@
 
                 <TextView
                     android:id="@+id/item_br_roomKind"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_76pxh"
@@ -253,7 +253,7 @@
 
                 <TextView
                     android:id="@+id/txtPriceday"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -265,7 +265,7 @@
 
                 <TextView
                     android:id="@+id/txt200000"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_137pxh"
@@ -288,7 +288,7 @@
 
                 <TextView
                     android:id="@+id/txtNote"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_6pxv"
@@ -300,7 +300,7 @@
 
                 <TextView
                     android:id="@+id/txtOne"
-                    style="@style/txtInterregular20"
+                    style="@style/text_inter_regular_20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_187pxh"
@@ -335,7 +335,7 @@
 
                 <TextView
                     android:id="@+id/txtTotal"
-                    style="@style/txtIntersemibold20_4"
+                    style="@style/text_inter_semi_bold_20_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7pxv"
@@ -348,7 +348,7 @@
 
                 <TextView
                     android:id="@+id/txt400000"
-                    style="@style/txtInterregular32"
+                    style="@style/text_inter_regular_32"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_60pxh"

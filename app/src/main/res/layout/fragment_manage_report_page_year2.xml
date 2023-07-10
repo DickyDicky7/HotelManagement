@@ -32,7 +32,7 @@
 
                 <TextView
                     android:id="@+id/expenses_value"
-                    style="@style/txtIntersemibold20_2"
+                    style="@style/text_inter_semi_bold_20_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -46,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/income_value"
-                    style="@style/txtIntersemibold20_1"
+                    style="@style/text_inter_semi_bold_20_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@+id/txtNetProfit2"
-                style="@style/txtIntersemibold14"
+                style="@style/text_inter_semi_bold_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/rp_title"
-                style="@style/txtInterbold32"
+                style="@style/text_inter_bold_32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -110,7 +110,7 @@
 
                     <TextView
                         android:id="@+id/txt30M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
@@ -121,7 +121,7 @@
 
                     <TextView
                         android:id="@+id/txt25M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -133,7 +133,7 @@
 
                     <TextView
                         android:id="@+id/txt20M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -145,7 +145,7 @@
 
                     <TextView
                         android:id="@+id/txt10M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -157,7 +157,7 @@
 
                     <TextView
                         android:id="@+id/txt5M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -169,7 +169,7 @@
 
                     <TextView
                         android:id="@+id/txt0M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_15pxv"
@@ -298,7 +298,7 @@
 
                     <TextView
                         android:id="@+id/txtYear1"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
@@ -309,7 +309,7 @@
 
                     <TextView
                         android:id="@+id/txtYear2"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
@@ -320,7 +320,7 @@
 
                     <TextView
                         android:id="@+id/txtYear3"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
@@ -331,7 +331,7 @@
 
                     <TextView
                         android:id="@+id/txtYear4"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
@@ -355,7 +355,7 @@
 
                 <TextView
                     android:id="@+id/expenses_label"
-                    style="@style/txtIntersemibold16_2"
+                    style="@style/text_inter_semi_bold_16_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.95"
@@ -369,7 +369,7 @@
 
                 <TextView
                     android:id="@+id/income_label"
-                    style="@style/txtIntersemibold16_1"
+                    style="@style/text_inter_semi_bold_16_1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.93"

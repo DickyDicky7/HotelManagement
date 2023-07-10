@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_constraint_layout"
-        style="@style/groupStylebluegray_102cornerRadius"
+        style="@style/group_style_bg_blue_gray_300_corner_radius_20"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/room_kind_text_view"
-                style="@style/txtIntermedium16_5"
+                style="@style/text_inter_medium_16_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -54,7 +54,7 @@
                 android:layout_height="40sp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/layer_list_bg_gray_401_radius_13"
+                android:background="@drawable/layer_list_bg_gray_200_radius_13"
                 android:elevation="10sp"
                 android:popupElevation="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
 
             <TextView
                 android:id="@+id/quantity_text_view"
-                style="@style/txtIntermedium16_5"
+                style="@style/text_inter_medium_16_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -92,7 +92,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_01"
-                    style="@style/txtSolidRounded_3"
+                    style="@style/text_solid_rounded_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -115,7 +115,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_02"
-                    style="@style/txtSolidRounded_2"
+                    style="@style/text_solid_rounded_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -138,7 +138,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_04"
-                    style="@style/txtSolidRounded_3"
+                    style="@style/text_solid_rounded_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -161,7 +161,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_06"
-                    style="@style/txtSolidRounded_3"
+                    style="@style/text_solid_rounded_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -184,7 +184,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_08"
-                    style="@style/txtSolidRounded_3"
+                    style="@style/text_solid_rounded_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -207,7 +207,7 @@
 
                 <TextView
                     android:id="@+id/text_view_quantity_10"
-                    style="@style/txtSolidRounded_3"
+                    style="@style/text_solid_rounded_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -233,7 +233,7 @@
 
             <TextView
                 android:id="@+id/status_text_view"
-                style="@style/txtIntermedium16_5"
+                style="@style/text_inter_medium_16_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -259,7 +259,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_available_yes"
-                    style="@style/btnSolidRounded"
+                    style="@style/button_solid_rounded"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -284,7 +284,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_available_nah"
-                    style="@style/btnSolidRounded_1"
+                    style="@style/button_solid_rounded_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -313,7 +313,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_done"
-            style="@style/btnSolidRounded_2"
+            style="@style/button_solid_rounded_2"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
