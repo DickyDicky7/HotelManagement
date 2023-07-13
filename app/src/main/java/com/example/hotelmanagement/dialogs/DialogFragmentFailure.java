@@ -26,7 +26,7 @@ public class DialogFragmentFailure extends DialogFragment {
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message) {
         DialogFragmentFailure dialogFragmentFailure = new DialogFragmentFailure(message);
-        dialogFragmentFailure.showNow(fragmentManager, tag);
+        dialogFragmentFailure.show(fragmentManager, tag);
     }
 
     @NonNull

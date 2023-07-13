@@ -26,7 +26,7 @@ public class DialogFragmentSuccess extends DialogFragment {
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message) {
         DialogFragmentSuccess dialogFragmentSuccess = new DialogFragmentSuccess(message);
-        dialogFragmentSuccess.showNow(fragmentManager, tag);
+        dialogFragmentSuccess.show(fragmentManager, tag);
     }
 
     @NonNull

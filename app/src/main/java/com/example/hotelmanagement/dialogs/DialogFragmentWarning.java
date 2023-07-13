@@ -35,7 +35,7 @@ public class DialogFragmentWarning extends DialogFragment {
 
     public static void newOne(@NonNull FragmentManager fragmentManager, @NonNull String tag, @NonNull String message, @NonNull Consumer<Answer> onCancelHandler) {
         DialogFragmentWarning dialogFragmentWarning = new DialogFragmentWarning(message, onCancelHandler);
-        dialogFragmentWarning.showNow(fragmentManager, tag);
+        dialogFragmentWarning.show(fragmentManager, tag);
     }
 
     @NonNull
