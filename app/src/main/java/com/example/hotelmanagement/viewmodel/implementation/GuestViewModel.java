@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewmodels;
+package com.example.hotelmanagement.viewmodel.implementation;
 
 import android.util.Log;
 
@@ -12,8 +12,9 @@ import com.example.hasura.GuestDeleteByIdMutation;
 import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.GuestSubscription;
 import com.example.hasura.GuestUpdateByIdMutation;
-import com.example.hasura.Hasura;
+import com.example.hotelmanagement.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestObservable;
+import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;
 import java.util.List;

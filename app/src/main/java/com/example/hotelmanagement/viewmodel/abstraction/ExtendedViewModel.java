@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewmodels;
+package com.example.hotelmanagement.viewmodel.abstraction;
 
 import android.content.Context;
 import android.util.Log;
@@ -17,10 +17,10 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
-import com.example.common.Common;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
-import com.example.hasura.Hasura;
+import com.example.hotelmanagement.common.Common;
+import com.example.hotelmanagement.hasura.Hasura;
 import com.example.hotelmanagement.observables.ExtendedObservable;
 
 import java.lang.reflect.Field;

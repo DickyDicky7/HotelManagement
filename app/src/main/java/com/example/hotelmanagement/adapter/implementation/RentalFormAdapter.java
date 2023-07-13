@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adapter.implementation;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -10,11 +10,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
+import com.example.hotelmanagement.adapter.viewholder.implementation.RentalFormViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRentalFormBinding;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.viewholders.RentalFormViewHolder;
-import com.example.hotelmanagement.viewmodels.GuestViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewmodels;
+package com.example.hotelmanagement.viewmodel.implementation;
 
 import android.util.Log;
 
@@ -9,8 +9,9 @@ import com.apollographql.apollo.ApolloSubscriptionCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestKindSubscription;
-import com.example.hasura.Hasura;
+import com.example.hotelmanagement.hasura.Hasura;
 import com.example.hotelmanagement.observables.GuestKindObservable;
+import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;
 import java.util.List;

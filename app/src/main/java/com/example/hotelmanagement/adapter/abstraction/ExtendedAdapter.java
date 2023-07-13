@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adapter.abstraction;
 
 import android.view.ViewGroup;
 

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adapter.implementation;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -6,9 +6,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
+import com.example.hotelmanagement.adapter.viewholder.implementation.GuestViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemGuestBinding;
 import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.viewholders.GuestViewHolder;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;

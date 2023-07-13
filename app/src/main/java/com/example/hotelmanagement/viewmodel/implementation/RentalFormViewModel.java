@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewmodels;
+package com.example.hotelmanagement.viewmodel.implementation;
 
 import android.util.Log;
 
@@ -11,13 +11,14 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
-import com.example.hasura.Hasura;
 import com.example.hasura.RentalFormDeleteByIdMutation;
 import com.example.hasura.RentalFormInsertMutation;
 import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
 import com.example.hasura.RoomPriceByIdQuery;
+import com.example.hotelmanagement.hasura.Hasura;
 import com.example.hotelmanagement.observables.RentalFormObservable;
+import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

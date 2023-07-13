@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewmodels;
+package com.example.hotelmanagement.viewmodel.implementation;
 
 import android.net.Uri;
 import android.util.Log;
@@ -13,12 +13,13 @@ import com.apollographql.apollo.exception.ApolloException;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
-import com.example.hasura.Hasura;
 import com.example.hasura.RoomKindDeleteByIdMutation;
 import com.example.hasura.RoomKindInsertMutation;
 import com.example.hasura.RoomKindSubscription;
 import com.example.hasura.RoomKindUpdateByIdMutation;
+import com.example.hotelmanagement.hasura.Hasura;
 import com.example.hotelmanagement.observables.RoomKindObservable;
+import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;
 import java.util.List;

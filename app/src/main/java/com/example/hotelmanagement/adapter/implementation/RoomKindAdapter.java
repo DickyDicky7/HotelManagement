@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.adapters;
+package com.example.hotelmanagement.adapter.implementation;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,9 +9,10 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
+import com.example.hotelmanagement.adapter.viewholder.implementation.RoomKindViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.viewholders.RoomKindViewHolder;
 
 import java.util.List;
 

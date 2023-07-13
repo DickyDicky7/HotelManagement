@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.viewholders;
+package com.example.hotelmanagement.adapter.viewholder.implementation;
 
 import androidx.recyclerview.widget.RecyclerView;
 
