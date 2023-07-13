@@ -29,12 +29,16 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentBills extends Fragment implements BillAdapter.BillListener {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
 
     private BillViewModel billViewModel;
     private Handler handler;
@@ -82,7 +86,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         handler = new Handler();
         timeoutCallback = () -> {
             if (binding != null && binding.billsBtnAdd.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.billsBtnAdd.setVisibility(View.INVISIBLE);
                     }
@@ -92,7 +96,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         binding.billsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
             if (binding.billsBtnAdd.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.billsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.billsBtnAdd);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.billsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.billsBtnAdd);
             }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
@@ -118,6 +122,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         handler = null;
         timeoutCallback = null;
         searchProcessor = null;
+        dismissPopupWindowLoading.set(true);
         onSearchBillObservablesConsumer = null;
         Common.searchViewOnFocusChangeForwardingHandler = null;
     }
@@ -139,11 +144,13 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         String warningTag = "FragmentBills Warning";
         String successTag = "FragmentBills Success";
         String failureTag = "FragmentBills Failure";
-        Common.onDeleteRecyclerViewItemClickHandler(billViewModel, billObservable, getParentFragmentManager()
+        Common.onDeleteRecyclerViewItemClickHandler(billViewModel, billObservable
                 , warningTag
                 , successTag
                 , failureTag
-                , requireActivity());
+                , binding.getRoot()
+                , requireActivity()
+                , dismissPopupWindowLoading);
     }
 
 }

@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.common.Common;
@@ -31,12 +33,16 @@ import com.google.android.flexbox.JustifyContent;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
 
     private static Integer id;
     private Boolean isFstTime;
@@ -95,28 +101,28 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         handler = new Handler();
         timeoutCallback = () -> {
             if (binding != null && binding.roomsBtnAdd.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
                     }
                 }).playOn(binding.roomsBtnAdd);
             }
             if (binding != null && binding.roomsBtnBook.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.roomsBtnBook.setVisibility(View.INVISIBLE);
                     }
                 }).playOn(binding.roomsBtnBook);
             }
             if (binding != null && binding.roomsBtnEdit.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
                     }
                 }).playOn(binding.roomsBtnEdit);
             }
             if (binding != null && binding.roomsBtnDelete.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
                     }
@@ -126,16 +132,16 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         binding.roomsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
             if (binding.roomsBtnAdd.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnAdd);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnAdd);
             }
             if (binding.roomsBtnBook.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnBook.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnBook);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnBook.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnBook);
             }
             if (binding.roomsBtnEdit.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnEdit.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnEdit);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnEdit.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnEdit);
             }
             if (binding.roomsBtnDelete.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomsBtnDelete.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnDelete);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnDelete.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnDelete);
             }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
@@ -165,11 +171,13 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                         String warningTag = "FragmentRooms Warning";
                         String successTag = "FragmentRooms Success";
                         String failureTag = "FragmentRooms Failure";
-                        Common.onDeleteRecyclerViewItemClickHandler(roomViewModel, optionalRoomObservable.get(), getParentFragmentManager()
+                        Common.onDeleteRecyclerViewItemClickHandler(roomViewModel, optionalRoomObservable.get()
                                 , warningTag
                                 , successTag
                                 , failureTag
-                                , requireActivity());
+                                , binding.getRoot()
+                                , requireActivity()
+                                , dismissPopupWindowLoading);
                     }
                 }
             }
@@ -177,10 +185,30 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
 
         binding.roomsFilter.setOnClickListener(_view_ -> {
             Common.hideKeyboard(requireActivity());
-            PopupWindowFilterRoom popupWindowFilterRoom = PopupWindowFilterRoom.newOne(getLayoutInflater(), binding.getRoot(), binding.roomsSearchView);
+
+            PopupWindowFilterRoom popupWindowFilterRoom = PopupWindowFilterRoom.newOne(getLayoutInflater(), binding.getRoot(), binding.roomsSearchView, getViewLifecycleOwner());
             int offsetX = 0;
             int offsetY = 10;
             popupWindowFilterRoom.showAsDropDown(binding.roomsFilter, offsetX, offsetY);
+            popupWindowFilterRoom.setOnDismissListener(() ->
+            {
+                YoYo
+                        .with(Techniques.ZoomIn).duration(400).playOn(binding.roomsFilter);
+                Glide
+                        .with(this)
+                        .load(AppCompatResources.getDrawable(requireContext(), R.drawable.img_filter_v1))
+                        .into(binding.roomsFilter);
+            });
+
+            {
+                YoYo
+                        .with(Techniques.ZoomIn).duration(400).playOn(binding.roomsFilter);
+                Glide
+                        .with(this)
+                        .load(AppCompatResources.getDrawable(requireContext(), R.drawable.img_filter_v2))
+                        .into(binding.roomsFilter);
+            }
+
             binding.roomsSearchView.clearFocus();
         });
 
@@ -200,6 +228,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         handler = null;
         timeoutCallback = null;
         searchProcessor = null;
+        dismissPopupWindowLoading.set(true);
         onSearchRoomObservablesConsumer = null;
         Common.searchViewOnFocusChangeForwardingHandler = null;
     }

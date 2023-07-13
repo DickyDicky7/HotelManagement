@@ -26,12 +26,16 @@ import com.example.search.SearchProcessor;
 import com.example.search.SearchStrategyRoomKind;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
 public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomKindListener {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
 
     private RoomKindViewModel roomKindViewModel;
     private Handler handler;
@@ -75,7 +79,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         handler = new Handler();
         timeoutCallback = () -> {
             if (binding != null && binding.roomKindsBtnAdd.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.FadeOutDown).duration(500).onEnd(animator -> {
+                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
                     if (binding != null) {
                         binding.roomKindsBtnAdd.setVisibility(View.INVISIBLE);
                     }
@@ -85,7 +89,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         binding.roomKindsRecyclerView.setOnTouchListener((_view_, motionEvent) -> {
             handler.removeCallbacks(timeoutCallback);
             if (binding.roomKindsBtnAdd.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.FadeInUp).duration(500).onStart(animator -> binding.roomKindsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomKindsBtnAdd);
+                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomKindsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomKindsBtnAdd);
             }
             handler.postDelayed(timeoutCallback, delayMilliseconds);
             return false;
@@ -111,6 +115,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         handler = null;
         timeoutCallback = null;
         searchProcessor = null;
+        dismissPopupWindowLoading.set(true);
         onSearchRoomKindObservablesConsumer = null;
         Common.searchViewOnFocusChangeForwardingHandler = null;
     }
@@ -132,11 +137,13 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         String warningTag = "FragmentRoomKinds Warning";
         String successTag = "FragmentRoomKinds Success";
         String failureTag = "FragmentRoomKinds Failure";
-        Common.onDeleteRecyclerViewItemClickHandler(roomKindViewModel, roomKindObservable, getParentFragmentManager()
+        Common.onDeleteRecyclerViewItemClickHandler(roomKindViewModel, roomKindObservable
                 , warningTag
                 , successTag
                 , failureTag
-                , requireActivity());
+                , binding.getRoot()
+                , requireActivity()
+                , dismissPopupWindowLoading);
     }
 
 }
