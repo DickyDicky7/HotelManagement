@@ -126,7 +126,7 @@ public class PopupWindowFilterRoom extends PopupWindow {
                     if (appCompatButton != null) {
                         appCompatButton.setTextColor(normalTextColor);
                         appCompatButton.setBackgroundResource(normalBackground);
-                        String occupied = "o " + (field.getName().equals("buttonAvailableYes") ? "yes" : "no");
+                        String occupied = "o " + (field.getName().equals("buttonAvailableNah") ? "yes" : "no");
                         appCompatButton.setOnClickListener(view -> {
                             selectOccupied = occupied;
                             if (LastClickedAppCompatButton != null) {
@@ -178,7 +178,7 @@ public class PopupWindowFilterRoom extends PopupWindow {
     }
 
     protected void dismissAnimation() {
-        YoYo.with(Techniques.ZoomIn).duration(400).playOn(binding.getRoot());
+        YoYo.with(Techniques.ZoomOut).duration(400).playOn(binding.getRoot());
     }
 
     @Override
