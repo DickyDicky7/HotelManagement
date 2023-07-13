@@ -1,4 +1,4 @@
-package com.example.search;
+package com.example.hotelmanagement.search.strategy.implementation;
 
 import android.app.SearchManager;
 import android.database.MatrixCursor;
@@ -14,11 +14,12 @@ import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.BillViewModel;
-import com.example.hotelmanagement.viewmodels.GuestViewModel;
-import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
-import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.hotelmanagement.search.strategy.abstraction.SearchStrategy;
+import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

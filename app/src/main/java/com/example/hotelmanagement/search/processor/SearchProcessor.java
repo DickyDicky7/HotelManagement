@@ -1,4 +1,4 @@
-package com.example.search;
+package com.example.hotelmanagement.search.processor;
 
 import android.os.Handler;
 import android.widget.AutoCompleteTextView;
@@ -7,7 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.cursoradapter.widget.CursorAdapter;
 
-import com.example.common.Common;
+import com.example.hotelmanagement.common.Common;
+import com.example.hotelmanagement.search.strategy.abstraction.SearchStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

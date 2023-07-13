@@ -1,4 +1,4 @@
-package com.example.search;
+package com.example.hotelmanagement.search.strategy.abstraction;
 
 import android.app.SearchManager;
 import android.content.Context;
