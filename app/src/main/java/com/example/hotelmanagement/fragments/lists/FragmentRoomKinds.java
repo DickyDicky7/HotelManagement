@@ -107,6 +107,12 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dismissPopupWindowLoading.set(false);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         roomKindViewModel = null;

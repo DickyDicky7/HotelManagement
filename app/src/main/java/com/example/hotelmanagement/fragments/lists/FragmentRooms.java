@@ -152,7 +152,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         });
 
         binding.roomsBtnEdit.setOnClickListener(_view_ -> {
-            if (id == -1) {
+            if (id == null || id == -1) {
                 Common.showCustomSnackBar("PLEASE SELECT A ROOM", requireContext(), binding.getRoot());
             } else {
                 Bundle bundle = new Bundle();
@@ -180,6 +180,8 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                                 , dismissPopupWindowLoading);
                     }
                 }
+            } else {
+                Common.showCustomSnackBar("PLEASE SELECT A ROOM", requireContext(), binding.getRoot());
             }
         });
 
@@ -217,6 +219,12 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                 , new SearchStrategyRoom(requireActivity())
                 , onSearchRoomObservablesConsumer, roomAdapter);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dismissPopupWindowLoading.set(false);
     }
 
     @Override

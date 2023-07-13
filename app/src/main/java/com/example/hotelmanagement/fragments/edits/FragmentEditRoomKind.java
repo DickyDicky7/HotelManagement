@@ -166,6 +166,7 @@ public class FragmentEditRoomKind extends Fragment {
 
         binding.edtImage.setColorFilter(Color.WHITE);
         binding.edtImage.setOnClickListener(_view_ -> {
+            Common.hideKeyboard(requireActivity());
             pickVisualMediaLauncher.launch(new PickVisualMediaRequest.Builder()
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());

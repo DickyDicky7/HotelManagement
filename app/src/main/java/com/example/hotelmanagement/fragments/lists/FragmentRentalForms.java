@@ -107,6 +107,12 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dismissPopupWindowLoading.set(false);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         rentalFormViewModel = null;

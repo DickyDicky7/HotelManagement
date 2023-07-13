@@ -114,6 +114,12 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dismissPopupWindowLoading.set(false);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         guestViewModel = null;

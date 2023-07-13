@@ -114,6 +114,12 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        dismissPopupWindowLoading.set(false);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         billViewModel = null;
