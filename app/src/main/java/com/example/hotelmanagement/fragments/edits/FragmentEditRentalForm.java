@@ -27,8 +27,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
@@ -40,9 +38,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class FragmentEditRentalForm extends Fragment {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
+    @NonNull
+    private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
     private FragmentEditRentalFormBinding binding;
     private RentalFormViewModel rentalFormViewModel;
@@ -122,6 +126,7 @@ public class FragmentEditRentalForm extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -271,39 +276,27 @@ public class FragmentEditRentalForm extends Fragment {
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            try {
-                if (binding.edtIdNumber.isFocused()) {
-                    Common.showCustomSnackBar("Finish Entering Id Number To Continue".toUpperCase(), requireContext(), binding.getRoot());
-                    return;
-                }
-                rentalFormViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentEditRentalForm Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                rentalFormViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been updated successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentEditRentalForm Success", message);
-                            NavHostFragment.findNavController(this).popBackStack();
-                        });
-                    }
-                };
-                rentalFormViewModel.onFailureCallback = null;
-                if (rentalFormViewModel.checkObservable(usedRentalFormObservable, requireContext(), binding.getRoot(), "billId")) {
-                    rentalFormViewModel.update(usedRentalFormObservable, copyRentalFormObservable);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            if (binding.edtIdNumber.isFocused()) {
+                Common.showCustomSnackBar("Finish Entering Id Number To Continue".toUpperCase(), requireContext(), binding.getRoot());
+                return;
             }
-            Common.hideKeyboard(requireActivity());
+            Consumer<RentalFormObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
+            String successTag = "FragmentEditRentalForm Success";
+            String failureTag = "FragmentEditRentalForm Failure";
+            Common.onButtonDoneFragmentEdtClickHandler(
+                    beforeUpdatePrepareUsedExtendedObservableConsumer,
+                    rentalFormViewModel,
+                    usedRentalFormObservable,
+                    copyRentalFormObservable,
+                    successTag,
+                    failureTag,
+                    binding.linearEditRentalForm,
+                    NavHostFragment.findNavController(this),
+                    requireActivity(),
+                    dismissPopupWindowLoading,
+                    alreadyPoppedBackStackNow,
+                    "billId"
+            );
         });
 
         if (copyRentalFormObservable.getIsResolved() != null && copyRentalFormObservable.getIsResolved()) {
@@ -348,6 +341,8 @@ public class FragmentEditRentalForm extends Fragment {
         rentalFormViewModel = null;
         usedRentalFormObservable = null;
         copyRentalFormObservable = null;
+        dismissPopupWindowLoading.set(true);
+        alreadyPoppedBackStackNow.set(true);
     }
 
 }

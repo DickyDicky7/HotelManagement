@@ -20,14 +20,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.BillObservable;
 import com.example.hotelmanagement.viewmodels.BillViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 public class FragmentEditBill extends Fragment {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
+    @NonNull
+    private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
     private FragmentEditBillBinding binding;
     private BillViewModel billViewModel;
@@ -107,6 +111,7 @@ public class FragmentEditBill extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -128,38 +133,22 @@ public class FragmentEditBill extends Fragment {
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            try {
-                billViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentEditBill Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                billViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been updated successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentEditBill Success", message);
-                            NavHostFragment.findNavController(this).popBackStack();
-                        });
-                    }
-                };
-                billViewModel.onFailureCallback = null;
-                if (billViewModel.checkObservable(
-                        usedBillObservable,
-                        requireContext(),
-                        binding.getRoot())) {
-                    billViewModel.update(usedBillObservable, copyBillObservable);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            Common.hideKeyboard(requireActivity());
+            Consumer<BillObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
+            String successTag = "FragmentEditBill Success";
+            String failureTag = "FragmentEditBill Failure";
+            Common.onButtonDoneFragmentEdtClickHandler(
+                    beforeUpdatePrepareUsedExtendedObservableConsumer,
+                    billViewModel,
+                    usedBillObservable,
+                    copyBillObservable,
+                    successTag,
+                    failureTag,
+                    binding.linearEditBill,
+                    NavHostFragment.findNavController(this),
+                    requireActivity(),
+                    dismissPopupWindowLoading,
+                    alreadyPoppedBackStackNow
+            );
         });
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
@@ -182,6 +171,8 @@ public class FragmentEditBill extends Fragment {
         billViewModel = null;
         usedBillObservable = null;
         copyBillObservable = null;
+        dismissPopupWindowLoading.set(true);
+        alreadyPoppedBackStackNow.set(true);
     }
 
 }

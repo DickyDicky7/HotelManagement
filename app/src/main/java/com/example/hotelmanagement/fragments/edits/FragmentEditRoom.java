@@ -22,8 +22,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
@@ -32,8 +30,14 @@ import com.example.hotelmanagement.viewmodels.RoomViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 public class FragmentEditRoom extends Fragment {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
+    @NonNull
+    private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
     private FragmentEditRoomBinding binding;
     private RoomViewModel roomViewModel;
@@ -159,41 +163,32 @@ public class FragmentEditRoom extends Fragment {
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            try {
-                roomViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentEditRoom Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                roomViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been updated successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentEditRoom Success", message);
-                            NavHostFragment.findNavController(this).popBackStack();
-                        });
-                    }
-                };
-                roomViewModel.onFailureCallback = null;
-                if (roomViewModel.checkObservable(usedRoomObservable, requireContext(), binding.getRoot(), "note", "description")) {
-                    if (usedRoomObservable.getNote() != null && usedRoomObservable.getNote().equals("")) {
-                        usedRoomObservable.setNote(null);
-                    }
-                    if (usedRoomObservable.getDescription() != null && usedRoomObservable.getDescription().equals("")) {
-                        usedRoomObservable.setDescription(null);
-                    }
-                    roomViewModel.update(usedRoomObservable, copyRoomObservable);
+            Consumer<RoomObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = _usedRoomObservable_ -> {
+                if (_usedRoomObservable_.getNote() != null
+                        && _usedRoomObservable_.getNote().equals("")) {
+                    _usedRoomObservable_.setNote(null);
                 }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            Common.hideKeyboard(requireActivity());
+                if (_usedRoomObservable_.getDescription() != null
+                        && _usedRoomObservable_.getDescription().equals("")) {
+                    _usedRoomObservable_.setDescription(null);
+                }
+            };
+            String successTag = "FragmentEditRoom Success";
+            String failureTag = "FragmentEditRoom Failure";
+            Common.onButtonDoneFragmentEdtClickHandler(
+                    beforeUpdatePrepareUsedExtendedObservableConsumer,
+                    roomViewModel,
+                    usedRoomObservable,
+                    copyRoomObservable,
+                    successTag,
+                    failureTag,
+                    binding.linearEditRoom,
+                    NavHostFragment.findNavController(this),
+                    requireActivity(),
+                    dismissPopupWindowLoading,
+                    alreadyPoppedBackStackNow,
+                    "note", "description"
+            );
         });
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
@@ -216,6 +211,8 @@ public class FragmentEditRoom extends Fragment {
         roomViewModel = null;
         usedRoomObservable = null;
         copyRoomObservable = null;
+        dismissPopupWindowLoading.set(true);
+        alreadyPoppedBackStackNow.set(true);
     }
 
 }

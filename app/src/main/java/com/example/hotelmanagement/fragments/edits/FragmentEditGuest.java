@@ -22,8 +22,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditGuestBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
 import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
@@ -32,8 +30,14 @@ import com.example.hotelmanagement.viewmodels.GuestViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 public class FragmentEditGuest extends Fragment {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
+    @NonNull
+    private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
     private FragmentEditGuestBinding binding;
     private GuestViewModel guestViewModel;
@@ -113,6 +117,7 @@ public class FragmentEditGuest extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -159,38 +164,22 @@ public class FragmentEditGuest extends Fragment {
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            try {
-                guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentEditGuest Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                guestViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been updated successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentEditGuest Success", message);
-                            NavHostFragment.findNavController(this).popBackStack();
-                        });
-                    }
-                };
-                guestViewModel.onFailureCallback = null;
-                if (guestViewModel.checkObservable(
-                        usedGuestObservable,
-                        requireContext(),
-                        binding.getRoot())) {
-                    guestViewModel.update(usedGuestObservable, copyGuestObservable);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            Common.hideKeyboard(requireActivity());
+            String successTag = "FragmentEditGuest Success";
+            String failureTag = "FragmentEditGuest Failure";
+            Consumer<GuestObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
+            Common.onButtonDoneFragmentEdtClickHandler(
+                    beforeUpdatePrepareUsedExtendedObservableConsumer,
+                    guestViewModel,
+                    usedGuestObservable,
+                    copyGuestObservable,
+                    successTag,
+                    failureTag,
+                    binding.linearEditGuest,
+                    NavHostFragment.findNavController(this),
+                    requireActivity(),
+                    dismissPopupWindowLoading,
+                    alreadyPoppedBackStackNow
+            );
         });
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
@@ -213,6 +202,8 @@ public class FragmentEditGuest extends Fragment {
         guestViewModel = null;
         usedGuestObservable = null;
         copyGuestObservable = null;
+        dismissPopupWindowLoading.set(true);
+        alreadyPoppedBackStackNow.set(true);
     }
 
 }

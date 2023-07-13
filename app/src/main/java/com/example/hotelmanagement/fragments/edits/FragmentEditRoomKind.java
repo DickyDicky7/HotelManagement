@@ -25,14 +25,18 @@ import com.bumptech.glide.Glide;
 import com.example.common.Common;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 
 public class FragmentEditRoomKind extends Fragment {
+
+    @NonNull
+    private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
+    @NonNull
+    private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
     private FragmentEditRoomKindBinding binding;
     private RoomKindViewModel roomKindViewModel;
@@ -122,6 +126,7 @@ public class FragmentEditRoomKind extends Fragment {
         return binding.getRoot();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -141,38 +146,22 @@ public class FragmentEditRoomKind extends Fragment {
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            try {
-                roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentEditRoomKind Failure", apolloErrors.get(0).getMessage());
-                            }
-                        });
-                    }
-                };
-                roomKindViewModel.onSuccessCallback = () -> {
-                    if (getActivity() != null) {
-                        requireActivity().runOnUiThread(() -> {
-                            String message = "Success: Your item has been updated successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentEditRoomKind Success", message);
-                            NavHostFragment.findNavController(this).popBackStack();
-                        });
-                    }
-                };
-                roomKindViewModel.onFailureCallback = null;
-                if (roomKindViewModel.checkObservable(
-                        usedRoomKindObservable,
-                        requireContext(),
-                        binding.getRoot())) {
-                    roomKindViewModel.update(usedRoomKindObservable, copyRoomKindObservable);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            Common.hideKeyboard(requireActivity());
+            Consumer<RoomKindObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
+            String successTag = "FragmentEditRoomKind Success";
+            String failureTag = "FragmentEditRoomKind Failure";
+            Common.onButtonDoneFragmentEdtClickHandler(
+                    beforeUpdatePrepareUsedExtendedObservableConsumer,
+                    roomKindViewModel,
+                    usedRoomKindObservable,
+                    copyRoomKindObservable,
+                    successTag,
+                    failureTag,
+                    binding.linearEditRoomKind,
+                    NavHostFragment.findNavController(this),
+                    requireActivity(),
+                    dismissPopupWindowLoading,
+                    alreadyPoppedBackStackNow
+            );
         });
 
         binding.edtImage.setColorFilter(Color.WHITE);
@@ -207,6 +196,8 @@ public class FragmentEditRoomKind extends Fragment {
         copyRoomKindObservable = null;
         pickVisualMediaLauncher.unregister();
         pickVisualMediaLauncher = null;
+        dismissPopupWindowLoading.set(true);
+        alreadyPoppedBackStackNow.set(true);
     }
 
 }
