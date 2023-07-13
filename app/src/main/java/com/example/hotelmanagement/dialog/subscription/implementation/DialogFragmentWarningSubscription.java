@@ -1,8 +1,9 @@
-package com.example.hotelmanagement.dialogs.subscriptions;
+package com.example.hotelmanagement.dialog.subscription.implementation;
 
 import androidx.annotation.NonNull;
 
-import com.example.hotelmanagement.dialogs.DialogFragmentWarning;
+import com.example.hotelmanagement.dialog.implementation.DialogFragmentWarning;
+import com.example.hotelmanagement.dialog.subscription.abstraction.DialogFragmentSubscription;
 
 import java.util.function.Consumer;
 

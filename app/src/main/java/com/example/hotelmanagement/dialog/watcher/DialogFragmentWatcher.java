@@ -1,13 +1,16 @@
-package com.example.hotelmanagement.dialogs;
+package com.example.hotelmanagement.dialog.watcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.hotelmanagement.dialogs.subscriptions.DialogFragmentFailureSubscription;
-import com.example.hotelmanagement.dialogs.subscriptions.DialogFragmentSubscription;
-import com.example.hotelmanagement.dialogs.subscriptions.DialogFragmentSuccessSubscription;
-import com.example.hotelmanagement.dialogs.subscriptions.DialogFragmentWarningSubscription;
+import com.example.hotelmanagement.dialog.implementation.DialogFragmentFailure;
+import com.example.hotelmanagement.dialog.implementation.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.implementation.DialogFragmentWarning;
+import com.example.hotelmanagement.dialog.subscription.abstraction.DialogFragmentSubscription;
+import com.example.hotelmanagement.dialog.subscription.implementation.DialogFragmentFailureSubscription;
+import com.example.hotelmanagement.dialog.subscription.implementation.DialogFragmentSuccessSubscription;
+import com.example.hotelmanagement.dialog.subscription.implementation.DialogFragmentWarningSubscription;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;

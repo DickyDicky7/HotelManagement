@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.dialogs.subscriptions;
+package com.example.hotelmanagement.dialog.subscription.abstraction;
 
 import androidx.annotation.NonNull;
 

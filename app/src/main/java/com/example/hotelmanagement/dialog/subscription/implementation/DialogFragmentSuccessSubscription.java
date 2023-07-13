@@ -1,6 +1,8 @@
-package com.example.hotelmanagement.dialogs.subscriptions;
+package com.example.hotelmanagement.dialog.subscription.implementation;
 
 import androidx.annotation.NonNull;
+
+import com.example.hotelmanagement.dialog.subscription.abstraction.DialogFragmentSubscription;
 
 public class DialogFragmentSuccessSubscription extends DialogFragmentSubscription {
 

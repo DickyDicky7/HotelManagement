@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.dialogs;
+package com.example.hotelmanagement.dialog.implementation;
 
 import android.app.Dialog;
 import android.graphics.Color;
