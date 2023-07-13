@@ -39,6 +39,8 @@
     <color name="indigo_300">#194076</color>
     <color name="indigo_400">#0b2447</color>
     <color name="indigo_500">#9919376d</color>
+    <color name="indigo_600">#990b2447</color>
+    <color name="indigo_700">#3f576cbc</color>
 
     <color name="purple_100">#FFBB86FC</color>
     <color name="purple_200">#FF6200EE</color>
