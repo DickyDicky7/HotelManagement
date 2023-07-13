@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Process;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.databinding.ActivityMainBinding;
+import com.example.hotelmanagement.dialogs.DialogFragmentWatcher;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -110,8 +112,24 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (DialogFragmentWatcher.watcher == null) {
+            DialogFragmentWatcher.destroyed.set(false);
+            DialogFragmentWatcher.processDialogFragmentSubscriptions(binding.mainNavHostFragment.getFragment().getParentFragmentManager());
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        DialogFragmentWatcher.destroyed.set(true);
+        while (DialogFragmentWatcher.watcher != null && DialogFragmentWatcher.watcher.isAlive()) {
+            Log.i("DialogFragmentWatcher", "Still Alive");
+        }
+
+        DialogFragmentWatcher.watcher = null;
         gestureDetectorCompat = null;
         navController = null;
         binding = null;
