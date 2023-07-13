@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.adapters.RoomKindAdapter;
+import com.example.hotelmanagement.adapter.implementation.RoomKindAdapter;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
-import com.example.search.SearchProcessor;
-import com.example.search.SearchStrategyRoomKind;
+import com.example.hotelmanagement.search.processor.SearchProcessor;
+import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyRoomKind;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

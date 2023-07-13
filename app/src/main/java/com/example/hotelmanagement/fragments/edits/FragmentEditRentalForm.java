@@ -24,13 +24,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
-import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;

@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.adapters.RentalFormAdapter;
+import com.example.hotelmanagement.adapter.implementation.RentalFormAdapter;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
 import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
-import com.example.search.SearchProcessor;
-import com.example.search.SearchStrategyRentalForm;
+import com.example.hotelmanagement.search.processor.SearchProcessor;
+import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyRentalForm;
+import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

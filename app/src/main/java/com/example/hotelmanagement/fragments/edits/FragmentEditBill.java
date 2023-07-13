@@ -17,11 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
 import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.viewmodels.BillViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;

@@ -19,13 +19,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
-import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

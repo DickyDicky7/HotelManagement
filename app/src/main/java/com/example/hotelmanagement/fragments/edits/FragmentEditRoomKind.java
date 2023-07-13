@@ -22,11 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
 import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
