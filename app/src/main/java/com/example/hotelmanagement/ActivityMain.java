@@ -21,7 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.databinding.ActivityMainBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentWatcher;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 
 import java.util.LinkedList;
 import java.util.List;

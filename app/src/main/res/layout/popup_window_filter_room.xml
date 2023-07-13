@@ -14,6 +14,7 @@
         android:layout_gravity="top|start"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:clickable="true"
         android:elevation="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +57,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/layer_list_bg_gray_200_radius_13"
                 android:elevation="10sp"
+                android:popupBackground="@color/blue_gray_100"
                 android:popupElevation="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -98,6 +100,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -106,12 +109,12 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_4"
+                    android:text="1"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_4" />
+                    tools:text="1" />
 
                 <TextView
                     android:id="@+id/text_view_quantity_02"
@@ -121,6 +124,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -129,12 +133,12 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_2"
+                    android:text="2"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_view_quantity_01"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_2" />
+                    tools:text="2" />
 
                 <TextView
                     android:id="@+id/text_view_quantity_04"
@@ -144,6 +148,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -152,12 +157,12 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_4"
+                    android:text="4"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_view_quantity_02"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_4" />
+                    tools:text="4" />
 
                 <TextView
                     android:id="@+id/text_view_quantity_06"
@@ -167,6 +172,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -175,12 +181,12 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_8"
+                    android:text="6"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_view_quantity_04"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_8" />
+                    tools:text="6" />
 
                 <TextView
                     android:id="@+id/text_view_quantity_08"
@@ -190,6 +196,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -198,12 +205,12 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_8"
+                    android:text="8"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_view_quantity_06"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_8" />
+                    tools:text="8" />
 
                 <TextView
                     android:id="@+id/text_view_quantity_10"
@@ -213,6 +220,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:clickable="true"
                     android:elevation="10sp"
                     android:ellipsize="end"
                     android:fontFamily="@font/outfit"
@@ -221,14 +229,14 @@
                     android:paddingEnd="@dimen/_11pxh"
                     android:paddingBottom="@dimen/_5pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_8"
+                    android:text="10"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/text_view_quantity_08"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/lbl_8" />
+                    tools:text="10" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
