@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/group_style_bg_indigo_400"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/report_text_view"
+            style="@style/text_outfit_semi_bold_36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/lbl_report"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/report_back_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/report_back_button"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_gravity="start"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rectangle_bg_indigo_100_radius_10"
+            android:elevation="10sp"
+            android:importantForAccessibility="no"
+            android:paddingHorizontal="10sp"
+            android:paddingVertical="10sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/choice_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_constraint_layout">
+
+        <ImageButton
+            android:id="@+id/hides_choice_button"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/transparent"
+            android:elevation="10sp"
+            android:importantForAccessibility="no"
+            android:paddingHorizontal="10sp"
+            android:paddingVertical="10sp"
+            android:rotation="90"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <Spinner
+            android:id="@+id/types_choice_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/layer_list_bg_blue_gray_100_radius_10"
+            android:elevation="10sp"
+            android:popupBackground="@color/blue_gray_100"
+            android:popupElevation="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/hides_choice_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/types_choice_text_view" />
+
+        <Spinner
+            android:id="@+id/month_choice_spinner"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layer_list_bg_blue_gray_100_radius_10"
+            android:elevation="10sp"
+            android:popupBackground="@color/blue_gray_100"
+            android:popupElevation="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/types_choice_spinner"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/types_choice_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/month_choice_text_view" />
+
+        <Spinner
+            android:id="@+id/years_choice_spinner"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layer_list_bg_blue_gray_100_radius_10"
+            android:elevation="10sp"
+            android:popupBackground="@color/blue_gray_100"
+            android:popupElevation="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/types_choice_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/types_choice_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/years_choice_text_view" />
+
+        <TextView
+            android:id="@+id/years_choice_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit"
+            android:text="Choose year"
+            android:textColor="@color/white_100"
+            android:textColorHighlight="@color/white_100"
+            android:textColorHint="@color/white_100"
+            android:textColorLink="@color/white_100"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/years_choice_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/years_choice_spinner"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/month_choice_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit"
+            android:text="Choose month"
+            android:textColor="@color/white_100"
+            android:textColorHighlight="@color/white_100"
+            android:textColorHint="@color/white_100"
+            android:textColorLink="@color/white_100"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/month_choice_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/month_choice_spinner"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/types_choice_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/outfit"
+            android:text="Choose type"
+            android:textColor="@color/white_100"
+            android:textColorHighlight="@color/white_100"
+            android:textColorHint="@color/white_100"
+            android:textColorLink="@color/white_100"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/types_choice_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/types_choice_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/years_choice_spinner" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chart_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choice_constraint_layout">
+
+        <ScrollView
+            android:id="@+id/chart_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chart_main_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

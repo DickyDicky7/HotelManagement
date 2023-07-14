@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/img_hotelimage_1"
+        android:background="@drawable/img_hotel_image_1"
         android:backgroundTint="#FFFFFF"
         android:backgroundTintMode="multiply"
         android:gravity="center_horizontal"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/groupStyle"
+            style="@style/group_style_gradient_s_indigo_400_e_gray_900"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignIn"
-                style="@style/groupStylebluegray_100_cccornerRadius"
+                style="@style/group_style_bg_blue_gray_500_corner_radius_20"
                 android:layout_width="170sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
