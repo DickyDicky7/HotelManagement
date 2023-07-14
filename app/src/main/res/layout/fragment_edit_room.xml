@@ -6,7 +6,7 @@
 
         <variable
             name="roomObservable"
-            type="com.example.hotelmanagement.observables.RoomObservable" />
+            type="com.example.hotelmanagement.observable.implementation.RoomObservable" />
     </data>
 
     <LinearLayout

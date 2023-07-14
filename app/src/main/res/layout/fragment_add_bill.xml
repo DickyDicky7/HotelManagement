@@ -7,7 +7,7 @@
 
         <variable
             name="billObservable"
-            type="com.example.hotelmanagement.observables.BillObservable" />
+            type="com.example.hotelmanagement.observable.implementation.BillObservable" />
     </data>
 
     <LinearLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="rentalFormObservable"
-            type="com.example.hotelmanagement.observables.RentalFormObservable" />
+            type="com.example.hotelmanagement.observable.implementation.RentalFormObservable" />
     </data>
 
     <LinearLayout

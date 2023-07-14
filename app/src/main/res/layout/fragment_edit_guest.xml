@@ -7,7 +7,7 @@
 
         <variable
             name="guestObservable"
-            type="com.example.hotelmanagement.observables.GuestObservable" />
+            type="com.example.hotelmanagement.observable.implementation.GuestObservable" />
     </data>
 
     <LinearLayout
