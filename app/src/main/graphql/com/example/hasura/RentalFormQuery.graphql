@@ -1,4 +1,4 @@
-query RentalFormAll
+query RentalFormAllQuery
 {
     RENTALFORM
     {
@@ -17,13 +17,58 @@ query RentalFormAll
     }
 }
 
-query RentalFormAmountByGuestId
+
+query RentalFormAmountByGuestIdAndIsResolvedFalseQuery
 (
     $guestId: Int
 )
 {
-    RENTALFORM(where: { guest_id: { _eq: $guestId }, is_resolved: { _eq: false } })
+    RENTALFORM
+    (
+        where:
+        {
+            guest_id: {   _eq: $guestId   }, is_resolved: {   _eq: false   }
+        }
+    )
     {
+        id
         amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
     }
 }
+
+
+query RentalFormByIdQuery
+(
+    $id: Int!
+)
+{
+    RENTALFORM_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
+    }
+}
+

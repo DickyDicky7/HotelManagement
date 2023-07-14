@@ -7,34 +7,35 @@
 
         <variable
             name="billObservable"
-            type="com.example.hotelmanagement.observables.BillObservable" />
+            type="com.example.hotelmanagement.observable.implementation.BillObservable" />
     </data>
 
     <LinearLayout
-        android:id="@+id/linearAddbill"
-        style="@style/groupStylebluegray_900"
+        android:id="@+id/linearAddBill"
+        style="@style/group_style_bg_indigo_400"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="end"
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btnBack"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_gravity="start"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rectangle_bg_indigo_400_radius_10"
+            android:background="@drawable/rectangle_bg_indigo_100_radius_10"
+            android:elevation="10sp"
             android:importantForAccessibility="no"
             android:paddingHorizontal="10sp"
             android:paddingVertical="10sp"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft"
+            android:src="@drawable/img_arrow_left"
             tools:ignore="ContentDescription" />
 
         <ScrollView
-            android:id="@+id/scollviewaddbill"
+            android:id="@+id/scrollViewAddBill"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
@@ -45,18 +46,19 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/linearColumnid"
-                style="@style/groupStyleindigo_901cornerRadius"
+                android:id="@+id/linearColumn"
+                style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:elevation="10sp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtIDNumber"
-                    style="@style/txtIntersemibold24"
+                    android:id="@+id/txtIdNumber"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -68,14 +70,15 @@
                     tools:text="@string/lbl_cccd" />
 
                 <EditText
-                    android:id="@+id/edt_idNumber"
-                    style="@style/etSolidRounded_1"
+                    android:id="@+id/edtIdNumber"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:hint="@string/lbl_enter_cccd"
                     android:inputType="number"
@@ -83,16 +86,16 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={billObservable.idNumber}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/gray_500"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
 
                 <TextView
-                    android:id="@+id/txtCustomersname"
-                    style="@style/txtIntersemibold24"
+                    android:id="@+id/txtGuestName"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -104,14 +107,17 @@
                     tools:text="@string/lbl_customer_s_name" />
 
                 <EditText
-                    android:id="@+id/edt_name"
-                    style="@style/etSolidRounded_1"
+                    android:id="@+id/edtGuestName"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:backgroundTint="@color/gray_100"
+                    android:backgroundTintMode="multiply"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:focusable="false"
                     android:hint="@string/lbl_auto_name"
@@ -120,15 +126,15 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={billObservable.name}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/white_600"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/txtCost"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -140,14 +146,17 @@
                     tools:text="@string/lbl_cost" />
 
                 <EditText
-                    android:id="@+id/edt_cost"
-                    style="@style/etSolidRounded_1"
+                    android:id="@+id/edtCost"
+                    style="@style/edit_text_solid_rounded_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/rectangle_bg_bluegray_100_radius_10"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:backgroundTint="@color/gray_100"
+                    android:backgroundTintMode="multiply"
+                    android:elevation="10sp"
                     android:ellipsize="end"
                     android:focusable="false"
                     android:hint="@string/lbl_auto_cost"
@@ -156,15 +165,15 @@
                     android:paddingVertical="10sp"
                     android:singleLine="true"
                     android:text="@={billObservable.costString}"
-                    android:textColor="@color/bluegray_900"
-                    android:textColorHint="@color/gray_600"
-                    android:textColorLink="@color/indigo_400"
+                    android:textColor="@color/indigo_400"
+                    android:textColorHint="@color/white_600"
+                    android:textColorLink="@color/indigo_100"
                     android:textSize="15sp"
                     tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/txtStatus"
-                    style="@style/txtIntersemibold24"
+                    style="@style/text_inter_semi_bold_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -176,7 +185,7 @@
                     tools:text="@string/lbl_paid_status" />
 
                 <RadioGroup
-                    android:id="@+id/raidio_grp"
+                    android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -186,7 +195,7 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radio_Paid"
+                        android:id="@+id/radioPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
@@ -197,7 +206,7 @@
                         android:textSize="15sp" />
 
                     <RadioButton
-                        android:id="@+id/radio_Not_paid"
+                        android:id="@+id/radioNotPaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
@@ -213,11 +222,12 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDone"
-            style="@style/btnSolidRounded_3"
+            style="@style/button_solid_rounded_3"
             android:layout_width="150sp"
             android:layout_height="40sp"
             android:layout_gravity="top|center"
             android:layout_marginBottom="20dp"
+            android:elevation="10sp"
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"

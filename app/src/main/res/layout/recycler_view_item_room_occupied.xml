@@ -8,14 +8,14 @@
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_bookedroom"
+        android:id="@+id/item_room"
         android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/rectangle_bg_bluegray_100_radius_20"
+        android:background="@drawable/rectangle_bg_blue_gray_100_radius_20"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,26 +23,43 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageUser"
+            android:id="@+id/item_room_user_image_view"
             android:layout_width="20sp"
             android:layout_height="20sp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:paddingVertical="2sp"
             android:scaleType="fitXY"
-            android:src="@drawable/img_user_green_700"
+            android:src="@drawable/img_double_users_g"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_br_roomKind"
+            app:layout_constraintTop_toBottomOf="@+id/item_room_room_kind_text_view"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/img_user_green_700" />
+            tools:src="@drawable/img_double_users_g" />
+
+        <ImageView
+            android:id="@+id/item_room_mark_image_view"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginEnd="10dp"
+            android:paddingVertical="3sp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_checkmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/item_room_room_name_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_checkmark" />
 
         <TextView
-            android:id="@+id/item_br_roomKind"
-            style="@style/txtInterregular14"
+            android:id="@+id/item_room_room_kind_text_view"
+            style="@style/text_inter_regular_14_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -54,12 +71,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_br_roomName"
+            app:layout_constraintTop_toBottomOf="@+id/item_room_room_name_text_view"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/item_br_roomName"
-            style="@style/txtIntersemibold18"
+            android:id="@+id/item_room_room_name_text_view"
+            style="@style/text_inter_semi_bold_18_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -74,22 +91,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageCheckmark2"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
-            android:layout_marginEnd="10dp"
-            android:paddingVertical="3sp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_checkmark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/item_br_roomName"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_checkmark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 subscription RoomSubscription
 {
-    ROOM
+    ROOM( order_by: [ { name: asc_nulls_last } ] )
     {
         id
         name
@@ -9,6 +9,7 @@ subscription RoomSubscription
         updated_at
         description
         is_occupied
-        roomkind_id
+        room_kind_id
     }
 }
+

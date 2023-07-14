@@ -1,4 +1,4 @@
-mutation RentalFormInsert
+mutation RentalFormInsertMutation
 (
     $roomId        : Int
     $billId        : Int
@@ -11,65 +11,110 @@ mutation RentalFormInsert
     $numberOfGuests: Int
 )
 {
-    insert_RENTALFORM
+    insert_RENTALFORM_one
     (
-        objects:
-        [
-            {
-                room_id         : $roomId
-                bill_id         : $billId
-                amount          : $amount
-                guest_id        : $guestId
-                start_date      : $startDate
-                rental_days     : $rentalDays
-                is_resolved     : $isResolved
-                price_per_day   : $pricePerDay
-                number_of_guests: $numberOfGuests
-            }
-        ]
+        object:
+        {
+            room_id         : $roomId
+            bill_id         : $billId
+            amount          : $amount
+            guest_id        : $guestId
+            start_date      : $startDate
+            rental_days     : $rentalDays
+            is_resolved     : $isResolved
+            price_per_day   : $pricePerDay
+            number_of_guests: $numberOfGuests
+        }
     )
     {
-        returning
-        {
-            id
-            amount
-            room_id
-            bill_id
-            guest_id
-            start_date
-            created_at
-            updated_at
-            rental_days
-            is_resolved
-            price_per_day
-            number_of_guests
-        }
+        id
+        amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
     }
 }
 
-mutation RentalFormUpdateBillIdAndIsResolvedById
+
+mutation RentalFormUpdateByIdMutation
 (
-    $billId    : Int
-    $guestId   : Int
-    $isResolved: Boolean
+    $id            : Int!
+    $roomId        : Int
+    $billId        : Int
+    $amount        : Float
+    $guestId       : Int
+    $startDate     : date
+    $rentalDays    : Int
+    $isResolved    : Boolean
+    $pricePerDay   : Float
+    $numberOfGuests: Int
 )
 {
-    update_RENTALFORM(where: { guest_id: { _eq: $guestId }, is_resolved: { _eq: false } }, _set: { bill_id: $billId, is_resolved: $isResolved })
-    {
-        returning
+    update_RENTALFORM_by_pk
+    (
+        pk_columns:
         {
-            id
-            amount
-            room_id
-            bill_id
-            guest_id
-            start_date
-            created_at
-            updated_at
-            rental_days
-            is_resolved
-            price_per_day
-            number_of_guests
+            id: $id
         }
+        _set:
+        {
+            room_id         : $roomId
+            bill_id         : $billId
+            amount          : $amount
+            guest_id        : $guestId
+            start_date      : $startDate
+            rental_days     : $rentalDays
+            is_resolved     : $isResolved
+            price_per_day   : $pricePerDay
+            number_of_guests: $numberOfGuests
+        }
+    )
+    {
+        id
+        amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
     }
 }
+
+
+mutation RentalFormDeleteByIdMutation
+(
+    $id: Int!
+)
+{
+    delete_RENTALFORM_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        amount
+        room_id
+        bill_id
+        guest_id
+        start_date
+        created_at
+        updated_at
+        rental_days
+        is_resolved
+        price_per_day
+        number_of_guests
+    }
+}
+

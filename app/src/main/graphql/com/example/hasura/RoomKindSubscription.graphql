@@ -1,6 +1,6 @@
 subscription RoomKindSubscription
 {
-    ROOMKIND
+    ROOMKIND( order_by: [ { area: asc_nulls_last }, { capacity: asc_nulls_last }, { number_of_beds: asc_nulls_last }, { name: asc_nulls_last } ] )
     {
         id
         name
@@ -14,3 +14,4 @@ subscription RoomKindSubscription
         surcharge_percentage
     }
 }
+

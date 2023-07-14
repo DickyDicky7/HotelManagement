@@ -1,4 +1,4 @@
-mutation RoomKindInsert
+mutation RoomKindInsertMutation
 (
     $name               : String
     $area               : Float
@@ -9,34 +9,98 @@ mutation RoomKindInsert
     $surchargePercentage: Float
 )
 {
-    insert_ROOMKIND
+    insert_ROOMKIND_one
     (
-        objects:
-        [
-            {
-                name                : $name
-                area                : $area
-                price               : $price
-                capacity            : $capacity
-                image_url           : $imageUrl
-                number_of_beds      : $numberOfBeds
-                surcharge_percentage: $surchargePercentage
-            }
-        ]
+        object:
+        {
+            name                : $name
+            area                : $area
+            price               : $price
+            capacity            : $capacity
+            image_url           : $imageUrl
+            number_of_beds      : $numberOfBeds
+            surcharge_percentage: $surchargePercentage
+        }
     )
     {
-        returning
-        {
-            id
-            name
-            area
-            price
-            capacity
-            image_url
-            created_at
-            updated_at
-            number_of_beds
-            surcharge_percentage
-        }
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
     }
 }
+
+
+mutation RoomKindUpdateByIdMutation
+(
+    $id                 : Int!
+    $name               : String
+    $area               : Float
+    $price              : Float
+    $imageUrl           : String
+    $capacity           : Int
+    $numberOfBeds       : Int
+    $surchargePercentage: Float
+)
+{
+    update_ROOMKIND_by_pk
+    (
+        pk_columns:
+        {
+            id: $id
+        }
+        _set:
+        {
+            name                : $name
+            area                : $area
+            price               : $price
+            capacity            : $capacity
+            image_url           : $imageUrl
+            number_of_beds      : $numberOfBeds
+            surcharge_percentage: $surchargePercentage
+        }
+    )
+    {
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
+    }
+}
+
+
+mutation RoomKindDeleteByIdMutation
+(
+    $id: Int!
+)
+{
+    delete_ROOMKIND_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        name
+        area
+        price
+        capacity
+        image_url
+        created_at
+        updated_at
+        number_of_beds
+        surcharge_percentage
+    }
+}
+

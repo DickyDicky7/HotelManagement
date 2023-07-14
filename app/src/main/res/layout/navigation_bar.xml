@@ -1,56 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/groupStyleindigo_900cornerRadius"
+    style="@style/group_style_bg_indigo_300_corner_radius_tl_20_tr_20"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="10sp">
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="50sp"
         android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:elevation="10sp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintEnd_toStartOf="@+id/accountButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_home" />
+        app:srcCompat="@drawable/img_home_trans" />
 
     <ImageButton
         android:id="@+id/accountButton"
         android:layout_width="50sp"
         android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:elevation="10sp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toEndOf="@+id/homeButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_user_white_a700" />
+        app:srcCompat="@drawable/img_user_white_v1" />
 
     <ImageButton
         android:id="@+id/searchButton"
         android:layout_width="50sp"
         android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:elevation="10sp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/reportButton"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accountButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_search" />
+        app:srcCompat="@drawable/img_search_v1" />
 
     <ImageButton
         android:id="@+id/reportButton"
         android:layout_width="50sp"
         android:layout_height="50sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:elevation="10sp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_chartalt" />
+        app:srcCompat="@drawable/img_chart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

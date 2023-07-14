@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/txt5000000"
-                style="@style/txtInterbold32"
+                style="@style/text_inter_bold_32"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_68pxh"
@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/txtNetProfit"
-                style="@style/txtIntersemibold14"
+                style="@style/text_inter_semi_bold_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
 
                     <TextView
                         android:id="@+id/txt30M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
 
                     <TextView
                         android:id="@+id/txt25M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -84,7 +84,7 @@
 
                     <TextView
                         android:id="@+id/txt20M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -96,7 +96,7 @@
 
                     <TextView
                         android:id="@+id/txt10M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -108,7 +108,7 @@
 
                     <TextView
                         android:id="@+id/txt5M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_16pxv"
@@ -120,7 +120,7 @@
 
                     <TextView
                         android:id="@+id/txt0M"
-                        style="@style/txtInterregular12"
+                        style="@style/text_inter_regular_12_0"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="@dimen/_15pxv"
@@ -134,54 +134,66 @@
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4180"
                     android:layout_height="@dimen/_142pxh"
-                    android:layout_marginTop="@dimen/_28pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_28pxv"
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4181"
                     android:layout_height="@dimen/_114pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_56pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4182"
                     android:layout_height="@dimen/_156pxh"
                     android:layout_marginStart="@dimen/_22pxh"
-                    android:layout_marginTop="@dimen/_14pxv" android:background="@drawable/rectangle_bg_teal_a700_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:background="@drawable/rectangle_bg_teal_500_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4183"
                     android:layout_height="@dimen/_128pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_42pxv" android:background="@drawable/rectangle_bg_blue_a700_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4184"
                     android:layout_height="@dimen/_97pxh"
                     android:layout_marginStart="@dimen/_26pxh"
-                    android:layout_marginTop="@dimen/_73pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_73pxv"
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4185"
                     android:layout_height="@dimen/_114pxh"
                     android:layout_marginStart="@dimen/_8pxh"
                     android:layout_marginTop="@dimen/_56pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4186"
                     android:layout_height="@dimen/_109pxh"
                     android:layout_marginStart="@dimen/_27pxh"
-                    android:layout_marginTop="@dimen/_61pxv" android:background="@drawable/rectangle_bg_teal_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_61pxv"
+                    android:background="@drawable/rectangle_bg_teal_600_radius_tl_4_tr_4" />
+
                 <View
                     android:layout_width="@dimen/_14pxh"
                     android:id="@+id/viewRectangle4187"
                     android:layout_height="@dimen/_94pxh"
                     android:layout_marginStart="@dimen/_8pxh"
-                    android:layout_marginTop="@dimen/_76pxv" android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4"/>
+                    android:layout_marginTop="@dimen/_76pxv"
+                    android:background="@drawable/rectangle_bg_blue_a700_7f_radius_tl_4_tr_4" />
             </LinearLayout>
-            <View android:id="@+id/lineLineTwo"
+
+            <View
+                android:id="@+id/lineLineTwo"
                 android:layout_width="@dimen/_312pxh"
                 android:layout_height="@dimen/_1pxv"
-                android:layout_marginTop="@dimen/_1pxv" android:background="@color/bluegray_101"/>
+                android:layout_marginTop="@dimen/_1pxv"
+                android:background="@color/blue_gray_200" />
 
             <LinearLayout
                 android:id="@+id/years_label"
@@ -195,7 +207,7 @@
 
                 <TextView
                     android:id="@+id/txtYear1"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_width="0dp"
@@ -207,7 +219,7 @@
 
                 <TextView
                     android:id="@+id/txtYear2"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_29pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -220,7 +232,7 @@
 
                 <TextView
                     android:id="@+id/txtYear3"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_33pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -233,7 +245,7 @@
 
                 <TextView
                     android:id="@+id/txtYear4"
-                    style="@style/txtInterregular12"
+                    style="@style/text_inter_regular_12_0"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_35pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -253,15 +265,18 @@
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_width="0dp"
                     android:layout_weight="0.44" android:orientation="horizontal">
+
                     <View
                         android:layout_width="0dp"
                         android:id="@+id/lineRectangle4188"
                         android:layout_height="@dimen/_18pxv"
                         android:layout_marginBottom="@dimen/_1pxv"
                         android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.07" android:background="@drawable/rectangle_bg_teal_a700_radius_2"/>
-                    <TextView android:id="@+id/txtIncome"
-                        style="@style/txtIntersemibold16_1"
+                        android:layout_weight="0.07"
+                        android:background="@drawable/rectangle_bg_teal_500_radius_2" />
+                    <TextView
+                        android:id="@+id/txtIncome"
+                        style="@style/text_inter_semi_bold_16_1"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4pxh"
                         android:layout_weight="0.93"
@@ -276,8 +291,9 @@
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="0dp"
                     android:layout_weight="0.56" android:orientation="horizontal">
-                    <TextView android:id="@+id/txtExpenses"
-                        style="@style/txtIntersemibold16_2"
+                    <TextView
+                        android:id="@+id/txtExpenses"
+                        style="@style/text_inter_semi_bold_16_2"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1pxv"
                         android:layout_weight="0.95"
@@ -298,15 +314,17 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/_6pxv" android:orientation="horizontal">
-                <TextView android:id="@+id/txt28000000"
-                    style="@style/txtIntersemibold20_1"
+                <TextView
+                    android:id="@+id/txt28000000"
+                    style="@style/text_inter_semi_bold_20_1"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="0.5" android:ellipsize="end"
                     android:singleLine="true"
                     android:text="@string/lbl_28_000_000" tools:text="@string/lbl_28_000_000"/>
-                <TextView android:id="@+id/txt23000000"
-                    style="@style/txtIntersemibold20_2"
+                <TextView
+                    android:id="@+id/txt23000000"
+                    style="@style/text_inter_semi_bold_20_2"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_82pxh"
                     android:layout_width="0dp"

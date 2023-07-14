@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/group_style_bg_indigo_400"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.misc.implementation.FragmentMiscHome">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/tempConstraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/mainLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+
+                <ImageView
+                    android:id="@+id/imageAvatar"
+
+                    style="@style/group_style_bg_teal_100_corner_radius_15"
+
+                    android:layout_width="80sp"
+                    android:layout_height="80sp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:elevation="10sp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/img_avatar"
+                    tools:ignore="ContentDescription" />
+
+
+                <TextView
+                    android:id="@+id/txtUser"
+                    style="@style/text_outfit_semi_bold_24_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:singleLine="true"
+                    android:text="User"
+                    android:textSize="25sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageAvatar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/txtWelcome"
+                    style="@style/text_inter_regular_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:singleLine="true"
+                    android:text="@string/lbl_welcome"
+                    android:textSize="25sp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageAvatar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <ImageButton
+                    android:id="@+id/notificationButton"
+                    style="@style/group_style_bg_teal_100_corner_radius_22"
+                    android:layout_width="100sp"
+                    android:layout_height="35sp"
+                    android:elevation="10sp"
+                    android:paddingVertical="5sp"
+                    android:src="@drawable/img_notification"
+                    app:layout_constraintBottom_toTopOf="@+id/txtWelcome"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mainLayout"
+                style="@style/group_style_bg_indigo_300_border_indigo_100_corner_radius_20"
+                android:layout_width="0dp"
+                android:layout_height="250sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:elevation="10sp"
+                android:gravity="start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userConstraintLayout">
+
+                <ImageButton
+                    android:id="@+id/rentalFormButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="9sp"
+                    android:paddingVertical="9sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_rental_form"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.15"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/roomKindButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="9sp"
+                    android:paddingVertical="9sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_room_kind"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.15"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/roomButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="9sp"
+                    android:paddingVertical="9sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_room"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.15"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/billButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="9sp"
+                    android:paddingVertical="9sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_bill"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.75"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/guestButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="5sp"
+                    android:paddingVertical="5sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_user"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.75"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/reportButton"
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:background="@drawable/rectangle_bg_blue_gray_100_radius_10"
+                    android:elevation="10sp"
+                    android:paddingHorizontal="9sp"
+                    android:paddingVertical="9sp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_manage_report"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.75"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/rentalFormTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="Rental Form"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.93"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.41" />
+
+                <TextView
+                    android:id="@+id/roomKindTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="Room Kind"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.41" />
+
+                <TextView
+                    android:id="@+id/roomTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="Room"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.41" />
+
+                <TextView
+                    android:id="@+id/billTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="Bill"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.92" />
+
+                <TextView
+                    android:id="@+id/guestTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="Guest"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.92" />
+
+                <TextView
+                    android:id="@+id/reportTextView"
+                    style="@style/text_inter_regular_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:singleLine="true"
+                    android:text="@string/lbl_report"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.92"
+                    tools:text="@string/lbl_report" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tempConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="400sp"
+            android:layout_marginTop="600dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/hotelImageView1"
+
+                android:layout_width="200sp"
+                android:layout_height="300sp"
+
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="50dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hotelImageView3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_hotel_image_2"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/hotelImageView2"
+                android:layout_width="200sp"
+                android:layout_height="300sp"
+
+
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="50dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/hotelImageView3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_hotel_image_2"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/hotelImageView3"
+
+                android:layout_width="200sp"
+                android:layout_height="300sp"
+
+                android:layout_marginBottom="50dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_hotel_image_2"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

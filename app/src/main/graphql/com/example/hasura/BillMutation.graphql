@@ -1,30 +1,69 @@
-mutation BillInsert
+mutation BillInsertMutation
 (
-    $cost   : Float
-    $isPaid : Boolean
-    $guestId: Int
+    $cost: Float, $isPaid: Boolean, $guestId: Int
 )
 {
-    insert_BILL
+    insert_BILL_one
     (
-        objects:
-        [
-            {
-                cost    : $cost
-                is_paid : $isPaid
-                guest_id: $guestId
-            }
-        ]
+        object:
+        {
+            cost: $cost, is_paid: $isPaid, guest_id: $guestId
+        }
     )
     {
-        returning
-        {
-            id
-            cost
-            is_paid
-            guest_id
-            created_at
-            updated_at
-        }
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
     }
 }
+
+
+mutation BillUpdateByIdMutation
+(
+    $id: Int!, $cost: Float, $isPaid: Boolean, $guestId: Int
+)
+{
+    update_BILL_by_pk
+    (
+        pk_columns:
+        {
+            id: $id
+        },
+        _set:
+        {
+            cost: $cost, is_paid: $isPaid, guest_id: $guestId
+        }
+    )
+    {
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
+    }
+}
+
+
+mutation BillDeleteByIdMutation
+(
+    $id: Int!
+)
+{
+    delete_BILL_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        cost
+        is_paid
+        guest_id
+        created_at
+        updated_at
+    }
+}
+

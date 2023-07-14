@@ -14,63 +14,65 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/rectangle_bg_indigo_901_border_indigo_400_radius_20"
+        android:background="@drawable/rectangle_bg_indigo_300_border_indigo_100_radius_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_buttons"
+            android:id="@+id/item_guest_buttons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_address">
+            app:layout_constraintTop_toBottomOf="@+id/item_guest_address">
 
             <ImageButton
-                android:id="@+id/deleteButton"
-                style="@style/groupStyleindigo_1"
+                android:id="@+id/item_guest_dele_button"
+                style="@style/group_style_bg_indigo_100_corner_radius_10"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:contentDescription="@string/deletebutton"
                 android:elevation="10sp"
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="10sp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_file"
+                android:src="@drawable/img_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/editButton"
+                app:layout_constraintEnd_toStartOf="@+id/item_guest_edit_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/editButton"
-                style="@style/groupStyleindigo_1"
+                android:id="@+id/item_guest_edit_button"
+                style="@style/group_style_bg_indigo_100_corner_radius_10"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:contentDescription="@string/editbutton"
                 android:elevation="10sp"
                 android:paddingHorizontal="10sp"
                 android:paddingVertical="10sp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_ticket"
+                android:src="@drawable/img_pen_white_v2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/deleteButton"
+                app:layout_constraintStart_toEndOf="@+id/item_guest_dele_button"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_address"
+            android:id="@+id/item_guest_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -80,27 +82,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_createdAt">
-
-            <ImageView
-                android:id="@+id/addressImageView"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:paddingHorizontal="2sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_location"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/addressTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_location" />
+            app:layout_constraintTop_toBottomOf="@+id/item_guest_created_at">
 
             <TextView
-                android:id="@+id/addressTextView"
-                style="@style/txtInterregular14_3"
+                android:id="@+id/item_guest_address_text_view"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -111,13 +97,30 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                app:layout_constraintStart_toEndOf="@+id/item_guest_address_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/item_guest_address_image_view"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:paddingHorizontal="2sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_guest_address_text_view"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_location" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_createdAt"
+            android:id="@+id/item_guest_created_at"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -127,26 +130,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_phoneNumber">
-
-            <ImageView
-                android:id="@+id/createdAtImageView"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_calendar_white_a700"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/createdAtTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_calendar_white_a700" />
+            app:layout_constraintTop_toBottomOf="@+id/item_guest_phone_number">
 
             <TextView
-                android:id="@+id/createdAtTextView"
-                style="@style/txtInterregular14_3"
+                android:id="@+id/item_guest_created_at_text_view"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -157,13 +145,29 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/createdAtImageView"
+                app:layout_constraintStart_toEndOf="@+id/item_guest_created_at_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/item_guest_created_at_image_view"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_calendar_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_guest_created_at_text_view"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_calendar_white" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_phoneNumber"
+            android:id="@+id/item_guest_phone_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -173,26 +177,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_idNumber">
-
-            <ImageView
-                android:id="@+id/phongNumberImageView"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_call"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/phoneNumberTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_call" />
+            app:layout_constraintTop_toBottomOf="@+id/item_guest_id_number">
 
             <TextView
-                android:id="@+id/phoneNumberTextView"
-                style="@style/txtInterregular14_3"
+                android:id="@+id/item_guest_phone_number_text_view"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -203,13 +192,29 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/phongNumberImageView"
+                app:layout_constraintStart_toEndOf="@+id/item_guest_phone_number_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/item_guest_phone_number_image_view"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_call"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_guest_phone_number_text_view"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_call" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_idNumber"
+            android:id="@+id/item_guest_id_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -219,26 +224,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guestNameTextView">
-
-            <ImageView
-                android:id="@+id/idNumberImageView"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/idNumberTextView"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_save" />
+            app:layout_constraintTop_toBottomOf="@+id/item_guest_name_text_view">
 
             <TextView
-                android:id="@+id/idNumberTextView"
-                style="@style/txtInterregular14_3"
+                android:id="@+id/item_guest_id_number_text_view"
+                style="@style/text_inter_regular_14_3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -249,14 +239,30 @@
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/idNumberImageView"
+                app:layout_constraintStart_toEndOf="@+id/item_guest_id_number_image_view"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/item_guest_id_number_image_view"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_guest_id_number_text_view"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_card" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/guestNameTextView"
-            style="@style/txtOutfitsemibold28"
+            android:id="@+id/item_guest_name_text_view"
+            style="@style/text_outfit_semi_bold_28_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -1,4 +1,4 @@
-query RoomAll
+query RoomAllQuery
 {
     ROOM
     {
@@ -9,22 +9,56 @@ query RoomAll
         updated_at
         description
         is_occupied
-        roomkind_id
+        room_kind_id
     }
 }
 
-query RoomPriceById
+
+query RoomPriceByIdQuery
 (
-    $id: Int
+    $id: Int!
 )
 {
-    ROOM(where: { id: { _eq: $id } })
+    ROOM_by_pk
+    (
+        id: $id
+    )
     {
         ROOMKIND
         {
+            id
+            name
+            area
             price
             capacity
+            image_url
+            created_at
+            updated_at
+            number_of_beds
             surcharge_percentage
         }
     }
 }
+
+
+query RoomByIdQuery
+(
+    $id: Int!
+)
+{
+    ROOM_by_pk
+    (
+        id: $id
+    )
+    {
+        id
+        name
+        note
+        created_at
+        updated_at
+        description
+        is_occupied
+        room_kind_id
+    }
+}
+
