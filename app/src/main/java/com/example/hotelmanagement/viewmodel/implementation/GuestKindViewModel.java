@@ -10,7 +10,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.hasura.GuestKindSubscription;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.GuestKindObservable;
+import com.example.hotelmanagement.observable.implementation.GuestKindObservable;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;

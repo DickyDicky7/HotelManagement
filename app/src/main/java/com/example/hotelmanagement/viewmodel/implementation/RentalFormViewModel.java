@@ -17,7 +17,7 @@ import com.example.hasura.RentalFormSubscription;
 import com.example.hasura.RentalFormUpdateByIdMutation;
 import com.example.hasura.RoomPriceByIdQuery;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.RentalFormObservable;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDate;

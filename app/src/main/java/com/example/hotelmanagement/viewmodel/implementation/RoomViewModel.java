@@ -14,7 +14,7 @@ import com.example.hasura.RoomInsertMutation;
 import com.example.hasura.RoomSubscription;
 import com.example.hasura.RoomUpdateByIdMutation;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.RoomObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;

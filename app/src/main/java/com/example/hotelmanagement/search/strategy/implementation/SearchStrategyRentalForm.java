@@ -9,11 +9,11 @@ import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
 import com.example.hotelmanagement.search.strategy.abstraction.SearchStrategy;
 import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;

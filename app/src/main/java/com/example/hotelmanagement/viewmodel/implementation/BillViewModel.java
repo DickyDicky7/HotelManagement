@@ -17,7 +17,7 @@ import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hasura.RentalFormAmountByGuestIdAndIsResolvedFalseQuery;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.BillObservable;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;

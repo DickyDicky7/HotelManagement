@@ -13,7 +13,7 @@ import com.example.hasura.GuestInsertMutation;
 import com.example.hasura.GuestSubscription;
 import com.example.hasura.GuestUpdateByIdMutation;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.GuestObservable;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 
 import java.time.LocalDateTime;
