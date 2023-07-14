@@ -21,7 +21,7 @@ import com.example.hasura.GuestByIdNumberQuery;
 import com.example.hasura.GuestByIdQuery;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.observables.ExtendedObservable;
+import com.example.hotelmanagement.observable.abstraction.ExtendedObservable;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

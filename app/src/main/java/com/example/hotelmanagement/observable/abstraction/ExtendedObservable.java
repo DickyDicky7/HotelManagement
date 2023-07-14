@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.observables;
+package com.example.hotelmanagement.observable.abstraction;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;

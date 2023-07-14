@@ -1,4 +1,4 @@
-package com.example.hotelmanagement;
+package com.example.hotelmanagement.main.activity.implementation;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -20,17 +20,19 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.ActivityMainBinding;
 import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ActivityMain extends AppCompatActivity {
 
-    private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult
-            (new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (!isGranted) {
+    private ActivityResultLauncher<String[]> requestMultiplePermissionsLauncher = registerForActivityResult
+            (new ActivityResultContracts.RequestMultiplePermissions(), isGrantedResult -> {
+                boolean notWantedValue = false;
+                if (isGrantedResult.containsValue(notWantedValue)) {
                     Process.killProcess(Process.myPid());
                 }
             });
@@ -43,16 +45,13 @@ public class ActivityMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        List<String> permissions = new LinkedList<>();
-        permissions.add(Manifest.permission.INTERNET);
-        permissions.add(Manifest.permission.ACCESS_NETWORK_STATE);
-        permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissionLauncher.launch(permission);
-            }
-        }
+        List<String> _permissions = Arrays.asList(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.INTERNET,
+                Manifest.permission.ACCESS_NETWORK_STATE);
+        requestMultiplePermissionsLauncher.launch(_permissions
+                .stream()
+                .filter(permission ->
+                        ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED).toArray(String[]::new));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -74,7 +73,7 @@ public class ActivityMain extends AppCompatActivity {
         });
 
         navController.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
-            if (navDestination.getId() == R.id.fragmentHome) {
+            if (navDestination.getId() == R.id.fragmentMiscHome) {
                 showNavigationBar();
             } else {
                 hideNavigationBar();
@@ -82,7 +81,7 @@ public class ActivityMain extends AppCompatActivity {
         });
 
         binding.navigationBar.accountButton.setOnClickListener(_view_ -> {
-            navController.navigate(R.id.action_fragmentHome_to_fragmentAccount);
+            navController.navigate(R.id.action_fragmentMiscHome_to_fragmentMiscAccount);
         });
 
     }
@@ -90,7 +89,7 @@ public class ActivityMain extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (navController.getCurrentDestination() != null) {
-            if (navController.getCurrentDestination().getId() == R.id.fragmentHome) {
+            if (navController.getCurrentDestination().getId() == R.id.fragmentMiscHome) {
                 gestureDetectorCompat.onTouchEvent(event);
             }
         }
@@ -133,8 +132,8 @@ public class ActivityMain extends AppCompatActivity {
         gestureDetectorCompat = null;
         navController = null;
         binding = null;
-        requestPermissionLauncher.unregister();
-        requestPermissionLauncher = null;
+        requestMultiplePermissionsLauncher.unregister();
+        requestMultiplePermissionsLauncher = null;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.popupwindow.implementation;
+package com.example.hotelmanagement.popupwindow.common.implementation;
 
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.PopupWindowFilterRoomBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
 import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 import java.lang.reflect.Field;

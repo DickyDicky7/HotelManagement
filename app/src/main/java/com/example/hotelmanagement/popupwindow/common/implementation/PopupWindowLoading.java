@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.popupwindow.implementation;
+package com.example.hotelmanagement.popupwindow.common.implementation;
 
 import android.content.res.Resources;
 import android.view.LayoutInflater;
