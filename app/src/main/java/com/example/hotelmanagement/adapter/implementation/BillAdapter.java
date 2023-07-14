@@ -12,8 +12,8 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
 import com.example.hotelmanagement.adapter.viewholder.implementation.BillViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemBillBinding;
-import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.observables.GuestObservable;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
 import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
 
 import java.time.format.DateTimeFormatter;

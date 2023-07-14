@@ -12,7 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
 import com.example.hotelmanagement.adapter.viewholder.implementation.RoomKindViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRoomKindBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
 
 import java.util.List;
 

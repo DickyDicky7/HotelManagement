@@ -20,8 +20,8 @@ import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
 import com.example.hotelmanagement.adapter.viewholder.implementation.RoomViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRoomBinding;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRoomOccupiedBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
 import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 import java.util.List;

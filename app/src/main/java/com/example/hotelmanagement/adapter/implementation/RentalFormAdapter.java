@@ -13,8 +13,8 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.abstraction.ExtendedAdapter;
 import com.example.hotelmanagement.adapter.viewholder.implementation.RentalFormViewHolder;
 import com.example.hotelmanagement.databinding.RecyclerViewItemRentalFormBinding;
-import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.observables.RentalFormObservable;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
 import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
 
 import java.time.LocalDate;
