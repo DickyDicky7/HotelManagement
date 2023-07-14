@@ -13,24 +13,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddGuestBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 import com.example.hotelmanagement.observables.GuestKindObservable;
 import com.example.hotelmanagement.observables.GuestObservable;
-import com.example.hotelmanagement.viewmodels.GuestKindViewModel;
-import com.example.hotelmanagement.viewmodels.GuestViewModel;
+import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.viewmodel.implementation.GuestKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAddGuest extends Fragment {
 
+    @Nullable
+    private PopupWindowLoading popupWindowLoading;
+
     private FragmentAddGuestBinding binding;
-    private GuestObservable guestObservable;
     private GuestViewModel guestViewModel;
+    private GuestObservable guestObservable;
 
     @Nullable
     @Override
@@ -77,16 +80,21 @@ public class FragmentAddGuest extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 guestViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    String failureTag = "FragmentAddGuest Failure";
+                    DialogFragmentWatcher.dialogFragmentFailureSubscribe(failureTag, Common.getFailureMessage(
+                            apolloErrors, apolloException, cloudinaryErrorInfo));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentAddGuest Failure", apolloErrors.get(0).getMessage());
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
                             }
                         });
                     }
                 };
                 guestViewModel.onSuccessCallback = () -> {
+                    String successTag = "FragmentAddGuest Success";
+                    DialogFragmentWatcher.dialogFragmentSuccessSubscribe(successTag, Common.getSuccessMessage(
+                            Common.Action.INSERT_ITEM));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             guestObservable = new GuestObservable();
@@ -96,15 +104,18 @@ public class FragmentAddGuest extends Fragment {
                                 guestObservable.setGuestKindId(guestKindObservables.get(
                                         binding.spinnerChooseGuestKind.getSelectedItemPosition()).getId());
                             }
-                            String message = "Success: Your item has been added successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentAddGuest Success", message);
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
+                            }
                         });
                     }
                 };
                 guestViewModel.onFailureCallback = null;
                 if (guestViewModel.checkObservable(guestObservable, requireContext(), binding.getRoot())) {
                     guestViewModel.insert(guestObservable);
+                    popupWindowLoading = PopupWindowLoading.newOne(getLayoutInflater(), binding.linearAddGuest);
+                    popupWindowLoading.showAsDropDown
+                            (binding.linearAddGuest);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -122,6 +133,9 @@ public class FragmentAddGuest extends Fragment {
         binding = null;
         guestViewModel = null;
         guestObservable = null;
+        if (popupWindowLoading != null) {
+            popupWindowLoading.dismiss();
+        }
     }
 
 }

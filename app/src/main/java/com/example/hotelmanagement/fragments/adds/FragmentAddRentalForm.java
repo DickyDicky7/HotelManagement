@@ -17,15 +17,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRentalFormBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 import com.example.hotelmanagement.observables.RentalFormObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.RentalFormViewModel;
-import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,6 +34,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FragmentAddRentalForm extends Fragment {
+
+    @Nullable
+    private PopupWindowLoading popupWindowLoading;
 
     private FragmentAddRentalFormBinding binding;
     private RentalFormViewModel rentalFormViewModel;
@@ -185,25 +188,30 @@ public class FragmentAddRentalForm extends Fragment {
                     return;
                 }
                 rentalFormViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    String failureTag = "FragmentAddRentalForm Failure";
+                    DialogFragmentWatcher.dialogFragmentFailureSubscribe(failureTag, Common.getFailureMessage(
+                            apolloErrors, apolloException, cloudinaryErrorInfo));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentAddRentalForm Failure", apolloErrors.get(0).getMessage());
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
                             }
                         });
                     }
                 };
                 rentalFormViewModel.onSuccessCallback = () -> {
+                    String successTag = "FragmentAddRentalForm Success";
+                    DialogFragmentWatcher.dialogFragmentSuccessSubscribe(successTag, Common.getSuccessMessage(
+                            Common.Action.INSERT_ITEM));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             rentalFormObservable = new RentalFormObservable();
                             binding.radioResolved.setEnabled(false);
                             rentalFormObservable.setIsResolved(false);
                             binding.setRentalFormObservable(rentalFormObservable);
-                            String message = "Success: Your item has been added successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentAddRentalForm Success", message);
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
+                            }
                         });
                     }
                 };
@@ -212,6 +220,9 @@ public class FragmentAddRentalForm extends Fragment {
                     rentalFormObservable.setBillId(null);
                     rentalFormObservable.setIsResolved(false);
                     rentalFormViewModel.insert(rentalFormObservable);
+                    popupWindowLoading = PopupWindowLoading.newOne(getLayoutInflater(), binding.linearAddRentalForm);
+                    popupWindowLoading.showAsDropDown
+                            (binding.linearAddRentalForm);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -229,6 +240,9 @@ public class FragmentAddRentalForm extends Fragment {
         binding = null;
         rentalFormViewModel = null;
         rentalFormObservable = null;
+        if (popupWindowLoading != null) {
+            popupWindowLoading.dismiss();
+        }
     }
 
 }

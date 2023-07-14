@@ -13,18 +13,21 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.viewmodels.BillViewModel;
+import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 
 public class FragmentAddBill extends Fragment {
 
+    @Nullable
+    private PopupWindowLoading popupWindowLoading;
+
     private FragmentAddBillBinding binding;
-    private BillObservable billObservable;
     private BillViewModel billViewModel;
+    private BillObservable billObservable;
 
     @Nullable
     @Override
@@ -71,24 +74,29 @@ public class FragmentAddBill extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 billViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    String failureTag = "FragmentAddBill Failure";
+                    DialogFragmentWatcher.dialogFragmentFailureSubscribe(failureTag, Common.getFailureMessage(
+                            apolloErrors, apolloException, cloudinaryErrorInfo));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentAddBill Failure", apolloErrors.get(0).getMessage());
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
                             }
                         });
                     }
                 };
                 billViewModel.onSuccessCallback = () -> {
+                    String successTag = "FragmentAddBill Success";
+                    DialogFragmentWatcher.dialogFragmentSuccessSubscribe(successTag, Common.getSuccessMessage(
+                            Common.Action.INSERT_ITEM));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             billObservable = new BillObservable();
                             binding.setBillObservable(billObservable);
                             billObservable.setIsPaid(false);
-                            String message = "Success: Your item has been added successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentAddBill Success", message);
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
+                            }
                         });
                     }
                 };
@@ -98,6 +106,9 @@ public class FragmentAddBill extends Fragment {
                         Common.showCustomSnackBar("This guest does not have any rental form".toUpperCase(), requireContext(), binding.getRoot());
                     } else {
                         billViewModel.insert(billObservable);
+                        popupWindowLoading = PopupWindowLoading.newOne(getLayoutInflater(), binding.linearAddBill);
+                        popupWindowLoading.showAsDropDown
+                                (binding.linearAddBill);
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -116,6 +127,9 @@ public class FragmentAddBill extends Fragment {
         binding = null;
         billViewModel = null;
         billObservable = null;
+        if (popupWindowLoading != null) {
+            popupWindowLoading.dismiss();
+        }
     }
 
 }

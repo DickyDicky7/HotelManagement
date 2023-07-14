@@ -13,24 +13,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 import com.example.hotelmanagement.observables.RoomKindObservable;
 import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
-import com.example.hotelmanagement.viewmodels.RoomViewModel;
+import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAddRoom extends Fragment {
 
+    @Nullable
+    private PopupWindowLoading popupWindowLoading;
+
     private FragmentAddRoomBinding binding;
-    private RoomObservable roomObservable;
     private RoomViewModel roomViewModel;
+    private RoomObservable roomObservable;
 
     @Nullable
     @Override
@@ -77,16 +80,21 @@ public class FragmentAddRoom extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 roomViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    String failureTag = "FragmentAddRoom Failure";
+                    DialogFragmentWatcher.dialogFragmentFailureSubscribe(failureTag, Common.getFailureMessage(
+                            apolloErrors, apolloException, cloudinaryErrorInfo));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentAddRoom Failure", apolloErrors.get(0).getMessage());
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
                             }
                         });
                     }
                 };
                 roomViewModel.onSuccessCallback = () -> {
+                    String successTag = "FragmentAddRoom Success";
+                    DialogFragmentWatcher.dialogFragmentSuccessSubscribe(successTag, Common.getSuccessMessage(
+                            Common.Action.INSERT_ITEM));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
                             roomObservable = new RoomObservable();
@@ -97,9 +105,9 @@ public class FragmentAddRoom extends Fragment {
                                         binding.spinnerChooseRoomKind.getSelectedItemPosition()).getId());
                             }
                             roomObservable.setIsOccupied(false);
-                            String message = "Success: Your item has been added successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentAddRoom Success", message);
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
+                            }
                         });
                     }
                 };
@@ -112,6 +120,9 @@ public class FragmentAddRoom extends Fragment {
                         roomObservable.setDescription(null);
                     }
                     roomViewModel.insert(roomObservable);
+                    popupWindowLoading = PopupWindowLoading.newOne(getLayoutInflater(), binding.linearAddRoom);
+                    popupWindowLoading.showAsDropDown
+                            (binding.linearAddRoom);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -129,6 +140,9 @@ public class FragmentAddRoom extends Fragment {
         binding = null;
         roomViewModel = null;
         roomObservable = null;
+        if (popupWindowLoading != null) {
+            popupWindowLoading.dismiss();
+        }
     }
 
 }

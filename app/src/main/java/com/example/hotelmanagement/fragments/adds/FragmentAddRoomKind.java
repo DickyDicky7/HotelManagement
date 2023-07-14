@@ -3,6 +3,7 @@ package com.example.hotelmanagement.fragments.adds;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bumptech.glide.Glide;
-import com.example.common.Common;
 import com.example.hotelmanagement.R;
+import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
-import com.example.hotelmanagement.dialogs.DialogFragmentFailure;
-import com.example.hotelmanagement.dialogs.DialogFragmentSuccess;
+import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
 import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.viewmodels.RoomKindViewModel;
+import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 public class FragmentAddRoomKind extends Fragment {
+
+    @Nullable
+    private PopupWindowLoading popupWindowLoading;
 
     private FragmentAddRoomKindBinding binding;
     private RoomKindViewModel roomKindViewModel;
@@ -34,6 +38,7 @@ public class FragmentAddRoomKind extends Fragment {
     private ActivityResultLauncher<PickVisualMediaRequest> pickVisualMediaLauncher =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
+                    Log.d("Local Image URI", uri.toString());
                     roomKindObservable.setImageURL(uri.toString());
                     binding.edtImage.setColorFilter(Color.TRANSPARENT);
                     Glide.with(this).load(uri).centerInside().into(binding.edtImage);
@@ -58,33 +63,38 @@ public class FragmentAddRoomKind extends Fragment {
         binding.btnDone.setOnClickListener(_view_ -> {
             try {
                 roomKindViewModel.on3ErrorsCallback = apolloErrors -> apolloException -> cloudinaryErrorInfo -> {
+                    String failureTag = "FragmentAddRoomKind Failure";
+                    DialogFragmentWatcher.dialogFragmentFailureSubscribe(failureTag, Common.getFailureMessage(
+                            apolloErrors, apolloException, cloudinaryErrorInfo));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            if (apolloErrors != null) {
-                                DialogFragmentFailure.newOne(getParentFragmentManager()
-                                        , "FragmentAddRoomKind Failure", apolloErrors.get(0).getMessage());
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
                             }
                         });
                     }
                 };
                 roomKindViewModel.onSuccessCallback = () -> {
+                    String successTag = "FragmentAddRoomKind Success";
+                    DialogFragmentWatcher.dialogFragmentSuccessSubscribe(successTag, Common.getSuccessMessage(
+                            Common.Action.INSERT_ITEM));
                     if (getActivity() != null) {
                         requireActivity().runOnUiThread(() -> {
-                            // Những task buộc phải chạy trên main thread thì gọi ở đây (thường liên quan đến UI)
-                            // Ví dụ như navigation
-                            // Cách 1:
+                            // Tasks that must run on the main thread are called here (usually related to UI)
+                            // For example, navigation
+                            // Method 1:
                             // NavHostFragment.findNavController(this).popBackStack();
-                            // Cách 2:
+                            // Method 2:
                             // requireActivity().onBackPressed();
-                            // Hoặc set observable mới
+                            // Or set a new observable
                             roomKindObservable = new RoomKindObservable();
                             binding.setRoomKindObservable(roomKindObservable);
                             binding.edtImage.setColorFilter(Color.WHITE);
                             Glide.with(this).load(AppCompatResources.getDrawable(requireContext(),
                                     R.drawable.upload_image)).centerInside().into(binding.edtImage);
-                            String message = "Success: Your item has been added successfully.";
-                            DialogFragmentSuccess.newOne(getParentFragmentManager()
-                                    , "FragmentAddRoomKind Success", message);
+                            if (popupWindowLoading != null) {
+                                popupWindowLoading.dismiss();
+                            }
                         });
                     }
                 };
@@ -94,6 +104,9 @@ public class FragmentAddRoomKind extends Fragment {
                         requireContext(),
                         binding.getRoot())) {
                     roomKindViewModel.insert(roomKindObservable);
+                    popupWindowLoading = PopupWindowLoading.newOne(getLayoutInflater(), binding.linearAddRoomKind);
+                    popupWindowLoading.showAsDropDown
+                            (binding.linearAddRoomKind);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -103,6 +116,7 @@ public class FragmentAddRoomKind extends Fragment {
 
         binding.edtImage.setColorFilter(Color.WHITE);
         binding.edtImage.setOnClickListener(_view_ -> {
+            Common.hideKeyboard(requireActivity());
             pickVisualMediaLauncher.launch(new PickVisualMediaRequest.Builder()
                     .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
                     .build());
@@ -120,6 +134,9 @@ public class FragmentAddRoomKind extends Fragment {
         roomKindObservable = null;
         pickVisualMediaLauncher.unregister();
         pickVisualMediaLauncher = null;
+        if (popupWindowLoading != null) {
+            popupWindowLoading.dismiss();
+        }
     }
 
 }

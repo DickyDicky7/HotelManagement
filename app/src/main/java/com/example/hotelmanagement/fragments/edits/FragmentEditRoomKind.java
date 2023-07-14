@@ -45,7 +45,7 @@ public class FragmentEditRoomKind extends Fragment {
     private ActivityResultLauncher<PickVisualMediaRequest> pickVisualMediaLauncher =
             registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
                 if (uri != null) {
-                    System.out.println("uri : " + uri);
+                    Log.d("Local Image URI", uri.toString());
                     usedRoomKindObservable.setImageURL(uri.toString());
                     binding.edtImage.setColorFilter(Color.TRANSPARENT);
                     Glide.with(this).load(uri).centerInside().into(binding.edtImage);
