@@ -1,9 +1,10 @@
-package com.example.hotelmanagement.observables;
+package com.example.hotelmanagement.observable.implementation;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
 import com.example.hotelmanagement.BR;
+import com.example.hotelmanagement.observable.abstraction.ExtendedObservable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
