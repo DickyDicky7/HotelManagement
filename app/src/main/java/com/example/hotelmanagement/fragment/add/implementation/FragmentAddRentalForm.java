@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.adds;
+package com.example.hotelmanagement.fragment.add.implementation;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -21,9 +21,9 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRentalFormBinding;
 import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
-import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowLoading;
 import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 

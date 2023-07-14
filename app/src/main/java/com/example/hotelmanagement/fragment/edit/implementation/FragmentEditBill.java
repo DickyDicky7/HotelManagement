@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.edits;
+package com.example.hotelmanagement.fragment.edit.implementation;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,28 +19,24 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentEditRoomBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
-import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
+import com.example.hotelmanagement.databinding.FragmentEditBillBinding;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
+import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-public class FragmentEditRoom extends Fragment {
+public class FragmentEditBill extends Fragment {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
     @NonNull
     private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
-    private FragmentEditRoomBinding binding;
-    private RoomViewModel roomViewModel;
-    private RoomObservable usedRoomObservable;
-    private RoomObservable copyRoomObservable;
+    private FragmentEditBillBinding binding;
+    private BillViewModel billViewModel;
+    private BillObservable usedBillObservable;
+    private BillObservable copyBillObservable;
 
     private Handler handler = new Handler(message -> {
 
@@ -67,14 +61,14 @@ public class FragmentEditRoom extends Fragment {
             }
         });
 
-        if (copyRoomObservable == null) {
+        if (copyBillObservable == null) {
             if (binding.btnDone.isEnabled()) {
                 indigoToGrayAnimator.start();
                 binding.btnDone.setEnabled(false);
             }
         } else {
             try {
-                if (!usedRoomObservable.customizedEquals(copyRoomObservable)) {
+                if (!usedBillObservable.customizedEquals(copyBillObservable)) {
                     if (!binding.btnDone.isEnabled()) {
                         grayToIndigoAnimator.start();
                         binding.btnDone.setEnabled(true);
@@ -107,87 +101,53 @@ public class FragmentEditRoom extends Fragment {
                 lastTimeSendingMessage = now;
             }
         }
-        Log.i("FragmentEditRoom Watcher", "Has Done");
+        Log.i("FragmentEditBill Watcher", "Has Done");
     });
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentEditRoomBinding.inflate(inflater, container, false);
+        binding = FragmentEditBillBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        roomViewModel = new ViewModelProvider(requireActivity()).get(RoomViewModel.class);
-        usedRoomObservable = roomViewModel.getObservable(requireArguments().getInt("id"));
-        if (usedRoomObservable != null) {
-            usedRoomObservable = usedRoomObservable.customizedClone();
-            copyRoomObservable = usedRoomObservable.customizedClone();
-            binding.setRoomObservable(usedRoomObservable);
+        billViewModel = new ViewModelProvider(requireActivity()).get(BillViewModel.class);
+        usedBillObservable = billViewModel.getObservable(requireArguments().getInt("id"));
+        if (usedBillObservable != null) {
+            usedBillObservable = usedBillObservable.customizedClone();
+            copyBillObservable = usedBillObservable.customizedClone();
+            binding.setBillObservable(usedBillObservable);
+            billViewModel.findGuestByGuestId(usedBillObservable);
+            billViewModel.findGuestByGuestId(copyBillObservable);
         } else {
-            usedRoomObservable = new RoomObservable();
-            copyRoomObservable = null;
+            usedBillObservable = new BillObservable();
+            copyBillObservable = null;
         }
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_spinner, new ArrayList<>());
-        arrayAdapter.setDropDownViewResource(R.layout.item_spinner);
-        binding.spinnerChooseRoomKind.setAdapter(arrayAdapter);
-
-        RoomKindViewModel roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
-        roomKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedRoomKindObservables -> {
-            arrayAdapter.clear();
-            arrayAdapter.addAll(updatedRoomKindObservables.stream().map(RoomKindObservable::getName).toArray(String[]::new));
-            binding.spinnerChooseRoomKind.setSelection(arrayAdapter.getPosition
-                    (roomKindViewModel.getRoomKindName(usedRoomObservable.getRoomKindId())), true);
-        });
-
-        binding.spinnerChooseRoomKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                List<RoomKindObservable> roomKindObservables = roomKindViewModel.getModelState().getValue();
-                if (roomKindObservables != null) {
-                    usedRoomObservable.setRoomKindId(roomKindObservables.get(i).getId());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                usedRoomObservable.setRoomKindId(null);
-            }
-        });
 
         watcher.start();
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            Consumer<RoomObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = _usedRoomObservable_ -> {
-                if (_usedRoomObservable_.getNote() != null
-                        && _usedRoomObservable_.getNote().equals("")) {
-                    _usedRoomObservable_.setNote(null);
-                }
-                if (_usedRoomObservable_.getDescription() != null
-                        && _usedRoomObservable_.getDescription().equals("")) {
-                    _usedRoomObservable_.setDescription(null);
-                }
-            };
-            String successTag = "FragmentEditRoom Success";
-            String failureTag = "FragmentEditRoom Failure";
+            Consumer<BillObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
+            String successTag = "FragmentEditBill Success";
+            String failureTag = "FragmentEditBill Failure";
             Common.onButtonDoneFragmentEdtClickHandler(
                     beforeUpdatePrepareUsedExtendedObservableConsumer,
-                    roomViewModel,
-                    usedRoomObservable,
-                    copyRoomObservable,
+                    billViewModel,
+                    usedBillObservable,
+                    copyBillObservable,
                     successTag,
                     failureTag,
-                    binding.linearEditRoom,
+                    binding.linearEditBill,
                     NavHostFragment.findNavController(this),
                     requireActivity(),
                     dismissPopupWindowLoading,
-                    alreadyPoppedBackStackNow,
-                    "note", "description"
+                    alreadyPoppedBackStackNow
             );
         });
 
@@ -201,16 +161,16 @@ public class FragmentEditRoom extends Fragment {
 
         stopped.set(true);
         while (watcher.isAlive()) {
-            Log.i("FragmentEditRoom Watcher", "Still Alive");
+            Log.i("FragmentEditBill Watcher", "Still Alive");
         }
 
         stopped = null;
         watcher = null;
         handler = null;
         binding = null;
-        roomViewModel = null;
-        usedRoomObservable = null;
-        copyRoomObservable = null;
+        billViewModel = null;
+        usedBillObservable = null;
+        copyBillObservable = null;
         dismissPopupWindowLoading.set(true);
         alreadyPoppedBackStackNow.set(true);
     }

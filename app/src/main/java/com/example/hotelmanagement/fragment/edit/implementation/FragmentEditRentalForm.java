@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.edits;
+package com.example.hotelmanagement.fragment.edit.implementation;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -27,8 +27,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentEditRentalFormBinding;
-import com.example.hotelmanagement.observables.RentalFormObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
 import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 

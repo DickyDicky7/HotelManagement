@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.adds;
+package com.example.hotelmanagement.fragment.add.implementation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +17,9 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRoomBinding;
 import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowLoading;
 import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
 

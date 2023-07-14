@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.adds;
+package com.example.hotelmanagement.fragment.add.implementation;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,8 +16,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddBillBinding;
 import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
-import com.example.hotelmanagement.observables.BillObservable;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowLoading;
 import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 
 public class FragmentAddBill extends Fragment {

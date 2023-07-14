@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.adds;
+package com.example.hotelmanagement.fragment.add.implementation;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,8 +23,8 @@ import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
 import com.example.hotelmanagement.databinding.FragmentAddRoomKindBinding;
 import com.example.hotelmanagement.dialog.watcher.DialogFragmentWatcher;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowLoading;
 import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
 
 public class FragmentAddRoomKind extends Fragment {

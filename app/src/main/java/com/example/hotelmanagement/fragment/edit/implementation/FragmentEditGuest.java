@@ -1,8 +1,7 @@
-package com.example.hotelmanagement.fragments.edits;
+package com.example.hotelmanagement.fragment.edit.implementation;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -11,47 +10,39 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.PickVisualMediaRequest;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.bumptech.glide.Glide;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentEditRoomKindBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
-import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
+import com.example.hotelmanagement.databinding.FragmentEditGuestBinding;
+import com.example.hotelmanagement.observable.implementation.GuestKindObservable;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
+import com.example.hotelmanagement.viewmodel.implementation.GuestKindViewModel;
+import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
-public class FragmentEditRoomKind extends Fragment {
+public class FragmentEditGuest extends Fragment {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
     @NonNull
     private final AtomicBoolean alreadyPoppedBackStackNow = new AtomicBoolean(false);
 
-    private FragmentEditRoomKindBinding binding;
-    private RoomKindViewModel roomKindViewModel;
-    private RoomKindObservable usedRoomKindObservable;
-    private RoomKindObservable copyRoomKindObservable;
-    private ActivityResultLauncher<PickVisualMediaRequest> pickVisualMediaLauncher =
-            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
-                if (uri != null) {
-                    Log.d("Local Image URI", uri.toString());
-                    usedRoomKindObservable.setImageURL(uri.toString());
-                    binding.edtImage.setColorFilter(Color.TRANSPARENT);
-                    Glide.with(this).load(uri).centerInside().into(binding.edtImage);
-                    requireContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                }
-            });
+    private FragmentEditGuestBinding binding;
+    private GuestViewModel guestViewModel;
+    private GuestObservable usedGuestObservable;
+    private GuestObservable copyGuestObservable;
 
     private Handler handler = new Handler(message -> {
 
@@ -76,14 +67,14 @@ public class FragmentEditRoomKind extends Fragment {
             }
         });
 
-        if (copyRoomKindObservable == null) {
+        if (copyGuestObservable == null) {
             if (binding.btnDone.isEnabled()) {
                 indigoToGrayAnimator.start();
                 binding.btnDone.setEnabled(false);
             }
         } else {
             try {
-                if (!usedRoomKindObservable.customizedEquals(copyRoomKindObservable)) {
+                if (!usedGuestObservable.customizedEquals(copyGuestObservable)) {
                     if (!binding.btnDone.isEnabled()) {
                         grayToIndigoAnimator.start();
                         binding.btnDone.setEnabled(true);
@@ -116,13 +107,13 @@ public class FragmentEditRoomKind extends Fragment {
                 lastTimeSendingMessage = now;
             }
         }
-        Log.i("FragmentEditRoomKind Watcher", "Has Done");
+        Log.i("FragmentEditGuest Watcher", "Has Done");
     });
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentEditRoomKindBinding.inflate(inflater, container, false);
+        binding = FragmentEditGuestBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -131,49 +122,65 @@ public class FragmentEditRoomKind extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        roomKindViewModel = new ViewModelProvider(requireActivity()).get(RoomKindViewModel.class);
-        usedRoomKindObservable = roomKindViewModel.getObservable(requireArguments().getInt("id"));
-        if (usedRoomKindObservable != null) {
-            usedRoomKindObservable = usedRoomKindObservable.customizedClone();
-            copyRoomKindObservable = usedRoomKindObservable.customizedClone();
-            binding.setRoomKindObservable(usedRoomKindObservable);
+        guestViewModel = new ViewModelProvider(requireActivity()).get(GuestViewModel.class);
+        usedGuestObservable = guestViewModel.getObservable(requireArguments().getInt("id"));
+        if (usedGuestObservable != null) {
+            usedGuestObservable = usedGuestObservable.customizedClone();
+            copyGuestObservable = usedGuestObservable.customizedClone();
+            binding.setGuestObservable(usedGuestObservable);
         } else {
-            usedRoomKindObservable = new RoomKindObservable();
-            copyRoomKindObservable = null;
+            usedGuestObservable = new GuestObservable();
+            copyGuestObservable = null;
         }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_spinner, new ArrayList<>());
+        arrayAdapter.setDropDownViewResource(R.layout.item_spinner);
+        binding.spinnerChooseGuestKind.setAdapter(arrayAdapter);
+
+        GuestKindViewModel guestKindViewModel = new ViewModelProvider(requireActivity()).get(GuestKindViewModel.class);
+        guestKindViewModel.getModelState().observe(getViewLifecycleOwner(), updatedGuestKindObservables -> {
+            arrayAdapter.clear();
+            arrayAdapter.addAll(updatedGuestKindObservables.stream().map(GuestKindObservable::getName).toArray(String[]::new));
+            binding.spinnerChooseGuestKind.setSelection(arrayAdapter.getPosition(
+                    guestKindViewModel.getGuestKindName(usedGuestObservable.getGuestKindId())), true);
+        });
+
+        binding.spinnerChooseGuestKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                List<GuestKindObservable> guestKindObservables = guestKindViewModel.getModelState().getValue();
+                if (guestKindObservables != null) {
+                    usedGuestObservable.setGuestKindId(guestKindObservables.get(i).getId());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                usedGuestObservable.setGuestKindId(null);
+            }
+        });
 
         watcher.start();
         binding.btnDone.setEnabled(false);
         binding.btnDone.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         binding.btnDone.setOnClickListener(_view_ -> {
-            Consumer<RoomKindObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
-            String successTag = "FragmentEditRoomKind Success";
-            String failureTag = "FragmentEditRoomKind Failure";
+            String successTag = "FragmentEditGuest Success";
+            String failureTag = "FragmentEditGuest Failure";
+            Consumer<GuestObservable> beforeUpdatePrepareUsedExtendedObservableConsumer = null;
             Common.onButtonDoneFragmentEdtClickHandler(
                     beforeUpdatePrepareUsedExtendedObservableConsumer,
-                    roomKindViewModel,
-                    usedRoomKindObservable,
-                    copyRoomKindObservable,
+                    guestViewModel,
+                    usedGuestObservable,
+                    copyGuestObservable,
                     successTag,
                     failureTag,
-                    binding.linearEditRoomKind,
+                    binding.linearEditGuest,
                     NavHostFragment.findNavController(this),
                     requireActivity(),
                     dismissPopupWindowLoading,
                     alreadyPoppedBackStackNow
             );
         });
-
-        binding.edtImage.setColorFilter(Color.WHITE);
-        binding.edtImage.setOnClickListener(_view_ -> {
-            Common.hideKeyboard(requireActivity());
-            pickVisualMediaLauncher.launch(new PickVisualMediaRequest.Builder()
-                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                    .build());
-        });
-
-        binding.edtImage.setColorFilter(Color.TRANSPARENT);
-        Glide.with(this).load(usedRoomKindObservable.getImageURL()).centerInside().into(binding.edtImage);
 
         binding.btnBack.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
@@ -185,18 +192,16 @@ public class FragmentEditRoomKind extends Fragment {
 
         stopped.set(true);
         while (watcher.isAlive()) {
-            Log.i("FragmentEditRoomKind Watcher", "Still Alive");
+            Log.i("FragmentEditGuest Watcher", "Still Alive");
         }
 
         stopped = null;
         watcher = null;
         handler = null;
         binding = null;
-        roomKindViewModel = null;
-        usedRoomKindObservable = null;
-        copyRoomKindObservable = null;
-        pickVisualMediaLauncher.unregister();
-        pickVisualMediaLauncher = null;
+        guestViewModel = null;
+        usedGuestObservable = null;
+        copyGuestObservable = null;
         dismissPopupWindowLoading.set(true);
         alreadyPoppedBackStackNow.set(true);
     }
