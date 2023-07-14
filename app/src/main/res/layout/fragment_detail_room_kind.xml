@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:scaleType="fitXY"
         android:layout_gravity="start"
-        tools:src="@drawable/img_image12" />
+        android:src="@drawable/img_image12" />
 
     <ImageButton
         android:layout_width="@dimen/_40pxh"
@@ -47,7 +47,7 @@
             android:layout_marginEnd="@dimen/_16pxh"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/lbl_single_room2" tools:text="@string/lbl_single_room2"/>
+            android:text="@string/lbl_single_room2" />
 
         <TextView
             android:id="@+id/txt_price"
