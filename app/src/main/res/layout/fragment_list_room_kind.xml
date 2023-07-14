@@ -5,10 +5,10 @@
     style="@style/group_style_bg_indigo_400"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.lists.FragmentBills">
+    tools:context=".fragment.list.implementation.FragmentListRoomKind">
 
     <ImageButton
-        android:id="@+id/billsBtnBack"
+        android:id="@+id/roomKindsBtnBack"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_marginStart="20dp"
@@ -27,7 +27,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/billsTextView"
+        android:id="@+id/roomKindsTextView"
         style="@style/text_outfit_semi_bold_36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,12 +35,12 @@
         android:layout_marginTop="25dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="Bills"
+        android:text="Room Kinds"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/billsSearchView"
+        app:layout_constraintBottom_toTopOf="@+id/roomKindsSearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/billsBtnBack"
+        app:layout_constraintStart_toEndOf="@id/roomKindsBtnBack"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -51,7 +51,7 @@
         android:focusableInTouchMode="true" />
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/billsSearchView"
+        android:id="@+id/roomKindsSearchView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -62,14 +62,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/billsBtnBack"
+        app:layout_constraintTop_toBottomOf="@id/roomKindsBtnBack"
         app:layout_constraintVertical_bias="0.0"
         app:queryBackground="@android:color/transparent"
         app:queryHint="Search"
         app:searchIcon="@drawable/img_search_v2" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/billsRecyclerView"
+        android:id="@+id/roomKindsRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
@@ -78,13 +78,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/billsSearchView"
+        app:layout_constraintTop_toBottomOf="@id/roomKindsSearchView"
         app:layout_constraintVertical_bias="0.0"
         tools:itemCount="2"
-        tools:listitem="@layout/recycler_view_item_bill" />
+        tools:listitem="@layout/recycler_view_item_room_kind" />
 
     <ImageButton
-        android:id="@+id/billsBtnAdd"
+        android:id="@+id/roomKindsBtnAdd"
         style="@style/group_style_bg_indigo_100_corner_radius_20"
         android:layout_width="200sp"
         android:layout_height="40sp"
@@ -98,7 +98,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/billsBtnHelp"
+        android:id="@+id/roomKindsBtnHelp"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_marginTop="20dp"
@@ -108,10 +108,10 @@
         android:paddingVertical="5sp"
         android:scaleType="fitCenter"
         android:src="@drawable/img_question"
-        app:layout_constraintBottom_toTopOf="@+id/billsSearchView"
+        app:layout_constraintBottom_toTopOf="@+id/roomKindsSearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/billsTextView"
+        app:layout_constraintStart_toEndOf="@+id/roomKindsTextView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

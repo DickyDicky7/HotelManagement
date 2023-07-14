@@ -5,7 +5,7 @@
     style="@style/group_style_bg_indigo_400"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.lists.FragmentRentalForms">
+    tools:context=".fragment.list.implementation.FragmentListRentalForm">
 
     <ImageButton
         android:id="@+id/rentalFormsBtnBack"
