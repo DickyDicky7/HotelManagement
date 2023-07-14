@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.commons;
+package com.example.hotelmanagement.fragment.misc.implementation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.databinding.FragmentAccountBinding;
+import com.example.hotelmanagement.databinding.FragmentMiscAccountBinding;
 import com.example.hotelmanagement.dialog.implementation.DialogFragmentFailure;
 import com.example.hotelmanagement.dialog.implementation.DialogFragmentSuccess;
 import com.example.hotelmanagement.hasura.Hasura;
@@ -26,14 +26,14 @@ import com.example.hotelmanagement.hasura.Hasura;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class FragmentAccount extends Fragment {
+public class FragmentMiscAccount extends Fragment {
 
-    private FragmentAccountBinding binding;
+    private FragmentMiscAccountBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentAccountBinding.inflate(inflater, container, false);
+        binding = FragmentMiscAccountBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -117,7 +117,7 @@ public class FragmentAccount extends Fragment {
         binding.signOutButton.setOnClickListener(_view_ -> {
             Runnable onSuccessCallback = () -> {
                 Hasura.destroyInstance();
-                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentAccount_to_fragmentLogin);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscAccount_to_fragmentMiscLogin);
             };
             Runnable onFailureCallback = null;
             Consumer<AuthenticationException> authenticationExceptionConsumer = null;
@@ -133,13 +133,13 @@ public class FragmentAccount extends Fragment {
 
         binding.changePasswordButton.setOnClickListener(_view_ -> {
             Runnable onSuccessCallback = () -> {
-                String successTag = "FragmentAccount Success";
+                String successTag = "FragmentMiscAccount Success";
                 String successMessage = "Success: An email has been successfully sent to your registered email address with instructions to reset your password.";
                 DialogFragmentSuccess.newOne(getParentFragmentManager(), successTag, successMessage);
             };
             Runnable onFailureCallback = null;
             Consumer<AuthenticationException> authenticationExceptionConsumer = e -> {
-                String failureTag = "FragmentAccount Failure";
+                String failureTag = "FragmentMiscAccount Failure";
                 String failureMessage = "Failure: " + e.getMessage();
                 DialogFragmentFailure.newOne(getParentFragmentManager(), failureTag, failureMessage);
             };

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.lists;
+package com.example.hotelmanagement.fragment.list.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.implementation.GuestAdapter;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentGuestsBinding;
-import com.example.hotelmanagement.observables.GuestObservable;
+import com.example.hotelmanagement.databinding.FragmentListGuestBinding;
+import com.example.hotelmanagement.observable.implementation.GuestObservable;
 import com.example.hotelmanagement.search.processor.SearchProcessor;
 import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyGuest;
 import com.example.hotelmanagement.viewmodel.implementation.GuestViewModel;
@@ -35,7 +35,7 @@ import java.util.function.Consumer;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentGuests extends Fragment implements GuestAdapter.GuestListener {
+public class FragmentListGuest extends Fragment implements GuestAdapter.GuestListener {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
@@ -43,7 +43,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     private GuestViewModel guestViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
-    private FragmentGuestsBinding binding;
+    private FragmentListGuestBinding binding;
 
     private SearchProcessor searchProcessor;
     private Consumer<List<GuestObservable>> onSearchGuestObservablesConsumer;
@@ -51,7 +51,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentGuestsBinding.inflate(inflater, container, false);
+        binding = FragmentListGuestBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -63,7 +63,7 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
         Common.beautifySearchView(binding.guestsSearchView, requireContext());
 
         binding.guestsBtnAdd.setOnClickListener(_view_ -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentAddGuest);
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListGuest_to_fragmentAddGuest);
         });
 
         binding.guestsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
@@ -142,14 +142,14 @@ public class FragmentGuests extends Fragment implements GuestAdapter.GuestListen
     public void onEditGuestClick(GuestObservable guestObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", guestObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentGuests_to_fragmentEditGuest, bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListGuest_to_fragmentEditGuest, bundle);
     }
 
     @Override
     public void onDeleGuestClick(GuestObservable guestObservable) {
-        String warningTag = "FragmentGuests Warning";
-        String successTag = "FragmentGuests Success";
-        String failureTag = "FragmentGuests Failure";
+        String warningTag = "FragmentListGuest Warning";
+        String successTag = "FragmentListGuest Success";
+        String failureTag = "FragmentListGuest Failure";
         Common.onDeleteRecyclerViewItemClickHandler(guestViewModel, guestObservable
                 , warningTag
                 , successTag

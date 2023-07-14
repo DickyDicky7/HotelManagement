@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.lists;
+package com.example.hotelmanagement.fragment.list.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -20,9 +20,9 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.implementation.RoomAdapter;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentRoomsBinding;
-import com.example.hotelmanagement.observables.RoomObservable;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowFilterRoom;
+import com.example.hotelmanagement.databinding.FragmentListRoomBinding;
+import com.example.hotelmanagement.observable.implementation.RoomObservable;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowFilterRoom;
 import com.example.hotelmanagement.search.processor.SearchProcessor;
 import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyRoom;
 import com.example.hotelmanagement.viewmodel.implementation.RoomViewModel;
@@ -39,7 +39,7 @@ import java.util.function.Consumer;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener {
+public class FragmentListRoom extends Fragment implements RoomAdapter.RoomListener {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
@@ -50,7 +50,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
     private RoomViewModel roomViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
-    private FragmentRoomsBinding binding;
+    private FragmentListRoomBinding binding;
 
     private SearchProcessor searchProcessor;
     private Consumer<List<RoomObservable>> onSearchRoomObservablesConsumer;
@@ -58,7 +58,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentRoomsBinding.inflate(inflater, container, false);
+        binding = FragmentListRoomBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -75,7 +75,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
         Common.beautifySearchView(binding.roomsSearchView, requireContext());
 
         binding.roomsBtnAdd.setOnClickListener(_view_ -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentAddRoom);
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRoom_to_fragmentAddRoom);
         });
 
         binding.roomsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
@@ -157,7 +157,7 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", id);
-                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRooms_to_fragmentEditRoom, bundle);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRoom_to_fragmentEditRoom, bundle);
             }
         });
 
@@ -168,9 +168,9 @@ public class FragmentRooms extends Fragment implements RoomAdapter.RoomListener 
                     Optional<RoomObservable> optionalRoomObservable = roomObservables.stream().filter
                             (roomObservable -> roomObservable.getId().equals(id)).findFirst();
                     if (optionalRoomObservable.isPresent()) {
-                        String warningTag = "FragmentRooms Warning";
-                        String successTag = "FragmentRooms Success";
-                        String failureTag = "FragmentRooms Failure";
+                        String warningTag = "FragmentListRoom Warning";
+                        String successTag = "FragmentListRoom Success";
+                        String failureTag = "FragmentListRoom Failure";
                         Common.onDeleteRecyclerViewItemClickHandler(roomViewModel, optionalRoomObservable.get()
                                 , warningTag
                                 , successTag

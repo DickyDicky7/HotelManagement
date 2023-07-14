@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.commons;
+package com.example.hotelmanagement.fragment.misc.implementation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -24,9 +24,9 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hasura.CloudinaryAllQuery;
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.databinding.FragmentLoginBinding;
+import com.example.hotelmanagement.databinding.FragmentMiscLoginBinding;
 import com.example.hotelmanagement.hasura.Hasura;
-import com.example.hotelmanagement.popupwindow.implementation.PopupWindowLoading;
+import com.example.hotelmanagement.popupwindow.common.implementation.PopupWindowLoading;
 import com.example.hotelmanagement.viewmodel.abstraction.ExtendedViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
 import com.example.hotelmanagement.viewmodel.implementation.GuestKindViewModel;
@@ -41,9 +41,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class FragmentLogin extends Fragment {
+public class FragmentMiscLogin extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentMiscLoginBinding binding;
 
     @Nullable
     private PopupWindowLoading popupWindowLoading;
@@ -51,7 +51,7 @@ public class FragmentLogin extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        binding = FragmentMiscLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -86,7 +86,7 @@ public class FragmentLogin extends Fragment {
                 }
                 startSubscriptionExtendedViewModels();
                 startMediaManager();
-                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscLogin_to_fragmentMiscHome);
             };
             Runnable onFailureCallback = null;
             Consumer<AuthenticationException> authenticationExceptionConsumer = null;
@@ -116,7 +116,7 @@ public class FragmentLogin extends Fragment {
             if (Hasura.getInstance().currentLogState == Hasura.LogState.IN) {
                 startSubscriptionExtendedViewModels();
                 startMediaManager();
-                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentLogin_to_fragmentHome);
+                NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscLogin_to_fragmentMiscHome);
             }
         }
     }
@@ -138,7 +138,7 @@ public class FragmentLogin extends Fragment {
                         Hasura.mediaManagerNotInitialized = false;
                     }
                     if (response.getErrors() != null) {
-                        response.getErrors().forEach(error -> Log.e("FragmentLogin Initialize MediaManager Error", error.toString()));
+                        response.getErrors().forEach(error -> Log.e("FragmentMiscLogin Initialize MediaManager Error", error.toString()));
                     }
                 }
 

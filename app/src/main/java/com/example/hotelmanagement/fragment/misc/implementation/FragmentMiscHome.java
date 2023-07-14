@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.commons;
+package com.example.hotelmanagement.fragment.misc.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,20 +19,20 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.databinding.FragmentHomeBinding;
+import com.example.hotelmanagement.databinding.FragmentMiscHomeBinding;
 import com.example.hotelmanagement.hasura.Hasura;
 
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class FragmentHome extends Fragment {
+public class FragmentMiscHome extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentMiscHomeBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentMiscHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -68,17 +68,17 @@ public class FragmentHome extends Fragment {
         Hasura.requireInstance().getCredentials(credentialsConsumer, credentialsManagerExceptionConsumer);
 
         binding.roomButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRooms));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentListRoom));
         binding.billButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentBills));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentListBill));
         binding.guestButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentGuests));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentListGuest));
         binding.reportButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentReport));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentMiscReport));
         binding.roomKindButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRoomKinds));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentListRoomKind));
         binding.rentalFormButton.setOnClickListener(_view_
-                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentHome_to_fragmentRentalForms));
+                -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscHome_to_fragmentListRentalForm));
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.lists;
+package com.example.hotelmanagement.fragment.list.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.implementation.BillAdapter;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentBillsBinding;
-import com.example.hotelmanagement.observables.BillObservable;
+import com.example.hotelmanagement.databinding.FragmentListBillBinding;
+import com.example.hotelmanagement.observable.implementation.BillObservable;
 import com.example.hotelmanagement.search.processor.SearchProcessor;
 import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyBill;
 import com.example.hotelmanagement.viewmodel.implementation.BillViewModel;
@@ -35,7 +35,7 @@ import java.util.function.Consumer;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentBills extends Fragment implements BillAdapter.BillListener {
+public class FragmentListBill extends Fragment implements BillAdapter.BillListener {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
@@ -43,7 +43,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     private BillViewModel billViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
-    private FragmentBillsBinding binding;
+    private FragmentListBillBinding binding;
 
     private SearchProcessor searchProcessor;
     private Consumer<List<BillObservable>> onSearchBillObservablesConsumer;
@@ -51,7 +51,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentBillsBinding.inflate(inflater, container, false);
+        binding = FragmentListBillBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -63,7 +63,7 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
         Common.beautifySearchView(binding.billsSearchView, requireContext());
 
         binding.billsBtnAdd.setOnClickListener(_view_ -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentAddBill);
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListBill_to_fragmentAddBill);
         });
 
         binding.billsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
@@ -142,14 +142,14 @@ public class FragmentBills extends Fragment implements BillAdapter.BillListener 
     public void onEditBillClick(BillObservable billObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", billObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentBills_to_fragmentEditBill, bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListBill_to_fragmentEditBill, bundle);
     }
 
     @Override
     public void onDeleBillClick(BillObservable billObservable) {
-        String warningTag = "FragmentBills Warning";
-        String successTag = "FragmentBills Success";
-        String failureTag = "FragmentBills Failure";
+        String warningTag = "FragmentListBill Warning";
+        String successTag = "FragmentListBill Success";
+        String failureTag = "FragmentListBill Failure";
         Common.onDeleteRecyclerViewItemClickHandler(billViewModel, billObservable
                 , warningTag
                 , successTag

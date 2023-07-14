@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.lists;
+package com.example.hotelmanagement.fragment.list.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.implementation.RentalFormAdapter;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentRentalFormsBinding;
-import com.example.hotelmanagement.observables.RentalFormObservable;
+import com.example.hotelmanagement.databinding.FragmentListRentalFormBinding;
+import com.example.hotelmanagement.observable.implementation.RentalFormObservable;
 import com.example.hotelmanagement.search.processor.SearchProcessor;
 import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyRentalForm;
 import com.example.hotelmanagement.viewmodel.implementation.RentalFormViewModel;
@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRentalForms extends Fragment implements RentalFormAdapter.RentalFormListener {
+public class FragmentListRentalForm extends Fragment implements RentalFormAdapter.RentalFormListener {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
@@ -40,7 +40,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     private RentalFormViewModel rentalFormViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
-    private FragmentRentalFormsBinding binding;
+    private FragmentListRentalFormBinding binding;
 
     private SearchProcessor searchProcessor;
     private Consumer<List<RentalFormObservable>> onSearchRentalFormObservablesConsumer;
@@ -48,7 +48,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentRentalFormsBinding.inflate(inflater, container, false);
+        binding = FragmentListRentalFormBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -60,7 +60,7 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
         Common.beautifySearchView(binding.rentalFormsSearchView, requireContext());
 
         binding.rentalFormsBtnAdd.setOnClickListener(_view_ -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentAddRentalForm);
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRentalForm_to_fragmentAddRentalForm);
         });
 
         binding.rentalFormsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
@@ -135,14 +135,14 @@ public class FragmentRentalForms extends Fragment implements RentalFormAdapter.R
     public void onEditRentalFormClick(RentalFormObservable rentalFormObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", rentalFormObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRentalForms_to_fragmentEditRentalForm, bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRentalForm_to_fragmentEditRentalForm, bundle);
     }
 
     @Override
     public void onDeleRentalFormClick(RentalFormObservable rentalFormObservable) {
-        String warningTag = "FragmentRentalForms Warning";
-        String successTag = "FragmentRentalForms Success";
-        String failureTag = "FragmentRentalForms Failure";
+        String warningTag = "FragmentListRentalForm Warning";
+        String successTag = "FragmentListRentalForm Success";
+        String failureTag = "FragmentListRentalForm Failure";
         Common.onDeleteRecyclerViewItemClickHandler(rentalFormViewModel, rentalFormObservable
                 , warningTag
                 , successTag

@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments;
+package com.example.hotelmanagement.fragment.misc.implementation;
 
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
@@ -16,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.databinding.FragmentReportBinding;
+import com.example.hotelmanagement.databinding.FragmentMiscReportBinding;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -40,15 +40,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class FragmentReport extends Fragment {
+public class FragmentMiscReport extends Fragment {
 
-    private FragmentReportBinding binding;
+    private FragmentMiscReportBinding binding;
     private boolean isGone = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentReportBinding.inflate(inflater, container, false);
+        binding = FragmentMiscReportBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

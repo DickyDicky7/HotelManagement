@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments;
+package com.example.hotelmanagement.fragment.misc.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,20 +13,20 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
-import com.example.hotelmanagement.databinding.FragmentSplashScreenBinding;
+import com.example.hotelmanagement.databinding.FragmentMiscSplashScreenBinding;
 
 @SuppressLint("CustomSplashScreen")
-public class FragmentSplashScreen extends Fragment {
+public class FragmentMiscSplashScreen extends Fragment {
 
     private final int delayMilliseconds = 3000;
     private final Handler handler = new Handler();
-    private final Runnable navigationCallback = () -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentSplashScreen_to_fragmentLogin);
-    private FragmentSplashScreenBinding binding;
+    private final Runnable navigationCallback = () -> NavHostFragment.findNavController(this).navigate(R.id.action_fragmentMiscSplashScreen_to_fragmentMiscLogin);
+    private FragmentMiscSplashScreenBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSplashScreenBinding.inflate(inflater, container, false);
+        binding = FragmentMiscSplashScreenBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

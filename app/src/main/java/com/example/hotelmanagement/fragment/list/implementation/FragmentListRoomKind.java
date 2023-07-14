@@ -1,4 +1,4 @@
-package com.example.hotelmanagement.fragments.lists;
+package com.example.hotelmanagement.fragment.list.implementation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.adapter.implementation.RoomKindAdapter;
 import com.example.hotelmanagement.common.Common;
-import com.example.hotelmanagement.databinding.FragmentRoomKindsBinding;
-import com.example.hotelmanagement.observables.RoomKindObservable;
+import com.example.hotelmanagement.databinding.FragmentListRoomKindBinding;
+import com.example.hotelmanagement.observable.implementation.RoomKindObservable;
 import com.example.hotelmanagement.search.processor.SearchProcessor;
 import com.example.hotelmanagement.search.strategy.implementation.SearchStrategyRoomKind;
 import com.example.hotelmanagement.viewmodel.implementation.RoomKindViewModel;
@@ -32,7 +32,7 @@ import java.util.function.Consumer;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 
-public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomKindListener {
+public class FragmentListRoomKind extends Fragment implements RoomKindAdapter.RoomKindListener {
 
     @NonNull
     private final AtomicBoolean dismissPopupWindowLoading = new AtomicBoolean(false);
@@ -40,7 +40,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     private RoomKindViewModel roomKindViewModel;
     private Handler handler;
     private Runnable timeoutCallback;
-    private FragmentRoomKindsBinding binding;
+    private FragmentListRoomKindBinding binding;
 
     private SearchProcessor searchProcessor;
     private Consumer<List<RoomKindObservable>> onSearchRoomKindObservablesConsumer;
@@ -48,7 +48,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentRoomKindsBinding.inflate(inflater, container, false);
+        binding = FragmentListRoomKindBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -60,7 +60,7 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
         Common.beautifySearchView(binding.roomKindsSearchView, requireContext());
 
         binding.roomKindsBtnAdd.setOnClickListener(_view_ -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentAddRoomKind);
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRoomKind_to_fragmentAddRoomKind);
         });
 
         binding.roomKindsRecyclerView.setItemAnimator(new FadeInLeftAnimator());
@@ -135,14 +135,14 @@ public class FragmentRoomKinds extends Fragment implements RoomKindAdapter.RoomK
     public void onEditRoomKindClick(RoomKindObservable roomKindObservable) {
         Bundle bundle = new Bundle();
         bundle.putInt("id", roomKindObservable.getId());
-        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentRoomKinds_to_fragmentEditRoomKind, bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRoomKind_to_fragmentEditRoomKind, bundle);
     }
 
     @Override
     public void onDeleRoomKindClick(RoomKindObservable roomKindObservable) {
-        String warningTag = "FragmentRoomKinds Warning";
-        String successTag = "FragmentRoomKinds Success";
-        String failureTag = "FragmentRoomKinds Failure";
+        String warningTag = "FragmentListRoomKind Warning";
+        String successTag = "FragmentListRoomKind Success";
+        String failureTag = "FragmentListRoomKind Failure";
         Common.onDeleteRecyclerViewItemClickHandler(roomKindViewModel, roomKindObservable
                 , warningTag
                 , successTag
