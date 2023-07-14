@@ -59,8 +59,7 @@
             android:layout_marginEnd="@dimen/_16pxh"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/msg_200_000_vnd_d"
-            tools:text="@string/msg_200_000_vnd_d" />
+            android:text="@string/msg_200_000_vnd_d" />
         <TextView
             android:id="@+id/txtPriceOne"
             style="@style/text_outfit_semi_bold_24_1"
@@ -71,7 +70,7 @@
             android:layout_marginEnd="@dimen/_16pxh"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/msg_1_bed_2_peopl" tools:text="@string/msg_1_bed_2_peopl"/>
+            android:text="@string/msg_1_bed_2_peopl" />
         <LinearLayout android:id="@+id/linearArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,8 +87,7 @@
                 android:layout_weight="0.94"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_area_20_m"
-                tools:text="@string/lbl_area_20_m" />
+                android:text="@string/lbl_area_20_m" />
             <TextView
                 android:id="@+id/txtTwo"
                 style="@style/text_outfit_semi_bold_14"
@@ -98,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.06" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_2" tools:text="@string/lbl_2"/>
+                android:text="@string/lbl_2" />
         </LinearLayout>
         <TextView
             android:id="@+id/txtAmenities"
@@ -110,7 +108,7 @@
             android:layout_marginEnd="@dimen/_16pxh"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/lbl_amenities" tools:text="@string/lbl_amenities"/>
+            android:text="@string/lbl_amenities" />
         <LinearLayout android:id="@+id/linearRowsignal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +123,7 @@
                 android:layout_marginBottom="@dimen/_4pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_signal"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_signal"/>
+                tools:src="@drawable/img_signal"/>
             <TextView
                 android:id="@+id/txtWifi"
                 style="@style/text_inter_regular_14_4"
@@ -136,7 +134,7 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_weight="0.11" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_wifi" tools:text="@string/lbl_wifi"/>
+                android:text="@string/lbl_wifi" />
             <ImageView android:id="@+id/imageVolume"
                 android:layout_height="@dimen/_18pxh"
                 android:layout_width="@dimen/_13pxh"
@@ -144,7 +142,7 @@
                 android:layout_marginBottom="@dimen/_3pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_volume"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_volume"/>
+                tools:src="@drawable/img_volume"/>
             <TextView
                 android:id="@+id/txtParking"
                 style="@style/text_inter_regular_14_4"
@@ -154,7 +152,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.22" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_parking" tools:text="@string/lbl_parking"/>
+                android:text="@string/lbl_parking" />
             <ImageView android:id="@+id/imageCar"
                 android:layout_height="@dimen/_14pxh"
                 android:layout_width="@dimen/_22pxh"
@@ -163,7 +161,7 @@
                 android:layout_marginBottom="@dimen/_5pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_car"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_car"/>
+                tools:src="@drawable/img_car"/>
             <TextView
                 android:id="@+id/txtAirportShuttle"
                 style="@style/text_inter_regular_14_4"
@@ -174,7 +172,7 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_weight="0.42" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_airport_shuttle" tools:text="@string/lbl_airport_shuttle"/>
+                android:text="@string/lbl_airport_shuttle" />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearRowmusic"
             android:layout_width="match_parent"
@@ -191,7 +189,6 @@
                 android:layout_width="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_food"
-                tools:ignore="ContentDescription"
                 tools:src="@drawable/img_food" />
             <TextView
                 android:id="@+id/txtBuffet"
@@ -203,7 +200,7 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_weight="0.19" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_buffet" tools:text="@string/lbl_buffet"/>
+                android:text="@string/lbl_buffet" />
 
             <ImageView
                 android:id="@+id/imageCarOne"
@@ -213,7 +210,6 @@
                 android:layout_marginBottom="@dimen/_3pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_user_swim"
-                tools:ignore="ContentDescription"
                 tools:src="@drawable/img_user_swim" />
             <TextView
                 android:id="@+id/txtPublicSwiming"
@@ -224,7 +220,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.62" android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/msg_public_swiming" tools:text="@string/msg_public_swiming"/>
+                android:text="@string/msg_public_swiming" />
         </LinearLayout>
         <TextView
             android:id="@+id/txtDescription"
@@ -236,7 +232,7 @@
             android:layout_marginEnd="@dimen/_16pxh"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/lbl_description" tools:text="@string/lbl_description"/>
+            android:text="@string/lbl_description" />
         <TextView
             android:id="@+id/txtDescriptionOne"
             style="@style/text_inter_regular_14_4"
@@ -246,7 +242,7 @@
             android:layout_marginTop="@dimen/_6pxv"
             android:layout_marginEnd="@dimen/_16pxh"
             android:lineSpacingExtra="@dimen/_2pxh"
-            android:text="@string/msg_set_along_a_bus" tools:text="@string/msg_set_along_a_bus"/>
+            android:text="@string/msg_set_along_a_bus" />
         <LinearLayout android:id="@+id/linearRowvector"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -270,7 +266,6 @@
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_pen_white_v1"
-                    tools:ignore="ContentDescription"
                     tools:src="@drawable/img_pen_white_v1" />
             </FrameLayout>
             <FrameLayout
@@ -289,7 +284,6 @@
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_trash"
-                    tools:ignore="ContentDescription"
                     tools:src="@drawable/img_trash" />
             </FrameLayout>
         </LinearLayout>
