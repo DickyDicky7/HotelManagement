@@ -88,7 +88,7 @@ public class ReportStrategyRoomKindDistribution extends ReportStrategy {
                         colorIndex = 0;
                         maxNumberOfRooms = 0;
                         sumNumberOfRooms = 0;
-                        updatedRoomObservables.stream().filter(roomObservable -> roomObservable.getUpdatedAt().getYear() <= toYear)
+                        updatedRoomObservables.stream().filter(roomObservable -> roomObservable.getCreatedAt().getYear() <= toYear)
                                 .collect(Collectors.groupingBy(RoomObservable::getRoomKindId))
                                 .forEach(
                                         (roomKindId, roomObservables) -> {
@@ -96,7 +96,7 @@ public class ReportStrategyRoomKindDistribution extends ReportStrategy {
                                             sumNumberOfRooms += roomObservables.size();
                                             roomObservables
                                                     .stream()
-                                                    .collect(Collectors.groupingBy(roomObservable -> roomObservable.getUpdatedAt().getYear()))
+                                                    .collect(Collectors.groupingBy(roomObservable -> roomObservable.getCreatedAt().getYear()))
                                                     .forEach((_year_, _roomObservables_) -> {
                                                         maxNumberOfRooms
                                                                 = Math.max(maxNumberOfRooms, _roomObservables_.size());
@@ -184,9 +184,9 @@ public class ReportStrategyRoomKindDistribution extends ReportStrategy {
                         List<RoomObservable> roomObservables = updatedRoomObservables
                                 .stream()
                                 .filter(roomObservable ->
-                                        roomObservable.getUpdatedAt().getYear() < toYear ||
-                                                (roomObservable.getUpdatedAt().getYear() == toYear &&
-                                                        roomObservable.getUpdatedAt().getMonthValue() <= month.ordinal())).collect(Collectors.toList());
+                                        roomObservable.getCreatedAt().getYear() < toYear ||
+                                                (roomObservable.getCreatedAt().getYear() == toYear &&
+                                                        roomObservable.getCreatedAt().getMonthValue() <= month.ordinal())).collect(Collectors.toList());
                         roomObservables.stream()
                                 .collect(Collectors.groupingBy(RoomObservable::getRoomKindId))
                                 .forEach(

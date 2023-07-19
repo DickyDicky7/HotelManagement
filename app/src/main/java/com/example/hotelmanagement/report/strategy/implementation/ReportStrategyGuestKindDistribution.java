@@ -88,7 +88,7 @@ public class ReportStrategyGuestKindDistribution extends ReportStrategy {
                         colorIndex = 0;
                         maxNumberOfGuests = 0;
                         sumNumberOfGuests = 0;
-                        updatedGuestObservables.stream().filter(guestObservable -> guestObservable.getUpdatedAt().getYear() <= toYear)
+                        updatedGuestObservables.stream().filter(guestObservable -> guestObservable.getCreatedAt().getYear() <= toYear)
                                 .collect(Collectors.groupingBy(GuestObservable::getGuestKindId))
                                 .forEach(
                                         (guestKindId, guestObservables) -> {
@@ -96,7 +96,7 @@ public class ReportStrategyGuestKindDistribution extends ReportStrategy {
                                             sumNumberOfGuests += guestObservables.size();
                                             guestObservables
                                                     .stream()
-                                                    .collect(Collectors.groupingBy(guestObservable -> guestObservable.getUpdatedAt().getYear()))
+                                                    .collect(Collectors.groupingBy(guestObservable -> guestObservable.getCreatedAt().getYear()))
                                                     .forEach((_year_, _guestObservables_) -> {
                                                         maxNumberOfGuests
                                                                 = Math.max(maxNumberOfGuests, _guestObservables_.size());
@@ -184,9 +184,9 @@ public class ReportStrategyGuestKindDistribution extends ReportStrategy {
                         List<GuestObservable> guestObservables = updatedGuestObservables
                                 .stream()
                                 .filter(guestObservable ->
-                                        guestObservable.getUpdatedAt().getYear() < toYear ||
-                                                (guestObservable.getUpdatedAt().getYear() == toYear &&
-                                                        guestObservable.getUpdatedAt().getMonthValue() <= month.ordinal())).collect(Collectors.toList());
+                                        guestObservable.getCreatedAt().getYear() < toYear ||
+                                                (guestObservable.getCreatedAt().getYear() == toYear &&
+                                                        guestObservable.getCreatedAt().getMonthValue() <= month.ordinal())).collect(Collectors.toList());
                         guestObservables.stream()
                                 .collect(Collectors.groupingBy(GuestObservable::getGuestKindId))
                                 .forEach(
