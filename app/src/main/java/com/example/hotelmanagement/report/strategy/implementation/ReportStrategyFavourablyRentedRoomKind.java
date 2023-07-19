@@ -217,7 +217,12 @@ public class ReportStrategyFavourablyRentedRoomKind extends ReportStrategy {
                         xAxis.setDrawGridLines(false);
                         xAxis.setGranularity(1F);
                         xAxis.setGranularityEnabled(true);
-                        xAxis.setValueFormatter(valueFormatter);
+                        xAxis.setValueFormatter(new ValueFormatter() {
+                            @Override
+                            public String getFormattedValue(float value) {
+                                return value == 0F || value == 13F ? "" : ReportProcessor.Month.values()[(int) value].toString();
+                            }
+                        });
                         YAxis yAxisL = chartReportFavourablyRentedRoomKindMonthBinding.chartFavourablyRentedRoomKindMonth.getAxisLeft();
                         yAxisL.setEnabled(true);
                         yAxisL.setTypeface(textFont);

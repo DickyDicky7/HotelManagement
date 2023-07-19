@@ -97,6 +97,7 @@
                     android:elevation="10sp"
                     android:paddingVertical="5sp"
                     android:src="@drawable/img_notification"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toTopOf="@+id/txtWelcome"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

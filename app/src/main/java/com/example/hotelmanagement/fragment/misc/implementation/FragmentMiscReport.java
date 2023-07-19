@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentMiscReportBinding;
 import com.example.hotelmanagement.report.processor.ReportProcessor;
+import com.example.hotelmanagement.report.strategy.implementation.ReportStrategyFavourablyRentedRoomKind;
 import com.example.hotelmanagement.report.strategy.implementation.ReportStrategyGuestKindDistribution;
 import com.example.hotelmanagement.report.strategy.implementation.ReportStrategyIncome;
 import com.example.hotelmanagement.report.strategy.implementation.ReportStrategyRoomKindDistribution;
@@ -40,6 +41,8 @@ public class FragmentMiscReport extends Fragment {
             reportStrategyRoomKindDistribution;
     private ReportStrategyGuestKindDistribution
             reportStrategyGuestKindDistribution;
+    private ReportStrategyFavourablyRentedRoomKind
+            reportStrategyFavourablyRentedRoomKind;
 
     @Nullable
     @Override
@@ -50,6 +53,8 @@ public class FragmentMiscReport extends Fragment {
         reportStrategyIncome = new ReportStrategyIncome
                 (getLayoutInflater(), container, requireActivity(), getViewLifecycleOwner());
         reportStrategyRoomKindDistribution = new ReportStrategyRoomKindDistribution
+                (getLayoutInflater(), container, requireActivity(), getViewLifecycleOwner());
+        reportStrategyFavourablyRentedRoomKind = new ReportStrategyFavourablyRentedRoomKind
                 (getLayoutInflater(), container, requireActivity(), getViewLifecycleOwner());
         reportProcessor = new ReportProcessor(reportStrategyIncome);
         binding = FragmentMiscReportBinding.inflate(inflater, container, false);
@@ -178,7 +183,8 @@ public class FragmentMiscReport extends Fragment {
                     break;
 
                     case "Favourably Rented Room Kind Over Different Time Periods": {
-
+                        shouldProducingChart = true;
+                        reportProcessor.replaceReportStrategy(reportStrategyFavourablyRentedRoomKind);
                     }
                     break;
 
@@ -320,6 +326,7 @@ public class FragmentMiscReport extends Fragment {
         reportStrategyIncome = null;
         reportStrategyRoomKindDistribution = null;
         reportStrategyGuestKindDistribution = null;
+        reportStrategyFavourablyRentedRoomKind = null;
     }
 
 }

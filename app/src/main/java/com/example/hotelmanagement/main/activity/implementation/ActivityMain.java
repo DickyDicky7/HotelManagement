@@ -84,6 +84,10 @@ public class ActivityMain extends AppCompatActivity {
             navController.navigate(R.id.action_fragmentMiscHome_to_fragmentMiscAccount);
         });
 
+        binding.navigationBar.accountTextView.setOnClickListener(_view_ -> {
+            navController.navigate(R.id.action_fragmentMiscHome_to_fragmentMiscAccount);
+        });
+
     }
 
     @Override
