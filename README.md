@@ -1,98 +1,83 @@
-## ⚠️ Quy tắc làm việc ⚠️
-- Tên file java đặt theo style pascal case, ví dụ FragmentEditBill.java
-- Tên file layout đặt theo style snake case, ví dụ fragment_edit_bill.xml
-- Tên biến và hàm đặt theo style camel case, ví dụ biến motSoNguyen và hàm getMotSoNguyen()
-- Tên class hay một cấu trúc dữ liệu nào đó đặt theo style pascal case, ví dụ class FragmentEditBill
-- Tên branch theo cú pháp <Tên người làm> - <Làm việc gì>, ví dụ "ThienAn - UI Decorating"
-- Branch sau khi được merge sẽ xóa (xóa vậy thôi chứ restore lúc nào cũng được), trước khi merge pull request báo cho nhóm trường biết
+# 📚 Đồ Án Lập Trình Trực Quan - IT008.N12
+
+## ✒️ Đề Tài
+
+> Trình Phát Audio Và Video
+
+## 📄 Mô Tả
+
+*Thành viên nhóm:*
+
+| MSSV | Họ Và Tên | |
+| ---- | --------- | - |
+| 21520147 | [Phạm Tuấn Anh](https://github.com/DickyDicky7)  | Nhóm trưởng |
+| 21521682 | [Nguyễn Văn Vũ](https://github.com/JustVvu)      | Thành viên |
+| 21521055 | [Nguyễn Chí Lâm](https://github.com/Loading1369) | Thành viên |
+| 21520579 | [Nguyễn Tiến Anh](https://github.com/4nh3k)      | Thành viên |
+
+*Công nghệ sử dụng:*
+
+- Windows Forms
+
+## ⚙️ Hướng Dẫn Cài Đặt
+
+**1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/IT008.N12/releases/latest
+
+**2. Trong mục Assets, chọn "MyMediaPlayerInstaller.msi"**
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/MVVM.png?raw=true" width="1000" height="300" />
-  <br/>
-  <i>(MVVM Pattern)</i>
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/0.png?raw=true" width="800" height="350" />
 </p>
 <br/>
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/ERD_v4.png?raw=true" width="600" height="1000" />
+  <b>Hoặc sử dụng đường dẫn trực tiếp sau để download:</b>
+  https://github.com/DickyDicky7/IT008.N12/raw/master/MyMediaPlayerInstaller/MyMediaPlayerInstaller-SetupFiles/MyMediaPlayerInstaller.msi
   <br/>
-  <i>(ERD)</i>
+  <b>(File .msi nằm theo đường dẫn "\IT008.N12\MyMediaPlayerInstaller\MyMediaPlayerInstaller-SetupFiles\")</b>
 </p>
 <br/>
 
-## Yêu Cầu / Chức Năng
+**3. Khởi động file .msi**
 
-**Biểu mẫu 1**
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/1.png?raw=true" width="450" height="350" />
+  <br/>
+  <i>(Chọn Next)</i>
+</p>
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/2.png?raw=true" width="450" height="350" />
+  <br/>
+  <i>(Tùy chỉnh địa điểm muốn cài đặt, sau đó chọn Next)</i>
+</p>
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/3.png?raw=true" width="450" height="350" />
+  <br/>
+  <i>(Chọn Install)</i>
+</p>
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/4.png?raw=true" width="450" height="350" />
+  <br/>
+  <i>(Đợi cài đặt hoàn thành)</i>
+</p>
+<br/>
+<p align="center">
+  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/5.png?raw=true" width="450" height="350" />
+  <br/>
+  <i>(Chọn Finish)</i>
+</p>
+<br/>
 
-- Xây dựng UI tương đương với ví dụ minh họa trong phần yêu cầu của đồ án
-- Có chức năng:
-  - [ ] Xem danh mục phòng
-  - [ ] Thêm phòng
-  - [ ] Xóa phòng (nếu xóa được)
-  - [ ] Thay đổi ghi chú hay loại phòng của phòng
-  - [ ] Tìm phòng bằng tên phòng
-  - [ ] Lọc phòng bằng loại phòng
+## 📝 Báo Cáo
 
-> **Biểu mẫu phụ**
-> 
-> - Xây dựng UI thể hiện danh sách các loại phòng
-> - Có chức năng:
->   - [ ] Xem danh mục loại phòng
->   - [ ] Thêm loại phòng
->   - [ ] Xóa loại phòng (nếu xóa được)
->   - [ ] Thay đổi giá loại phòng
->   - [ ] Thay đổi số lượng người tối đa trong loại phòng
->   - [ ] Thay đổi phần trăm phụ phí và số thứ tự khách bắt đầu thu phụ phí của loại phòng
+[.pptx](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.pptx)
 
-**Biểu mẫu 2**
+[.docx](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.docx)
 
-- Xây dựng UI tương đương với ví dụ minh họa trong phần yêu cầu của đồ án
-- Có chức năng:
-  - [ ] Xem danh sách các phiếu thuê phòng trong lịch sử
-  - [ ] Tạo phiếu thuê phòng mới (tạo mới, nhập rồi thêm vào database)
-  - [ ] Xóa phiếu thuê phòng (nếu xóa được)
-  - [ ] Sửa hoặc cập nhật số ngày thuê
-  - [ ] Dò phiếu thuê phòng trong lịch sử (dựa trên tên phòng, ngày bắt đầu thuê)
-  - [ ] In phiếu thuê phòng
-
-**Biểu mẫu 3**
-
-- Xây dựng UI tương đương với ví dụ minh họa trong phần yêu cầu của đồ án
-- Có chức năng:
-  - [ ] Xem danh sách phòng cùng tình trạng (trống hay không trống)
-  - [ ] Tìm phòng bằng tên phòng
-  - [ ] Lọc phòng bằng loại phòng
-  - [ ] Lọc phòng bằng tình trạng phòng
-
-**Biểu mẫu 4**
-
-- Xây dựng UI tương đương với ví dụ minh họa trong phần yêu cầu của đồ án
-- Có chức năng:
-  - [ ] Tạo hóa đơn thanh toán mới (tạo mới, chọn, nhập rồi thêm vào database)
-  - [ ] Dò hóa đơn thanh toán trong lịch sử (dựa trên tên khách hàng, địa chỉ)
-  - [ ] In hóa đơn thanh toán
-  - [ ] Lọc hóa đơn thanh toán theo khoảng trị giá
-
-**Biểu mẫu 5**
-
-- Xây dựng UI tương đương với ví dụ minh họa trong phần yêu cầu của đồ án
-- Có chức năng:
-  - [ ] Hiển thị báo cáo theo tháng và năm (nhập tháng và năm -> xuất báo cáo)
-  - [ ] Hiển thị báo cáo theo biểu đồ tròn
-
-**Biểu mẫu 6 (phát sinh thêm - biểu mẫu liên quan đến khách)**
-
-- Có chức năng:
-  - [ ] Xem danh sách khách
-  - [ ] Thêm khách
-  - [ ] Xóa khách (nếu xóa được)
-  - [ ] Sửa thông tin của khách
-  - [ ] Tìm kiếm khách (theo thông tin của khách)
-  - [ ] Lọc khách theo loại khách
- 
-
-
-
-Bảng màu https://coolors.co/palette/000000-14213d-fca311-e5e5e5-ffffff
+[.pdf](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.pdf)
