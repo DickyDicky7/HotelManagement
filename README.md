@@ -27,10 +27,11 @@
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/master/README/SETUPGUIDE/0.png?raw=true" width="800" height="350" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/SETUPGUIDE/0.png?raw=true" width="800" height="350" />
 </p>
 <br/>
 
+<!--
 <br/>
 <p align="center">
   <b>Hoặc sử dụng đường dẫn trực tiếp sau để download:</b>
@@ -73,6 +74,7 @@
   <i>(Chọn Finish)</i>
 </p>
 <br/>
+-->
 
 ## 📝 Báo Cáo
 
