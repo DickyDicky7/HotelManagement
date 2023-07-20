@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:elevation="10sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_bill"
@@ -16,6 +17,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rectangle_bg_indigo_300_border_indigo_100_radius_20"
+        android:elevation="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -277,6 +279,7 @@
                 android:paddingVertical="10sp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_camera"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/item_bill_dele_button"

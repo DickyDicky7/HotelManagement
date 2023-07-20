@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:elevation="10sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_rental_form"
@@ -15,6 +16,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rectangle_bg_indigo_300_border_indigo_100_radius_20"
+        android:elevation="10sp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
