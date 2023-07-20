@@ -21,7 +21,7 @@
 
 ## ⚙️ Hướng Dẫn Cài Đặt
 
-**1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/IT008.N12/releases/latest
+**1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/HotelManagement/releases/latest
 
 **2. Trong mục Assets, chọn "MyMediaPlayerInstaller.msi"**
 
