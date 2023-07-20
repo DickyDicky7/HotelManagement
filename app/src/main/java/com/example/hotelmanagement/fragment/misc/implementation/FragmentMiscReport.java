@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.hotelmanagement.R;
 import com.example.hotelmanagement.databinding.FragmentMiscReportBinding;
@@ -203,6 +204,8 @@ public class FragmentMiscReport extends Fragment {
 
             }
         });
+
+        binding.reportBackButton.setOnClickListener(_view_ -> NavHostFragment.findNavController(this).popBackStack());
 
         //Income
         //in year (through each month) // BarChart

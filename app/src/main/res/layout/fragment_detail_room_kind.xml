@@ -14,20 +14,19 @@
         android:layout_gravity="start" />
 
     <ImageButton
-        android:layout_width="@dimen/_40pxh"
         android:id="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_gravity="start"
+        android:layout_width="@dimen/_40pxh"
         android:layout_height="@dimen/_40pxh"
-        android:layout_marginEnd="@dimen/_10pxh"
-        android:layout_marginTop="46dp"
-        android:layout_marginLeft="12dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rectangle_bg_indigo_100_radius_10"
         android:paddingHorizontal="@dimen/_10pxh"
         android:paddingVertical="@dimen/_10pxv"
         android:scaleType="fitCenter"
-        android:src="@drawable/img_arrow_left" />
+        android:src="@drawable/img_arrow_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout android:id="@+id/linearColumnsingleroom"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,40 +36,45 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10pxv"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/txtSingleRoom"
             style="@style/text_outfit_semi_bold_38"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_12pxv"
             android:layout_marginEnd="@dimen/_16pxh"
-            android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/lbl_single_room2" />
+            android:singleLine="true"
+            android:text="@string/lbl_single_room2"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_price"
             style="@style/text_outfit_semi_bold_24_0"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_marginEnd="@dimen/_16pxh"
-            android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/msg_200_000_vnd_d" />
+            android:singleLine="true"
+            android:text="@string/msg_200_000_vnd_d"
+            android:textSize="25sp" />
+
         <TextView
             android:id="@+id/txtPriceOne"
             style="@style/text_outfit_semi_bold_24_1"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_marginEnd="@dimen/_16pxh"
-            android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/msg_1_bed_2_peopl" />
+            android:singleLine="true"
+            android:text="@string/msg_1_bed_2_peopl"
+            android:textSize="20sp" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearArea"
             android:layout_width="wrap_content"
@@ -79,18 +83,20 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_13pxv"
             android:gravity="start">
+
             <TextView
                 android:id="@+id/txt30M"
                 style="@style/text_outfit_semi_bold_24_1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3pxv"
-                android:layout_width="0dp"
                 android:layout_weight="0.94"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Area: 20 m  " />
+                android:text="Area: 20 m  "
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:id="@+id/txtTwo"
                 style="@style/text_outfit_semi_bold_14"
@@ -104,17 +110,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:text=" 2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/txtAmenities"
             style="@style/text_outfit_semi_bold_24_1"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_15pxv"
-            android:singleLine="true"
+            android:layout_marginEnd="@dimen/_16pxh"
             android:ellipsize="end"
-            android:text="@string/lbl_amenities" />
+            android:singleLine="true"
+            android:text="@string/lbl_amenities"
+            android:textSize="20sp" />
         <LinearLayout android:id="@+id/linearRowsignal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,18 +137,20 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_signal" />
+
             <TextView
                 android:id="@+id/txtWifi"
                 style="@style/text_inter_regular_14_4"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_weight="0.11"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_wifi" />
+                android:text="@string/lbl_wifi"
+                android:textSize="15sp" />
             <ImageView android:id="@+id/imageVolume"
                 android:layout_height="@dimen/_18pxh"
                 android:layout_width="@dimen/_13pxh"
@@ -149,18 +159,20 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_volume" />
+
             <TextView
                 android:id="@+id/txtParking"
                 style="@style/text_inter_regular_14_4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_11pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_width="0dp"
                 android:layout_weight="0.22"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_parking" />
+                android:text="@string/lbl_parking"
+                android:textSize="15sp" />
             <ImageView android:id="@+id/imageCar"
                 android:layout_height="@dimen/_14pxh"
                 android:layout_width="@dimen/_22pxh"
@@ -169,17 +181,20 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_car" />
+
             <TextView
                 android:id="@+id/txtAirportShuttle"
                 style="@style/text_inter_regular_14_4"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_weight="0.42" android:ellipsize="end"
+                android:layout_weight="0.42"
+                android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/lbl_airport_shuttle" />
+                android:text="@string/lbl_airport_shuttle"
+                android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearRowmusic"
             android:layout_width="match_parent"
@@ -198,18 +213,20 @@
                 android:layout_width="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_food" />
+
             <TextView
                 android:id="@+id/txtBuffet"
                 style="@style/text_inter_regular_14_4"
-                android:layout_height="wrap_content"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7pxh"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_weight="0.11"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="Buffet" />
+                android:text="Buffet"
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/imageCarOne"
@@ -220,40 +237,47 @@
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_user_swim" />
+
             <TextView
                 android:id="@+id/txtPublicSwiming"
                 style="@style/text_inter_regular_14_4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7pxh"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_width="0dp"
                 android:layout_weight="0.62"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@string/msg_public_swiming" />
+                android:text="@string/msg_public_swiming"
+                android:textSize="15sp" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/txtDescription"
             style="@style/text_outfit_semi_bold_24_1"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
             android:layout_marginEnd="@dimen/_16pxh"
-            android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/lbl_description" />
+            android:singleLine="true"
+            android:text="@string/lbl_description"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/txtDescriptionOne"
             style="@style/text_inter_regular_14_4"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_6pxv"
             android:layout_marginEnd="@dimen/_16pxh"
+            android:justificationMode="inter_word"
             android:lineSpacingExtra="@dimen/_2pxh"
-            android:text="@string/msg_set_along_a_bus" />
+            android:text="@string/msg_set_along_a_bus"
+            android:textSize="15sp" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearRowvector"
             android:layout_height="wrap_content"
@@ -262,22 +286,23 @@
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_43pxv"
             android:layout_marginBottom="@dimen/_24pxv">
+
             <FrameLayout
                 android:id="@+id/frameEditbutton"
                 style="@style/group_style_bg_indigo_100_corner_radius_20"
-                android:layout_width="@dimen/_144pxh"
-                android:layout_height="@dimen/_50pxv"
+                android:layout_width="100sp"
+                android:layout_height="40sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/imageVector"
-                    android:layout_width="@dimen/_31pxh"
-                    android:layout_height="@dimen/_31pxh"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginStart="@dimen/_40pxh"
                     android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_pen_white_v1" />

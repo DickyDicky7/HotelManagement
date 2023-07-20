@@ -94,7 +94,6 @@ public class FragmentListRoom extends Fragment implements RoomAdapter.RoomListen
         });
 
         binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
-        binding.roomsBtnBook.setVisibility(View.INVISIBLE);
         binding.roomsBtnEdit.setVisibility(View.INVISIBLE);
         binding.roomsBtnDelete.setVisibility(View.INVISIBLE);
         int delayMilliseconds = 3000;
@@ -106,13 +105,6 @@ public class FragmentListRoom extends Fragment implements RoomAdapter.RoomListen
                         binding.roomsBtnAdd.setVisibility(View.INVISIBLE);
                     }
                 }).playOn(binding.roomsBtnAdd);
-            }
-            if (binding != null && binding.roomsBtnBook.getVisibility() != View.INVISIBLE) {
-                YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
-                    if (binding != null) {
-                        binding.roomsBtnBook.setVisibility(View.INVISIBLE);
-                    }
-                }).playOn(binding.roomsBtnBook);
             }
             if (binding != null && binding.roomsBtnEdit.getVisibility() != View.INVISIBLE) {
                 YoYo.with(Techniques.SlideOutDown).duration(500).onEnd(animator -> {
@@ -133,9 +125,6 @@ public class FragmentListRoom extends Fragment implements RoomAdapter.RoomListen
             handler.removeCallbacks(timeoutCallback);
             if (binding.roomsBtnAdd.getVisibility() != View.VISIBLE) {
                 YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnAdd.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnAdd);
-            }
-            if (binding.roomsBtnBook.getVisibility() != View.VISIBLE) {
-                YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnBook.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnBook);
             }
             if (binding.roomsBtnEdit.getVisibility() != View.VISIBLE) {
                 YoYo.with(Techniques.SlideInUp).duration(500).onStart(animator -> binding.roomsBtnEdit.setVisibility(View.VISIBLE)).playOn(binding.roomsBtnEdit);
