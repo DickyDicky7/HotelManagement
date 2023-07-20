@@ -19,7 +19,6 @@
 
 - Android Java, Hasura GraphQL Server, PostgresQL Database
 
-<!--
 ## ⚙️ Hướng Dẫn Cài Đặt
 
 **1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/IT008.N12/releases/latest
@@ -82,4 +81,3 @@
 [.docx](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.docx)
 
 [.pdf](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.pdf)
--->
