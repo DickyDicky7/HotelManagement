@@ -210,6 +210,13 @@
             app:exitAnim="@anim/animate_slide_down_exit"
             app:popEnterAnim="@anim/animate_slide_up_enter"
             app:popExitAnim="@anim/animate_slide_up_exit" />
+        <action
+            android:id="@+id/action_fragmentListRoomKind_to_fragmentDetailRoomKind"
+            app:destination="@id/fragmentDetailRoomKind"
+            app:enterAnim="@anim/animate_slide_down_enter"
+            app:exitAnim="@anim/animate_slide_down_exit"
+            app:popEnterAnim="@anim/animate_slide_up_enter"
+            app:popExitAnim="@anim/animate_slide_up_exit" />
     </fragment>
     <fragment
         android:id="@+id/fragmentListBill"
@@ -250,4 +257,8 @@
         android:id="@+id/fragmentMiscReport"
         android:name="com.example.hotelmanagement.fragment.misc.implementation.FragmentMiscReport"
         android:label="fragment_misc_report" />
+    <fragment
+        android:id="@+id/fragmentDetailRoomKind"
+        android:name="com.example.hotelmanagement.fragment.detail.implementation.FragmentDetailRoomKind"
+        android:label="FragmentDetailRoomKind" />
 </navigation>

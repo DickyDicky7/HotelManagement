@@ -51,6 +51,7 @@ public class RoomKindAdapter extends ExtendedAdapter<RoomKindObservable, RoomKin
         Glide.with(fragmentActivity).load(roomKindObservable.getImageURL()).centerCrop().transform(new
                 RoundedCorners(30)).into(binding.itemRoomKindMainImageView);
 
+        binding.itemRoomKind.setOnClickListener(view -> roomKindListener.onJustRoomKindClick(roomKindObservable));
         binding.itemRoomKindEditButton.setOnClickListener(view -> roomKindListener.onEditRoomKindClick(roomKindObservable));
         binding.itemRoomKindDeleButton.setOnClickListener(view -> roomKindListener.onDeleRoomKindClick(roomKindObservable));
 

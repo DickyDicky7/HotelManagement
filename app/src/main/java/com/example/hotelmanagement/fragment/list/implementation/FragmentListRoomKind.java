@@ -128,7 +128,9 @@ public class FragmentListRoomKind extends Fragment implements RoomKindAdapter.Ro
 
     @Override
     public void onJustRoomKindClick(RoomKindObservable roomKindObservable) {
-
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", roomKindObservable.getId());
+        NavHostFragment.findNavController(this).navigate(R.id.action_fragmentListRoomKind_to_fragmentDetailRoomKind, bundle);
     }
 
     @Override
