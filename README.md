@@ -27,7 +27,7 @@
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/SETUPGUIDE/0.png?raw=true" width="1000" height="350" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/main/README/SETUPGUIDE/0.png?raw=true" width="800" height="300" />
 </p>
 <br/>
 
