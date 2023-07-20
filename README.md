@@ -23,11 +23,11 @@
 
 **1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/HotelManagement/releases/latest
 
-**2. Trong mục Assets, chọn "MyMediaPlayerInstaller.msi"**
+**2. Trong mục Assets, chọn "app-release.apk"**
 
 <br/>
 <p align="center">
-  <img src="https://github.com/DickyDicky7/IT008.N12/blob/master/README/SETUPGUIDE/0.png?raw=true" width="800" height="350" />
+  <img src="https://github.com/DickyDicky7/HotelManagement/blob/master/README/SETUPGUIDE/0.png?raw=true" width="800" height="350" />
 </p>
 <br/>
 
