@@ -1,8 +1,8 @@
-# 📚 Đồ Án Lập Trình Trực Quan - IT008.N12
+# 📚 Đồ Án Nhập Môn Ứng Dụng Di Động - SE114.N21
 
 ## ✒️ Đề Tài
 
-> Trình Phát Audio Và Video
+> Ứng Dụng Quản Lí Khách Sạn
 
 ## 📄 Mô Tả
 
@@ -10,15 +10,16 @@
 
 | MSSV | Họ Và Tên | |
 | ---- | --------- | - |
-| 21520147 | [Phạm Tuấn Anh](https://github.com/DickyDicky7)  | Nhóm trưởng |
-| 21521682 | [Nguyễn Văn Vũ](https://github.com/JustVvu)      | Thành viên |
-| 21521055 | [Nguyễn Chí Lâm](https://github.com/Loading1369) | Thành viên |
-| 21520579 | [Nguyễn Tiến Anh](https://github.com/4nh3k)      | Thành viên |
+| 21520147 | [Phạm Tuấn Anh](https://github.com/DickyDicky7)    | Nhóm trưởng |
+| 21520913 | [Đào Xuân Huy](https://github.com/huy03)           | Thành viên |
+| 21521326 | [Ngô Trung Quân](https://github.com/QuanNT2003)    | Thành viên |
+| 21521812 | [Nguyễn Thành Thiện Ân](https://github.com/ZeVnan) | Thành viên |
 
 *Công nghệ sử dụng:*
 
-- Windows Forms
+- Android Java, Hasura GraphQL Server, PostgresQL Database
 
+<!--
 ## ⚙️ Hướng Dẫn Cài Đặt
 
 **1. Truy cập đường dẫn sau:** https://github.com/DickyDicky7/IT008.N12/releases/latest
@@ -81,3 +82,4 @@
 [.docx](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.docx)
 
 [.pdf](https://github.com/DickyDicky7/IT008.N12/raw/master/README/REPORT/B%C3%A1o%20c%C3%A1o%20L%E1%BA%ADp%20Tr%C3%ACnh%20Tr%E1%BB%B1c%20Quan.pdf)
+-->
