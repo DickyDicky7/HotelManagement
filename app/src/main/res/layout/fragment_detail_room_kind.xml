@@ -21,6 +21,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/rectangle_bg_indigo_100_radius_10"
+        android:elevation="10sp"
         android:paddingHorizontal="@dimen/_10pxh"
         android:paddingVertical="@dimen/_10pxv"
         android:scaleType="fitCenter"
@@ -28,23 +29,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout android:id="@+id/linearColumnsingleroom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_gravity="bottom|start"
+    <LinearLayout
+        android:id="@+id/linearColumnsingleroom"
         style="@style/group_style_bg_indigo_200_corner_radius_tl_30_tr_30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10pxv"
-        android:orientation="vertical">
+        android:layout_gravity="bottom|start"
+        android:elevation="10sp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/txtSingleRoom"
             style="@style/text_outfit_semi_bold_38"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_12pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_single_room2"
@@ -55,9 +57,9 @@
             style="@style/text_outfit_semi_bold_24_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_17pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/msg_200_000_vnd_d"
@@ -68,20 +70,21 @@
             style="@style/text_outfit_semi_bold_24_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_19pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/msg_1_bed_2_peopl"
             android:textSize="20sp" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_13pxv"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
             android:gravity="start">
 
             <TextView
@@ -89,7 +92,7 @@
                 style="@style/text_outfit_semi_bold_24_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_3pxv"
+                android:layout_marginTop="2dp"
                 android:layout_weight="0.94"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -97,18 +100,19 @@
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/txtTwo"
                 style="@style/text_outfit_semi_bold_14"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_16pxv"
-                android:layout_width="0dp"
                 android:layout_weight="0.06"
                 android:ellipsize="end"
                 android:singleLine="true"
+                android:text=" 2"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text=" 2" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -116,23 +120,28 @@
             style="@style/text_outfit_semi_bold_24_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_15pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_amenities"
             android:textSize="20sp" />
-        <LinearLayout android:id="@+id/linearRowsignal"
+
+        <LinearLayout
+            android:id="@+id/linearRowsignal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_17pxv"
-            android:gravity="start" android:orientation="horizontal">
-            <ImageView android:id="@+id/imageSignal"
-                android:layout_height="@dimen/_15pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageSignal"
                 android:layout_width="@dimen/_22pxh"
+                android:layout_height="@dimen/_15pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
                 android:scaleType="fitXY"
@@ -151,9 +160,11 @@
                 android:singleLine="true"
                 android:text="@string/lbl_wifi"
                 android:textSize="15sp" />
-            <ImageView android:id="@+id/imageVolume"
-                android:layout_height="@dimen/_18pxh"
+
+            <ImageView
+                android:id="@+id/imageVolume"
                 android:layout_width="@dimen/_13pxh"
+                android:layout_height="@dimen/_18pxh"
                 android:layout_marginStart="@dimen/_36pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
@@ -173,9 +184,11 @@
                 android:singleLine="true"
                 android:text="@string/lbl_parking"
                 android:textSize="15sp" />
-            <ImageView android:id="@+id/imageCar"
-                android:layout_height="@dimen/_14pxh"
-                android:layout_width="@dimen/_22pxh"
+
+            <ImageView
+                android:id="@+id/imageCar"
+                android:layout_width="30sp"
+                android:layout_height="20sp"
                 android:layout_marginStart="@dimen/_31pxh"
                 android:layout_marginTop="@dimen/_2pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
@@ -196,21 +209,23 @@
                 android:text="@string/lbl_airport_shuttle"
                 android:textSize="15sp" />
         </LinearLayout>
-        <LinearLayout android:id="@+id/linearRowmusic"
+
+        <LinearLayout
+            android:id="@+id/linearRowmusic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_14pxv"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
             android:gravity="start"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageMusic"
+                android:layout_width="@dimen/_20pxh"
                 android:layout_height="@dimen/_18pxh"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_width="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_food" />
 
@@ -230,8 +245,8 @@
 
             <ImageView
                 android:id="@+id/imageCarOne"
-                android:layout_height="@dimen/_18pxh"
                 android:layout_width="@dimen/_20pxh"
+                android:layout_height="@dimen/_18pxh"
                 android:layout_marginStart="@dimen/_22pxh"
                 android:layout_marginTop="@dimen/_3pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
@@ -258,9 +273,9 @@
             style="@style/text_outfit_semi_bold_24_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_17pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="20sp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="@string/lbl_description"
@@ -271,28 +286,29 @@
             style="@style/text_inter_regular_14_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_6pxv"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="20sp"
             android:justificationMode="inter_word"
             android:lineSpacingExtra="@dimen/_2pxh"
             android:text="@string/msg_set_along_a_bus"
             android:textSize="15sp" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearRowvector"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_marginEnd="@dimen/_16pxh"
-            android:layout_marginStart="@dimen/_16pxh"
-            android:layout_marginTop="@dimen/_43pxv"
-            android:layout_marginBottom="@dimen/_24pxv">
+            android:layout_height="80sp"
+            android:layout_marginTop="40sp">
 
             <FrameLayout
                 android:id="@+id/frameEditbutton"
                 style="@style/group_style_bg_indigo_100_corner_radius_20"
                 android:layout_width="100sp"
                 android:layout_height="40sp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:elevation="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/frameDeletebutton"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -307,22 +323,26 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/img_pen_white_v1" />
             </FrameLayout>
+
             <FrameLayout
                 android:id="@+id/frameDeletebutton"
                 style="@style/group_style_bg_indigo_100_corner_radius_20"
-                android:layout_width="@dimen/_144pxh"
-                android:layout_height="@dimen/_50pxv"
-                android:layout_marginStart="@dimen/_24pxh"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="100sp"
+                android:layout_height="40sp"
+                android:elevation="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/frameEditbutton"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <ImageView
                     android:id="@+id/btn_delete"
-                    android:layout_width="@dimen/_24pxh"
-                    android:layout_height="@dimen/_31pxh"
+                    android:layout_width="15sp"
+                    android:layout_height="20sp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginStart="@dimen/_40pxh"
                     android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_marginEnd="@dimen/_40pxh"
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_trash" />
